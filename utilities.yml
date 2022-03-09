@@ -1,0 +1,2736 @@
+openapi: 3.0.1
+info:
+  title: Utilities
+  description: All included utility endpoints for Basiq partners
+  version: 3.0.0
+servers:
+- url: https://au-api.basiq.io/
+paths:
+  /token:
+    post:
+      tags:
+      - Authentication
+      summary: Generate an auth token
+      description: Use this endpoint to retrieve a token that will be passed as authorization
+        header for Basiq API
+      operationId: postToken
+      parameters:
+      - name: basiq-version
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                scope:
+                  type: string
+            examples:
+              client_access:
+                summary: For all client side requests
+                value:
+                  scope: CLIENT_ACCESS
+              server_access:
+                summary: For all server side requests
+                value:
+                  scope: SERVER_ACCESS
+      responses:
+        200:
+          description: 'Return token object that will be used for Basiq API requests. '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPostResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            as it does not conform.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - api_key: []
+  /jobs/{jobId}:
+    get:
+      tags:
+      - Jobs
+      summary: Retrieve a job
+      description: Retrieves the details of an existing job. You need only supply the
+        unique job identifier that was returned upon job creation.
+      operationId: getJobs
+      parameters:
+      - name: jobId
+        in: path
+        description: The identifier of the job to be retrieved.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a job details if a valid job ID was provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobData'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /users/{userId}:
+    get:
+      tags:
+      - Users
+      summary: Retrieve a user
+      description: Retrieves the details of an existing user. You need only supply the unique user identifier that was returned upon user creation.
+      operationId: getUser
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user to be retrieved.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a user if a valid user ID was provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGetResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Error status response code indicates that the request has not
+            been applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+    post:
+      tags:
+      - Users
+      summary: Update a user
+      description: Updates the specified user by setting the values of the parameters
+        passed. Any parameters not provided will be left unchanged.
+      operationId: updateUser
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user to be retrieved.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateUser'
+        required: true
+      responses:
+        200:
+          description: Returns the user object if the update succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPostResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: user
+    delete:
+      tags:
+      - Users
+      summary: Delete a user
+      description: Permanently deletes a user along with all of their associated connection
+        details. All data associated with this user will deleted. You need only supply
+        the unique user identifier that was returned upon user creation.
+      operationId: deleteUser
+      parameters:
+      - name: userId
+        in: path
+        description: User identification.
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: Deletion succeeded.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/connections:
+    get:
+      tags:
+      - Connections
+      summary: List connections
+      description: Returns a list of connections belonging to this user. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.
+      operationId: getConnections
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier.
+        required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Connections filters, id, status, institution.id. e.g institution.id.eq('AU00000')
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns details of connections.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionsGetResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+    post:
+      tags:
+      - Connections
+      summary: Create a new connection
+      description: Use this to create a new connection. This will not return a new connection. Instead will return a job resource which is resonsible for creating the connection and fetching data asynchronously. Use this job resource to track the connections progress. 
+      operationId: postConnection
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserConnectionsPostData'
+        required: false
+      responses:
+        202:
+          description: Returns a job responsible for creating the connection and retrieving connection data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Error status response code indicates that the request has not
+            been applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        415:
+          description: Returns error response code that indicates that the server
+            refuses to accept the request because the payload format is in an unsupported
+            format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+      x-codegen-request-body-name: UserConnectionsPostData
+  /users/{userId}/connections/refresh:
+    post:
+      tags:
+      - Connections
+      summary: Refresh connections
+      description: Use this to refresh all connections belonging to the specified user.
+      operationId: refreshConnections
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        202:
+          description: Returns a created jobs resource, if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionsRefreshResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/connections/{connectionId}:
+    get:
+      tags:
+      - Connections
+      summary: Retrieve a connection
+      description: Use this to retrieve details of a specific connection. Note that due to security the loginId, password, securityCode are never returned.
+      operationId: getConnection
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: connectionId
+        in: path
+        description: The identifier of the connection.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns details of a connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionGetResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Error status response code indicates that the request has not
+            been applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+    post:
+      tags:
+      - Connections
+      summary: Update a connection
+      description: Use this to update the details of a specific connection.
+      operationId: updateConnection
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier.
+        required: true
+        schema:
+          type: string
+      - name: connectionId
+        in: path
+        description: Connection identifier.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserConnectionPostData'
+        required: false
+      responses:
+        202:
+          description: Returns a job object if the request succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Error status response code indicates that the request has not
+            been applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        415:
+          description: Returns error response code that indicates that the server
+            refuses to accept the request because the payload format is in an unsupported
+            format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+      x-codegen-request-body-name: UserConnectionPostData
+    delete:
+      tags:
+      - Connections
+      summary: Delete a connection
+      description: Permanently deletes a connection. This does not include the existing account and transaction data associated with it. This can not be undone.
+      operationId: deleteConnection
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: connectionId
+        in: path
+        description: The identifier of the connection.
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: Returns an empty body if the delete succeeded.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/connections/{connectionId}/refresh:
+    post:
+      tags:
+      - Connections
+      summary: Refresh a connection
+      description: Use this to refresh an existing connection. This will not return a new connection. Instead will return a job resource which is resonsible for refreshing the connection and fetching data asynchronously. Use this job resource to track the connections progress.
+      operationId: refreshConnection
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: connectionId
+        in: path
+        description: The identifier of the connection.
+        required: true
+        schema:
+          type: string
+      responses:
+        202:
+          description: Returns a created job resource, if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/jobs:
+    get:
+      tags:
+      - Jobs
+      summary: Get user jobs
+      description: Retrieves the details of all existing and previous jobs associated with a user.
+      operationId: getUserJobs
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier
+        required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Connection identification filter. e.g. connection.id.eq('ab63cd')
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a list of jobs with details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobsResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /institutions:
+    get:
+      tags:
+      - Institutions
+      summary: List institutions
+      description: Retrieve a list of all institutions available and any associated data such as metrics, methods of data retrieval, current stage & status etc. 
+      operationId: getInstitutions
+      parameters:
+      - name: filter
+        in: query
+        description: |-
+          Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>
+          Filter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>
+          The Following list of regular expressions descirbes acceptable filter statements: </br>
+          • `institution\.country\.(eq|ne)\(('Australia'|'New Zealand')\)` </br>
+          • `institution\.country\.in\(([\w\W]+)\)` </br>
+          • `institution\.tier\.(eq|ne)\(('1'|'2'|'3'|'4')\)` </br>
+          • `institution\.tier\.in\('[1-4]'(,'[1-4]')*\)` </br>
+          • `institution\.authorization\.(eq|ne)\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\)` </br>
+          • `institution\.authorization\.in\(([\w-', ]+)\)` </br>
+          • `institution\.serviceType\.(eq|ne)\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\)` </br>
+          • `institution\.institutionType\.(eq|ne)\(('Bank'|'Bank \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)` </br>
+          • `institution\.stage\.(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
+          Multiple filter definitions should be separated with comma (`,`). </br>
+          For example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns data of single institution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstitutionsList'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Returns error that indicates unauthorized access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /institutions/{institutionID}:
+    get:
+      tags:
+      - Institutions
+      summary: Retrieve an institution
+      description: Retrieves data for single institution.
+      operationId: getInstitution
+      parameters:
+      - name: institutionID
+        in: path
+        description: Institution ID
+        required: true
+        schema:
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+      responses:
+        200:
+          description: Returns data of single institution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Institution'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Returns error that indicates unauthorized access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        404:
+          description: Returns error indicating that server cannot find requested
+            resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /public/institutions:
+    get:
+      tags:
+      - Institutions
+      summary: List institutions - public
+      operationId: getPublicInstitutions
+      parameters:
+      - name: filter
+        in: query
+        description: Publically accessible endpoint to list all institutions without need for authentication
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns data of single institution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstitutionsList'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+components:
+  schemas:
+    AccountClass:
+      required:
+      - product
+      - type
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        product:
+          type: string
+          description: Product name.
+          example: saver
+        type:
+          type: string
+          description: Account type
+          example: savings
+    AccountsContainer:
+      required:
+      - data
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Accounts details
+          items:
+            $ref: '#/components/schemas/AccountsData'
+        type:
+          type: string
+          description: Type always "list".
+          example: list
+    AccountsData:
+      required:
+      - accountNo
+      - availableFunds
+      - balance
+      - class
+      - currency
+      - id
+      - lastUpdated
+      - links
+      - name
+      - status
+      - type
+      type: object
+      properties:
+        accountNo:
+          type: string
+          description: Account number
+          example: "105148119695"
+        availableFunds:
+          type: string
+          description: Account available funds, nullable.
+          nullable: true
+          example: "200.54"
+        balance:
+          type: string
+          description: Account balance, nullable.
+          nullable: true
+          example: "100.12"
+        class:
+          $ref: '#/components/schemas/AccountClass'
+        currency:
+          type: string
+          description: Currency
+          example: AUD
+        id:
+          type: string
+          description: Account identification.
+          example: 319ae910
+        lastUpdated:
+          type: string
+          description: Account last updated date and time.
+          example: 2017-09-28T11:15:09.756Z
+        links:
+          $ref: '#/components/schemas/ConnectionAccountLinks'
+        name:
+          type: string
+          description: Account name.
+          example: Business account
+        status:
+          type: string
+          description: Account status.
+          example: available
+          enum:
+          - available
+          - unavailable
+        type:
+          type: string
+          description: Type always "account".
+          example: account
+    ConnectionAccountLinks:
+      required:
+      - self
+      - transactions
+      type: object
+      properties:
+        self:
+          type: string
+          description: self link to the requested account
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
+        transactions:
+          type: string
+          description: transactions link to the transactions associated with this
+            account
+          example: https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')
+    BadRequestError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: parameter-not-valid
+                enum:
+                - parameter-not-supplied
+                - parameter-not-valid
+                - unsupported-accept
+                - invalid-content
+                - institution-not-supported
+                - invalid-credentials
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: ID value is not valid.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Parameter not valid.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    ConnectionGetResponseResource:
+      title: ConnectionGetResponseResource
+      required:
+      - createdDate
+      - id
+      - institution
+      - links
+      - type
+      type: object
+      properties:
+        accounts:
+          $ref: '#/components/schemas/AccountsContainer'
+        id:
+          type: string
+          description: A string that uniquely identifies the user connection.
+          example: "61723"
+        institution:
+          $ref: '#/components/schemas/ConnectionInstitution'
+        createdDate:
+          type: string
+          description: Created date of the connection, available only for SERVER_SCOPE.
+          example: 2019-07-29T07:34:09Z
+        lastUsed:
+          type: string
+          description: UTC Date and Time of when the connection was last used, in
+            RFC 3339 format, available only for SERVER_SCOPE.
+          example: 2020-06-22T11:15:09Z
+        links:
+          $ref: '#/components/schemas/GetConnectionLinks'
+        profile:
+          $ref: '#/components/schemas/ConnectionProfile'
+        status:
+          type: string
+          description: |-
+            Indicates the connection status, available only for SERVER_SCOPE.
+            Possible values include:
+            <ul>
+            <li>pending - the connection is in this status briefly until credentials are verified</li>
+            <li>active - the connection is valid (is working!) and the credentials have been verified (the jobs steps will continue) </li>
+            <li>invalid -  the connection is no longer valid and requires the user to update their logon details. Invalid connections cannot refreshed until the password is updated. </li>
+            </ul>
+          example: active
+          enum:
+          - active
+          - pending
+          - invalid
+        type:
+          type: string
+          description: Type, always "connection".
+          example: connection
+      description: Object containing details for connection post.
+    ConnectionInstitution:
+      title: ConnectionInstitution
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Institution id
+          example: AU00000
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "institution".
+          example: institution
+      description: Institution details.
+    ConnectionProfile:
+      required:
+      - emailAddresses
+      - firstName
+      - fullName
+      - lastName
+      - middleName
+      - phoneNumbers
+      - physicalAddresses
+      type: object
+      properties:
+        emailAddresses:
+          type: array
+          description: User email address
+          example:
+          - gavin@hooli.com
+          items:
+            type: string
+        firstName:
+          type: string
+          description: User first name
+          example: Gavin
+        fullName:
+          type: string
+          description: User full name
+          example: Gavin Belson
+        lastName:
+          type: string
+          description: User last name
+          example: Belson
+        middleName:
+          type: string
+          description: User middle name
+        phoneNumbers:
+          type: array
+          description: User phone number
+          example:
+          - XXXX 888 991
+          items:
+            type: string
+        physicalAddresses:
+          type: array
+          description: Physical user addresses
+          items:
+            $ref: '#/components/schemas/PhysicalAddresses'
+    ConnectionResponseResource:
+      title: ConnectionResponseResource
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Job identification.
+          example: "29523951"
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Type, always "job".
+          example: job
+      description: Object containing details for connection post.
+    ConnectionsData:
+      required:
+      - createdDate
+      - id
+      - institution
+      - links
+      - type
+      type: object
+      properties:
+        createdDate:
+          type: string
+          description: Created date of the connection, available only for SERVER_SCOPE.
+          example: 2019-07-29T07:34:09Z
+        id:
+          type: string
+          description: Connection identification.
+          example: "61723"
+        institution:
+          $ref: '#/components/schemas/ConnectionInstitution'
+        lastUsed:
+          type: string
+          description: Connection last used date, available only for SERVER_SCOPE.
+          example: 2020-06-22T11:15:09Z
+        links:
+          $ref: '#/components/schemas/GetConnectionsLinks'
+        status:
+          type: string
+          description: Connection status, available only for SERVER_SCOPE.
+          example: active
+          enum:
+          - active
+          - pending
+          - invalid
+        type:
+          type: string
+          description: Type, always "connection".
+          example: connection
+    ConnectionsGetResponseResource:
+      title: ConnectionsGetResponseResource
+      required:
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectionsData'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+      description: Object containing details for connections.
+    ConnectionsRefreshResource:
+      title: ConnectionsRefreshResource
+      required:
+      - data
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Job details data.
+          items:
+            $ref: '#/components/schemas/ConnectionResponseResource'
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+      description: Object containing details for connections refresh.
+    ForbiddenAccessError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - source
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: forbidden-access
+                enum:
+                - forbidden-access
+                - no-production-access
+                - access-denied
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Access to this resource is forbidden.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Forbidden Access
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    GetConnectionLinks:
+      title: GetConnectionLinks
+      required:
+      - self
+      - user
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Accounts reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')
+        self:
+          type: string
+          description: Connection self reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92-0b12-43ba-a3c1-286dd5f4f396/connections/29523951
+        transactions:
+          type: string
+          description: Transactions reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')
+        user:
+          type: string
+          description: User reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92
+      description: Object containing links to resources.
+    GetConnectionsLinks:
+      title: GetConnectionsLinks
+      required:
+      - institution
+      - self
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Accounts reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')
+        institution:
+          type: string
+          description: Institution details.
+          example: https://au-api.basiq.io/institutions/AU00000
+        self:
+          type: string
+          description: Connection self reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/connections/29523951
+        transactions:
+          type: string
+          description: Transactions reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')
+      description: Object containing links to resources.
+    GetUserAccount:
+      title: UserGetAccount
+      required:
+      - count
+      - data
+      - type
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of accounts.
+          format: int64
+          example: 7
+        data:
+          type: array
+          description: Accounts data.
+          items:
+            $ref: '#/components/schemas/GetUserAccountData'
+        type:
+          type: string
+          description: Always "list".
+          example: list
+      description: Container object containing account data.
+    GetUserAccountData:
+      title: UserGetAccountData
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Account identification.
+          example: aaaf2c3b
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "account".
+          example: account
+      description: Object containing account data.
+    GetUserConnection:
+      title: UserGetConnection
+      required:
+      - count
+      - data
+      - type
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of accounts.
+          format: int64
+          example: 5
+        data:
+          type: array
+          description: Connections data.
+          items:
+            $ref: '#/components/schemas/GetUserConnectionData'
+        type:
+          type: string
+          description: Always "list".
+          example: list
+      description: Container object containing connection data.
+    GetUserConnectionData:
+      title: GetUserConnectionData
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Connection identification.
+          example: aaaf2c3b
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "connection".
+          example: connection
+      description: Object containing connection data.
+    GetUserLinks:
+      title: GetUserLinks
+      required:
+      - accounts
+      - auth_link
+      - connections
+      - self
+      - transactions
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Accounts reference url.
+        auth_link:
+          type: string
+          description: Auth link, possible null.
+          nullable: true
+        connections:
+          type: string
+          description: Connections reference url.
+        self:
+          type: string
+          description: User self reference url.
+        transactions:
+          type: string
+          description: Transactions reference url.
+      description: Object containing links to resources.
+    InstitutionModel:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Institution identification.
+          example: AU00000
+    InternalServerError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: internal-server-error
+                enum:
+                - internal-server-error
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    JobData:
+      title: JobData
+      required:
+      - created
+      - id
+      - steps
+      - updated
+      type: object
+      properties:
+        created:
+          type: string
+          description: The date time when the job was created.
+          example: 2020-06-10T09:59:00Z
+        id:
+          type: string
+          description: A string that uniquely identifies the job.
+          example: e9132638
+        links:
+          $ref: '#/components/schemas/JobsLinks'
+        steps:
+          type: array
+          description: List of steps that need to be completed.
+          items:
+            $ref: '#/components/schemas/JobsStep'
+        type:
+          type: string
+          description: Value is "job".
+          example: job
+        updated:
+          type: string
+          description: The date time when the job was last updated.
+          example: 2020-06-10T09:59:00Z
+      description: Container object, containing job details.
+    JobsData:
+      title: JobsData
+      required:
+      - created
+      - id
+      - institution
+      - steps
+      - updated
+      type: object
+      properties:
+        created:
+          type: string
+          description: The date time when the job was created.
+          example: 2020-06-10T09:59:00Z
+        id:
+          type: string
+          description: A string that uniquely identifies the job.
+          example: e9132638
+        institution:
+          $ref: '#/components/schemas/JobsInstitution'
+        links:
+          $ref: '#/components/schemas/JobsLinks'
+        steps:
+          type: array
+          description: List of steps that need to be completed.
+          items:
+            $ref: '#/components/schemas/JobsStep'
+        type:
+          type: string
+          description: Value is "job".
+          example: job
+        updated:
+          type: string
+          description: The date time when the job was last updated.
+          example: 2020-06-10T09:59:00Z
+      description: Container object, containing job details.
+    JobsInstitution:
+      title: Institution
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: A string that uniquely identifies institution.
+          example: AU00000
+        links:
+          $ref: '#/components/schemas/JobsLinks'
+        type:
+          type: string
+          description: Always "institution".
+          example: institution
+      description: Institution details.
+    JobsLinks:
+      title: JobsLinks
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL of the resource
+          example: /jobs/61723
+        source:
+          type: string
+          description: Resource that initiated creation of this Job. For example,
+            for operations on Connection, this is a Connection URL. This is only returned
+            for Connection jobs and not for Statement jobs.
+      description: Links to the resources.
+    JobsResponseResource:
+      required:
+      - data
+      - links
+      - size
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Container object, containing job details.
+          items:
+            $ref: '#/components/schemas/JobsData'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        size:
+          type: integer
+          description: Size of the all the jobs.
+          format: int64
+          example: 100
+        type:
+          type: string
+          description: Type of the response, always "list".
+          example: list
+    JobsResult:
+      title: JobsResult
+      type: object
+      properties:
+        code:
+          type: string
+          description: In case of failed job, displays error code.
+          enum:
+          - user-action-required
+          - system-unavailable
+          - maintenance
+          - connector-error
+          - institution-not-found
+          - institution-not-available
+          - institution-disabled
+          - missing-required-field
+          - missing-required-field-value
+          - invalid-field-value
+          - invalid-csv-row
+          - row-count-exceeded
+          - account-data-differs
+          - empty-file
+          - bank-statement-invalid
+          - bank-statement-new-product
+          - bank-statement-parsing-error
+          - bank-statement-not-supported
+          - txn-after-last-updated-date
+          - invalid-connection
+          - unknown-error
+          - job-timed-out
+        details:
+          type: string
+          description: In case of failed job, displays details of the error.
+        title:
+          type: string
+          description: In case of failed job, displays error title.
+        type:
+          type: string
+          description: In case of success, Always "link".
+          example: link
+        url:
+          type: string
+          description: In case of success, URL of the updated (or created) resources.
+      description: Result object containing a list of URLs or null. Otherwise if a
+        step failed contains an error response.
+    JobsStep:
+      title: JobsStep
+      required:
+      - result
+      - status
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/JobsResult'
+        status:
+          type: string
+          description: |-
+            Step status.
+            <ul>
+            <li> pending -  The job has been created and is waiting to be started.</li>
+            <li> in-progress - The job has started and is currently processing.</li>
+            <li> success - The job has successfully completed. </li>
+            <li> failed - The job has failed.</li>
+            </ul>
+          example: success
+          enum:
+          - pending
+          - in-progress
+          - success
+          - failed
+        title:
+          type: string
+          description: Name of the step the job needs to complete.
+          example: retrieve-accounts
+          enum:
+          - verify-credentials
+          - retrieve-accounts
+          - retrieve-transactions
+          - retrieve-statements
+      description: List of steps that need to be completed.
+    Meta:
+      type: object
+      additionalProperties:
+        type: string
+    NotFoundError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: resource-not-found
+                enum:
+                - resource-not-found
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Resource not found.
+              title:
+                type: string
+                description: Title of the error
+                example: Requested resource is not found.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    PhysicalAddresses:
+      title: PhysicalAddresses
+      required:
+      - addressLine1
+      - addressLine2
+      - addressLine3
+      - city
+      - countryCode
+      - formattedAddress
+      - postcode
+      - state
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          description: User address.
+          example: 13/91 Fisher Rd
+        addressLine2:
+          type: string
+          description: Always "null"
+          nullable: true
+        addressLine3:
+          type: string
+          description: Always "null"
+          nullable: true
+        city:
+          type: string
+          description: City
+          example: Sydney
+        country:
+          type: string
+        countryCode:
+          type: string
+          description: Country code
+          example: AU
+        formattedAddress:
+          type: string
+          description: Address formatted.
+          example: 13/91 Fisher Rd, Dee Why NSW 2099, Australia
+        postcode:
+          type: string
+          description: Post code
+          example: "2099"
+        state:
+          type: string
+          description: State
+          example: NSW
+      description: User physical addresses holding the connection.
+    ResourceLink:
+      title: ResourceLink
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL of the resource.
+      description: Link object containing a link to the resource, self reference.
+    Source:
+      title: Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: String indicating which URI query parameter caused the error.
+          example: userId
+        pointer:
+          type: string
+          description: Location to the object or attribute that the error relates
+            to.
+          example: users/userId
+      description: An object containing references to the source of the error.
+    StatusServiceUnavailableError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: object
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: service-unavailable
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Service Unavailable. Try again later.
+              title:
+                type: string
+                description: Title of the error
+                example: Service Unavailable
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    UnauthorizedError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: unauthorized-access
+                enum:
+                - unauthorized-access
+                - invalid-authorization-token
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: You are not authorized to access this resource
+              title:
+                type: string
+                description: Title of the error
+                example: Unauthorized Access
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    UnsupportedMediaTypeError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: unsupported-content-type
+                enum:
+                - unsupported-content-type
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    UserConnectionPostData:
+      required:
+      - password
+      type: object
+      properties:
+        password:
+          type: string
+          description: User's (new or old) institution password.
+          example: "1234"
+        secondaryLoginId:
+          type: string
+          description: User's institution secondary login id.
+          example: "4321"
+        securityCode:
+          type: string
+          description: User's institution security code.
+    UserConnectionsPostData:
+      required:
+      - institution
+      - loginId
+      - password
+      type: object
+      properties:
+        institution:
+          $ref: '#/components/schemas/InstitutionModel'
+        loginId:
+          type: string
+          description: The users institution login ID
+          example: gavinBelson
+        password:
+          type: string
+          description: The users institution password
+          example: hooli2020
+        secondaryLoginId:
+          type: string
+          description: User's institution secondary login id. Mandatory if required
+            by institution's login process
+        securityCode:
+          type: string
+          description: User's institution security code. Mandatory if required by
+            institution's login process.
+    UserGetResponse:
+      title: UserGetResponse
+      required:
+      - accounts
+      - connections
+      - email
+      - id
+      - links
+      - mobile
+      - name
+      - type
+      type: object
+      properties:
+        accounts:
+          $ref: '#/components/schemas/GetUserAccount'
+        business:
+          type: string
+          description: |-
+            Business is ignored - it is populated when user has BusinessNumber or BusinessName
+            swagger: ignore
+        connections:
+          $ref: '#/components/schemas/GetUserConnection'
+        email:
+          type: string
+          description: User email or empty.
+          format: email
+          example: gavin@hooli.com
+        id:
+          type: string
+          description: User identification.
+          example: ea3a81
+        links:
+          $ref: '#/components/schemas/GetUserLinks'
+        mobile:
+          type: string
+          description: User mobile number, or empty.
+          example: +61410888666
+        name:
+          type: string
+          description: Name, or empty.
+        type:
+          type: string
+          description: Always "user".
+          example: user
+      description: User object with details if the creation succeeded.
+    UserPostResponse:
+      title: UserPostResponse
+      required:
+      - id
+      - links
+      - mobile
+      - type
+      type: object
+      properties:
+        email:
+          type: string
+          description: The end-users email address.
+          format: email
+          example: gavin@hooli.com
+        id:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: e1956419
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        mobile:
+          type: string
+          description: The end-users mobile number.
+          example: +61410888999
+        type:
+          type: string
+          description: Type of the response, always "user".
+          example: user
+      description: User object with details if the creation succeeded.
+    updateUser:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The end-users email address.
+          example: gavin@hooli.com
+        mobile:
+          type: string
+          description: The end-users mobile number.
+          example: +61410888666
+    AccountsFeatures:
+      required:
+      - accountHolder
+      - accountNo
+      - availableFunds
+      - balance
+      - currency
+      - lastUpdated
+      - meta
+      - name
+      type: object
+      properties:
+        accountHolder:
+          type: array
+          description: AccountHolder holds list of data source identifiers which are
+            capable to fetch account holder.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        accountNo:
+          type: array
+          description: AccountNumber holds list of data source identifiers which are
+            capable to fetch account number.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        availableFunds:
+          type: array
+          description: AvailableFunds holds list of data source identifiers which
+            are capable to fetch available funds.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        balance:
+          type: array
+          description: AccountBalance holds list of data source identifiers which
+            are capable to fetch account balance.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        currency:
+          type: array
+          description: AccountCurrency holds list of data source identifiers which
+            are capable to fetch account currency.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        lastUpdated:
+          type: array
+          description: LastUpdated holds list of data source identifiers which are
+            capable to fetch account last updated date.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        meta:
+          type: array
+          description: Meta holds list of data source identifiers which are capable
+            to fetch account meta data (e.g. mortgage data).
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        name:
+          type: array
+          description: AccountName holds list of data source identifiers which are
+            capable to fetch account name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+      description: AccountsFeatures describes set of institution accounts features
+    Colors:
+      type: object
+      properties:
+        primary:
+          type: string
+          description: Primary primary institution color
+      description: Colors contains institution colors type
+    FeatureCondition:
+      type: string
+      description: FeatureCondition type that describes an feature status for institution
+    Features:
+      required:
+      - login
+      type: object
+      properties:
+        accounts:
+          $ref: '#/components/schemas/AccountsFeatures'
+        login:
+          type: array
+          description: |-
+            Login holds list of data source identifiers which are capable to do complete login step.
+            This feature is applicable only on web sources.
+          example:
+          - web
+          items:
+            $ref: '#/components/schemas/SourceName'
+        mfaChallenge:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceName'
+        profile:
+          $ref: '#/components/schemas/ProfileFeatures'
+        transactions:
+          $ref: '#/components/schemas/TransactionsFeatures'
+      description: Features stucture that describes institution features per data
+        source
+    Institution:
+      title: Institution contains instution data.
+      required:
+      - authorization
+      - country
+      - features
+      - id
+      - institutionType
+      - links
+      - logo
+      - name
+      - serviceName
+      - serviceType
+      - shortName
+      - stage
+      - stats
+      - status
+      - tier
+      - type
+      type: object
+      properties:
+        authorization:
+          type: string
+          description: Institution authorization identifier
+          example: user
+          enum:
+          - user
+          - token
+          - other
+          - user-mfa
+          - user-mfa-intermittent
+        country:
+          type: string
+          description: Institution country name
+          example: Australia
+        features:
+          $ref: '#/components/schemas/Features'
+        forgottenPasswordUrl:
+          type: string
+          description: URL to institution forgotten password page
+          example: https://example.com/forgotten-password
+        id:
+          maxLength: 7
+          minLength: 7
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+          description: Institution ID
+          example: AU00000
+        institutionType:
+          type: string
+          description: Institution type identifier
+          example: Bank
+          enum:
+          - Bank
+          - Bank (Foreign)
+          - Test Bank
+          - Credit Union
+          - Financial Services
+          - Superannuation
+          - Building Society
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
+        loginIdCaption:
+          type: string
+          description: Login ID field caption that should be shown on UI
+          example: User name
+        logo:
+          $ref: '#/components/schemas/InstitutionLogoResource'
+        name:
+          type: string
+          description: Institution name
+          example: Hooli Bank
+        passwordCaption:
+          type: string
+          description: Password field caption that should be shown on UI
+          example: Password
+        secondaryLoginIdCaption:
+          type: string
+          description: Secondary loginID caption that should be shown on UI
+          example: Secondary login id
+        securityCodeCaption:
+          type: string
+          description: Security code caption that should be shown on UI
+          example: Security code
+        serviceName:
+          type: string
+          description: Institution service name
+          example: Personal Online Banking
+        serviceType:
+          type: string
+          description: Institution service name
+          example: Personal Banking
+          enum:
+          - Personal Banking
+          - Business Banking
+          - Card Access
+          - Test
+          - Superannuation
+        shortName:
+          type: string
+          description: Institution short name
+          example: Hooli
+        stage:
+          type: string
+          description: Institution stage identifier
+          example: live
+          enum:
+          - live
+          - beta
+          - alpha
+        stats:
+          $ref: '#/components/schemas/InstitutionPerformanceStats'
+        status:
+          $ref: '#/components/schemas/FeatureCondition'
+        tier:
+          type: string
+          description: Institution tier identifier
+          example: "3"
+          enum:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+        type:
+          type: string
+          description: Resource type identifier. It is always "institution" for this
+            model.
+          example: institution
+          enum:
+          - institution
+        userTokenCaption:
+          type: string
+          description: User token caption that should be shown on UI
+          example: User token
+    InstitutionLogoResource:
+      required:
+      - links
+      - type
+      type: object
+      properties:
+        colors:
+          $ref: '#/components/schemas/Colors'
+        links:
+          $ref: '#/components/schemas/LogoResourceLinks'
+        type:
+          type: string
+          description: Type resource type identifier
+          example: image
+          enum:
+          - image
+      description: InstitutionLogoResource linstitution logo resource type
+    InstitutionPerformanceStats:
+      type: object
+      properties:
+        averageDurationMs:
+          type: object
+          properties:
+            retrieveAccounts:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                accounts</b> step for institution
+              format: int64
+            retrieveMeta:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                metadata</b> step for institution
+              format: int64
+            retrieveTransactions:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                transactions</b> step for institution
+              format: int64
+            total:
+              type: integer
+              description: Total connector average duration in milliseconds
+              format: int64
+            verifyCredentials:
+              type: integer
+              description: Connector average duration in milliseconds of <b>verifiy
+                credentials</b> step for institution
+              format: int64
+          description: |-
+            AverageDurationMs average connector duration in milliseconds per segments.
+            When durations are not known for institution this field will be `null`.
+      description: InstitutionPerformanceStats response type for institution performance
+        stats
+    InstitutionsList:
+      title: InstitutionsList contains list of instutions data.
+      required:
+      - data
+      - links
+      - totalCount
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Data contains list of institutions
+          items:
+            $ref: '#/components/schemas/Institution'
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
+        totalCount:
+          type: integer
+          description: TotalCount contains total count of institutions
+          format: int64
+          example: 1
+        type:
+          $ref: '#/components/schemas/ResponseFormat'
+    LogoResourceLinks:
+      required:
+      - full
+      - square
+      type: object
+      properties:
+        full:
+          type: string
+          description: URL to full size logo
+          example: https://example.com/AU00000-full.svg
+        square:
+          type: string
+          description: Square formatted logo URL
+          example: https://example.com/AU00000.svg
+      description: LogoResourceLinks contains institution logo resource links
+    ProfileFeatures:
+      required:
+      - emailAddresses
+      - firstName
+      - fullName
+      - lastName
+      - middleName
+      - phoneNumbers
+      - physicalAddresses
+      type: object
+      properties:
+        emailAddresses:
+          type: array
+          description: EmailAddresses holds list of data source identifiers which
+            are capable to fetch bank customer e-mail addresses.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        firstName:
+          type: array
+          description: FirstName holds list of data source identifiers which are capable
+            to fetch bank customer first name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        fullName:
+          type: array
+          description: FullName holds list of data source identifiers which are capable
+            to fetch bank customer full name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        lastName:
+          type: array
+          description: LastName holds list of data source identifiers which are capable
+            to fetch bank customer last name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        middleName:
+          type: array
+          description: MiddleName holds list of data source identifiers which are
+            capable to fetch bank customer middle name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        phoneNumbers:
+          type: array
+          description: PhoneNumbers holds list of data source identifiers which are
+            capable to fetch bank customer phone number.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        physicalAddresses:
+          type: array
+          description: PhysicalAddresses holds list of data source identifiers which
+            are capable to fetch bank customer physical addresses.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+      description: ProfileFeatures describes set of institution profile features
+    ResourceLinks:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL to resource itself
+      description: ResourceLinks contains resource links
+    ResponseFormat:
+      type: string
+      description: ResponseFormat identifies response data format
+    SourceName:
+      type: string
+      description: SourceName feature source name
+    TransactionsFeatures:
+      required:
+      - amount
+      - balance
+      - class
+      - date
+      - description
+      - status
+      type: object
+      properties:
+        amount:
+          type: array
+          description: TransactionAmount holds list of data source identifiers which
+            are capable to fetch transaction amount.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        balance:
+          type: array
+          description: TransactionBalance holds list of data source identifiers which
+            are capable to fetch account balance when transaction occured.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        class:
+          type: array
+          description: Class holds list of data source identifiers which are capable
+            to fetch transaction class.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        date:
+          type: array
+          description: TransactionDate holds list of data source identifiers which
+            are capable to fetch transaction date.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        description:
+          type: array
+          description: TransactionDescription holds list of data source identifiers
+            which are capable to fetch transaction description.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        status:
+          type: array
+          description: TransactionStatus holds list of data source identifiers which
+            are capable to fetch transaction status.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+      description: TransactionsFeatures describes set of institution transactions
+        features
+    TokenPostResponse:
+      required:
+      - access_token
+      - expires_in
+      - token_type
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: access_token
+        expires_in:
+          type: integer
+          description: Expires in seconds
+          format: int64
+          example: 3600
+        token_type:
+          type: string
+          example: Bearer
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
+    application:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://au-api.basiq.io/token
+          scopes:
+            SERVER_ACCESS: Server access scope
+            CLIENT_ACCESS: Client access scope
