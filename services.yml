@@ -1,0 +1,4985 @@
+openapi: 3.0.1
+info:
+  title: Services
+  version: 3.0.0
+servers:
+- url: https://au-api.basiq.io/
+paths:
+  /users/{userId}/accounts:
+    get:
+      tags:
+      - Accounts
+      summary: List all accounts 
+      operationId: getAccounts
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a account with details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/accounts/{accountId}:
+    get:
+      tags:
+      - Accounts
+      summary: Retrieve an account
+      operationId: getAccount
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        description: Account identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a account with details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/affordability:
+    get:
+      tags:
+      - Affordability
+      summary: List affordability reports
+      operationId: getAffordabilityList
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a list with a data property that contains an array
+            of affordability resources.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffordabilityListResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+    post:
+      tags:
+      - Affordability
+      summary: Create an affordability report
+      operationId: postAffordability
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AffordabilityPostRequest'
+        required: false
+      responses:
+        200:
+          description: Returns a created affordability resource, if the operation
+            succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffordabilityResponse'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/AffordabilityResponse'
+        201:
+          description: Returns a created affordability PDF Report, if the operation
+            succeeded.
+          content: {}
+        204:
+          description: Returns no content if there are none transactions for the requested
+            period.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: AffordabilityPostRequest
+  /users/{userId}/affordability/{snapshotId}:
+    get:
+      tags:
+      - Affordability
+      summary: Retrieve an affordability summary
+      operationId: getAffordability
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: snapshotId
+        in: path
+        description: The identifier of the affordability report to be retrieved.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a saved affordability resource JSON or PDF report file,
+            if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffordabilityResponse'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/AffordabilityResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/affordability/{snapshotId}/transactions:
+    get:
+      tags:
+      - Affordability
+      summary: List affordability report transactions
+      operationId: getAffordabilitySnapshotTransactions
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: snapshotId
+        in: path
+        description: The identifier of the affordability report to be retrieved.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: This represents the maximum number of transactions that may be
+          included in the response (maximum of 500). Note that by default 500 transactions
+          are returned if this value is not specified.
+        schema:
+          type: integer
+      responses:
+        200:
+          description: Returns a affordability resource transactions JSON or CSV file,
+            if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffordabilityTransactionsResponse'
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/AffordabilityTransactionsResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/auth_link:
+    get:
+      tags:
+      - AuthLinks
+      summary: Retrieve the latest auth_link generated for a user
+      operationId: getAuthLink
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns details of a connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        410:
+          description: Returns error indicating that access to the target resource
+            is no longer available at the origin server and that this condition is
+            likely to be permanent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoneError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+    post:
+      tags:
+      - AuthLinks
+      summary: Create an auth link
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+        required: false
+      responses:
+        201:
+          description: Returns a created auth_link resource, if the operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksPostResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: AuthLinksPostData
+    delete:
+      tags:
+      - AuthLinks
+      summary: Delete an auth link
+      operationId: deleteAuthLink
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: Returns an empty body if the delete succeeded.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /users/{userId}/expenses:
+    post:
+      tags:
+      - Expenses
+      summary: Create an expense report
+      operationId: postExpenses
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpensesPostRequest'
+        required: false
+      responses:
+        200:
+          description: Returns a created expenses resource, if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpensesResponse'
+        204:
+          description: Returns no content if there are none transactions for the requested
+            period.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: ExpensesPostRequest
+  /users/{userId}/expenses/{snapshotId}:
+    get:
+      tags:
+      - Expenses
+      summary: Retrieve an expense report
+      operationId: getExpenses
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: snapshotId
+        in: path
+        description: The identifier of the expenses report to be retrieved.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a saved expenses resource, if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpensesResponse'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/ExpensesResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/income:
+    post:
+      tags:
+      - Income
+      summary: Create an income report
+      operationId: postIncome
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomePostRequest'
+        required: false
+      responses:
+        200:
+          description: Returns a created income resource, if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeResponse'
+        204:
+          description: Returns no content if there are none transactions for the requested
+            period.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: IncomePostRequest
+  /users/{userId}/income/{snapshotId}:
+    get:
+      tags:
+      - Income
+      summary: Retrieve an income report
+      operationId: getIncome
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: snapshotId
+        in: path
+        description: The identifier of the income report to be retrieved.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a saved income resource, if the operation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/statements:
+    post:
+      tags:
+      - Statements
+      summary: Create a statement
+      operationId: createStatement
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - institutionId
+              - statement
+              properties:
+                institutionId:
+                  type: string
+                  description: The identifier of the institution to which the statement
+                    relates e.g. "AU01001". Note that sandbox institutions (i.e. AU00000
+                    do not support the file upload option
+                statement:
+                  type: string
+                  description: Official PDF bank statement for the specified institution
+                    to be uploaded. Csv files conforming to our file specification
+                    are also accepted
+                  format: binary
+        required: true
+      responses:
+        202:
+          description: Returns a job details if a valid job ID was provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementUploadResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /users/{userId}/transactions:
+    get:
+      tags:
+      - Transactions
+      summary: List a users transactions
+      operationId: getTransactions
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: This represents the maximum number of items that may be included
+          in the response (maximum of 500). Note that by default 500 items are returned
+          if this value is not specified.
+        schema:
+          type: integer
+          format: int64
+          default: 500
+      - name: filter
+        in: query
+        description: Transaction filters.
+        schema:
+          type: string
+          enum:
+          - account.id
+          - transaction.postDate
+          - connection.id
+          - transaction.status
+          - institution.id
+          - transaction.direction
+          - transaction.class
+      responses:
+        200:
+          description: 'Returns a paginated list with a data property that contains
+            an array of transactions. Each entry in the array is a separate object.
+            If no data is returned, the resulting array will be empty. '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsGetResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/transactions/{transactionId}:
+    get:
+      tags:
+      - Transactions
+      summary: Retrieve a transaction
+      operationId: getTransaction
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      - name: transactionId
+        in: path
+        description: The identifier of the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a transaction if a valid transaction ID was provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionData'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+components:
+  schemas:
+    AccountClass:
+      required:
+      - product
+      - type
+      type: object
+      properties:
+        product:
+          type: string
+          description: Product name.
+          example: saver
+        type:
+          type: string
+          description: Account type
+          example: savings
+    AccountHolder:
+      required:
+      - product
+      - type
+      type: object
+      properties:
+        product:
+          type: string
+          description: Identifies the Product as defined by institution
+          example: Hooli Transaction
+        type:
+          type: string
+          description: Identifies the Account type defined by institution
+          example: transaction
+    AccountLinks:
+      required:
+      - connection
+      - institution
+      - self
+      - transactions
+      type: object
+      properties:
+        connection:
+          type: string
+          description: always null
+          nullable: true
+          example: null
+        institution:
+          type: string
+          description: institution link to the institution associated with this account
+          example: https://au-api.basiq.io/institutions/AU00000
+        self:
+          type: string
+          description: self link to the requested account
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
+        transactions:
+          type: string
+          description: transactions link to the transactions associated with this
+            account
+          example: https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')
+    AccountResponseResource:
+      title: AccountResponseResource
+      required:
+      - accountHolder
+      - accountNo
+      - availableFunds
+      - balance
+      - class
+      - connection
+      - currency
+      - id
+      - institution
+      - lastUpdated
+      - links
+      - name
+      - status
+      - transactionIntervals
+      - type
+      type: object
+      properties:
+        accountHolder:
+          type: string
+          description: The name of the account holder as returned by the institution.
+            No formatting is applied. Returns a string or null when not available.
+          nullable: true
+          example: GAVIN BELSON
+        accountNo:
+          type: string
+          description: Full account number.
+          example: 600000-157441965
+        availableFunds:
+          type: string
+          description: Funds that are available to an account holder for withdrawal
+            or other use. This may include funds from an overdraft facility or line
+            of credit. As well as funds classified as the available balance, such
+            as from cleared and existing deposits.
+          nullable: true
+          example: "420.28"
+        balance:
+          type: string
+          description: Amount of funds in the account right now - excluding any pending
+            transactions. For a credit card this would be zero or the minus amount
+            spent.
+          nullable: true
+          example: "356.50"
+        class:
+          $ref: '#/components/schemas/AccountClass'
+        connection:
+          type: string
+          description: The id of the connection resource that was used to retrieve
+            the account.
+          example: 8fce3b
+        currency:
+          type: string
+          description: The currency the funds are stored in, using ISO 4217 standard.
+          example: AUD
+        id:
+          type: string
+          description: Uniquely identifies the account.
+          example: s55bf3
+        institution:
+          type: string
+          description: The id of the institution resource the account originated from.
+          example: AU00000
+        lastUpdated:
+          type: string
+          description: Timestamp of last update, UTC, RFC 3339 format e.g. "2017-09-28T13:39:33Z"
+          example: 2019-09-28T13:39:33Z
+        links:
+          $ref: '#/components/schemas/AccountLinks'
+        name:
+          type: string
+          description: Account name as defined by institution or user.
+          example: Master Savings
+        status:
+          type: string
+          description: |-
+            Indicates the account status. Always set to 'available'. Field kept for backward compatibility. Possible values include:
+            <ul><li>available newest account data is available.</li></ul>
+          example: available
+          enum:
+          - available
+          - unavailable
+        transactionIntervals:
+          type: array
+          description: |-
+            An array of date intervals indicating the coverage of the transaction data relating to the account.
+            Will return a single element for accounts sourced from a single bank connection.
+            Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
+          items:
+            $ref: '#/components/schemas/AccountTransactionInterval'
+        type:
+          type: string
+          description: Always "account".
+          example: account
+      description: |-
+        Container object, containing account details.
+
+        The account object represents an account held with a financial institution (e.g. a savings account). You can use this object to retrieve specific account details such as the account number, balance and available funds.
+    AccountTransactionInterval:
+      required:
+      - from
+      - to
+      type: object
+      properties:
+        from:
+          type: string
+          description: Date of first transaction on this account
+          example: 2018-07-01
+        to:
+          type: string
+          description: Date of last transaction on this account
+          example: 2018-12-30
+    AccountsContainer:
+      required:
+      - data
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Accounts details
+          items:
+            $ref: '#/components/schemas/AccountsData'
+        type:
+          type: string
+          description: Type always "list".
+          example: list
+    AccountsData:
+      required:
+      - accountNo
+      - availableFunds
+      - balance
+      - class
+      - currency
+      - id
+      - lastUpdated
+      - links
+      - name
+      - status
+      - type
+      type: object
+      properties:
+        accountNo:
+          type: string
+          description: Account number
+          example: "105148119695"
+        availableFunds:
+          type: string
+          description: Account available funds, nullable.
+          nullable: true
+          example: "200.54"
+        balance:
+          type: string
+          description: Account balance, nullable.
+          nullable: true
+          example: "100.12"
+        class:
+          $ref: '#/components/schemas/AccountClass'
+        currency:
+          type: string
+          description: Currency
+          example: AUD
+        id:
+          type: string
+          description: Account identification.
+          example: 319ae910
+        lastUpdated:
+          type: string
+          description: Account last updated date and time.
+          example: 2017-09-28T11:15:09.756Z
+        links:
+          $ref: '#/components/schemas/ConnectionAccountLinks'
+        name:
+          type: string
+          description: Account name.
+          example: Business account
+        status:
+          type: string
+          description: Account status.
+          example: available
+          enum:
+          - available
+          - unavailable
+        type:
+          type: string
+          description: Type always "account".
+          example: account
+    ConnectionAccountLinks:
+      required:
+      - self
+      - transactions
+      type: object
+      properties:
+        self:
+          type: string
+          description: self link to the requested account
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
+        transactions:
+          type: string
+          description: transactions link to the transactions associated with this
+            account
+          example: https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')
+    AccountsResponseResource:
+      required:
+      - data
+      - links
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Container object, containing account details.
+          items:
+            $ref: '#/components/schemas/AccountResponseResource'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Type of the response, always "list".
+          example: list
+    AffordabilityAssetsData:
+      required:
+      - account
+      - availableFunds
+      - balance
+      - currency
+      - institution
+      - previous6Months
+      - type
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountHolder'
+        availableFunds:
+          type: string
+          description: The available funds at the time of the query.
+        balance:
+          type: string
+          description: The currency in which the account is recorded.
+          example: "35298.67"
+        currency:
+          type: string
+          description: The currency in which the account is recorded.
+          example: AUD
+        institution:
+          type: string
+          description: The name of the financial institution with whom the account
+            is held.
+          example: Hooli
+        previous6Months:
+          $ref: '#/components/schemas/AssetsPrevious6MonthsData'
+        type:
+          type: string
+          description: Type account
+          example: account
+    AffordabilityLinksInList:
+      title: AffordabilityLinksInList
+      required:
+      - expenses
+      - income
+      - self
+      type: object
+      properties:
+        expenses:
+          type: string
+          description: Link to the expenses
+          example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5
+        income:
+          type: string
+          description: Link to the income
+          example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
+        self:
+          type: string
+          description: Link to the affordability resource
+          example: https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3
+      description: Object containing links to resources.
+    AffordabilityListData:
+      required:
+      - fromMonth
+      - generatedDate
+      - id
+      - links
+      - toMonth
+      - type
+      type: object
+      properties:
+        coverageDays:
+          type: integer
+          description: Number of days covered by the report
+          format: int64
+          example: 392
+        fromMonth:
+          type: string
+          description: Start month for the period for which the Affordability summary
+            is generated. The period of time relates to the account and transaction
+            data used as input into the report.
+          example: 2019-03
+        generatedDate:
+          type: string
+          description: Date the report was generated.
+          example: 2020-03-26T06:56:44
+        id:
+          type: string
+          description: Uniquely identifies the affordability report.
+          example: s55bf3
+        institutions:
+          type: array
+          description: An array of institution ids to indicate the sources of transaction
+            data, aggregated to generate the affordability resource.
+          example:
+          - AU00000
+          items:
+            type: string
+        links:
+          $ref: '#/components/schemas/AffordabilityLinksInList'
+        toMonth:
+          type: string
+          description: End month (usually the current month) for the period for which
+            the Affordability summary is generated.
+          example: 2020-03
+        type:
+          type: string
+          description: Always "affordability".
+          example: affordability
+    AffordabilityListLinks:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to the requested user affordability resources
+          example: https://au-api.basiq.io/users/25c8d1ed77/affordability
+    AffordabilityListResponse:
+      title: AffordabilityListResponse
+      required:
+      - data
+      - links
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AffordabilityListData'
+        links:
+          $ref: '#/components/schemas/AffordabilityListLinks'
+        type:
+          type: string
+          description: Always "List".
+          example: list
+      description: Container object, containing affordability list details.
+    AffordabilityPostRequest:
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: The list of accounts to be included in the affordability otherwise
+            all the user accounts will be included in the report
+          example:
+          - s55bf3
+          - s55bf4
+          items:
+            type: string
+        fromMonth:
+          type: string
+          description: The first/start month to be included in the affordability output
+            e.g. "fromMonth":"2019-05". Resulting affordability resource will be based
+            on data between fromMonth and toMonth.
+          example: 2019-05
+        toMonth:
+          type: string
+          description: The last/end month to be included in the affordability output
+            e.g. "toMonth":"2019-09". Resulting affordability resource will be based
+            on data between fromMonth and toMonth.
+          example: 2019-09
+    AffordabilityRegularIncomeData:
+      required:
+      - previous3Months
+      type: object
+      properties:
+        previous3Months:
+          $ref: '#/components/schemas/AvgMonthlyData'
+    AffordabilityResponse:
+      title: AffordabilityResponse
+      required:
+      - assets
+      - external
+      - fromMonth
+      - generatedDate
+      - id
+      - liabilities
+      - links
+      - summary
+      - toMonth
+      - type
+      type: object
+      properties:
+        assets:
+          type: array
+          description: Assets
+          items:
+            $ref: '#/components/schemas/AffordabilityAssetsData'
+        coverageDays:
+          type: integer
+          description: Number of days covered by the report
+          format: int64
+          example: 392
+        external:
+          type: array
+          description: External
+          items:
+            $ref: '#/components/schemas/ExternalLiabilityData'
+        fromMonth:
+          type: string
+          description: Start month for the period for which the Affordability summary
+            is generated. The period of time relates to the account and transaction
+            data used as input into the report.
+          example: 2019-03
+        generatedDate:
+          type: string
+          description: Date the report was generated.
+          example: 2020-03-26T06:56:44
+        id:
+          type: string
+          description: Uniquely identifies the affordability report.
+          example: s55bf3
+        liabilities:
+          $ref: '#/components/schemas/LiabilitiesData'
+        links:
+          $ref: '#/components/schemas/GetAffordabilityLinks'
+        summary:
+          $ref: '#/components/schemas/AffordabilitySummary'
+        toMonth:
+          type: string
+          description: End month (usually the current month) for the period for which
+            the Affordability summary is generated.
+          example: 2020-03
+        type:
+          type: string
+          description: Always "affordability".
+          example: affordability
+      description: |-
+        Container object, containing affordability details.
+
+        The affordability object includes a summary of financial position, assets, liabilities, with links to an income object and an expenses object, for an individual user for account and transaction data stored against that user.
+    AffordabilitySummary:
+      required:
+      - assets
+      - creditLimit
+      - expenses
+      - liabilities
+      - loanRepaymentMonthly
+      - netPosition
+      - potentialLiabilitiesMonthly
+      - regularIncome
+      - savings
+      type: object
+      properties:
+        assets:
+          type: string
+          description: Total of cash based assets
+          nullable: true
+          example: "59983.11"
+        creditLimit:
+          type: string
+          description: Total credit limit across all credit cards and overdrafts
+          nullable: true
+          example: "20000.00"
+        expenses:
+          type: string
+          description: Provides an average of monthly expenses calculated for the
+            whole period of data retrieved (e.g. 13 months)
+          example: -12046.00
+        liabilities:
+          type: string
+          description: Total of account based liabilities split into credit and loan
+            liabilities
+          nullable: true
+          example: -323946.20
+        loanRepaymentMonthly:
+          type: string
+          description: Total of all repayments monthly to disclosed loan liabilities
+            as an average monthly amount
+          nullable: true
+          example: "5284.00"
+        netPosition:
+          type: string
+          description: Total assets minus total liabilities
+          nullable: true
+          example: -263963.09
+        potentialLiabilitiesMonthly:
+          type: string
+          description: Total of all repayments monthly to potential undisclosed loan
+            liabilities as an average monthly amount
+          nullable: true
+          example: -1727.00
+        regularIncome:
+          $ref: '#/components/schemas/AffordabilityRegularIncomeData'
+        savings:
+          type: string
+          description: Average of monthly savings calculated for the whole period
+            of data retrieved (e.g. 13 months)
+          nullable: true
+          example: "93.00"
+    AffordabilityTransactionLinks:
+      required:
+      - account
+      - institution
+      type: object
+      properties:
+        account:
+          type: string
+          description: Url of the account.
+          example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
+        institution:
+          type: string
+          description: Url of the institution.
+          example: https://au-api.basiq.io/institutions/AU00000
+    AffordabilityTransactionsGetLinks:
+      required:
+      - self
+      type: object
+      properties:
+        next:
+          type: string
+          description: Url to next result.
+          example: https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64
+        self:
+          type: string
+          description: Self reference url.
+          example: https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions
+    AffordabilityTransactionsResponse:
+      title: AffordabilityTransactionsResponse
+      required:
+      - count
+      - data
+      - links
+      - size
+      - type
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of the transactions in the response.
+          format: int64
+          example: 100
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionDataAffordability'
+        links:
+          $ref: '#/components/schemas/AffordabilityTransactionsGetLinks'
+        size:
+          type: integer
+          format: int64
+          example: 500
+        type:
+          type: string
+          description: Always "list".
+          example: list
+      description: Container object, containing affordability snapshot transactions.
+    AssetsPrevious6MonthsData:
+      required:
+      - maxBalance
+      - minBalance
+      type: object
+      properties:
+        maxBalance:
+          type: string
+          nullable: true
+          example: "38309.44"
+        minBalance:
+          type: string
+          nullable: true
+          example: "10032.81"
+    AuthLinkLinks:
+      required:
+      - public
+      - self
+      type: object
+      properties:
+        public:
+          type: string
+          description: Public URL of auth link.
+          example: https://connect.basiq.io/63448be4
+        self:
+          type: string
+          description: URL of the resource
+          example: /users/ec4ea48d/auth_link
+    AuthLinksPostResponseResource:
+      required:
+      - expiresAt
+      - mobile
+      - type
+      - userId
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          description: The date time of auth link expiry.
+          example: 2019-11-21T04:08:50Z
+        links:
+          $ref: '#/components/schemas/AuthLinkLinks'
+        mobile:
+          type: string
+          description: A user's mobile phone, used as for authentication.
+          example: +61410000000
+        type:
+          type: string
+          description: Type of the response, always "auth_link".
+          example: auth_link
+        userId:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: ec4ea48d
+    AuthLinksResponseResource:
+      required:
+      - expiresAt
+      - id
+      - mobile
+      - type
+      - userId
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          description: The date time of auth link expiry.
+          example: 2019-11-21T04:08:50Z
+        id:
+          type: string
+          description: Uniquely identifies the auth link.
+          example: 63448be4
+        links:
+          $ref: '#/components/schemas/AuthLinkLinks'
+        mobile:
+          type: string
+          description: A user's mobile phone, used as for authentication.
+          example: +61410000000
+        type:
+          type: string
+          description: Type of the response, always "auth_link".
+          example: auth_link
+        userId:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: ec4ea48d
+    AvgMonthlyData:
+      required:
+      - avgMonthly
+      type: object
+      properties:
+        avgMonthly:
+          type: string
+          nullable: true
+          example: "18098.00"
+    BadRequestError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: parameter-not-valid
+                enum:
+                - parameter-not-supplied
+                - parameter-not-valid
+                - unsupported-accept
+                - invalid-content
+                - institution-not-supported
+                - invalid-credentials
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: ID value is not valid.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Parameter not valid.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    CategoryDataExpenses:
+      required:
+      - expenseClass
+      type: object
+      properties:
+        expenseClass:
+          $ref: '#/components/schemas/ExpensesClass'
+      description: Category data
+    ChangeHistoryAffordabilityData:
+      required:
+      - amount
+      - date
+      - direction
+      - source
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Amount loan-interest or loan-repayment
+          example: "5768.00"
+        date:
+          type: string
+          description: Date
+          format: date
+          example: 2019-03-31
+        direction:
+          type: string
+          description: Debit or Credit
+          example: credit
+          enum:
+          - debit
+          - credit
+        source:
+          type: string
+          description: Cleaned transaction description
+          example: Transfer Platnm Homeloan 346454
+    ChangeHistoryExpensesClass:
+      required:
+      - amount
+      - date
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Amount of expense that period
+          example: -11.00
+        date:
+          type: string
+          description: Month expense relates
+          example: 2018-09
+      description: Amount classified as spent that month (repeated each month of data)
+    ChangeHistoryExternal:
+      required:
+      - amount
+      - date
+      - source
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Amount of payment
+          example: -146.50
+        date:
+          type: string
+          description: Date
+          format: date
+          example: 2019-03-31
+        source:
+          type: string
+          description: Full transaction description
+          example: 'AFTERPAY MELBOURNE VI AUS Card xx3854 Value Date: 10/11/2019'
+    ChangeHistoryIncome:
+      required:
+      - amount
+      - date
+      - source
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Amount of income for that period
+          example: "62.00"
+        date:
+          type: string
+          description: Date income received
+          example: 2018-10-13T20:03:37
+        source:
+          type: string
+          description: Source income (cleaned transaction description)
+          example: savings interest cr bal - Account 1
+    ClassResourceExpenses:
+      required:
+      - avgMonthly
+      - changeHistory
+      - summary
+      type: object
+      properties:
+        avgMonthly:
+          type: string
+          description: Average amount monthly
+          example: -421.00
+        changeHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeHistoryExpensesClass'
+        summary:
+          type: string
+          description: Summary period "monthly"
+          example: monthly
+      description: Average monthly amount for given class for defined period
+    ConnectionGetResponseResource:
+      title: ConnectionGetResponseResource
+      required:
+      - createdDate
+      - id
+      - institution
+      - links
+      - type
+      type: object
+      properties:
+        accounts:
+          $ref: '#/components/schemas/AccountsContainer'
+        id:
+          type: string
+          description: A string that uniquely identifies the user connection.
+          example: "61723"
+        institution:
+          $ref: '#/components/schemas/ConnectionInstitution'
+        createdDate:
+          type: string
+          description: Created date of the connection, available only for SERVER_SCOPE.
+          example: 2019-07-29T07:34:09Z
+        lastUsed:
+          type: string
+          description: UTC Date and Time of when the connection was last used, in
+            RFC 3339 format, available only for SERVER_SCOPE.
+          example: 2020-06-22T11:15:09Z
+        links:
+          $ref: '#/components/schemas/GetConnectionLinks'
+        profile:
+          $ref: '#/components/schemas/ConnectionProfile'
+        status:
+          type: string
+          description: |-
+            Indicates the connection status, available only for SERVER_SCOPE.
+            Possible values include:
+            <ul>
+            <li>pending - the connection is in this status briefly until credentials are verified</li>
+            <li>active - the connection is valid (is working!) and the credentials have been verified (the jobs steps will continue) </li>
+            <li>invalid -  the connection is no longer valid and requires the user to update their logon details. Invalid connections cannot refreshed until the password is updated. </li>
+            </ul>
+          example: active
+          enum:
+          - active
+          - pending
+          - invalid
+        type:
+          type: string
+          description: Type, always "connection".
+          example: connection
+      description: Object containing details for connection post.
+    ConnectionInstitution:
+      title: ConnectionInstitution
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Institution id
+          example: AU00000
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "institution".
+          example: institution
+      description: Institution details.
+    ConnectionProfile:
+      required:
+      - emailAddresses
+      - firstName
+      - fullName
+      - lastName
+      - middleName
+      - phoneNumbers
+      - physicalAddresses
+      type: object
+      properties:
+        emailAddresses:
+          type: array
+          description: User email address
+          example:
+          - gavin@hooli.com
+          items:
+            type: string
+        firstName:
+          type: string
+          description: User first name
+          example: Gavin
+        fullName:
+          type: string
+          description: User full name
+          example: Gavin Belson
+        lastName:
+          type: string
+          description: User last name
+          example: Belson
+        middleName:
+          type: string
+          description: User middle name
+        phoneNumbers:
+          type: array
+          description: User phone number
+          example:
+          - XXXX 888 991
+          items:
+            type: string
+        physicalAddresses:
+          type: array
+          description: Physical user addresses
+          items:
+            $ref: '#/components/schemas/PhysicalAddresses'
+    ConnectionResponseResource:
+      title: ConnectionResponseResource
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Job identification.
+          example: "29523951"
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Type, always "job".
+          example: job
+      description: Object containing details for connection post.
+    ConnectionsData:
+      required:
+      - createdDate
+      - id
+      - institution
+      - links
+      - type
+      type: object
+      properties:
+        createdDate:
+          type: string
+          description: Created date of the connection, available only for SERVER_SCOPE.
+          example: 2019-07-29T07:34:09Z
+        id:
+          type: string
+          description: Connection identification.
+          example: "61723"
+        institution:
+          $ref: '#/components/schemas/ConnectionInstitution'
+        lastUsed:
+          type: string
+          description: Connection last used date, available only for SERVER_SCOPE.
+          example: 2020-06-22T11:15:09Z
+        links:
+          $ref: '#/components/schemas/GetConnectionsLinks'
+        status:
+          type: string
+          description: Connection status, available only for SERVER_SCOPE.
+          example: active
+          enum:
+          - active
+          - pending
+          - invalid
+        type:
+          type: string
+          description: Type, always "connection".
+          example: connection
+    ConnectionsGetResponseResource:
+      title: ConnectionsGetResponseResource
+      required:
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectionsData'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+      description: Object containing details for connections.
+    ConnectionsRefreshResource:
+      title: ConnectionsRefreshResource
+      required:
+      - data
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Job details data.
+          items:
+            $ref: '#/components/schemas/ConnectionResponseResource'
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+      description: Object containing details for connections refresh.
+    CreditLiabilities:
+      required:
+      - account
+      - availableFunds
+      - balance
+      - creditLimit
+      - currency
+      - institution
+      - previous6Months
+      - previousMonth
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountHolder'
+        availableFunds:
+          type: string
+          description: The available funds at the time of the query.
+          nullable: true
+          example: "8286.80"
+        balance:
+          type: string
+          description: The balance at the time of the query.
+          nullable: true
+          example: -11713.20
+        creditLimit:
+          type: string
+          description: Total credit limit available for the specified credit facility.
+          nullable: true
+          example: "20000.00"
+        currency:
+          type: string
+          description: The currency in which the account is recorded.
+          example: AUD
+        institution:
+          type: string
+          description: The name of the financial institution with whom the account
+            is held.
+          example: Hooli
+        previous6Months:
+          $ref: '#/components/schemas/Previous6MonthsCreditLiabilities'
+        previousMonth:
+          $ref: '#/components/schemas/PreviousMonthDataLiabilities'
+    CurrentIrregularSource:
+      required:
+      - amount
+      - date
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Most recent irregular income payment amount
+          example: "62.00"
+        date:
+          type: string
+          description: Most recent irregular income payment date
+          example: 2018-10-13T20:03:37
+    CurrentOtherCreditSource:
+      required:
+      - amount
+      - date
+      - otherCreditLabel
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Most recent irregular income payment amount
+          example: "92.99"
+        date:
+          type: string
+          description: Most recent irregular income payment date
+          example: 2019-10-29T00:00:00
+        otherCreditLabel:
+          type: string
+          description: Description of the other credit series e.g. 'former regular
+            income'
+          example: regular income small amount
+    CurrentRegularSource:
+      required:
+      - amount
+      - date
+      - nextDate
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Most recent regular income payment amount
+          example: "18098.00"
+        date:
+          type: string
+          description: Most recent regular income payment date
+          example: 2018-11-30T09:23:37
+        nextDate:
+          type: string
+          description: 'Predicted next occurrence for regular income (note: where
+            the pattern has recently ceased there would be no predicted next occurrence)'
+          nullable: true
+          example: 2018-12-30T18:30:49
+    ExpensesClass:
+      required:
+      - classCode
+      - classTitle
+      - divisionCode
+      - divisionTitle
+      type: object
+      properties:
+        classCode:
+          type: string
+          description: 'Classification code for HEC classification: 4 levels class,
+            group, subdivision and division.'
+          example: "0703030101"
+        classTitle:
+          type: string
+          description: 'Classification code for HEC classification: 4 levels class,
+            group, subdivision and division.'
+          example: Non-electrical household appliances
+        divisionCode:
+          type: string
+          example: "04"
+        divisionTitle:
+          type: string
+          example: Alcoholic beverages
+      description: Class represents one class of classification system
+    ExpensesLinks:
+      required:
+      - accounts
+      - self
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: Links of accounts
+          example:
+          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5
+          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4
+          items:
+            type: string
+        self:
+          type: string
+          description: Link to the requested expenses resource
+          example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf4
+    ExpensesPostRequest:
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: The list of accounts to be included in the expenses otherwise
+            all the user accounts will be included in the report
+          example:
+          - s55bf3
+          - s55bf4
+          items:
+            type: string
+        fromMonth:
+          type: string
+          description: The first/start month to be included in the expense output
+            e.g. "fromMonth":"2019-05". Resulting expenses resource will be based
+            on data between fromMonth and toMonth.
+          example: 2019-05
+        toMonth:
+          type: string
+          description: The last/end month to be included in the expense output e.g.
+            "toMonth":"2019-09". Resulting expenses resource will be based on data
+            between fromMonth and toMonth.
+          example: 2019-09
+    ExpensesResponse:
+      title: ExpensesResponse
+      required:
+      - bankFees
+      - cashWithdrawals
+      - externalTransfers
+      - fromMonth
+      - id
+      - loanInterests
+      - loanRepayments
+      - payments
+      - toMonth
+      - type
+      type: object
+      properties:
+        bankFees:
+          $ref: '#/components/schemas/ClassResourceExpenses'
+        cashWithdrawals:
+          $ref: '#/components/schemas/ClassResourceExpenses'
+        coverageDays:
+          type: integer
+          description: Number of days covered by the report
+          format: int64
+          example: 392
+        externalTransfers:
+          $ref: '#/components/schemas/ClassResourceExpenses'
+        fromMonth:
+          type: string
+          description: First 'month' occurrence of expenses categorised going back
+            as far as 13 months.
+          example: 2017-12
+        id:
+          type: string
+          description: Uniquely identifies the expenses report.
+          example: s55bf3
+        links:
+          $ref: '#/components/schemas/ExpensesLinks'
+        loanInterests:
+          $ref: '#/components/schemas/ClassResourceExpenses'
+        loanRepayments:
+          $ref: '#/components/schemas/ClassResourceExpenses'
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentsSummaryExpenses'
+        toMonth:
+          type: string
+          description: Latest 'month' occurrence of expenses categorised.
+          example: 2018-12
+        type:
+          type: string
+          description: Value of this resource is "expenses".
+          example: expenses
+      description: |-
+        Container object, containing expenses details.
+
+        The Expenses object returns an aggregated list of expenses by category of spend.
+    ExternalLiabilityData:
+      required:
+      - changeHistory
+      - payments
+      - source
+      type: object
+      properties:
+        changeHistory:
+          type: array
+          description: Each transaction (repeated for each source ordered by most
+            recent)
+          items:
+            $ref: '#/components/schemas/ChangeHistoryExternal'
+        payments:
+          type: array
+          description: Aggregated attributes relating to payments for this source
+            (identified as an external liability)
+          items:
+            $ref: '#/components/schemas/ExternalPayment'
+        source:
+          type: string
+          description: Source of external liability (cleaned transaction description).
+          example: afterpay
+    ExternalPayment:
+      required:
+      - amountAvg
+      - amountAvgMonthly
+      - first
+      - last
+      - noOccurrences
+      - total
+      type: object
+      properties:
+        amountAvg:
+          type: string
+          description: Number of occurrences for same source (in this group)
+          example: -50.50
+        amountAvgMonthly:
+          type: string
+          description: Average monthly payment amount
+          example: -20.00
+        first:
+          type: string
+          description: Date of first payment
+          format: date
+          example: 2019-03-15
+        last:
+          type: string
+          description: Date of last payment
+          format: date
+          example: 2020-03-15
+        noOccurrences:
+          type: integer
+          description: Number of occurrences for same source (in this group)
+          format: int64
+          example: 2
+        total:
+          type: string
+          description: Amount of total payments identified for source in the affordability
+            snapshot
+          example: -146.50
+    ForbiddenAccessError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - source
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: forbidden-access
+                enum:
+                - forbidden-access
+                - no-production-access
+                - access-denied
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Access to this resource is forbidden.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Forbidden Access
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    Gap:
+      type: string
+    GetAffordabilityLinks:
+      title: GetAffordabilityLinks
+      required:
+      - accounts
+      - expenses
+      - income
+      - self
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: Links of accounts
+          example:
+          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5
+          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4
+          items:
+            type: string
+        expenses:
+          type: string
+          description: Link to the expenses
+          example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5
+        income:
+          type: string
+          description: Link to the income
+          example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
+        self:
+          type: string
+          description: Link to the affordability resource
+          example: https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3
+      description: Object containing links to resources.
+    GetConnectionLinks:
+      title: GetConnectionLinks
+      required:
+      - self
+      - user
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Accounts reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')
+        self:
+          type: string
+          description: Connection self reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92-0b12-43ba-a3c1-286dd5f4f396/connections/29523951
+        transactions:
+          type: string
+          description: Transactions reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')
+        user:
+          type: string
+          description: User reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92
+      description: Object containing links to resources.
+    GetConnectionsLinks:
+      title: GetConnectionsLinks
+      required:
+      - institution
+      - self
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Accounts reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')
+        institution:
+          type: string
+          description: Institution details.
+          example: https://au-api.basiq.io/institutions/AU00000
+        self:
+          type: string
+          description: Connection self reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/connections/29523951
+        transactions:
+          type: string
+          description: Transactions reference url.
+          example: https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')
+      description: Object containing links to resources.
+    GetUserAccount:
+      title: UserGetAccount
+      required:
+      - count
+      - data
+      - type
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of accounts.
+          format: int64
+          example: 7
+        data:
+          type: array
+          description: Accounts data.
+          items:
+            $ref: '#/components/schemas/GetUserAccountData'
+        type:
+          type: string
+          description: Always "list".
+          example: list
+      description: Container object containing account data.
+    GetUserAccountData:
+      title: UserGetAccountData
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Account identification.
+          example: aaaf2c3b
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "account".
+          example: account
+      description: Object containing account data.
+    GetUserConnection:
+      title: UserGetConnection
+      required:
+      - count
+      - data
+      - type
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of accounts.
+          format: int64
+          example: 5
+        data:
+          type: array
+          description: Connections data.
+          items:
+            $ref: '#/components/schemas/GetUserConnectionData'
+        type:
+          type: string
+          description: Always "list".
+          example: list
+      description: Container object containing connection data.
+    GetUserConnectionData:
+      title: GetUserConnectionData
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Connection identification.
+          example: aaaf2c3b
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "connection".
+          example: connection
+      description: Object containing connection data.
+    GetUserLinks:
+      title: GetUserLinks
+      required:
+      - accounts
+      - auth_link
+      - connections
+      - self
+      - transactions
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Accounts reference url.
+        auth_link:
+          type: string
+          description: Auth link, possible null.
+          nullable: true
+        connections:
+          type: string
+          description: Connections reference url.
+        self:
+          type: string
+          description: User self reference url.
+        transactions:
+          type: string
+          description: Transactions reference url.
+      description: Object containing links to resources.
+    GoneError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: resource-no-longer-available
+                enum:
+                - resource-no-longer-available
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+              title:
+                type: string
+                description: Title of the error
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    IncomeLinks:
+      required:
+      - accounts
+      - self
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: Links of accounts
+          example:
+          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5
+          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4
+          items:
+            type: string
+        self:
+          type: string
+          description: Link to the requested income resource
+          example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
+    IncomePostRequest:
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: The list of accounts to be included in the income otherwise
+            all the user accounts will be included in the report
+          example:
+          - s55bf3
+          - s55bf4
+          items:
+            type: string
+        fromMonth:
+          type: string
+          description: The first/start month to be included in the affordability output
+            e.g. "fromMonth":"2019-05". Resulting income resource will be based on
+            data between fromMonth and toMonth
+          example: 2019-05
+        toMonth:
+          type: string
+          description: The first/start month to be included in the affordability output
+            e.g. "fromMonth":"2019-05". Resulting income resource will be based on
+            data between fromMonth and toMonth
+          example: 2019-09
+    IncomeResponse:
+      title: IncomeResponse
+      required:
+      - fromMonth
+      - id
+      - summary
+      - toMonth
+      - type
+      type: object
+      properties:
+        coverageDays:
+          type: integer
+          description: Number of days covered by the report
+          format: int64
+          example: 392
+        fromMonth:
+          type: string
+          description: Start month for the period for which the Income summary is
+            generated. The period of time relates to the account and transaction data
+            used as input into the report.
+          example: 2019-03
+        id:
+          type: string
+          description: The identifier of the income resource to be retrieved.
+          example: s55bf4
+        irregular:
+          type: array
+          description: Required true
+          items:
+            $ref: '#/components/schemas/IrregularSource'
+        links:
+          $ref: '#/components/schemas/IncomeLinks'
+        otherCredit:
+          type: array
+          description: Required true
+          items:
+            $ref: '#/components/schemas/OtherCreditSource'
+        regular:
+          type: array
+          description: Required true
+          items:
+            $ref: '#/components/schemas/RegularSource'
+        summary:
+          $ref: '#/components/schemas/IncomeSummary'
+        toMonth:
+          type: string
+          description: End month (usually the current month) for the period for which
+            the Income summary is generated.
+          example: 2020-03
+        type:
+          type: string
+          description: Always "income".
+          example: income
+      description: |-
+        Container object, containing income details.
+
+        The Income Summary object with income summarised and classified by type: regular, irregular or other sources (created/refreshed across up to 10 institutions)
+    IncomeSummary:
+      required:
+      - irregularIncomeAvg
+      - regularIncomeAvg
+      - regularIncomeYTD
+      - regularIncomeYear
+      type: object
+      properties:
+        irregularIncomeAvg:
+          type: string
+          description: Total mean of irregular income monthly calculated across the
+            whole time period for all irregular sources
+          nullable: true
+          example: "55.00"
+        regularIncomeAvg:
+          type: string
+          description: Total median regular income monthly calculated over the past
+            3 months for all regular sources
+          nullable: true
+          example: "18098.00"
+        regularIncomeYTD:
+          type: string
+          description: Total regular income so far this financial year (year to date)
+          nullable: true
+          example: "90490.00"
+        regularIncomeYear:
+          type: string
+          description: Total predicted regular income for this financial year year
+          nullable: true
+          example: "217176.00"
+      description: Summary totals relating to income analysis
+    InstitutionModel:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Institution identification.
+          example: AU00000
+    InternalServerError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: internal-server-error
+                enum:
+                - internal-server-error
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    IrregularSource:
+      required:
+      - ageDays
+      - amountAvg
+      - avgMonthlyOccurence
+      - changeHistory
+      - current
+      - frequency
+      - noOccurrences
+      - source
+      type: object
+      properties:
+        ageDays:
+          type: integer
+          description: Duration irregular income (number days from first to last occurrence)
+            returned as an integer with values zero or greater.
+          format: int64
+          example: 334
+        amountAvg:
+          type: string
+          description: Mean of irregular income amount - calculated across all occurrences
+            identified.
+          example: "55.00"
+        avgMonthlyOccurence:
+          type: string
+          description: Average (mean) number of times per calendar month the credits
+            in the series occur.
+          example: "1"
+        changeHistory:
+          type: array
+          description: Each amount classified as income (repeated for each income
+            credit and ordered by most recent)
+          items:
+            $ref: '#/components/schemas/ChangeHistoryIncome'
+        current:
+          $ref: '#/components/schemas/CurrentIrregularSource'
+        frequency:
+          type: string
+          description: Frequency is "irregular"
+          example: irregular
+        noOccurrences:
+          type: integer
+          description: Number of instances of credits in the series.
+          format: int64
+          example: 5
+        source:
+          type: string
+          description: Source irregular income (cleaned transaction description).
+          example: ctrlink carers 998r6789201610974v
+      description: |-
+        IrregularSource
+        Income sources typically require at least 5 credits across a minimum 90 day time period
+    IrregularityIncome:
+      required:
+      - gaps
+      - stability
+      type: object
+      properties:
+        gaps:
+          type: array
+          description: Array of dates for which the expected credit is not met
+          example:
+          - 2020-03
+          items:
+            $ref: '#/components/schemas/Gap'
+        stability:
+          type: string
+          description: Stability percentage indicator of how stable the income is.
+            100 = no gaps in the income series from the source. Calculated as (number
+            of transactions that are included in the income report for this source)
+            / (number of transactions that were expected to be included in the income
+            report for this source).
+          example: "100.00"
+    JobData:
+      title: JobData
+      required:
+      - created
+      - id
+      - steps
+      - updated
+      type: object
+      properties:
+        created:
+          type: string
+          description: The date time when the job was created.
+          example: 2020-06-10T09:59:00Z
+        id:
+          type: string
+          description: A string that uniquely identifies the job.
+          example: e9132638
+        links:
+          $ref: '#/components/schemas/JobsLinks'
+        steps:
+          type: array
+          description: List of steps that need to be completed.
+          items:
+            $ref: '#/components/schemas/JobsStep'
+        type:
+          type: string
+          description: Value is "job".
+          example: job
+        updated:
+          type: string
+          description: The date time when the job was last updated.
+          example: 2020-06-10T09:59:00Z
+      description: Container object, containing job details.
+    JobsData:
+      title: JobsData
+      required:
+      - created
+      - id
+      - institution
+      - steps
+      - updated
+      type: object
+      properties:
+        created:
+          type: string
+          description: The date time when the job was created.
+          example: 2020-06-10T09:59:00Z
+        id:
+          type: string
+          description: A string that uniquely identifies the job.
+          example: e9132638
+        institution:
+          $ref: '#/components/schemas/JobsInstitution'
+        links:
+          $ref: '#/components/schemas/JobsLinks'
+        steps:
+          type: array
+          description: List of steps that need to be completed.
+          items:
+            $ref: '#/components/schemas/JobsStep'
+        type:
+          type: string
+          description: Value is "job".
+          example: job
+        updated:
+          type: string
+          description: The date time when the job was last updated.
+          example: 2020-06-10T09:59:00Z
+      description: Container object, containing job details.
+    JobsInstitution:
+      title: Institution
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: A string that uniquely identifies institution.
+          example: AU00000
+        links:
+          $ref: '#/components/schemas/JobsLinks'
+        type:
+          type: string
+          description: Always "institution".
+          example: institution
+      description: Institution details.
+    JobsLinks:
+      title: JobsLinks
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL of the resource
+          example: /jobs/61723
+        source:
+          type: string
+          description: Resource that initiated creation of this Job. For example,
+            for operations on Connection, this is a Connection URL. This is only returned
+            for Connection jobs and not for Statement jobs.
+      description: Links to the resources.
+    JobsResponseResource:
+      required:
+      - data
+      - links
+      - size
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Container object, containing job details.
+          items:
+            $ref: '#/components/schemas/JobsData'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        size:
+          type: integer
+          description: Size of the all the jobs.
+          format: int64
+          example: 100
+        type:
+          type: string
+          description: Type of the response, always "list".
+          example: list
+    JobsResult:
+      title: JobsResult
+      type: object
+      properties:
+        code:
+          type: string
+          description: In case of failed job, displays error code.
+          enum:
+          - user-action-required
+          - system-unavailable
+          - maintenance
+          - connector-error
+          - institution-not-found
+          - institution-not-available
+          - institution-disabled
+          - missing-required-field
+          - missing-required-field-value
+          - invalid-field-value
+          - invalid-csv-row
+          - row-count-exceeded
+          - account-data-differs
+          - empty-file
+          - bank-statement-invalid
+          - bank-statement-new-product
+          - bank-statement-parsing-error
+          - bank-statement-not-supported
+          - txn-after-last-updated-date
+          - invalid-connection
+          - unknown-error
+          - job-timed-out
+        details:
+          type: string
+          description: In case of failed job, displays details of the error.
+        title:
+          type: string
+          description: In case of failed job, displays error title.
+        type:
+          type: string
+          description: In case of success, Always "link".
+          example: link
+        url:
+          type: string
+          description: In case of success, URL of the updated (or created) resources.
+      description: Result object containing a list of URLs or null. Otherwise if a
+        step failed contains an error response.
+    JobsStep:
+      title: JobsStep
+      required:
+      - result
+      - status
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/JobsResult'
+        status:
+          type: string
+          description: |-
+            Step status.
+            <ul>
+            <li> pending -  The job has been created and is waiting to be started.</li>
+            <li> in-progress - The job has started and is currently processing.</li>
+            <li> success - The job has successfully completed. </li>
+            <li> failed - The job has failed.</li>
+            </ul>
+          example: success
+          enum:
+          - pending
+          - in-progress
+          - success
+          - failed
+        title:
+          type: string
+          description: Name of the step the job needs to complete.
+          example: retrieve-accounts
+          enum:
+          - verify-credentials
+          - retrieve-accounts
+          - retrieve-transactions
+          - retrieve-statements
+      description: List of steps that need to be completed.
+    LiabilitiesData:
+      required:
+      - credit
+      - loan
+      type: object
+      properties:
+        credit:
+          type: array
+          description: Credit Liabilities
+          items:
+            $ref: '#/components/schemas/CreditLiabilities'
+        loan:
+          type: array
+          description: Loan Liabilities
+          items:
+            $ref: '#/components/schemas/LoanLiabilities'
+    LoanLiabilities:
+      required:
+      - account
+      - availableFunds
+      - balance
+      - changeHistory
+      - currency
+      - institution
+      - previous6Months
+      - previousMonth
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountHolder'
+        availableFunds:
+          type: string
+          description: The available funds at the time of the query.
+          nullable: true
+          example: "87767.00"
+        balance:
+          type: string
+          description: The balance at the time of the query.
+          nullable: true
+          example: -312233.00
+        changeHistory:
+          type: array
+          description: List of account transactions changes
+          items:
+            $ref: '#/components/schemas/ChangeHistoryAffordabilityData'
+        currency:
+          type: string
+          description: The currency in which the account is recorded.
+          example: AUD
+        institution:
+          type: string
+          description: The name of the financial institution with whom the account
+            is held.
+          example: Hooli
+        previous6Months:
+          $ref: '#/components/schemas/Previous6MonthsLoan'
+        previousMonth:
+          $ref: '#/components/schemas/PreviousMonthDataLoanLiabilities'
+    Meta:
+      type: object
+      additionalProperties:
+        type: string
+    NotFoundError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: resource-not-found
+                enum:
+                - resource-not-found
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Resource not found.
+              title:
+                type: string
+                description: Title of the error
+                example: Requested resource is not found.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    OtherCreditSource:
+      required:
+      - ageDays
+      - amountAvg
+      - avgMonthlyOccurence
+      - changeHistory
+      - current
+      - frequency
+      - noOccurrences
+      - source
+      type: object
+      properties:
+        ageDays:
+          type: integer
+          description: Duration other income (number days from first to last occurrence)
+            returned as an integer with values zero or greater.
+          format: int64
+          example: 335
+        amountAvg:
+          type: string
+          description: Mean of irregular income amount - calculated across all occurrences
+            identified.
+          example: "110.85"
+        avgMonthlyOccurence:
+          type: string
+          description: Average (mean) number of times per calendar month the credits
+            in the series occur.
+          example: "1"
+        changeHistory:
+          type: array
+          description: Each amount classified as income (repeated for each income
+            credit and ordered by most recent)
+          items:
+            $ref: '#/components/schemas/ChangeHistoryIncome'
+        current:
+          $ref: '#/components/schemas/CurrentOtherCreditSource'
+        frequency:
+          type: string
+          description: Frequency is "other", "irregular" or a time period e.g. "bi-weekly"
+          example: monthly
+          enum:
+          - daily
+          - weekly
+          - bi-weekly
+          - monthly
+          - bi-monthly
+          - quarterly
+          - half-year
+          - yearly
+          - other
+          - irregular
+        noOccurrences:
+          type: integer
+          description: Number of instances of credits in the series.
+          format: int64
+          example: 12
+        source:
+          type: string
+          description: Source Other Credit income (cleaned transaction description).
+          example: savings interest cr bal - Account 1
+      description: Other Credit Series are series where a pattern of credit is detected
+        but the pattern does not meet the requirements for regular or irregular income,
+        or the income series is too old e.g. former regular income or a potential
+        future income
+    PaymentsSummaryExpenses:
+      required:
+      - avgMonthly
+      - division
+      - percentageTotal
+      - subCategory
+      type: object
+      properties:
+        avgMonthly:
+          type: string
+          description: 'Average monthly amount by category for defined period (up
+            to 13 months). This number monthly is calculated as follows: (Total Expenses/Report
+            Coverage Days)*30. This allows data with partial months to be calculated
+            correctly.'
+          example: -636.88
+        division:
+          type: string
+          description: 'Top level summary: category name. e.g. Medical care and heath
+            expenses, Food and non-alcoholic beverages, Education'
+          example: Education
+        percentageTotal:
+          type: number
+          description: Average monthly amount expressed as a percentage of total expenses.
+          format: double
+          example: -636.88
+        subCategory:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubCategoryExpenses'
+      description: Payments Summary
+    PhysicalAddresses:
+      title: PhysicalAddresses
+      required:
+      - addressLine1
+      - addressLine2
+      - addressLine3
+      - city
+      - countryCode
+      - formattedAddress
+      - postcode
+      - state
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          description: User address.
+          example: 13/91 Fisher Rd
+        addressLine2:
+          type: string
+          description: Always "null"
+          nullable: true
+        addressLine3:
+          type: string
+          description: Always "null"
+          nullable: true
+        city:
+          type: string
+          description: City
+          example: Sydney
+        country:
+          type: string
+        countryCode:
+          type: string
+          description: Country code
+          example: AU
+        formattedAddress:
+          type: string
+          description: Address formatted.
+          example: 13/91 Fisher Rd, Dee Why NSW 2099, Australia
+        postcode:
+          type: string
+          description: Post code
+          example: "2099"
+        state:
+          type: string
+          description: State
+          example: NSW
+      description: User physical addresses holding the connection.
+    Previous3MonthsIncome:
+      required:
+      - amountAvg
+      - amountAvgMonthly
+      - variance
+      type: object
+      properties:
+        amountAvg:
+          type: string
+          description: 'Median regular income amount - calculated across all occurrences
+            in last 3 months (note: median provides a more reliable amount than mean
+            for a regular income source as it is less affected by outliers and skewed
+            data - use variance amount to understand outliers and changeHistory to
+            view actual credits)'
+          example: "18098.00"
+        amountAvgMonthly:
+          type: string
+          description: Median monthly regular income amount
+          example: "18098.00"
+        variance:
+          type: string
+          description: Difference between min and max payment amount for regular income
+          example: "0.00"
+    Previous6MonthsCreditLiabilities:
+      required:
+      - cashAdvances
+      type: object
+      properties:
+        cashAdvances:
+          type: string
+          description: Value of cash advances in period
+          example: -2053.50
+    Previous6MonthsLoan:
+      required:
+      - arrears
+      type: object
+      properties:
+        arrears:
+          type: string
+          description: Has the loan been in arrears in the past 6 months - returned
+            as a string value (true or false or null)
+          nullable: true
+          example: "true"
+    PreviousMonthDataLiabilities:
+      required:
+      - maxBalance
+      - minBalance
+      - totalCredits
+      - totalDebits
+      type: object
+      properties:
+        maxBalance:
+          type: string
+          example: -12329.16
+        minBalance:
+          type: string
+          example: -3174.16
+        totalCredits:
+          type: string
+          example: "0.00"
+        totalDebits:
+          type: string
+          example: -8287.10
+    PreviousMonthDataLoanLiabilities:
+      required:
+      - totalCredits
+      - totalDebits
+      - totalInterestCharged
+      - totalRepayments
+      type: object
+      properties:
+        totalCredits:
+          type: string
+          example: "0.00"
+        totalDebits:
+          type: string
+          example: -8287.10
+        totalInterestCharged:
+          type: string
+          example: -4303.50
+        totalRepayments:
+          type: string
+          example: "5768.00"
+    RegularSource:
+      required:
+      - ageDays
+      - changeHistory
+      - current
+      - frequency
+      - irregularity
+      - previous3Months
+      - source
+      type: object
+      properties:
+        ageDays:
+          type: integer
+          description: Duration regular income (number days from first to last occurrence)
+            returned as an integer with values zero or greater
+          format: int64
+          example: 334
+        changeHistory:
+          type: array
+          description: Each amount classified as income (repeated for each income
+            credit and ordered by most recent)
+          items:
+            $ref: '#/components/schemas/ChangeHistoryIncome'
+        current:
+          $ref: '#/components/schemas/CurrentRegularSource'
+        frequency:
+          type: string
+          description: Enum detailing frequency regular income
+          example: monthly
+          enum:
+          - daily
+          - weekly
+          - bi-weekly
+          - monthly
+          - bi-monthly
+          - quarterly
+          - half-year
+          - yearly
+        irregularity:
+          $ref: '#/components/schemas/IrregularityIncome'
+        previous3Months:
+          $ref: '#/components/schemas/Previous3MonthsIncome'
+        source:
+          type: string
+          description: Source regular income (cleaned transaction description).
+          example: payroll wfrms 15439393
+      description: |-
+        RegularSource
+        Our complex income algorithm uses over 50 rules to identify different types of income sources. For example, to identify a regular income source - the fortnightly salary should have a minimum of 5 credits across a 90 day time period with regular intervals. Additionally, tolerances are applied based on confidence in identified income source patterns (by amount and frequency).
+    ResourceLink:
+      title: ResourceLink
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL of the resource.
+      description: Link object containing a link to the resource, self reference.
+    Source:
+      title: Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: String indicating which URI query parameter caused the error.
+          example: userId
+        pointer:
+          type: string
+          description: Location to the object or attribute that the error relates
+            to.
+          example: users/userId
+      description: An object containing references to the source of the error.
+    StatementUploadResource:
+      title: StatementUploadResource
+      required:
+      - id
+      - links
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Job identification.
+          example: "29523951"
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Type, always "job".
+          example: job
+      description: Object containing details for statement upload.
+    StatusServiceUnavailableError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: object
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: service-unavailable
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Service Unavailable. Try again later.
+              title:
+                type: string
+                description: Title of the error
+                example: Service Unavailable
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    SubCategoryExpenses:
+      required:
+      - category
+      - changeHistory
+      - summary
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/CategoryDataExpenses'
+        changeHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeHistoryExpensesClass'
+        summary:
+          type: string
+          description: Summary period "monthly".
+          example: monthly
+      description: Payments Sub-Category
+    SubClass:
+      required:
+      - code
+      - title
+      type: object
+      properties:
+        code:
+          type: string
+          example: "0801050199"
+        title:
+          type: string
+          example: Formal child care services nec
+    TransactionData:
+      required:
+      - account
+      - amount
+      - balance
+      - class
+      - connection
+      - description
+      - direction
+      - enrich
+      - id
+      - institution
+      - links
+      - postDate
+      - status
+      - subClass
+      - transactionDate
+      - type
+      type: object
+      properties:
+        account:
+          type: string
+          description: The id of the account resource the transaction belongs to.
+          example: d3de1ca1
+        amount:
+          type: string
+          description: Transaction amount. Outgoing funds are expressed as negative
+            values.
+          example: "123.12"
+        balance:
+          type: string
+          description: Value of the account balance at time the transaction was completed.
+          example: "123.12"
+        class:
+          type: string
+          description: Describes the class(type) of transaction.
+          example: payment
+          enum:
+          - bank-fee
+          - payment
+          - cash-withdrawal
+          - transfer
+          - loan-interest
+          - refund
+          - direct-cedit
+          - interest
+          - loan-repayment
+        connection:
+          type: string
+          description: The id of the connection resource that was used to retrieve
+            the transaction.
+          example: d3de1ca1
+        description:
+          type: string
+          description: The transaction description as submitted by the institution..
+        direction:
+          type: string
+          description: Identifies if the transaction is of debit or credit type.
+          example: credit
+          enum:
+          - debit
+          - credit
+        enrich:
+          $ref: '#/components/schemas/TransactionsEnrich'
+        id:
+          type: string
+          description: Uniquely identifies the transaction for this connection. Note
+            that when a connection is refreshed pending transactions will receive
+            new id's, whilst posted transactions will receive the same id's as before
+            the refresh.
+          example: d3de1ca1
+        institution:
+          type: string
+          description: The id of the institution resource the transaction originated
+            from.
+          example: AU00000
+        links:
+          $ref: '#/components/schemas/TransactionLinks'
+        postDate:
+          type: string
+          description: Date the transaction was posted as provided by the institution
+            (this is the same date that appears on a bank statement). This value is
+            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+          example: 2018-11-02T00:00:00Z
+        status:
+          type: string
+          description: Identifies if a transaction is pending or posted. A pending
+            transaction is an approved debit or credit transaction that has not been
+            fully processed yet (i.e. has not been posted). Find out more about pending
+            transaction and how to deal with them within your app. Note that pending
+            transactions are not available for all institutions.
+          example: pending
+          enum:
+          - pending
+          - posted
+        subClass:
+          $ref: '#/components/schemas/SubClass'
+        transactionDate:
+          type: string
+          description: Date that the user executed the transaction as provided by
+            the istitution. Note that not all transactions provide this value (varies
+            by institution) e.g. "2017-11-10T00:00:00Z"
+          example: 2018-11-02T00:00:00Z
+        type:
+          type: string
+          description: Value is "transaction".
+          example: transaction
+    TransactionDataAffordability:
+      required:
+      - account
+      - amount
+      - balance
+      - class
+      - description
+      - direction
+      - id
+      - institution
+      - links
+      - postDate
+      - status
+      - subClass
+      - transactionDate
+      - type
+      type: object
+      properties:
+        account:
+          type: string
+          description: The id of the account resource the transaction belongs to.
+          example: d3de1ca1
+        amount:
+          type: string
+          description: Transaction amount. Outgoing funds are expressed as negative
+            values.
+          example: "123.12"
+        balance:
+          type: string
+          description: Value of the account balance at time the transaction was completed.
+          example: "123.12"
+        class:
+          type: string
+          description: Describes the class(type) of transaction.
+          example: payment
+          enum:
+          - bank-fee
+          - payment
+          - cash-withdrawal
+          - transfer
+          - loan-interest
+          - refund
+          - direct-cedit
+          - interest
+          - loan-repayment
+        description:
+          type: string
+          description: The transaction description as submitted by the institution..
+          example: DEBIT Only About Children Seaforth
+        direction:
+          type: string
+          description: Identifies if the transaction is of debit or credit type.
+          example: credit
+          enum:
+          - debit
+          - credit
+        id:
+          type: string
+          description: Uniquely identifies the transaction.
+          example: d3de1ca1
+        institution:
+          type: string
+          description: The id of the institution resource the transaction originated
+            from.
+          example: AU00000
+        links:
+          $ref: '#/components/schemas/AffordabilityTransactionLinks'
+        postDate:
+          type: string
+          description: Date the transaction was posted as provided by the institution
+            (this is the same date that appears on a bank statement). This value is
+            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+          example: 2018-11-02T00:00:00Z
+        status:
+          type: string
+          description: Identifies if a transaction is pending or posted. A pending
+            transaction is an approved debit or credit transaction that has not been
+            fully processed yet (i.e. has not been posted). Find out more about pending
+            transaction and how to deal with them within your app. Note that pending
+            transactions are not available for all institutions.
+          example: pending
+          enum:
+          - pending
+          - posted
+        subClass:
+          $ref: '#/components/schemas/SubClass'
+        transactionDate:
+          type: string
+          description: Date that the user executed the transaction as provided by
+            the institution. Note that not all transactions provide this value (varies
+            by institution) e.g. "2017-11-10T00:00:00Z"
+          example: 2018-11-02T00:00:00Z
+        type:
+          type: string
+          description: Value is "transaction".
+          example: transaction
+    TransactionLinks:
+      required:
+      - account
+      - connection
+      - institution
+      - self
+      type: object
+      properties:
+        account:
+          type: string
+          description: Url of the account.
+          example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
+        connection:
+          type: string
+          description: Url of the connection, always null.
+          example: null
+        institution:
+          type: string
+          description: Url of the institution.
+          example: https://au-api.basiq.io/institutions/AU00000
+        self:
+          type: string
+          description: Transaction self reference.
+          example: https://au-api.basiq.io/users/6a52015e/transactions/2082c765
+    TransactionsAnzsic:
+      type: object
+      properties:
+        class:
+          $ref: '#/components/schemas/TransactionsClass'
+        division:
+          $ref: '#/components/schemas/TransactionsDivision'
+        group:
+          $ref: '#/components/schemas/TransactionsGroup'
+        subdivision:
+          $ref: '#/components/schemas/TransactionsSubdivision'
+    TransactionsCategory:
+      type: object
+      properties:
+        anzsic:
+          $ref: '#/components/schemas/TransactionsAnzsic'
+    TransactionsClass:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Class Code
+          example: "4511"
+        title:
+          type: string
+          description: Class Details
+          example: Cafes and Restaurants
+    TransactionsDivision:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Division Code
+          example: H
+        title:
+          type: string
+          description: Division Details
+          example: Accommodation and  Food Services
+    TransactionsEnrich:
+      required:
+      - category
+      - location
+      - merchant
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/TransactionsCategory'
+        location:
+          $ref: '#/components/schemas/TransactionsLocation'
+        merchant:
+          $ref: '#/components/schemas/TransactionsMerchant'
+    TransactionsGeometry:
+      type: object
+      properties:
+        lat:
+          type: string
+          description: Latitude
+          example: -33.79988520000001
+        lng:
+          type: string
+          description: Longitude
+          example: "151.2858021"
+    TransactionsGetLinks:
+      required:
+      - self
+      type: object
+      properties:
+        next:
+          type: string
+          description: Url to next result.
+          example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
+        self:
+          type: string
+          description: Self reference url.
+          example: https://au-api.basiq.io/users/ea3a81/transactions
+    TransactionsGetResource:
+      title: Transactions container object.
+      required:
+      - count
+      - data
+      - size
+      - type
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of the transactions in the response.
+          format: int64
+          example: 100
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionData'
+        links:
+          $ref: '#/components/schemas/TransactionsGetLinks'
+        size:
+          type: integer
+          format: int64
+          example: 500
+        type:
+          type: string
+          description: Value is "list".
+          example: list
+      description: A transaction object is created whenever money is debited or credited
+        from a particular account.
+    TransactionsGroup:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Group Code
+          example: "451"
+        title:
+          type: string
+          description: Group Details
+          example: Cafes, Restaurants and Takeaway Food Services
+    TransactionsLocation:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country
+          example: Australia
+        formattedAddress:
+          type: string
+          description: Address
+          example: 1/39 E Esplanade, Manly NSW 2095
+        geometry:
+          $ref: '#/components/schemas/TransactionsGeometry'
+        postalCode:
+          type: string
+          description: Postal Code
+          example: "2095"
+        route:
+          type: string
+          description: Route Name
+          example: E Esplanade
+        routeNo:
+          type: string
+          description: Route Number
+          example: "29"
+        state:
+          type: string
+          description: State
+          example: NSW
+        suburb:
+          type: string
+          description: Suburb
+          example: Manly
+    TransactionsMerchant:
+      required:
+      - businessName
+      - website
+      type: object
+      properties:
+        businessName:
+          type: string
+          description: Merchant name
+          example: Garfish Manly
+        phoneNumber:
+          $ref: '#/components/schemas/TransactionsPhoneNumber'
+        website:
+          type: string
+          description: Merchant Website
+          example: http://garfish.com.au/garfish-manly/
+    TransactionsPhoneNumber:
+      type: object
+      properties:
+        international:
+          type: string
+          description: International Phone Number
+          example: +61 2 9977 0707
+        local:
+          type: string
+          description: Local Phone Number
+          example: (02) 9977 0707
+    TransactionsSubdivision:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Subdivision Code
+          example: "45"
+        title:
+          type: string
+          description: Subdivision Details
+          example: Food and Beverage Services
+    UnauthorizedError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: unauthorized-access
+                enum:
+                - unauthorized-access
+                - invalid-authorization-token
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: You are not authorized to access this resource
+              title:
+                type: string
+                description: Title of the error
+                example: Unauthorized Access
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    UnsupportedMediaTypeError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: unsupported-content-type
+                enum:
+                - unsupported-content-type
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    UserConnectionPostData:
+      required:
+      - password
+      type: object
+      properties:
+        password:
+          type: string
+          description: User's (new or old) institution password.
+          example: "1234"
+        secondaryLoginId:
+          type: string
+          description: User's institution secondary login id.
+          example: "4321"
+        securityCode:
+          type: string
+          description: User's institution security code.
+    UserConnectionsPostData:
+      required:
+      - institution
+      - loginId
+      - password
+      type: object
+      properties:
+        institution:
+          $ref: '#/components/schemas/InstitutionModel'
+        loginId:
+          type: string
+          description: The users institution login ID
+          example: gavinBelson
+        password:
+          type: string
+          description: The users institution password
+          example: hooli2020
+        secondaryLoginId:
+          type: string
+          description: User's institution secondary login id. Mandatory if required
+            by institution's login process
+        securityCode:
+          type: string
+          description: User's institution security code. Mandatory if required by
+            institution's login process.
+    UserGetResponse:
+      title: UserGetResponse
+      required:
+      - accounts
+      - connections
+      - email
+      - id
+      - links
+      - mobile
+      - name
+      - type
+      type: object
+      properties:
+        accounts:
+          $ref: '#/components/schemas/GetUserAccount'
+        business:
+          type: string
+          description: |-
+            Business is ignored - it is populated when user has BusinessNumber or BusinessName
+            swagger: ignore
+        connections:
+          $ref: '#/components/schemas/GetUserConnection'
+        email:
+          type: string
+          description: User email or empty.
+          format: email
+          example: gavin@hooli.com
+        id:
+          type: string
+          description: User identification.
+          example: ea3a81
+        links:
+          $ref: '#/components/schemas/GetUserLinks'
+        mobile:
+          type: string
+          description: User mobile number, or empty.
+          example: +61410888666
+        name:
+          type: string
+          description: Name, or empty.
+        type:
+          type: string
+          description: Always "user".
+          example: user
+      description: User object with details if the creation succeeded.
+    UserPostResponse:
+      title: UserPostResponse
+      required:
+      - id
+      - links
+      - mobile
+      - type
+      type: object
+      properties:
+        email:
+          type: string
+          description: The end-users email address.
+          format: email
+          example: gavin@hooli.com
+        id:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: e1956419
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        mobile:
+          type: string
+          description: The end-users mobile number.
+          example: +61410888999
+        type:
+          type: string
+          description: Type of the response, always "user".
+          example: user
+      description: User object with details if the creation succeeded.
+    createUser:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The end-users email address. Mandatory if mobile is not supplied.
+          example: gavin@hooli.com
+        mobile:
+          type: string
+          description: |-
+            The end-users mobile number, supplied in international format.
+            +[country-code][mobileno]. Mandatory if email is not supplied.
+          example: +61410888999
+    updateUser:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The end-users email address.
+          example: gavin@hooli.com
+        mobile:
+          type: string
+          description: The end-users mobile number.
+          example: +61410888666
+    Anzsic:
+      type: object
+      properties:
+        class:
+          $ref: '#/components/schemas/ClassDetails'
+        division:
+          $ref: '#/components/schemas/DivisionDetails'
+        group:
+          $ref: '#/components/schemas/GroupDetails'
+        subdivision:
+          $ref: '#/components/schemas/SubdivisionDetails'
+    ClassDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Class Code
+          example: "4511"
+        title:
+          type: string
+          description: Class Details
+          example: Cafes and Restaurants
+    DivisionDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Division Code
+          example: H
+        title:
+          type: string
+          description: Division Details
+          example: Accommodation and  Food Services
+    EnrichCategory:
+      type: object
+      properties:
+        anzsic:
+          $ref: '#/components/schemas/Anzsic'
+    EnrichData:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/EnrichCategory'
+        location:
+          $ref: '#/components/schemas/EnrichLocation'
+        merchant:
+          $ref: '#/components/schemas/EnrichMerchant'
+    EnrichGeometry:
+      type: object
+      properties:
+        lat:
+          type: string
+          description: Latitude
+          example: -33.79988520000001
+        lng:
+          type: string
+          description: Longitude
+          example: "151.2858021"
+    EnrichLocation:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country
+          example: Australia
+        formattedAddress:
+          type: string
+          description: Address
+          example: 1/39 E Esplanade, Manly NSW 2095
+        geometry:
+          $ref: '#/components/schemas/EnrichGeometry'
+        postalCode:
+          type: string
+          description: Postal Code
+          example: "2095"
+        route:
+          type: string
+          description: Route Name
+          example: E Esplanade
+        routeNo:
+          type: string
+          description: Route Number
+          example: "29"
+        state:
+          type: string
+          description: State
+          example: NSW
+        suburb:
+          type: string
+          description: Suburb
+          example: Manly
+    EnrichMerchant:
+      required:
+      - businessName
+      - website
+      type: object
+      properties:
+        businessName:
+          type: string
+          description: Merchant name
+          example: Garfish Manly
+        phoneNumber:
+          $ref: '#/components/schemas/EnrichPhoneNumber'
+        website:
+          type: string
+          description: Merchant Website
+          example: http://garfish.com.au/garfish-manly/
+    EnrichPhoneNumber:
+      type: object
+      properties:
+        international:
+          type: string
+          description: International Phone Number
+          example: +61 2 9977 0707
+        local:
+          type: string
+          description: Local Phone Number
+          example: (02) 9977 0707
+    GetEnrichResponse:
+      required:
+      - class
+      - data
+      - direction
+      - links
+      - type
+      type: object
+      properties:
+        class:
+          type: string
+          description: Transaction Classification
+          example: payment
+          enum:
+          - direct-credit
+          - refund
+          - interest
+          - payment
+          - cash-withdrawal
+          - bank-fee
+          - transfer
+          - loan-interest
+          - loan-repayment
+        data:
+          $ref: '#/components/schemas/EnrichData'
+        direction:
+          type: string
+          description: Direction of transaction
+          example: credit
+          enum:
+          - credit
+          - debit
+          - unknown
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+        type:
+          type: string
+          description: Always "enrich"
+          example: enrich
+    GroupDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Group Code
+          example: "451"
+        title:
+          type: string
+          description: Group Details
+          example: Cafes, Restaurants and Takeaway Food Services
+    SubdivisionDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Subdivision Code
+          example: "45"
+        title:
+          type: string
+          description: Subdivision Details
+          example: Food and Beverage Services
+    AccountsFeatures:
+      required:
+      - accountHolder
+      - accountNo
+      - availableFunds
+      - balance
+      - currency
+      - lastUpdated
+      - name
+      type: object
+      properties:
+        accountHolder:
+          type: array
+          description: AccountHolder holds list of data source identifiers which are
+            capable to fetch account holder.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        accountNo:
+          type: array
+          description: AccountNumber holds list of data source identifiers which are
+            capable to fetch account number.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        availableFunds:
+          type: array
+          description: AvailableFunds holds list of data source identifiers which
+            are capable to fetch available funds.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        balance:
+          type: array
+          description: AccountBalance holds list of data source identifiers which
+            are capable to fetch account balance.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        currency:
+          type: array
+          description: AccountCurrency holds list of data source identifiers which
+            are capable to fetch account currency.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        lastUpdated:
+          type: array
+          description: LastUpdated holds list of data source identifiers which are
+            capable to fetch account last updated date.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        name:
+          type: array
+          description: AccountName holds list of data source identifiers which are
+            capable to fetch account name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+      description: AccountsFeatures describes set of institution accounts features
+    Colors:
+      type: object
+      properties:
+        primary:
+          type: string
+          description: Primary primary institution color
+      description: Colors contains institution colors type
+    FeatureCondition:
+      type: string
+      description: FeatureCondition type that describes an feature status for institution
+    Features:
+      required:
+      - login
+      type: object
+      properties:
+        accounts:
+          $ref: '#/components/schemas/AccountsFeatures'
+        login:
+          type: array
+          description: |-
+            Login holds list of data source identifiers which are capable to do complete login step.
+            This feature is applicable only on web sources.
+          example:
+          - web
+          items:
+            $ref: '#/components/schemas/SourceName'
+        mfaChallenge:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceName'
+        profile:
+          $ref: '#/components/schemas/ProfileFeatures'
+        transactions:
+          $ref: '#/components/schemas/TransactionsFeatures'
+      description: Features stucture that describes institution features per data
+        source
+    Institution:
+      title: Institution contains instution data.
+      required:
+      - authorization
+      - country
+      - features
+      - id
+      - institutionType
+      - links
+      - logo
+      - name
+      - serviceName
+      - serviceType
+      - shortName
+      - stage
+      - stats
+      - status
+      - tier
+      - type
+      type: object
+      properties:
+        authorization:
+          type: string
+          description: Institution authorization identifier
+          example: user
+          enum:
+          - user
+          - token
+          - other
+          - user-mfa
+          - user-mfa-intermittent
+        country:
+          type: string
+          description: Institution country name
+          example: Australia
+        features:
+          $ref: '#/components/schemas/Features'
+        forgottenPasswordUrl:
+          type: string
+          description: URL to institution forgotten password page
+          example: https://example.com/forgotten-password
+        id:
+          maxLength: 7
+          minLength: 7
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+          description: Institution ID
+          example: AU00000
+        institutionType:
+          type: string
+          description: Institution type identifier
+          example: Bank
+          enum:
+          - Bank
+          - Bank (Foreign)
+          - Test Bank
+          - Credit Union
+          - Financial Services
+          - Superannuation
+          - Building Society
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
+        loginIdCaption:
+          type: string
+          description: Login ID field caption that should be shown on UI
+          example: User name
+        logo:
+          $ref: '#/components/schemas/InstitutionLogoResource'
+        name:
+          type: string
+          description: Institution name
+          example: Hooli Bank
+        passwordCaption:
+          type: string
+          description: Password field caption that should be shown on UI
+          example: Password
+        secondaryLoginIdCaption:
+          type: string
+          description: Secondary loginID caption that should be shown on UI
+          example: Secondary login id
+        securityCodeCaption:
+          type: string
+          description: Security code caption that should be shown on UI
+          example: Security code
+        serviceName:
+          type: string
+          description: Institution service name
+          example: Personal Online Banking
+        serviceType:
+          type: string
+          description: Institution service name
+          example: Personal Banking
+          enum:
+          - Personal Banking
+          - Business Banking
+          - Card Access
+          - Test
+          - Superannuation
+        shortName:
+          type: string
+          description: Institution short name
+          example: Hooli
+        stage:
+          type: string
+          description: Institution stage identifier
+          example: live
+          enum:
+          - live
+          - beta
+          - alpha
+        stats:
+          $ref: '#/components/schemas/InstitutionPerformanceStats'
+        status:
+          $ref: '#/components/schemas/FeatureCondition'
+        tier:
+          type: string
+          description: Institution tier identifier
+          example: "3"
+          enum:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+        type:
+          type: string
+          description: Resource type identifier. It is always "institution" for this
+            model.
+          example: institution
+          enum:
+          - institution
+        userTokenCaption:
+          type: string
+          description: User token caption that should be shown on UI
+          example: User token
+    InstitutionLogoResource:
+      required:
+      - links
+      - type
+      type: object
+      properties:
+        colors:
+          $ref: '#/components/schemas/Colors'
+        links:
+          $ref: '#/components/schemas/LogoResourceLinks'
+        type:
+          type: string
+          description: Type resource type identifier
+          example: image
+          enum:
+          - image
+      description: InstitutionLogoResource linstitution logo resource type
+    InstitutionPerformanceStats:
+      type: object
+      properties:
+        averageDurationMs:
+          type: object
+          properties:
+            retrieveAccounts:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                accounts</b> step for institution
+              format: int64
+            retrieveMeta:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                metadata</b> step for institution
+              format: int64
+            retrieveTransactions:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                transactions</b> step for institution
+              format: int64
+            total:
+              type: integer
+              description: Total connector average duration in milliseconds
+              format: int64
+            verifyCredentials:
+              type: integer
+              description: Connector average duration in milliseconds of <b>verifiy
+                credentials</b> step for institution
+              format: int64
+          description: |-
+            AverageDurationMs average connector duration in milliseconds per segments.
+            When durations are not known for institution this field will be `null`.
+      description: InstitutionPerformanceStats response type for institution performance
+        stats
+    InstitutionsList:
+      title: InstitutionsList contains list of instutions data.
+      required:
+      - data
+      - links
+      - totalCount
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Data contains list of institutions
+          items:
+            $ref: '#/components/schemas/Institution'
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
+        totalCount:
+          type: integer
+          description: TotalCount contains total count of institutions
+          format: int64
+          example: 1
+        type:
+          $ref: '#/components/schemas/ResponseFormat'
+    LogoResourceLinks:
+      required:
+      - full
+      - square
+      type: object
+      properties:
+        full:
+          type: string
+          description: URL to full size logo
+          example: https://example.com/AU00000-full.svg
+        square:
+          type: string
+          description: Square formatted logo URL
+          example: https://example.com/AU00000.svg
+      description: LogoResourceLinks contains institution logo resource links
+    ProfileFeatures:
+      required:
+      - emailAddresses
+      - firstName
+      - fullName
+      - lastName
+      - middleName
+      - phoneNumbers
+      - physicalAddresses
+      type: object
+      properties:
+        emailAddresses:
+          type: array
+          description: EmailAddresses holds list of data source identifiers which
+            are capable to fetch bank customer e-mail addresses.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        firstName:
+          type: array
+          description: FirstName holds list of data source identifiers which are capable
+            to fetch bank customer first name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        fullName:
+          type: array
+          description: FullName holds list of data source identifiers which are capable
+            to fetch bank customer full name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        lastName:
+          type: array
+          description: LastName holds list of data source identifiers which are capable
+            to fetch bank customer last name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        middleName:
+          type: array
+          description: MiddleName holds list of data source identifiers which are
+            capable to fetch bank customer middle name.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        phoneNumbers:
+          type: array
+          description: PhoneNumbers holds list of data source identifiers which are
+            capable to fetch bank customer phone number.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        physicalAddresses:
+          type: array
+          description: PhysicalAddresses holds list of data source identifiers which
+            are capable to fetch bank customer physical addresses.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+      description: ProfileFeatures describes set of institution profile features
+    ResourceLinks:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL to resource itself
+      description: ResourceLinks contains resource links
+    ResponseFormat:
+      type: string
+      description: ResponseFormat identifies response data format
+    SourceName:
+      type: string
+      description: SourceName feature source name
+    TransactionsFeatures:
+      required:
+      - amount
+      - balance
+      - class
+      - date
+      - description
+      - status
+      type: object
+      properties:
+        amount:
+          type: array
+          description: TransactionAmount holds list of data source identifiers which
+            are capable to fetch transaction amount.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        balance:
+          type: array
+          description: TransactionBalance holds list of data source identifiers which
+            are capable to fetch account balance when transaction occured.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        class:
+          type: array
+          description: Class holds list of data source identifiers which are capable
+            to fetch transaction class.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        date:
+          type: array
+          description: TransactionDate holds list of data source identifiers which
+            are capable to fetch transaction date.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        description:
+          type: array
+          description: TransactionDescription holds list of data source identifiers
+            which are capable to fetch transaction description.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+        status:
+          type: array
+          description: TransactionStatus holds list of data source identifiers which
+            are capable to fetch transaction status.
+          example:
+          - web
+          - pdf
+          - csv
+          items:
+            $ref: '#/components/schemas/SourceName'
+      description: TransactionsFeatures describes set of institution transactions
+        features
+    TokenPostResponse:
+      required:
+      - access_token
+      - expires_in
+      - token_type
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: access_token
+        expires_in:
+          type: integer
+          description: Expires in seconds
+          format: int64
+          example: 3600
+        token_type:
+          type: string
+          example: Bearer
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
+    application:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://au-api.basiq.io/token
+          scopes:
+            SERVER_ACCESS: Server access scope
+            CLIENT_ACCESS: Client access scope
