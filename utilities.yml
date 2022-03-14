@@ -877,38 +877,6 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
-    get:
-      tags:
-      - Institutions
-      summary: List institutions - public
-      operationId: getPublicInstitutions
-      parameters:
-      - name: filter
-        in: query
-        description: Publically accessible endpoint to list all institutions without need for authentication
-        schema:
-          type: string
-      responses:
-        200:
-          description: Returns data of single institution.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InstitutionsList'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
 components:
   schemas:
     AccountClass:
