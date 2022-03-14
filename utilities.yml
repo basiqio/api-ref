@@ -118,6 +118,56 @@ paths:
       - application:
         - SERVER_ACCESS
         - CLIENT_ACCESS
+  /users:
+    post:
+      tags:
+      - Users
+      summary: Create a user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUser'
+        required: true
+      responses:
+        201:
+          description: Returns the user object if the creation succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPostResponse'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: user
   /users/{userId}:
     get:
       tags:
@@ -2170,6 +2220,19 @@ components:
           description: Type of the response, always "user".
           example: user
       description: User object with details if the creation succeeded.
+    createUser:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The end-users email address. Mandatory if mobile is not supplied.
+          example: gavin@hooli.com
+        mobile:
+          type: string
+          description: |-
+            The end-users mobile number, supplied in international format.
+            +[country-code][mobileno]. Mandatory if email is not supplied.
+          example: +61410888999
     updateUser:
       type: object
       properties:
