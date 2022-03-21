@@ -609,7 +609,6 @@ paths:
       - application:
         - SERVER_ACCESS
         - CLIENT_ACCESS
-    post:
       tags:
       - Connections
       summary: Update a connection
