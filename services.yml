@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Core
+  title: Services
   version: 3.0.0
 servers:
 - url: https://au-api.basiq.io/
