@@ -3078,3 +3078,13 @@ components:
           scopes:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: true
+  samples-enabled: true
+  samples-languages: 
+  - curl
+  - node
+  - ruby
+  - javascript
+  - python
