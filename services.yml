@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Services
+  title: Core
   version: 3.0.0
 servers:
 - url: https://au-api.basiq.io/
@@ -831,6 +831,7 @@ components:
     AccountResponseResource:
       title: AccountResponseResource
       required:
+      - id
       - accountHolder
       - accountNo
       - availableFunds
@@ -838,7 +839,6 @@ components:
       - class
       - connection
       - currency
-      - id
       - institution
       - lastUpdated
       - links
@@ -848,6 +848,10 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: Uniquely identifies the account.
+          example: s55bf3
         accountHolder:
           type: string
           description: The name of the account holder as returned by the institution.
@@ -884,10 +888,6 @@ components:
           type: string
           description: The currency the funds are stored in, using ISO 4217 standard.
           example: AUD
-        id:
-          type: string
-          description: Uniquely identifies the account.
-          example: s55bf3
         institution:
           type: string
           description: The id of the institution resource the account originated from.
@@ -1025,6 +1025,10 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: Uniquely identifies the affordability report.
+          example: s55bf3
         coverageDays:
           type: integer
           description: Number of days covered by the report
@@ -1040,10 +1044,6 @@ components:
           type: string
           description: Date the report was generated.
           example: 2020-03-26T06:56:44
-        id:
-          type: string
-          description: Uniquely identifies the affordability report.
-          example: s55bf3
         institutions:
           type: array
           description: An array of institution ids to indicate the sources of transaction
@@ -1137,6 +1137,10 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: Uniquely identifies the affordability report.
+          example: s55bf3
         assets:
           type: array
           description: Assets
@@ -1162,10 +1166,6 @@ components:
           type: string
           description: Date the report was generated.
           example: 2020-03-26T06:56:44
-        id:
-          type: string
-          description: Uniquely identifies the affordability report.
-          example: s55bf3
         liabilities:
           $ref: '#/components/schemas/LiabilitiesData'
         links:
@@ -1735,6 +1735,10 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: Uniquely identifies the expenses report.
+          example: s55bf3
         bankFees:
           $ref: '#/components/schemas/ClassResourceExpenses'
         cashWithdrawals:
@@ -1751,10 +1755,6 @@ components:
           description: First 'month' occurrence of expenses categorised going back
             as far as 13 months.
           example: 2017-12
-        id:
-          type: string
-          description: Uniquely identifies the expenses report.
-          example: s55bf3
         links:
           $ref: '#/components/schemas/ExpensesLinks'
         loanInterests:
@@ -2013,6 +2013,10 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: The identifier of the income resource to be retrieved.
+          example: s55bf4
         coverageDays:
           type: integer
           description: Number of days covered by the report
@@ -2024,10 +2028,6 @@ components:
             generated. The period of time relates to the account and transaction data
             used as input into the report.
           example: 2019-03
-        id:
-          type: string
-          description: The identifier of the income resource to be retrieved.
-          example: s55bf4
         irregular:
           type: array
           description: Required true
@@ -2671,6 +2671,13 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: Uniquely identifies the transaction for this connection. Note
+            that when a connection is refreshed pending transactions will receive
+            new id's, whilst posted transactions will receive the same id's as before
+            the refresh.
+          example: d3de1ca1
         account:
           type: string
           description: The id of the account resource the transaction belongs to.
@@ -2715,13 +2722,6 @@ components:
           - credit
         enrich:
           $ref: '#/components/schemas/TransactionsEnrich'
-        id:
-          type: string
-          description: Uniquely identifies the transaction for this connection. Note
-            that when a connection is refreshed pending transactions will receive
-            new id's, whilst posted transactions will receive the same id's as before
-            the refresh.
-          example: d3de1ca1
         institution:
           type: string
           description: The id of the institution resource the transaction originated
@@ -2776,6 +2776,10 @@ components:
       - type
       type: object
       properties:
+        id:
+          type: string
+          description: Uniquely identifies the transaction.
+          example: d3de1ca1
         account:
           type: string
           description: The id of the account resource the transaction belongs to.
@@ -2814,10 +2818,6 @@ components:
           enum:
           - debit
           - credit
-        id:
-          type: string
-          description: Uniquely identifies the transaction.
-          example: d3de1ca1
         institution:
           type: string
           description: The id of the institution resource the transaction originated
