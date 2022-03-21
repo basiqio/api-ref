@@ -405,7 +405,6 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
-    post:
       tags:
       - Connections
       summary: Create a new connection
