@@ -3092,7 +3092,7 @@ components:
             CLIENT_ACCESS: Client access scope
 x-readme:
   explorer-enabled: false
-  proxy-enabled: true
+  proxy-enabled: false
   samples-enabled: true
   samples-languages: 
   - curl
