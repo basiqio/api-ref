@@ -10,6 +10,7 @@ paths:
       tags:
       - Accounts
       summary: List all accounts 
+      description: List all accounts belonging to a user
       operationId: getAccounts
       parameters:
       - name: userId
@@ -60,6 +61,7 @@ paths:
       tags:
       - Accounts
       summary: Retrieve an account
+      description: Retrieve a specific account belonging to a user
       operationId: getAccount
       parameters:
       - name: userId
@@ -116,6 +118,7 @@ paths:
       tags:
       - Affordability
       summary: List affordability reports
+      description: Returns a list of affordability reports that have been generated for a specific user. 
       operationId: getAffordabilityList
       parameters:
       - name: userId
@@ -159,6 +162,7 @@ paths:
       tags:
       - Affordability
       summary: Create an affordability report
+      description: Create an affordability report for a user
       operationId: postAffordability
       parameters:
       - name: userId
@@ -240,6 +244,7 @@ paths:
       tags:
       - Affordability
       summary: Retrieve an affordability summary
+      description: Retrieves a specific, pre existing affordability report
       operationId: getAffordability
       parameters:
       - name: userId
@@ -312,6 +317,7 @@ paths:
       tags:
       - Affordability
       summary: List affordability report transactions
+      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability report. 
       operationId: getAffordabilitySnapshotTransactions
       parameters:
       - name: userId
@@ -391,6 +397,7 @@ paths:
       tags:
       - Expenses
       summary: Create an expense report
+      description: Create a new expense summary for a user
       operationId: postExpenses
       parameters:
       - name: userId
@@ -452,6 +459,7 @@ paths:
       tags:
       - Expenses
       summary: Retrieve an expense report
+      description: Retrieve an existing expense report for a specific user
       operationId: getExpenses
       parameters:
       - name: userId
@@ -523,6 +531,7 @@ paths:
       tags:
       - Income
       summary: Create an income report
+      description: Create an income report for a specific user
       operationId: postIncome
       parameters:
       - name: userId
@@ -584,6 +593,7 @@ paths:
       tags:
       - Income
       summary: Retrieve an income report
+      description: Retrieve an existing income report for a specific user
       operationId: getIncome
       parameters:
       - name: userId
@@ -640,6 +650,7 @@ paths:
       tags:
       - Transactions
       summary: List a users transactions
+      description: List all transactions belonging to a specified user 
       operationId: getTransactions
       parameters:
       - name: userId
@@ -714,6 +725,7 @@ paths:
       tags:
       - Transactions
       summary: Retrieve a transaction
+      description: Retrieve an existing transaction
       operationId: getTransaction
       parameters:
       - name: userId
