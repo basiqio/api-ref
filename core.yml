@@ -778,31 +778,29 @@ components:
       - type
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        product:
-          type: string
-          description: Product name.
-          example: saver
         type:
           type: string
           description: Account type
           example: savings
+        product:
+          type: string
+          description: Product name.
+          example: saver
     AccountsContainer:
       required:
       - data
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type always "list".
+          example: list
         data:
           type: array
           description: Accounts details
           items:
             $ref: '#/components/schemas/AccountsData'
-        type:
-          type: string
-          description: Type always "list".
-          example: list
     AccountsData:
       required:
       - accountNo
@@ -818,6 +816,24 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type always "account".
+          example: account
+        id:
+          type: string
+          description: Account identification.
+          example: 319ae910
+        name:
+          type: string
+          description: Account name.
+          example: Business account
+        currency:
+          type: string
+          description: Currency
+          example: AUD
+        class:
+          $ref: '#/components/schemas/AccountClass'
         accountNo:
           type: string
           description: Account number
@@ -832,26 +848,10 @@ components:
           description: Account balance, nullable.
           nullable: true
           example: "100.12"
-        class:
-          $ref: '#/components/schemas/AccountClass'
-        currency:
-          type: string
-          description: Currency
-          example: AUD
-        id:
-          type: string
-          description: Account identification.
-          example: 319ae910
         lastUpdated:
           type: string
           description: Account last updated date and time.
           example: 2017-09-28T11:15:09.756Z
-        links:
-          $ref: '#/components/schemas/ConnectionAccountLinks'
-        name:
-          type: string
-          description: Account name.
-          example: Business account
         status:
           type: string
           description: Account status.
@@ -859,25 +859,23 @@ components:
           enum:
           - available
           - unavailable
-        type:
-          type: string
-          description: Type always "account".
-          example: account
+        links:
+          $ref: '#/components/schemas/ConnectionAccountLinks'
     ConnectionAccountLinks:
       required:
       - self
       - transactions
       type: object
       properties:
-        self:
-          type: string
-          description: self link to the requested account
-          example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
         transactions:
           type: string
           description: transactions link to the transactions associated with this
             account
           example: https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')
+        self:
+          type: string
+          description: self link to the requested account
+          example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
     BadRequestError:
       required:
       - correlationId
@@ -939,46 +937,39 @@ components:
       - type
       type: object
       properties:
-        accounts:
-          $ref: '#/components/schemas/AccountsContainer'
+        type:
+          type: string
+          description: Type, always "connection".
+          example: connection
         id:
           type: string
           description: A string that uniquely identifies the user connection.
           example: "61723"
-        institution:
-          $ref: '#/components/schemas/ConnectionInstitution'
         createdDate:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
-          example: 2019-07-29T07:34:09Z
+          example: "2019-07-29T07:34:09Z"
         lastUsed:
           type: string
           description: UTC Date and Time of when the connection was last used, in
             RFC 3339 format, available only for SERVER_SCOPE.
-          example: 2020-06-22T11:15:09Z
-        links:
-          $ref: '#/components/schemas/GetConnectionLinks'
+          example: "2020-06-22T11:15:09Z"
+        accounts:
+          $ref: '#/components/schemas/AccountsContainer'
+        institution:
+          $ref: '#/components/schemas/ConnectionInstitution'
         profile:
           $ref: '#/components/schemas/ConnectionProfile'
         status:
           type: string
-          description: |-
-            Indicates the connection status, available only for SERVER_SCOPE.
-            Possible values include:
-            <ul>
-            <li>pending - the connection is in this status briefly until credentials are verified</li>
-            <li>active - the connection is valid (is working!) and the credentials have been verified (the jobs steps will continue) </li>
-            <li>invalid -  the connection is no longer valid and requires the user to update their logon details. Invalid connections cannot refreshed until the password is updated. </li>
-            </ul>
+          description: Indicates the connection status, available only for SERVER_SCOPE.
           example: active
           enum:
           - active
           - pending
           - invalid
-        type:
-          type: string
-          description: Type, always "connection".
-          example: connection
+        links:
+          $ref: '#/components/schemas/GetConnectionLinks'
       description: Object containing details for connection post.
     ConnectionInstitution:
       title: ConnectionInstitution
@@ -991,7 +982,7 @@ components:
         id:
           type: string
           description: Institution id
-          example: AU00000
+          example: "AU00000"
         links:
           $ref: '#/components/schemas/ResourceLink'
         type:
@@ -1052,16 +1043,16 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type, always "job".
+          example: job
         id:
           type: string
           description: Job identification.
           example: "29523951"
         links:
           $ref: '#/components/schemas/ResourceLink'
-        type:
-          type: string
-          description: Type, always "job".
-          example: job
       description: Object containing details for connection post.
     ConnectionsData:
       required:
@@ -1072,22 +1063,14 @@ components:
       - type
       type: object
       properties:
-        createdDate:
+        type:
           type: string
-          description: Created date of the connection, available only for SERVER_SCOPE.
-          example: 2019-07-29T07:34:09Z
+          description: Type, always "connection".
+          example: connection
         id:
           type: string
           description: Connection identification.
           example: "61723"
-        institution:
-          $ref: '#/components/schemas/ConnectionInstitution'
-        lastUsed:
-          type: string
-          description: Connection last used date, available only for SERVER_SCOPE.
-          example: 2020-06-22T11:15:09Z
-        links:
-          $ref: '#/components/schemas/GetConnectionsLinks'
         status:
           type: string
           description: Connection status, available only for SERVER_SCOPE.
@@ -1096,26 +1079,34 @@ components:
           - active
           - pending
           - invalid
-        type:
+        createdDate:
           type: string
-          description: Type, always "connection".
-          example: connection
+          description: Created date of the connection, available only for SERVER_SCOPE.
+          example: "2019-07-29T07:34:09Z"
+        lastUsed:
+          type: string
+          description: Connection last used date, available only for SERVER_SCOPE.
+          example: "2020-06-22T11:15:09Z"
+        institution:
+          $ref: '#/components/schemas/ConnectionInstitution'
+        links:
+          $ref: '#/components/schemas/GetConnectionsLinks'
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
         data:
           type: array
           items:
             $ref: '#/components/schemas/ConnectionsData'
         links:
           $ref: '#/components/schemas/ResourceLink'
-        type:
-          type: string
-          description: Type, always "list".
-          example: list
       description: Object containing details for connections.
     ConnectionsRefreshResource:
       title: ConnectionsRefreshResource
@@ -1124,15 +1115,15 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
         data:
           type: array
           description: Job details data.
           items:
             $ref: '#/components/schemas/ConnectionResponseResource'
-        type:
-          type: string
-          description: Type, always "list".
-          example: list
       description: Object containing details for connections refresh.
     ForbiddenAccessError:
       required:
@@ -1239,6 +1230,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         count:
           type: integer
           description: Count of accounts.
@@ -1249,10 +1244,6 @@ components:
           description: Accounts data.
           items:
             $ref: '#/components/schemas/GetUserAccountData'
-        type:
-          type: string
-          description: Always "list".
-          example: list
       description: Container object containing account data.
     GetUserAccountData:
       title: UserGetAccountData
@@ -1262,16 +1253,16 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "account".
+          example: account
         id:
           type: string
           description: Account identification.
           example: aaaf2c3b
         links:
           $ref: '#/components/schemas/ResourceLink'
-        type:
-          type: string
-          description: Always "account".
-          example: account
       description: Object containing account data.
     GetUserConnection:
       title: UserGetConnection
@@ -1281,6 +1272,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         count:
           type: integer
           description: Count of accounts.
@@ -1291,10 +1286,6 @@ components:
           description: Connections data.
           items:
             $ref: '#/components/schemas/GetUserConnectionData'
-        type:
-          type: string
-          description: Always "list".
-          example: list
       description: Container object containing connection data.
     GetUserConnectionData:
       title: GetUserConnectionData
@@ -1304,16 +1295,16 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "connection".
+          example: connection
         id:
           type: string
           description: Connection identification.
           example: aaaf2c3b
         links:
           $ref: '#/components/schemas/ResourceLink'
-        type:
-          type: string
-          description: Always "connection".
-          example: connection
       description: Object containing connection data.
     GetUserLinks:
       title: GetUserLinks
@@ -1398,35 +1389,57 @@ components:
     JobData:
       title: JobData
       required:
-      - created
       - id
+      - created
       - steps
       - updated
       type: object
       properties:
-        created:
+        type:
           type: string
-          description: The date time when the job was created.
-          example: 2020-06-10T09:59:00Z
+          description: Value is "job".
+          example: job
         id:
           type: string
           description: A string that uniquely identifies the job.
           example: e9132638
-        links:
-          $ref: '#/components/schemas/JobsLinks'
+        created:
+          type: string
+          description: The date time when the job was created.
+          example: "2020-06-10T09:59:00Z"
+        updated:
+          type: string
+          description: The date time when the job was last updated.
+          example: "2020-06-10T09:59:00Z"
         steps:
           type: array
           description: List of steps that need to be completed.
           items:
             $ref: '#/components/schemas/JobsStep'
-        type:
-          type: string
-          description: Value is "job".
-          example: job
-        updated:
-          type: string
-          description: The date time when the job was last updated.
-          example: 2020-06-10T09:59:00Z
+          example: [
+                      {
+            "title": "verify-credentials",
+            "status": "success",
+            "result": [
+              {
+                "type": "link",
+                "url": "/users/ea3a81/connections/8fce3b"
+              }
+            ]
+            },
+            {
+              "title": "retrieve-accounts",
+              "status": "in-progress",
+              "result": null
+            },
+            {
+              "title": "retrieve-transactions",
+              "status": "pending",
+              "result": null
+            }
+            ]
+        links:
+          $ref: '#/components/schemas/JobsLinks'
       description: Container object, containing job details.
     JobsData:
       title: JobsData
@@ -1438,31 +1451,31 @@ components:
       - updated
       type: object
       properties:
-        created:
+        type:
           type: string
-          description: The date time when the job was created.
-          example: 2020-06-10T09:59:00Z
+          description: Value is "job".
+          example: job
         id:
           type: string
           description: A string that uniquely identifies the job.
           example: e9132638
+        created:
+          type: string
+          description: The date time when the job was created.
+          example: "2020-06-10T09:59:00Z"
+        updated:
+          type: string
+          description: The date time when the job was last updated.
+          example: "2020-06-10T09:59:00Z"
         institution:
           $ref: '#/components/schemas/JobsInstitution'
-        links:
-          $ref: '#/components/schemas/JobsLinks'
         steps:
           type: array
           description: List of steps that need to be completed.
           items:
             $ref: '#/components/schemas/JobsStep'
-        type:
-          type: string
-          description: Value is "job".
-          example: job
-        updated:
-          type: string
-          description: The date time when the job was last updated.
-          example: 2020-06-10T09:59:00Z
+        links:
+          $ref: '#/components/schemas/JobsLinks'
       description: Container object, containing job details.
     JobsInstitution:
       title: Institution
@@ -1507,22 +1520,22 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type of the response, always "list".
+          example: list
         data:
           type: array
           description: Container object, containing job details.
           items:
             $ref: '#/components/schemas/JobsData'
-        links:
-          $ref: '#/components/schemas/ResourceLink'
         size:
           type: integer
           description: Size of the all the jobs.
           format: int64
           example: 100
-        type:
-          type: string
-          description: Type of the response, always "list".
-          example: list
+        links:
+          $ref: '#/components/schemas/ResourceLink'
     JobsResult:
       title: JobsResult
       type: object
@@ -1575,24 +1588,6 @@ components:
       - status
       type: object
       properties:
-        result:
-          $ref: '#/components/schemas/JobsResult'
-        status:
-          type: string
-          description: |-
-            Step status.
-            <ul>
-            <li> pending -  The job has been created and is waiting to be started.</li>
-            <li> in-progress - The job has started and is currently processing.</li>
-            <li> success - The job has successfully completed. </li>
-            <li> failed - The job has failed.</li>
-            </ul>
-          example: success
-          enum:
-          - pending
-          - in-progress
-          - success
-          - failed
         title:
           type: string
           description: Name of the step the job needs to complete.
@@ -1602,11 +1597,18 @@ components:
           - retrieve-accounts
           - retrieve-transactions
           - retrieve-statements
+        status:
+          type: string
+          description: Status of the job step 
+          example: success
+          enum:
+          - pending
+          - in-progress
+          - success
+          - failed
+        result:
+          $ref: '#/components/schemas/JobsResult'
       description: List of steps that need to be completed.
-    Meta:
-      type: object
-      additionalProperties:
-        type: string
     NotFoundError:
       required:
       - correlationId
@@ -1614,6 +1616,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
@@ -1647,10 +1653,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     PhysicalAddresses:
       title: PhysicalAddresses
       required:
@@ -1667,7 +1669,7 @@ components:
         addressLine1:
           type: string
           description: User address.
-          example: 13/91 Fisher Rd
+          example: "13/91 Fisher Rd"
         addressLine2:
           type: string
           description: Always "null"
@@ -1689,7 +1691,7 @@ components:
         formattedAddress:
           type: string
           description: Address formatted.
-          example: 13/91 Fisher Rd, Dee Why NSW 2099, Australia
+          example: "13/91 Fisher Rd, Dee Why NSW 2099, Australia"
         postcode:
           type: string
           description: Post code
@@ -1810,91 +1812,6 @@ components:
           type: string
           description: Always "list".
           example: list
-    UnsupportedMediaTypeError:
-      required:
-      - correlationId
-      - data
-      - type
-      type: object
-      properties:
-        correlationId:
-          type: string
-          description: Unique identifier for this particular occurrence of the problem.
-          example: ac5ah5i
-        data:
-          type: array
-          description: Error data.
-          items:
-            required:
-            - code
-            - type
-            type: object
-            properties:
-              code:
-                type: string
-                description: Application-specific error code, expressed as a string
-                  value.
-                example: unsupported-content-type
-                enum:
-                - unsupported-content-type
-              detail:
-                type: string
-                description: Human-readable explanation specific to this occurrence
-                  of the problem.
-                example: Internal Server error. Contact support.
-              title:
-                type: string
-                description: Title of the error
-                example: Internal Server error.
-              type:
-                type: string
-                description: Type of the response, always "error"
-                example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
-    UserConnectionPostData:
-      required:
-      - password
-      type: object
-      properties:
-        password:
-          type: string
-          description: User's (new or old) institution password.
-          example: "1234"
-        secondaryLoginId:
-          type: string
-          description: User's institution secondary login id.
-          example: "4321"
-        securityCode:
-          type: string
-          description: User's institution security code.
-    UserConnectionsPostData:
-      required:
-      - institution
-      - loginId
-      - password
-      type: object
-      properties:
-        institution:
-          $ref: '#/components/schemas/InstitutionModel'
-        loginId:
-          type: string
-          description: The users institution login ID
-          example: gavinBelson
-        password:
-          type: string
-          description: The users institution password
-          example: hooli2020
-        secondaryLoginId:
-          type: string
-          description: User's institution secondary login id. Mandatory if required
-            by institution's login process
-        securityCode:
-          type: string
-          description: User's institution security code. Mandatory if required by
-            institution's login process.
     UserConsentGetResponse:
       title: UserConsentGetResponse
       required:
@@ -1903,6 +1820,10 @@ components:
       - data
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         size:
           type: integer
           description: Number of items in the list
@@ -2068,10 +1989,6 @@ components:
             }
         }
     ]
-        type:
-          type: string
-          description: Always "list".
-          example: list
       description: List containing the current active user consent.
     UserGetResponse:
       title: UserGetResponse
@@ -2086,6 +2003,14 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "user".
+          example: user
+        id:
+          type: string
+          description: User identification.
+          example: ea3a81
         accounts:
           $ref: '#/components/schemas/GetUserAccount'
         business:
@@ -2100,12 +2025,6 @@ components:
           description: User email or empty.
           format: email
           example: gavin@hooli.com
-        id:
-          type: string
-          description: User identification.
-          example: ea3a81
-        links:
-          $ref: '#/components/schemas/GetUserLinks'
         mobile:
           type: string
           description: User mobile number, or empty.
@@ -2113,10 +2032,8 @@ components:
         name:
           type: string
           description: Name, or empty.
-        type:
-          type: string
-          description: Always "user".
-          example: user
+        links:
+          $ref: '#/components/schemas/GetUserLinks'
       description: User object with details if the creation succeeded.
     UserPostResponse:
       title: UserPostResponse
@@ -2153,546 +2070,22 @@ components:
         email:
           type: string
           description: The end-users email address. Mandatory if mobile is not supplied.
-          example: gavin@hooli.com
+          example: "gavin@hooli.com"
         mobile:
           type: string
-          description: |-
-            The end-users mobile number, supplied in international format.
-            +[country-code][mobileno]. Mandatory if email is not supplied.
-          example: +61410888999
+          description: The end-users mobile number, supplied in international format. +[country-code][mobileno]. Mandatory if email is not supplied.
+          example: "+61410888999"
     updateUser:
       type: object
       properties:
         email:
           type: string
           description: The end-users email address.
-          example: gavin@hooli.com
+          example: "gavin@hooli.com"
         mobile:
           type: string
           description: The end-users mobile number.
-          example: +61410888666
-    AccountsFeatures:
-      required:
-      - accountHolder
-      - accountNo
-      - availableFunds
-      - balance
-      - currency
-      - lastUpdated
-      - meta
-      - name
-      type: object
-      properties:
-        accountHolder:
-          type: array
-          description: AccountHolder holds list of data source identifiers which are
-            capable to fetch account holder.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        accountNo:
-          type: array
-          description: AccountNumber holds list of data source identifiers which are
-            capable to fetch account number.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        availableFunds:
-          type: array
-          description: AvailableFunds holds list of data source identifiers which
-            are capable to fetch available funds.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        balance:
-          type: array
-          description: AccountBalance holds list of data source identifiers which
-            are capable to fetch account balance.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        currency:
-          type: array
-          description: AccountCurrency holds list of data source identifiers which
-            are capable to fetch account currency.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        lastUpdated:
-          type: array
-          description: LastUpdated holds list of data source identifiers which are
-            capable to fetch account last updated date.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        meta:
-          type: array
-          description: Meta holds list of data source identifiers which are capable
-            to fetch account meta data (e.g. mortgage data).
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        name:
-          type: array
-          description: AccountName holds list of data source identifiers which are
-            capable to fetch account name.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-      description: AccountsFeatures describes set of institution accounts features
-    Colors:
-      type: object
-      properties:
-        primary:
-          type: string
-          description: Primary primary institution color
-      description: Colors contains institution colors type
-    FeatureCondition:
-      type: string
-      description: FeatureCondition type that describes an feature status for institution
-    Features:
-      required:
-      - login
-      type: object
-      properties:
-        accounts:
-          $ref: '#/components/schemas/AccountsFeatures'
-        login:
-          type: array
-          description: |-
-            Login holds list of data source identifiers which are capable to do complete login step.
-            This feature is applicable only on web sources.
-          example:
-          - web
-          items:
-            $ref: '#/components/schemas/SourceName'
-        mfaChallenge:
-          type: array
-          items:
-            $ref: '#/components/schemas/SourceName'
-        profile:
-          $ref: '#/components/schemas/ProfileFeatures'
-        transactions:
-          $ref: '#/components/schemas/TransactionsFeatures'
-      description: Features stucture that describes institution features per data
-        source
-    Institution:
-      title: Institution contains instution data.
-      required:
-      - authorization
-      - country
-      - features
-      - id
-      - institutionType
-      - links
-      - logo
-      - name
-      - serviceName
-      - serviceType
-      - shortName
-      - stage
-      - stats
-      - status
-      - tier
-      - type
-      type: object
-      properties:
-        authorization:
-          type: string
-          description: Institution authorization identifier
-          example: user
-          enum:
-          - user
-          - token
-          - other
-          - user-mfa
-          - user-mfa-intermittent
-        country:
-          type: string
-          description: Institution country name
-          example: Australia
-        features:
-          $ref: '#/components/schemas/Features'
-        forgottenPasswordUrl:
-          type: string
-          description: URL to institution forgotten password page
-          example: https://example.com/forgotten-password
-        id:
-          maxLength: 7
-          minLength: 7
-          pattern: ^[A-Z]{2}[0-9]{5}$
-          type: string
-          description: Institution ID
-          example: AU00000
-        institutionType:
-          type: string
-          description: Institution type identifier
-          example: Bank
-          enum:
-          - Bank
-          - Bank (Foreign)
-          - Test Bank
-          - Credit Union
-          - Financial Services
-          - Superannuation
-          - Building Society
-        links:
-          $ref: '#/components/schemas/ResourceLinks'
-        loginIdCaption:
-          type: string
-          description: Login ID field caption that should be shown on UI
-          example: User name
-        logo:
-          $ref: '#/components/schemas/InstitutionLogoResource'
-        name:
-          type: string
-          description: Institution name
-          example: Hooli Bank
-        passwordCaption:
-          type: string
-          description: Password field caption that should be shown on UI
-          example: Password
-        secondaryLoginIdCaption:
-          type: string
-          description: Secondary loginID caption that should be shown on UI
-          example: Secondary login id
-        securityCodeCaption:
-          type: string
-          description: Security code caption that should be shown on UI
-          example: Security code
-        serviceName:
-          type: string
-          description: Institution service name
-          example: Personal Online Banking
-        serviceType:
-          type: string
-          description: Institution service name
-          example: Personal Banking
-          enum:
-          - Personal Banking
-          - Business Banking
-          - Card Access
-          - Test
-          - Superannuation
-        shortName:
-          type: string
-          description: Institution short name
-          example: Hooli
-        stage:
-          type: string
-          description: Institution stage identifier
-          example: live
-          enum:
-          - live
-          - beta
-          - alpha
-        stats:
-          $ref: '#/components/schemas/InstitutionPerformanceStats'
-        status:
-          $ref: '#/components/schemas/FeatureCondition'
-        tier:
-          type: string
-          description: Institution tier identifier
-          example: "3"
-          enum:
-          - "1"
-          - "2"
-          - "3"
-          - "4"
-        type:
-          type: string
-          description: Resource type identifier. It is always "institution" for this
-            model.
-          example: institution
-          enum:
-          - institution
-        userTokenCaption:
-          type: string
-          description: User token caption that should be shown on UI
-          example: User token
-    InstitutionLogoResource:
-      required:
-      - links
-      - type
-      type: object
-      properties:
-        colors:
-          $ref: '#/components/schemas/Colors'
-        links:
-          $ref: '#/components/schemas/LogoResourceLinks'
-        type:
-          type: string
-          description: Type resource type identifier
-          example: image
-          enum:
-          - image
-      description: InstitutionLogoResource linstitution logo resource type
-    InstitutionPerformanceStats:
-      type: object
-      properties:
-        averageDurationMs:
-          type: object
-          properties:
-            retrieveAccounts:
-              type: integer
-              description: Connector average duration in milliseconds of <b>fetch
-                accounts</b> step for institution
-              format: int64
-            retrieveMeta:
-              type: integer
-              description: Connector average duration in milliseconds of <b>fetch
-                metadata</b> step for institution
-              format: int64
-            retrieveTransactions:
-              type: integer
-              description: Connector average duration in milliseconds of <b>fetch
-                transactions</b> step for institution
-              format: int64
-            total:
-              type: integer
-              description: Total connector average duration in milliseconds
-              format: int64
-            verifyCredentials:
-              type: integer
-              description: Connector average duration in milliseconds of <b>verifiy
-                credentials</b> step for institution
-              format: int64
-          description: |-
-            AverageDurationMs average connector duration in milliseconds per segments.
-            When durations are not known for institution this field will be `null`.
-      description: InstitutionPerformanceStats response type for institution performance
-        stats
-    InstitutionsList:
-      title: InstitutionsList contains list of instutions data.
-      required:
-      - data
-      - links
-      - totalCount
-      - type
-      type: object
-      properties:
-        data:
-          type: array
-          description: Data contains list of institutions
-          items:
-            $ref: '#/components/schemas/Institution'
-        links:
-          $ref: '#/components/schemas/ResourceLinks'
-        totalCount:
-          type: integer
-          description: TotalCount contains total count of institutions
-          format: int64
-          example: 1
-        type:
-          $ref: '#/components/schemas/ResponseFormat'
-    LogoResourceLinks:
-      required:
-      - full
-      - square
-      type: object
-      properties:
-        full:
-          type: string
-          description: URL to full size logo
-          example: https://example.com/AU00000-full.svg
-        square:
-          type: string
-          description: Square formatted logo URL
-          example: https://example.com/AU00000.svg
-      description: LogoResourceLinks contains institution logo resource links
-    ProfileFeatures:
-      required:
-      - emailAddresses
-      - firstName
-      - fullName
-      - lastName
-      - middleName
-      - phoneNumbers
-      - physicalAddresses
-      type: object
-      properties:
-        emailAddresses:
-          type: array
-          description: EmailAddresses holds list of data source identifiers which
-            are capable to fetch bank customer e-mail addresses.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        firstName:
-          type: array
-          description: FirstName holds list of data source identifiers which are capable
-            to fetch bank customer first name.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        fullName:
-          type: array
-          description: FullName holds list of data source identifiers which are capable
-            to fetch bank customer full name.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        lastName:
-          type: array
-          description: LastName holds list of data source identifiers which are capable
-            to fetch bank customer last name.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        middleName:
-          type: array
-          description: MiddleName holds list of data source identifiers which are
-            capable to fetch bank customer middle name.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        phoneNumbers:
-          type: array
-          description: PhoneNumbers holds list of data source identifiers which are
-            capable to fetch bank customer phone number.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        physicalAddresses:
-          type: array
-          description: PhysicalAddresses holds list of data source identifiers which
-            are capable to fetch bank customer physical addresses.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-      description: ProfileFeatures describes set of institution profile features
-    ResourceLinks:
-      required:
-      - self
-      type: object
-      properties:
-        self:
-          type: string
-          description: URL to resource itself
-      description: ResourceLinks contains resource links
-    ResponseFormat:
-      type: string
-      description: ResponseFormat identifies response data format
-    SourceName:
-      type: string
-      description: SourceName feature source name
-    TransactionsFeatures:
-      required:
-      - amount
-      - balance
-      - class
-      - date
-      - description
-      - status
-      type: object
-      properties:
-        amount:
-          type: array
-          description: TransactionAmount holds list of data source identifiers which
-            are capable to fetch transaction amount.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        balance:
-          type: array
-          description: TransactionBalance holds list of data source identifiers which
-            are capable to fetch account balance when transaction occured.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        class:
-          type: array
-          description: Class holds list of data source identifiers which are capable
-            to fetch transaction class.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        date:
-          type: array
-          description: TransactionDate holds list of data source identifiers which
-            are capable to fetch transaction date.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        description:
-          type: array
-          description: TransactionDescription holds list of data source identifiers
-            which are capable to fetch transaction description.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-        status:
-          type: array
-          description: TransactionStatus holds list of data source identifiers which
-            are capable to fetch transaction status.
-          example:
-          - web
-          - pdf
-          - csv
-          items:
-            $ref: '#/components/schemas/SourceName'
-      description: TransactionsFeatures describes set of institution transactions
-        features
+          example: "+61410888666"
     TokenPostResponse:
       required:
       - access_token
@@ -2702,7 +2095,7 @@ components:
       properties:
         access_token:
           type: string
-          example: access_token
+          example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
         expires_in:
           type: integer
           description: Expires in seconds
@@ -2725,8 +2118,6 @@ components:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
 x-readme:
-  explorer-enabled: false
-  proxy-enabled: false
   samples-enabled: true
   samples-languages: 
   - curl
