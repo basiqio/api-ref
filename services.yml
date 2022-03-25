@@ -800,7 +800,7 @@ components:
           type: string
           description: Account type
           example: savings
-    AccountHolder:
+    AccountType:
       required:
       - product
       - type
@@ -831,15 +831,15 @@ components:
           type: string
           description: institution link to the institution associated with this account
           example: https://au-api.basiq.io/institutions/AU00000
-        self:
-          type: string
-          description: self link to the requested account
-          example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
         transactions:
           type: string
           description: transactions link to the transactions associated with this
             account
-          example: https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')
+          example: "https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')"
+        self:
+          type: string
+          description: self link to the requested account
+          example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
     AccountResponseResource:
       title: AccountResponseResource
       required:
@@ -860,6 +860,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "account".
+          example: account
         id:
           type: string
           description: Uniquely identifies the account.
@@ -907,18 +911,14 @@ components:
         lastUpdated:
           type: string
           description: Timestamp of last update, UTC, RFC 3339 format e.g. "2017-09-28T13:39:33Z"
-          example: 2019-09-28T13:39:33Z
-        links:
-          $ref: '#/components/schemas/AccountLinks'
+          example: "2019-09-28T13:39:33Z"
         name:
           type: string
           description: Account name as defined by institution or user.
           example: Master Savings
         status:
           type: string
-          description: |-
-            Indicates the account status. Always set to 'available'. Field kept for backward compatibility. Possible values include:
-            <ul><li>available newest account data is available.</li></ul>
+          description: Account status
           example: available
           enum:
           - available
@@ -931,14 +931,9 @@ components:
             Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
           items:
             $ref: '#/components/schemas/AccountTransactionInterval'
-        type:
-          type: string
-          description: Always "account".
-          example: account
-      description: |-
-        Container object, containing account details.
-
-        The account object represents an account held with a financial institution (e.g. a savings account). You can use this object to retrieve specific account details such as the account number, balance and available funds.
+        links:
+          $ref: '#/components/schemas/AccountLinks'
+      description: Container object with account details
     AccountTransactionInterval:
       required:
       - from
@@ -948,11 +943,11 @@ components:
         from:
           type: string
           description: Date of first transaction on this account
-          example: 2018-07-01
+          example: "2018-07-01"
         to:
           type: string
           description: Date of last transaction on this account
-          example: 2018-12-30
+          example: "2018-12-30"
     AccountsResponseResource:
       required:
       - data
@@ -960,6 +955,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type of the response, always "list".
+          example: list
         data:
           type: array
           description: Container object, containing account details.
@@ -967,10 +966,6 @@ components:
             $ref: '#/components/schemas/AccountResponseResource'
         links:
           $ref: '#/components/schemas/ResourceLink'
-        type:
-          type: string
-          description: Type of the response, always "list".
-          example: list
     AffordabilityAssetsData:
       required:
       - account
@@ -982,11 +977,16 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type of account
+          example: account
         account:
-          $ref: '#/components/schemas/AccountHolder'
+          $ref: '#/components/schemas/AccountType'
         availableFunds:
           type: string
           description: The available funds at the time of the query.
+          example: "45670.98"
         balance:
           type: string
           description: The currency in which the account is recorded.
@@ -994,7 +994,7 @@ components:
         currency:
           type: string
           description: The currency in which the account is recorded.
-          example: AUD
+          example: "AUD"
         institution:
           type: string
           description: The name of the financial institution with whom the account
@@ -1002,10 +1002,6 @@ components:
           example: Hooli
         previous6Months:
           $ref: '#/components/schemas/AssetsPrevious6MonthsData'
-        type:
-          type: string
-          description: Type account
-          example: account
     AffordabilityLinksInList:
       title: AffordabilityLinksInList
       required:
@@ -1017,15 +1013,15 @@ components:
         expenses:
           type: string
           description: Link to the expenses
-          example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5
+          example: "https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5"
         income:
           type: string
           description: Link to the income
-          example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
+          example: "https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4"
         self:
           type: string
           description: Link to the affordability resource
-          example: https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3
+          example: "https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3"
       description: Object containing links to resources.
     AffordabilityListData:
       required:
@@ -1037,6 +1033,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "affordability".
+          example: affordability
         id:
           type: string
           description: Uniquely identifies the affordability report.
@@ -1051,17 +1051,16 @@ components:
           description: Start month for the period for which the Affordability summary
             is generated. The period of time relates to the account and transaction
             data used as input into the report.
-          example: 2019-03
+          example: "2019-03"
         generatedDate:
           type: string
           description: Date the report was generated.
-          example: 2020-03-26T06:56:44
+          example: "2020-03-26T06:56:44"
         institutions:
           type: array
           description: An array of institution ids to indicate the sources of transaction
             data, aggregated to generate the affordability resource.
-          example:
-          - AU00000
+          example: AU00000
           items:
             type: string
         links:
@@ -1070,11 +1069,7 @@ components:
           type: string
           description: End month (usually the current month) for the period for which
             the Affordability summary is generated.
-          example: 2020-03
-        type:
-          type: string
-          description: Always "affordability".
-          example: affordability
+          example: "2020-03"
     AffordabilityListLinks:
       required:
       - self
@@ -1083,7 +1078,7 @@ components:
         self:
           type: string
           description: Link to the requested user affordability resources
-          example: https://au-api.basiq.io/users/25c8d1ed77/affordability
+          example: "https://au-api.basiq.io/users/25c8d1ed77/affordability"
     AffordabilityListResponse:
       title: AffordabilityListResponse
       required:
@@ -1092,16 +1087,16 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "List".
+          example: list
         data:
           type: array
           items:
             $ref: '#/components/schemas/AffordabilityListData'
         links:
           $ref: '#/components/schemas/AffordabilityListLinks'
-        type:
-          type: string
-          description: Always "List".
-          example: list
       description: Container object, containing affordability list details.
     AffordabilityPostRequest:
       type: object
@@ -1120,13 +1115,13 @@ components:
           description: The first/start month to be included in the affordability output
             e.g. "fromMonth":"2019-05". Resulting affordability resource will be based
             on data between fromMonth and toMonth.
-          example: 2019-05
+          example: "2019-05"
         toMonth:
           type: string
           description: The last/end month to be included in the affordability output
             e.g. "toMonth":"2019-09". Resulting affordability resource will be based
             on data between fromMonth and toMonth.
-          example: 2019-09
+          example: "2019-09"
     AffordabilityRegularIncomeData:
       required:
       - previous3Months
@@ -1149,6 +1144,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "affordability".
+          example: affordability
         id:
           type: string
           description: Uniquely identifies the affordability report.
@@ -1173,15 +1172,13 @@ components:
           description: Start month for the period for which the Affordability summary
             is generated. The period of time relates to the account and transaction
             data used as input into the report.
-          example: 2019-03
+          example: "2019-03"
         generatedDate:
           type: string
           description: Date the report was generated.
-          example: 2020-03-26T06:56:44
+          example: "2020-03-26T06:56:44"
         liabilities:
           $ref: '#/components/schemas/LiabilitiesData'
-        links:
-          $ref: '#/components/schemas/GetAffordabilityLinks'
         summary:
           $ref: '#/components/schemas/AffordabilitySummary'
         toMonth:
@@ -1189,10 +1186,8 @@ components:
           description: End month (usually the current month) for the period for which
             the Affordability summary is generated.
           example: 2020-03
-        type:
-          type: string
-          description: Always "affordability".
-          example: affordability
+        links:
+          $ref: '#/components/schemas/GetAffordabilityLinks'
       description: |-
         Container object, containing affordability details.
 
@@ -1224,13 +1219,13 @@ components:
           type: string
           description: Provides an average of monthly expenses calculated for the
             whole period of data retrieved (e.g. 13 months)
-          example: -12046.00
+          example: "-12046.00"
         liabilities:
           type: string
           description: Total of account based liabilities split into credit and loan
             liabilities
           nullable: true
-          example: -323946.20
+          example: "-323946.20"
         loanRepaymentMonthly:
           type: string
           description: Total of all repayments monthly to disclosed loan liabilities
@@ -1265,24 +1260,24 @@ components:
         account:
           type: string
           description: Url of the account.
-          example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
+          example: "https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0"
         institution:
           type: string
           description: Url of the institution.
-          example: https://au-api.basiq.io/institutions/AU00000
+          example: "https://au-api.basiq.io/institutions/AU00000"
     AffordabilityTransactionsGetLinks:
       required:
       - self
       type: object
       properties:
-        next:
-          type: string
-          description: Url to next result.
-          example: https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64
         self:
           type: string
           description: Self reference url.
-          example: https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions
+          example: "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions"
+        next:
+          type: string
+          description: Url to next result.
+          example: "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64"
     AffordabilityTransactionsResponse:
       title: AffordabilityTransactionsResponse
       required:
@@ -1293,26 +1288,26 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         count:
           type: integer
           description: Count of the transactions in the response.
           format: int64
           example: 100
+        size:
+          type: integer
+          format: int64
+          example: 500
         data:
           type: array
           items:
             $ref: '#/components/schemas/TransactionDataAffordability'
         links:
           $ref: '#/components/schemas/AffordabilityTransactionsGetLinks'
-        size:
-          type: integer
-          format: int64
-          example: 500
-        type:
-          type: string
-          description: Always "list".
-          example: list
-      description: Container object, containing affordability snapshot transactions.
+      description: Container object, containing affordability snapshot transaction.
     AssetsPrevious6MonthsData:
       required:
       - maxBalance
@@ -1327,77 +1322,6 @@ components:
           type: string
           nullable: true
           example: "10032.81"
-    AuthLinkLinks:
-      required:
-      - public
-      - self
-      type: object
-      properties:
-        public:
-          type: string
-          description: Public URL of auth link.
-          example: https://connect.basiq.io/63448be4
-        self:
-          type: string
-          description: URL of the resource
-          example: /users/ec4ea48d/auth_link
-    AuthLinksPostResponseResource:
-      required:
-      - expiresAt
-      - mobile
-      - type
-      - userId
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          description: The date time of auth link expiry.
-          example: 2019-11-21T04:08:50Z
-        links:
-          $ref: '#/components/schemas/AuthLinkLinks'
-        mobile:
-          type: string
-          description: A user's mobile phone, used as for authentication.
-          example: +61410000000
-        type:
-          type: string
-          description: Type of the response, always "auth_link".
-          example: auth_link
-        userId:
-          type: string
-          description: A string that uniquely identifies the user.
-          example: ec4ea48d
-    AuthLinksResponseResource:
-      required:
-      - expiresAt
-      - id
-      - mobile
-      - type
-      - userId
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          description: The date time of auth link expiry.
-          example: 2019-11-21T04:08:50Z
-        id:
-          type: string
-          description: Uniquely identifies the auth link.
-          example: 63448be4
-        links:
-          $ref: '#/components/schemas/AuthLinkLinks'
-        mobile:
-          type: string
-          description: A user's mobile phone, used as for authentication.
-          example: +61410000000
-        type:
-          type: string
-          description: Type of the response, always "auth_link".
-          example: auth_link
-        userId:
-          type: string
-          description: A string that uniquely identifies the user.
-          example: ec4ea48d
     AvgMonthlyData:
       required:
       - avgMonthly
@@ -1414,6 +1338,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
@@ -1454,10 +1382,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     CategoryDataExpenses:
       required:
       - expenseClass
@@ -1482,7 +1406,7 @@ components:
           type: string
           description: Date
           format: date
-          example: 2019-03-31
+          example: "2019-03-31"
         direction:
           type: string
           description: Debit or Credit
@@ -1503,11 +1427,11 @@ components:
         amount:
           type: string
           description: Amount of expense that period
-          example: -11.00
+          example: "-11.00"
         date:
           type: string
           description: Month expense relates
-          example: 2018-09
+          example: "2018-09"
       description: Amount classified as spent that month (repeated each month of data)
     ChangeHistoryExternal:
       required:
@@ -1519,12 +1443,12 @@ components:
         amount:
           type: string
           description: Amount of payment
-          example: -146.50
+          example: "-146.50"
         date:
           type: string
           description: Date
           format: date
-          example: 2019-03-31
+          example: "2019-03-31"
         source:
           type: string
           description: Full transaction description
@@ -1543,7 +1467,7 @@ components:
         date:
           type: string
           description: Date income received
-          example: 2018-10-13T20:03:37
+          example: "2018-10-13T20:03:37"
         source:
           type: string
           description: Source income (cleaned transaction description)
@@ -1558,7 +1482,7 @@ components:
         avgMonthly:
           type: string
           description: Average amount monthly
-          example: -421.00
+          example: "-421.00"
         changeHistory:
           type: array
           items:
@@ -1581,7 +1505,7 @@ components:
       type: object
       properties:
         account:
-          $ref: '#/components/schemas/AccountHolder'
+          $ref: '#/components/schemas/AccountType'
         availableFunds:
           type: string
           description: The available funds at the time of the query.
@@ -1591,7 +1515,7 @@ components:
           type: string
           description: The balance at the time of the query.
           nullable: true
-          example: -11713.20
+          example: "-11713.20"
         creditLimit:
           type: string
           description: Total credit limit available for the specified credit facility.
@@ -1623,7 +1547,7 @@ components:
         date:
           type: string
           description: Most recent irregular income payment date
-          example: 2018-10-13T20:03:37
+          example: "2018-10-13T20:03:37"
     CurrentOtherCreditSource:
       required:
       - amount
@@ -1638,7 +1562,7 @@ components:
         date:
           type: string
           description: Most recent irregular income payment date
-          example: 2019-10-29T00:00:00
+          example: "2019-10-29T00:00:00"
         otherCreditLabel:
           type: string
           description: Description of the other credit series e.g. 'former regular
@@ -1658,13 +1582,13 @@ components:
         date:
           type: string
           description: Most recent regular income payment date
-          example: 2018-11-30T09:23:37
+          example: "2018-11-30T09:23:37"
         nextDate:
           type: string
           description: 'Predicted next occurrence for regular income (note: where
             the pattern has recently ceased there would be no predicted next occurrence)'
           nullable: true
-          example: 2018-12-30T18:30:49
+          example: "2018-12-30T18:30:49"
     ExpensesClass:
       required:
       - classCode
@@ -1700,14 +1624,14 @@ components:
           type: array
           description: Links of accounts
           example:
-          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5
-          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4
+          - "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5"
+          - "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"
           items:
             type: string
         self:
           type: string
           description: Link to the requested expenses resource
-          example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf4
+          example: "https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf4"
     ExpensesPostRequest:
       type: object
       properties:
@@ -1725,13 +1649,13 @@ components:
           description: The first/start month to be included in the expense output
             e.g. "fromMonth":"2019-05". Resulting expenses resource will be based
             on data between fromMonth and toMonth.
-          example: 2019-05
+          example: "2019-05"
         toMonth:
           type: string
           description: The last/end month to be included in the expense output e.g.
             "toMonth":"2019-09". Resulting expenses resource will be based on data
             between fromMonth and toMonth.
-          example: 2019-09
+          example: "2019-09"
     ExpensesResponse:
       title: ExpensesResponse
       required:
@@ -1747,6 +1671,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Value of this resource is "expenses".
+          example: expenses
         id:
           type: string
           description: Uniquely identifies the expenses report.
@@ -1766,9 +1694,7 @@ components:
           type: string
           description: First 'month' occurrence of expenses categorised going back
             as far as 13 months.
-          example: 2017-12
-        links:
-          $ref: '#/components/schemas/ExpensesLinks'
+          example: "2017-12"
         loanInterests:
           $ref: '#/components/schemas/ClassResourceExpenses'
         loanRepayments:
@@ -1780,11 +1706,9 @@ components:
         toMonth:
           type: string
           description: Latest 'month' occurrence of expenses categorised.
-          example: 2018-12
-        type:
-          type: string
-          description: Value of this resource is "expenses".
-          example: expenses
+          example: "2018-12"
+        links:
+          $ref: '#/components/schemas/ExpensesLinks'
       description: |-
         Container object, containing expenses details.
 
@@ -1825,21 +1749,21 @@ components:
         amountAvg:
           type: string
           description: Number of occurrences for same source (in this group)
-          example: -50.50
+          example: "-50.50"
         amountAvgMonthly:
           type: string
           description: Average monthly payment amount
-          example: -20.00
+          example: "-20.00"
         first:
           type: string
           description: Date of first payment
           format: date
-          example: 2019-03-15
+          example: "2019-03-15"
         last:
           type: string
           description: Date of last payment
           format: date
-          example: 2020-03-15
+          example: "2020-03-15"
         noOccurrences:
           type: integer
           description: Number of occurrences for same source (in this group)
@@ -1849,7 +1773,7 @@ components:
           type: string
           description: Amount of total payments identified for source in the affordability
             snapshot
-          example: -146.50
+          example: "-146.50"
     ForbiddenAccessError:
       required:
       - correlationId
@@ -1914,65 +1838,23 @@ components:
           type: array
           description: Links of accounts
           example:
-          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5
-          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4
+          - "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5"
+          - "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"
           items:
             type: string
         expenses:
           type: string
           description: Link to the expenses
-          example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5
+          example: "https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5"
         income:
           type: string
           description: Link to the income
-          example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
+          example: "https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4"
         self:
           type: string
           description: Link to the affordability resource
-          example: https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3
+          example: "https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3"
       description: Object containing links to resources.
-    GoneError:
-      required:
-      - correlationId
-      - data
-      - type
-      type: object
-      properties:
-        correlationId:
-          type: string
-          description: Unique identifier for this particular occurrence of the problem.
-          example: ac5ah5i
-        data:
-          type: array
-          description: Error data.
-          items:
-            required:
-            - code
-            - type
-            type: object
-            properties:
-              code:
-                type: string
-                description: Application-specific error code, expressed as a string
-                  value.
-                example: resource-no-longer-available
-                enum:
-                - resource-no-longer-available
-              detail:
-                type: string
-                description: Human-readable explanation specific to this occurrence
-                  of the problem.
-              title:
-                type: string
-                description: Title of the error
-              type:
-                type: string
-                description: Type of the response, always "error"
-                example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     IncomeLinks:
       required:
       - accounts
@@ -1983,14 +1865,14 @@ components:
           type: array
           description: Links of accounts
           example:
-          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5
-          - https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4
+          - "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5"
+          - "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"
           items:
             type: string
         self:
           type: string
           description: Link to the requested income resource
-          example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
+          example: "https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4"
     IncomePostRequest:
       type: object
       properties:
@@ -2008,13 +1890,13 @@ components:
           description: The first/start month to be included in the affordability output
             e.g. "fromMonth":"2019-05". Resulting income resource will be based on
             data between fromMonth and toMonth
-          example: 2019-05
+          example: "2019-05"
         toMonth:
           type: string
           description: The first/start month to be included in the affordability output
             e.g. "fromMonth":"2019-05". Resulting income resource will be based on
             data between fromMonth and toMonth
-          example: 2019-09
+          example: "2019-09"
     IncomeResponse:
       title: IncomeResponse
       required:
@@ -2025,6 +1907,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "income".
+          example: income
         id:
           type: string
           description: The identifier of the income resource to be retrieved.
@@ -2039,14 +1925,12 @@ components:
           description: Start month for the period for which the Income summary is
             generated. The period of time relates to the account and transaction data
             used as input into the report.
-          example: 2019-03
+          example: "2019-03"
         irregular:
           type: array
           description: Required true
           items:
             $ref: '#/components/schemas/IrregularSource'
-        links:
-          $ref: '#/components/schemas/IncomeLinks'
         otherCredit:
           type: array
           description: Required true
@@ -2064,10 +1948,8 @@ components:
           description: End month (usually the current month) for the period for which
             the Income summary is generated.
           example: 2020-03
-        type:
-          type: string
-          description: Always "income".
-          example: income
+        links:
+          $ref: '#/components/schemas/IncomeLinks'
       description: |-
         Container object, containing income details.
 
@@ -2249,7 +2131,7 @@ components:
       type: object
       properties:
         account:
-          $ref: '#/components/schemas/AccountHolder'
+          $ref: '#/components/schemas/AccountType'
         availableFunds:
           type: string
           description: The available funds at the time of the query.
@@ -2259,7 +2141,7 @@ components:
           type: string
           description: The balance at the time of the query.
           nullable: true
-          example: -312233.00
+          example: "-312233.00"
         changeHistory:
           type: array
           description: List of account transactions changes
@@ -2400,7 +2282,7 @@ components:
             to 13 months). This number monthly is calculated as follows: (Total Expenses/Report
             Coverage Days)*30. This allows data with partial months to be calculated
             correctly.'
-          example: -636.88
+          example: "-636.88"
         division:
           type: string
           description: 'Top level summary: category name. e.g. Medical care and heath
@@ -2410,7 +2292,7 @@ components:
           type: number
           description: Average monthly amount expressed as a percentage of total expenses.
           format: double
-          example: -636.88
+          example: "-636.88"
         subCategory:
           type: array
           items:
@@ -2557,6 +2439,7 @@ components:
         self:
           type: string
           description: URL of the resource.
+          example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
       description: Link object containing a link to the resource, self reference.
     Source:
       title: Source
@@ -2572,25 +2455,6 @@ components:
             to.
           example: users/userId
       description: An object containing references to the source of the error.
-    StatementUploadResource:
-      title: StatementUploadResource
-      required:
-      - id
-      - links
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          description: Job identification.
-          example: "29523951"
-        links:
-          $ref: '#/components/schemas/ResourceLink'
-        type:
-          type: string
-          description: Type, always "job".
-          example: job
-      description: Object containing details for statement upload.
     StatusServiceUnavailableError:
       required:
       - correlationId
@@ -2598,6 +2462,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
@@ -2611,6 +2479,14 @@ components:
             - type
             type: object
             properties:
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              title:
+                type: string
+                description: Title of the error
+                example: Service Unavailable
               code:
                 type: object
                 description: Application-specific error code, expressed as a string
@@ -2621,18 +2497,6 @@ components:
                 description: Human-readable explanation specific to this occurrence
                   of the problem.
                 example: Service Unavailable. Try again later.
-              title:
-                type: string
-                description: Title of the error
-                example: Service Unavailable
-              type:
-                type: string
-                description: Type of the response, always "error"
-                example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     SubCategoryExpenses:
       required:
       - category
@@ -2683,6 +2547,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Value is "transaction".
+          example: transaction
         id:
           type: string
           description: Uniquely identifies the transaction for this connection. Note
@@ -2739,14 +2607,12 @@ components:
           description: The id of the institution resource the transaction originated
             from.
           example: AU00000
-        links:
-          $ref: '#/components/schemas/TransactionLinks'
         postDate:
           type: string
           description: Date the transaction was posted as provided by the institution
             (this is the same date that appears on a bank statement). This value is
             null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
-          example: 2018-11-02T00:00:00Z
+          example: "2018-11-02T00:00:00Z"
         status:
           type: string
           description: Identifies if a transaction is pending or posted. A pending
@@ -2766,10 +2632,8 @@ components:
             the istitution. Note that not all transactions provide this value (varies
             by institution) e.g. "2017-11-10T00:00:00Z"
           example: 2018-11-02T00:00:00Z
-        type:
-          type: string
-          description: Value is "transaction".
-          example: transaction
+        links:
+          $ref: '#/components/schemas/TransactionLinks'
     TransactionDataAffordability:
       required:
       - account
@@ -2788,6 +2652,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Value is "transaction".
+          example: transaction
         id:
           type: string
           description: Uniquely identifies the transaction.
@@ -2835,14 +2703,12 @@ components:
           description: The id of the institution resource the transaction originated
             from.
           example: AU00000
-        links:
-          $ref: '#/components/schemas/AffordabilityTransactionLinks'
         postDate:
           type: string
           description: Date the transaction was posted as provided by the institution
             (this is the same date that appears on a bank statement). This value is
             null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
-          example: 2018-11-02T00:00:00Z
+          example: "2018-11-02T00:00:00Z"
         status:
           type: string
           description: Identifies if a transaction is pending or posted. A pending
@@ -2861,11 +2727,9 @@ components:
           description: Date that the user executed the transaction as provided by
             the institution. Note that not all transactions provide this value (varies
             by institution) e.g. "2017-11-10T00:00:00Z"
-          example: 2018-11-02T00:00:00Z
-        type:
-          type: string
-          description: Value is "transaction".
-          example: transaction
+          example: "2018-11-02T00:00:00Z"
+        links:
+          $ref: '#/components/schemas/AffordabilityTransactionLinks'
     TransactionLinks:
       required:
       - account
@@ -2909,25 +2773,25 @@ components:
     TransactionsClass:
       type: object
       properties:
-        code:
-          type: string
-          description: Class Code
-          example: "4511"
         title:
           type: string
           description: Class Details
           example: Cafes and Restaurants
+        code:
+          type: string
+          description: Class Code
+          example: "4511"
     TransactionsDivision:
       type: object
       properties:
-        code:
-          type: string
-          description: Division Code
-          example: H
         title:
           type: string
           description: Division Details
           example: Accommodation and  Food Services
+        code:
+          type: string
+          description: Division Code
+          example: H
     TransactionsEnrich:
       required:
       - category
@@ -2947,7 +2811,7 @@ components:
         lat:
           type: string
           description: Latitude
-          example: -33.79988520000001
+          example: "-33.79988520000001"
         lng:
           type: string
           description: Longitude
@@ -2957,14 +2821,14 @@ components:
       - self
       type: object
       properties:
-        next:
-          type: string
-          description: Url to next result.
-          example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
         self:
           type: string
           description: Self reference url.
           example: https://au-api.basiq.io/users/ea3a81/transactions
+        next:
+          type: string
+          description: Url to next result.
+          example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
     TransactionsGetResource:
       title: Transactions container object.
       required:
@@ -2974,27 +2838,26 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Value is "list".
+          example: list
         count:
           type: integer
           description: Count of the transactions in the response.
           format: int64
           example: 100
+        size:
+          type: integer
+          format: int64
+          example: 500
         data:
           type: array
           items:
             $ref: '#/components/schemas/TransactionData'
         links:
           $ref: '#/components/schemas/TransactionsGetLinks'
-        size:
-          type: integer
-          format: int64
-          example: 500
-        type:
-          type: string
-          description: Value is "list".
-          example: list
-      description: A transaction object is created whenever money is debited or credited
-        from a particular account.
+      description: A transaction object is created whenever money is debited or credited from a particular account.
     TransactionsGroup:
       type: object
       properties:
@@ -3016,7 +2879,7 @@ components:
         formattedAddress:
           type: string
           description: Address
-          example: 1/39 E Esplanade, Manly NSW 2095
+          example: "1/39 E Esplanade, Manly NSW 2095"
         geometry:
           $ref: '#/components/schemas/TransactionsGeometry'
         postalCode:
@@ -3054,18 +2917,18 @@ components:
         website:
           type: string
           description: Merchant Website
-          example: http://garfish.com.au/garfish-manly/
+          example: "http://garfish.com.au/garfish-manly/"
     TransactionsPhoneNumber:
       type: object
       properties:
         international:
           type: string
           description: International Phone Number
-          example: +61 2 9977 0707
+          example: "+61 2 9977 0707"
         local:
           type: string
           description: Local Phone Number
-          example: (02) 9977 0707
+          example: "(02) 9977 0707"
     TransactionsSubdivision:
       type: object
       properties:
