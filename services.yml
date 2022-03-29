@@ -1052,6 +1052,11 @@ components:
             is generated. The period of time relates to the account and transaction
             data used as input into the report.
           example: "2019-03"
+        toMonth:
+          type: string
+          description: End month (usually the current month) for the period for which
+            the Affordability summary is generated.
+          example: "2020-03"
         generatedDate:
           type: string
           description: Date the report was generated.
@@ -1065,11 +1070,6 @@ components:
             type: string
         links:
           $ref: '#/components/schemas/AffordabilityLinksInList'
-        toMonth:
-          type: string
-          description: End month (usually the current month) for the period for which
-            the Affordability summary is generated.
-          example: "2020-03"
     AffordabilityListLinks:
       required:
       - self
@@ -1152,16 +1152,16 @@ components:
           type: string
           description: Uniquely identifies the affordability report.
           example: s55bf3
-        assets:
-          type: array
-          description: Assets
-          items:
-            $ref: '#/components/schemas/AffordabilityAssetsData'
         coverageDays:
           type: integer
           description: Number of days covered by the report
           format: int64
           example: 392
+        assets:
+          type: array
+          description: Assets
+          items:
+            $ref: '#/components/schemas/AffordabilityAssetsData'
         external:
           type: array
           description: External
@@ -1173,6 +1173,11 @@ components:
             is generated. The period of time relates to the account and transaction
             data used as input into the report.
           example: "2019-03"
+        toMonth:
+          type: string
+          description: End month (usually the current month) for the period for which
+            the Affordability summary is generated.
+          example: "2020-03"
         generatedDate:
           type: string
           description: Date the report was generated.
@@ -1181,11 +1186,6 @@ components:
           $ref: '#/components/schemas/LiabilitiesData'
         summary:
           $ref: '#/components/schemas/AffordabilitySummary'
-        toMonth:
-          type: string
-          description: End month (usually the current month) for the period for which
-            the Affordability summary is generated.
-          example: 2020-03
         links:
           $ref: '#/components/schemas/GetAffordabilityLinks'
       description: |-
@@ -1679,15 +1679,15 @@ components:
           type: string
           description: Uniquely identifies the expenses report.
           example: s55bf3
-        bankFees:
-          $ref: '#/components/schemas/ClassResourceExpenses'
-        cashWithdrawals:
-          $ref: '#/components/schemas/ClassResourceExpenses'
         coverageDays:
           type: integer
           description: Number of days covered by the report
           format: int64
           example: 392
+        bankFees:
+          $ref: '#/components/schemas/ClassResourceExpenses'
+        cashWithdrawals:
+          $ref: '#/components/schemas/ClassResourceExpenses'
         externalTransfers:
           $ref: '#/components/schemas/ClassResourceExpenses'
         fromMonth:
@@ -1926,6 +1926,11 @@ components:
             generated. The period of time relates to the account and transaction data
             used as input into the report.
           example: "2019-03"
+        toMonth:
+          type: string
+          description: End month (usually the current month) for the period for which
+            the Income summary is generated.
+          example: "2020-03"
         irregular:
           type: array
           description: Required true
@@ -1943,11 +1948,6 @@ components:
             $ref: '#/components/schemas/RegularSource'
         summary:
           $ref: '#/components/schemas/IncomeSummary'
-        toMonth:
-          type: string
-          description: End month (usually the current month) for the period for which
-            the Income summary is generated.
-          example: 2020-03
         links:
           $ref: '#/components/schemas/IncomeLinks'
       description: |-
