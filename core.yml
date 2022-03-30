@@ -20,6 +20,7 @@ paths:
         required: true
         schema:
           type: string
+          example: "3.0"
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -28,14 +29,14 @@ paths:
                 scope:
                   type: string
             examples:
-              client_access:
-                summary: For all client side requests
-                value:
-                  scope: CLIENT_ACCESS
               server_access:
                 summary: For all server side requests
                 value:
                   scope: SERVER_ACCESS
+              client_access:
+                summary: For all client side requests
+                value:
+                  scope: CLIENT_ACCESS
       responses:
         200:
           description: 'Return token object that will be used for Basiq API requests. '
