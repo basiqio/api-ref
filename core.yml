@@ -770,6 +770,68 @@ paths:
       - application:
         - SERVER_ACCESS
         - CLIENT_ACCESS
+  /users/{userId}/consents/{consentId}:
+    delete:
+      tags:
+      - User consent
+      summary: Delete a user consent
+      description: Permanently deletes a users consent, this action cannot be undone. 
+      operationId: deleteConsent
+      parameters:
+      - name: userId
+        in: path
+        description: User identification.
+        required: true
+        schema:
+          type: string
+      - name: consentId
+        in: path
+        description: Consent identification.
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: Deletion succeeded.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+ 
 components:
   schemas:
     AccountClass:
@@ -851,7 +913,7 @@ components:
         lastUpdated:
           type: string
           description: Account last updated date and time.
-          example: 2017-09-28T11:15:09.756Z
+          example: "2017-09-28T11:15:09.756Z"
         status:
           type: string
           description: Account status.
@@ -883,6 +945,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
@@ -923,10 +989,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     ConnectionGetResponseResource:
       title: ConnectionGetResponseResource
       required:
@@ -1136,6 +1198,10 @@ components:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
           example: ac5ah5i
+        type:
+          type: string
+          description: Always "list".
+          example: list
         data:
           type: array
           description: Error data.
@@ -1170,10 +1236,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     GetConnectionLinks:
       title: GetConnectionLinks
       required:
@@ -1349,6 +1411,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
@@ -1382,10 +1448,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     JobData:
       title: JobData
       required:
@@ -1732,6 +1794,10 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
         correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
@@ -1763,10 +1829,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     UnauthorizedError:
       required:
       - correlationId

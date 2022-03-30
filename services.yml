@@ -2515,18 +2515,6 @@ components:
           description: Summary period "monthly".
           example: monthly
       description: Payments Sub-Category
-    SubClass:
-      required:
-      - code
-      - title
-      type: object
-      properties:
-        code:
-          type: string
-          example: "0801050199"
-        title:
-          type: string
-          example: Formal child care services nec
     TransactionData:
       required:
       - account
@@ -2542,7 +2530,6 @@ components:
       - links
       - postDate
       - status
-      - subClass
       - transactionDate
       - type
       type: object
@@ -2624,8 +2611,6 @@ components:
           enum:
           - pending
           - posted
-        subClass:
-          $ref: '#/components/schemas/SubClass'
         transactionDate:
           type: string
           description: Date that the user executed the transaction as provided by
@@ -2647,7 +2632,6 @@ components:
       - links
       - postDate
       - status
-      - subClass
       - transactionDate
       - type
       type: object
@@ -2720,8 +2704,6 @@ components:
           enum:
           - pending
           - posted
-        subClass:
-          $ref: '#/components/schemas/SubClass'
         transactionDate:
           type: string
           description: Date that the user executed the transaction as provided by

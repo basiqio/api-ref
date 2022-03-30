@@ -1,16 +1,16 @@
-setTimeout(() => {
-    //  const referencePlayground = document.getElementById('ReferencePlayground');
-   //    const referenceChildren = [].slice.call(referencePlayground.children);
-   //    const paramRef = document.querySelector('.param-type');
-   //	  const newParamRef = paramRef.cloneNode(true)
-    //   const newParamRef = document.getElementById('content').removeChild(paramRef);
-     //  const codeSnippet = referenceChildren[3]
-       
-       $( "<p class='toolTip'>&#8505;&#65039; Use the Authentication and Path Params fields to populate your request!</p>" ).insertAfter($('.rm-PlaygroundRequest'))
-       
-       console.log('hello');
-   //    paramRef.style.display = "none";
-     //  paramRef.style.height = "0px";
-       
-   //    referencePlayground.insertBefore(newParamRef, codeSnippet);
-       }, 100)
+const referencePlayground = document.getElementById('ReferencePlayground');
+const referenceChildren = [].slice.call(referencePlayground.children);
+const paramRef = $('.param-type').first();
+const newParamRef = paramRef.clone(true, true)
+const codeSnippet = referenceChildren[3]
+const mainContent = $('.markdown-body')[1];
+const updatedLessThan = document.querySelector('.DateLine');
+const readMeLogo = document.querySelector('#readmeLogo');
+
+updatedLessThan.style.display = "none";
+updatedLessThan.style.height = "0px";
+
+readMeLogo.style.display = "none";
+readMeLogo.style.height = "0px";
+
+paramRef.insertBefore(codeSnippet);
