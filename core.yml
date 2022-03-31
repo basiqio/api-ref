@@ -348,7 +348,7 @@ paths:
     get:
       tags:
       - Connections
-      summary: List connections
+      summary: List all connections
       description: Returns a list of connections belonging to this user. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.
       operationId: getConnections
       parameters:
@@ -411,7 +411,7 @@ paths:
     post:
       tags:
       - Connections
-      summary: Refresh connections
+      summary: Refresh all connections
       description: Use this to refresh all connections belonging to the specified user.
       operationId: refreshConnections
       parameters:
@@ -1898,160 +1898,88 @@ components:
             type: object
           description: User consents data.
           example: [
-        {
-            "type": "consent",
-            "id": "9f1bbe67-506b-4e95-82d2-21565a5b8d53",
-            "created": "2022-03-03T02:04:43Z",
-            "updated": "2022-03-03T02:04:43Z",
-            "duration": 31535999,
-            "status": "active",
-            "purpose": {
-                "primary": {
-                    "title": "Services requiring full ongoing Personal, Account and Transaction details",
-                    "description": "We need ongoing access to your Personal, Account and Transaction details in order to fully enable our services."
-                },
-                "other": null
-            },
-            "data": {
-                "retainData": true,
-                "permissions": [
                     {
-                        "scope": "customer.person.detail",
-                        "required": true,
-                        "consented": true,
-                        "entity": "connection",
-                        "attributes": [
-                            "fullName",
-                            "occupation",
-                            "phone",
-                            "emailAddress",
-                            "mailAddress",
-                            "residentialAddress"
-                        ],
-                        "information": {
-                            "name": "Name, occupation, contact details",
-                            "description": "This allows access to personally identifiable information. Specifically your name, occupation, address(es) and contact details.",
-                            "attributeList": [
-                                "Name",
-                                "Occupation",
-                                "Phone",
-                                "Email address",
-                                "Mail address",
-                                "Residential address"
-                            ]
-                        },
-                        "purpose": {
-                            "title": "Your Details",
-                            "description": "We need to confirm your identity."
+                      type: 'consentPolicy',
+                      duration: 31536000,
+                      status: 'active',
+                      purpose: {
+                        primary: {
+                          title: 'Services requiring full ongoing Personal, Account and Transaction details',
+                          description: 'We need ongoing access to your Personal, Account and Transaction details in order to fully enable our services.'
                         }
-                    },
-                    {
-                        "scope": "account.detail",
-                        "required": true,
-                        "consented": true,
-                        "entity": "account",
-                        "attributes": [
-                            "name",
-                            "class",
-                            "balance",
-                            "accountNo",
-                            "interestRate",
-                            "interestType",
-                            "fee",
-                            "discount",
-                            "accountTerm",
-                            "accountMailAddress",
-                            "accountHolder",
-                            "availableFunds",
-                            "currency",
-                            "creditLimit",
-                            "repaymentType",
-                            "repaymentFrequency",
-                            "nextInstalmentDate",
-                            "instalmentAmount",
-                            "endDate",
-                            "availableRedraw",
-                            "offsetAccountNumber"
-                        ],
-                        "information": {
-                            "name": "Account balance and details",
-                            "description": "This allows access to detailed information of your accounts. It includes basic account information plus account identifiers and product information. It does not include transaction data.",
-                            "attributeList": [
-                                "Name of account",
-                                "Type of account",
-                                "Account balance",
-                                "Account number",
-                                "Interest rates",
-                                "Interest type",
-                                "Fees",
-                                "Discounts",
-                                "Account terms",
-                                "Account mail address",
-                                "Account holder",
-                                "Available funds",
-                                "Currency",
-                                "Credit limit",
-                                "Repayment Type",
-                                "Repayment Frequency",
-                                "Next Instalment Date",
-                                "Instalment Amount",
-                                "End Date",
-                                "Available Redraw",
-                                "Offset Account Number"
-                            ]
-                        },
-                        "purpose": {
-                            "title": "Account Details",
-                            "description": "We need to capture your account details."
-                        }
-                    },
-                    {
-                        "scope": "transaction.detail",
-                        "required": true,
-                        "consented": true,
-                        "entity": "transaction",
-                        "attributes": [
-                            "id",
-                            "amount",
-                            "transactionDate",
-                            "description",
-                            "merchant",
-                            "bankCategory",
-                            "status"
-                        ],
-                        "information": {
-                            "name": "Transaction details",
-                            "description": "This allows access to transaction data for your accounts. It includes all account transaction data.",
-                            "attributeList": [
-                                "Incoming and outgoing transactions",
-                                "Amounts",
-                                "Dates",
-                                "Descriptions of transactions",
-                                "Who you have sent money to and received money from",
-                                "Bank Category",
-                                "Transaction status"
-                            ]
-                        },
-                        "purpose": {
-                            "title": "Transaction details",
-                            "description": "This allows access to transaction data for your accounts. It includes all account transaction data."
-                        }
+                      },
+                      data: {
+                        retainData: true,
+                        permissions: [
+                          {
+                            scope: 'customer.person.detail',
+                            required: true,
+                            entity: 'connection',
+                            information: {
+                              name: 'Name, occupation, contact details',
+                              description: 'This allows access to personally identifiable information. Specifically your name, occupation, address(es) and contact details.',
+                              attributeList: [
+                                'Name',
+                                'Occupation',
+                                'Phone',
+                                'Email address',
+                                'Mail address',
+                                'Residential address'
+                              ]
+                            },
+                            purpose: {
+                              title: 'Your Details',
+                              description: 'We need to confirm your identity.'
+                            }
+                          },
+                          {
+                            scope: 'account.detail',
+                            required: true,
+                            entity: 'account',
+                            information: {
+                              name: 'Account balance and details',
+                              description: 'This allows access to detailed information of your accounts. It includes basic account information plus account identifiers and product information. It does not include transaction data.',
+                              attributeList: [
+                                'Name of account',
+                                'Type of account',
+                                'Account balance',
+                                'Account number',
+                                'Interest rates',
+                                'Fees',
+                                'Discounts',
+                                'Account terms',
+                                'Account mail address'
+                              ]
+                            },
+                            purpose: {
+                              title: 'Account Details',
+                              description: 'We need to capture your account details.'
+                            }
+                          },
+                          {
+                            scope: 'transaction.detail',
+                            required: true,
+                            entity: 'transaction',
+                            information: {
+                              name: 'Transaction details',
+                              description: 'This allows access to transaction data for your accounts. It includes all account transaction data.',
+                              attributeList: [
+                                'Incoming and outgoing transactions',
+                                'Amounts',
+                                'Dates',
+                                'Descriptions of transactions',
+                                'Who you have sent money to and received money from'
+                              ]
+                            },
+                            purpose: {
+                              title: 'Transaction details',
+                              description: 'This allows access to transaction data for your accounts. It includes all account transaction data.'
+                            }
+                          }
+                        ]
+                      },
                     }
-                ],
-                "disclosure": null
-            },
-            "connections": {
-                "type": "list",
-                "count": 0,
-                "data": []
-            },
-            "links": {
-                "self": "https://au-api.basiq.io/users/f745b0eb-f650-4173-a4a5-e7fbf5a25801/consents/9f1bbe67-506b-4e95-82d2-21565a5b8d53",
-                "consentPolicy": "https://au-api.basiq.io/policies/9cd4c42e-653e-4eec-9290-532e0324c1d1",
-                "latestConsentPolicy": "https://au-api.basiq.io/policies/9cd4c42e-653e-4eec-9290-532e0324c1d1"
-            }
-        }
-    ]
+                  ]
       description: List containing the current active user consent.
     UserGetResponse:
       title: UserGetResponse
