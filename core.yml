@@ -963,6 +963,14 @@ components:
             - type
             type: object
             properties:
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              title:
+                type: string
+                description: Title of the error
+                example: Parameter not valid.
               code:
                 type: string
                 description: Application-specific error code, expressed as a string
@@ -982,14 +990,6 @@ components:
                 example: ID value is not valid.
               source:
                 $ref: '#/components/schemas/Source'
-              title:
-                type: string
-                description: Title of the error
-                example: Parameter not valid.
-              type:
-                type: string
-                description: Type of the response, always "error"
-                example: error
     ConnectionGetResponseResource:
       title: ConnectionGetResponseResource
       required:
@@ -1195,14 +1195,14 @@ components:
       - type
       type: object
       properties:
-        correlationId:
-          type: string
-          description: Unique identifier for this particular occurrence of the problem.
-          example: ac5ah5i
         type:
           type: string
           description: Always "list".
           example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
         data:
           type: array
           description: Error data.
@@ -1213,6 +1213,14 @@ components:
             - type
             type: object
             properties:
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              title:
+                type: string
+                description: Title of the error
+                example: Forbidden Access
               code:
                 type: string
                 description: Application-specific error code, expressed as a string
@@ -1229,14 +1237,6 @@ components:
                 example: Access to this resource is forbidden.
               source:
                 $ref: '#/components/schemas/Source'
-              title:
-                type: string
-                description: Title of the error
-                example: Forbidden Access
-              type:
-                type: string
-                description: Type of the response, always "error"
-                example: error
     GetConnectionLinks:
       title: GetConnectionLinks
       required:
@@ -1382,19 +1382,19 @@ components:
         accounts:
           type: string
           description: Accounts reference url.
-        auth_link:
-          type: string
-          description: Auth link, possible null.
-          nullable: true
+          example: https://au-api.basiq.io/users/a3dgf4567a89/accounts
         connections:
           type: string
           description: Connections reference url.
+          example: https://au-api.basiq.io/users/a3dgf4567a89/connections
         self:
           type: string
           description: User self reference url.
+          example: https://au-api.basiq.io/user/a3dgf4567a89
         transactions:
           type: string
           description: Transactions reference url.
+          example: https://au-api.basiq.io/users/a3dgf4567a89/transactions
       description: Object containing links to resources.
     InstitutionModel:
       required:
@@ -1568,12 +1568,13 @@ components:
         self:
           type: string
           description: URL of the resource
-          example: /jobs/61723
+          example: https://au-api.basiq.io/jobs/61723
         source:
           type: string
           description: Resource that initiated creation of this Job. For example,
             for operations on Connection, this is a Connection URL. This is only returned
             for Connection jobs and not for Statement jobs.
+          example: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
       description: Links to the resources.
     JobsResponseResource:
       required:
@@ -1607,6 +1608,7 @@ components:
           type: string
           description: In case of failed job, displays error code.
           enum:
+          - success
           - user-action-required
           - system-unavailable
           - maintenance
@@ -1773,6 +1775,7 @@ components:
         self:
           type: string
           description: URL of the resource.
+          example: https://au-api.basiq.io/link/a3dgf4567a89
       description: Link object containing a link to the resource, self reference.
     Source:
       title: Source
@@ -1781,12 +1784,7 @@ components:
         parameter:
           type: string
           description: String indicating which URI query parameter caused the error.
-          example: userId
-        pointer:
-          type: string
-          description: Location to the object or attribute that the error relates
-            to.
-          example: users/userId
+          example: id
       description: An object containing references to the source of the error.
     StatusServiceUnavailableError:
       required:
@@ -2004,11 +2002,6 @@ components:
           example: ea3a81
         accounts:
           $ref: '#/components/schemas/GetUserAccount'
-        business:
-          type: string
-          description: |-
-            Business is ignored - it is populated when user has BusinessNumber or BusinessName
-            swagger: ignore
         connections:
           $ref: '#/components/schemas/GetUserConnection'
         email:
@@ -2023,6 +2016,7 @@ components:
         name:
           type: string
           description: Name, or empty.
+          example: Gavin Belson
         links:
           $ref: '#/components/schemas/GetUserLinks'
       description: User object with details if the creation succeeded.
@@ -2035,25 +2029,25 @@ components:
       - type
       type: object
       properties:
+        type:
+          type: string
+          description: Type of the response, always "user".
+          example: user
+        id:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: e1956419
         email:
           type: string
           description: The end-users email address.
           format: email
           example: gavin@hooli.com
-        id:
-          type: string
-          description: A string that uniquely identifies the user.
-          example: e1956419
-        links:
-          $ref: '#/components/schemas/ResourceLink'
         mobile:
           type: string
           description: The end-users mobile number.
           example: +61410888999
-        type:
-          type: string
-          description: Type of the response, always "user".
-          example: user
+        links:
+          $ref: '#/components/schemas/ResourceLink'
       description: User object with details if the creation succeeded.
     createUser:
       type: object
