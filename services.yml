@@ -822,11 +822,6 @@ components:
       - transactions
       type: object
       properties:
-        connection:
-          type: string
-          description: always null
-          nullable: true
-          example: null
         institution:
           type: string
           description: institution link to the institution associated with this account
@@ -2724,10 +2719,6 @@ components:
           type: string
           description: Url of the account.
           example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
-        connection:
-          type: string
-          description: Url of the connection, always null.
-          example: null
         institution:
           type: string
           description: Url of the institution.
@@ -2937,7 +2928,7 @@ components:
             CLIENT_ACCESS: Client access scope
 x-readme:
   explorer-enabled: false
-  proxy-enabled: false
+  proxy-enabled: true
   samples-enabled: true
   samples-languages: 
   - curl
