@@ -2578,7 +2578,7 @@ components:
         direction:
           type: string
           description: Identifies if the transaction is of debit or credit type.
-          example: credit
+          example: debit
           enum:
           - debit
           - credit

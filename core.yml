@@ -2104,8 +2104,7 @@ components:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
 x-readme:
-  explorer-enabled: false
-  proxy-enabled: false
+  explorer-enabled: true
   samples-enabled: true
   samples-languages: 
   - curl
