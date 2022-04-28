@@ -1926,6 +1926,11 @@ components:
           description: End month (usually the current month) for the period for which
             the Income summary is generated.
           example: "2020-03"
+        regular:
+          type: array
+          description: Required true
+          items:
+            $ref: '#/components/schemas/RegularSource'
         irregular:
           type: array
           description: Required true
@@ -1936,11 +1941,6 @@ components:
           description: Required true
           items:
             $ref: '#/components/schemas/OtherCreditSource'
-        regular:
-          type: array
-          description: Required true
-          items:
-            $ref: '#/components/schemas/RegularSource'
         summary:
           $ref: '#/components/schemas/IncomeSummary'
         links:
@@ -2378,13 +2378,13 @@ components:
           example: "5768.00"
     RegularSource:
       required:
+      - source
       - ageDays
       - changeHistory
       - current
       - frequency
       - irregularity
       - previous3Months
-      - source
       type: object
       properties:
         ageDays:
@@ -2414,14 +2414,14 @@ components:
           - quarterly
           - half-year
           - yearly
-        irregularity:
-          $ref: '#/components/schemas/IrregularityIncome'
-        previous3Months:
-          $ref: '#/components/schemas/Previous3MonthsIncome'
         source:
           type: string
           description: Source regular income (cleaned transaction description).
           example: payroll wfrms 15439393
+        irregularity:
+          $ref: '#/components/schemas/IrregularityIncome'
+        previous3Months:
+          $ref: '#/components/schemas/Previous3MonthsIncome'
       description: |-
         RegularSource
         Our complex income algorithm uses over 50 rules to identify different types of income sources. For example, to identify a regular income source - the fortnightly salary should have a minimum of 5 credits across a 90 day time period with regular intervals. Additionally, tolerances are applied based on confidence in identified income source patterns (by amount and frequency).
