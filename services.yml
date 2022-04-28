@@ -2387,6 +2387,10 @@ components:
       - previous3Months
       type: object
       properties:
+        source:
+          type: string
+          description: Source regular income (cleaned transaction description).
+          example: payroll wfrms 15439393
         ageDays:
           type: integer
           description: Duration regular income (number days from first to last occurrence)
@@ -2414,10 +2418,6 @@ components:
           - quarterly
           - half-year
           - yearly
-        source:
-          type: string
-          description: Source regular income (cleaned transaction description).
-          example: payroll wfrms 15439393
         irregularity:
           $ref: '#/components/schemas/IrregularityIncome'
         previous3Months:
