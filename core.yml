@@ -2093,14 +2093,11 @@ components:
           type: string
           example: Bearer
   securitySchemes:
-    basicAuth:    
-      type: http
-      scheme: basic
     api_key:
       type: apiKey
       name: Authorization
       in: header
-      x-default: "NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw=="
+      x-default: "Basic NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw=="
     application:
       type: oauth2
       flows:
@@ -2110,7 +2107,7 @@ components:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
 security:
-    - basicAuth: []  
+    - api_key: []  
 x-readme:
   explorer-enabled: true
   proxy-enabled: false
