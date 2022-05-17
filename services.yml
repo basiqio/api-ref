@@ -1976,9 +1976,9 @@ components:
           example: "90490.00"
         regularIncomeYear:
           type: string
-          description: Total predicted regular income for this financial year year
+          description: "Coming soon: total predicted regular income for this financial year"
           nullable: true
-          example: "217176.00"
+          example: null
       description: Summary totals relating to income analysis
     InternalServerError:
       required:
