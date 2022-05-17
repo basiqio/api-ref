@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Core
+  title: TEST
   description: All included utility endpoints for Basiq partners
   version: 3.0.0
 servers:
