@@ -2109,7 +2109,7 @@ components:
 security:
     - api_key: []  
 x-readme:
-  explorer-enabled: true
+  explorer-enabled: false
   proxy-enabled: false
   samples-enabled: true
   samples-languages: 
