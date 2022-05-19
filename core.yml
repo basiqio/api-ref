@@ -2063,6 +2063,14 @@ components:
           type: string
           description: The end-users mobile number, supplied in international format. +[country-code][mobileno]. Mandatory if email is not supplied.
           example: "+61410888999"
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: "Gavin"
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: "Belson"
     updateUser:
       type: object
       properties:
