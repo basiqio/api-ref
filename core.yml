@@ -2049,6 +2049,14 @@ components:
           type: string
           description: The end-users mobile number.
           example: +61410888999
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: "Gavin"
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: "Belson"
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: User object with details if the creation succeeded.
@@ -2082,6 +2090,14 @@ components:
           type: string
           description: The end-users mobile number.
           example: "+61410888666"
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: "Gavin"
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: "Belson"
     TokenPostResponse:
       required:
       - access_token
