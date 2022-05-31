@@ -138,7 +138,7 @@ paths:
                           payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
                           payerBankBranchCode: '730002'
                           payerAccountNumber: '123456789'
-                        description: Spaceship Investment
+                        description: Investment
                         amount: 173.45
                         currency: AUD
                         links:
@@ -187,7 +187,7 @@ paths:
                       payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
                       payerBankBranchCode: '730002'
                       payerAccountNumber: '123456789'
-                    description: Spaceship Investment
+                    description: Investment
                     amount: 173.45
                     currency: AUD
                     links:
@@ -443,7 +443,7 @@ components:
                     description:
                       description: Description to appear on the payer's and payee's account.
                       type: string
-                      example: Spaceship Investment
+                      example: Investment
                     amount:
                       description: Amount of the payment.
                       type: number
