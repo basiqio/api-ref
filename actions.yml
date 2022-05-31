@@ -6,43 +6,43 @@ info:
 servers:
   - url: https://au-api.basiq.io/
 paths:
-  /payments:
+  /payments/payrequests:
     post:
       tags:
         - Payments
-      summary: Submit payment(s)
-      operationId: submitPayment
+      summary: Submit payment requests
+      operationId: submitPayRequests
       requestBody:
-        $ref: '#/components/requestBodies/payments'
+        $ref: '#/components/requestBodies/payrequests'
       responses:
         '201':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/listofjobs'
+                $ref: '#/components/schemas/jobs'
               examples:
-                Single Payment:
+                Single Payment Request:
                   value:
                     jobs:
                       - type: job
                         id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
                         links:
                           self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-                Multiple Payments:
+                Multiple Payment Requests:
                   value:
                     jobs:
-                    - type: job
-                      id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      links:
-                        self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-                    - type: job
-                      id: c29824ad0-73f1-0138-3700-0a58a9feac10
-                      requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
-                      links:
-                        self: https://au-api.basiq.io/jobs/c29824ad0-73f1-0138-3700-0a58a9feac10
+                      - type: job
+                        id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                        requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
+                        links:
+                          self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      - type: job
+                        id: c29824ad0-73f1-0138-3700-0a58a9feac10
+                        requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
+                        links:
+                          self: https://au-api.basiq.io/jobs/c29824ad0-73f1-0138-3700-0a58a9feac10
         '400':
           description: Bad Request
           content:
@@ -53,77 +53,53 @@ paths:
                     type: list
                     correlationId: ac5ah5i
                     data:
-                    - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Amount value is not valid.
-                      source:
-                        parameter: amount
-                Invalid type:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Type value is not valid.
-                      source:
-                        parameter: type
-                Invalid method:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Method value is not valid.
-                      source:
-                        parameter: method
+                      - requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
+                        type: error
+                        title: Parameter not valid.
+                        code: parameter-not-valid
+                        detail: Amount value is not valid.
+                        source:
+                          parameter: amount
                 User not found:
                   value:
                     type: list
                     correlationId: ac5ah5i
                     data:
-                    - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Resource not found.
-                      code: resource-not-found
-                      detail: User ID cannot be found.
-                      source:
-                        parameter: payerUserId
+                      - requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
+                        type: error
+                        title: Resource not found.
+                        code: resource-not-found
+                        detail: User ID cannot be found.
+                        source:
+                          parameter: payerUserId
                 Multiple invalid:
                   value:
                     type: list
                     correlationId: ac5ah5i
                     data:
-                    - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Amount value is not valid.
-                      source:
-                        parameter: amount
-                    - requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Method value is not valid.
-                      source:
-                        parameter: method
+                      - requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
+                        type: error
+                        title: Parameter not valid.
+                        code: parameter-not-valid
+                        detail: Amount value is not valid.
+                        source:
+                          parameter: amount
+                      - requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
+                        type: error
+                        title: Parameter not valid.
+                        code: parameter-not-valid
+                        detail: Method value is not valid.
+                        source:
+                          parameter: method
     get:
       tags:
         - Payments
-      summary: List payments
-      operationId: listPayments
+      summary: List payment requests
+      operationId: listPayRequests
       parameters:
         - name: limit
           in: query
-          description: 'Maximum number of payments included in the response. Max value = 500 and is the default value if this field is not provided'
+          description: Maximum number of payment requests included in the response. Max value = 500 and is the default value if this field is not provided
           style: deepObject
           explode: false
           schema:
@@ -131,99 +107,99 @@ paths:
           example: '10'
         - name: filter
           in: query
-          description: Filter field that allows filtering by payer.user.id, payer.account.id, payment.status, payment.date, payment.amount
+          description: Filter field that allows filtering by payer.user.id, status, date, amount
           style: deepObject
           explode: false
           schema:
             type: string
           example: ''
       responses:
-        '404':
-          description: not found
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/listofpayments'
+                $ref: '#/components/schemas/payrequests'
               examples:
                 response:
                   value:
-                    type: 'list'
+                    type: list
                     count: 1
                     size: 1
                     data:
-                      - id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: payrequest
+                        id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                        requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
                         created: '2022-03-21T20:28:22.378Z'
                         updated: '2022-03-21T20:28:22.378Z'
-                        type: collection
                         method: batch
-                        status:
-                          statusCode: 'in-progress'
-                          statusDescription: 'The payment is currently being processed by our system'
-                        payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                        payerAccountId: 31824ad0-73f1-0138-3700-0a58a9feac09
-                        description: 'Spaceship Investment'
+                        status: in-progress
+                        payer:
+                          payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                          payerBankBranchCode: '730002'
+                          payerAccountNumber: '123456789'
+                        description: Spaceship Investment
                         amount: 173.45
                         currency: AUD
                         links:
-                          self: /payments/b1824ad0-73f1-0138-3700-0a58a9feac09
+                          self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
                           job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
                     links:
-                      self: "https://au-api.basiq.io/payments"
-                      next: "https://au-api.basiq.io/payments?next=049fde"
-  '/payments/{id}':
+                      self: https://au-api.basiq.io/payments/payrequests
+                      next: https://au-api.basiq.io/payments/payrequests?next=049fde
+        '404':
+          description: not found
+  /payments/payrequests/{id}:
     get:
       tags:
         - Payments
-      summary: Get a payment by its basiq Id
-      operationId: getPayment
+      summary: Get a payment request by its basiq Id
+      operationId: getPayRequest
       parameters:
         - name: id
           in: path
-          description: Payment Id
+          description: Payment request Id
           required: true
           style: simple
           explode: false
           schema:
             type: string
-            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+            default: b1824ad0-73f1-0138-3700-0a58a9feac09
+          example: b1824ad0-73f1-0138-3700-0a58a9feac09
       responses:
-        '404':
-          description: Payment not found
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/payment'
+                $ref: '#/components/schemas/payrequest'
               examples:
                 response:
                   value:
-                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    type: payrequest
+                    id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                    requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
                     created: '2022-03-21T20:28:22.378Z'
                     updated: '2022-03-21T20:28:22.378Z'
-                    type: collection
                     method: batch
-                    status:
-                      statusCode: 'in-progress'
-                      statusDescription: 'The payment is currently being processed by our system'
-                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                    payerAccountId: 31824ad0-73f1-0138-3700-0a58a9feac09
-                    description: 'Spaceship Investment'
+                    status: in-progress
+                    payer:
+                      payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: Spaceship Investment
                     amount: 173.45
                     currency: AUD
                     links:
-                      self: /payments/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      self: /payments/requests/b1824ad0-73f1-0138-3700-0a58a9feac09
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-  '/jobs/{id}':
+        '404':
+          description: Payment request not found
+  /jobs/{id}:
     get:
       tags:
         - Jobs
-      summary: Get a job by its id (example of response of a payments job)
+      summary: Get a job by its id (example of response of a payins job)
       operationId: getJob
       parameters:
         - name: id
@@ -234,53 +210,41 @@ paths:
           explode: false
           schema:
             type: string
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+          example: b1824ad0-73f1-0138-3700-0a58a9feac09
       responses:
-        '404':
-          description: not found
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/jobdetails'
+                $ref: '#/components/schemas/job'
               examples:
                 response:
                   value:
                     type: job
-                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    id: b1824ad0-73f1-0138-3700-0a58a9feac09
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     steps:
-                    - title: validate-payment
-                      status: success
-                      result:
-                        type: link
-                        url: "/payments/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                    - title: validate-payer-information
-                      status: in-progress
-                      result: null
+                      - title: validate-payment
+                        status: success
+                        result:
+                          type: link
+                          url: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      - title: validate-payer-information
+                        status: in-progress
+                        result: null
                     links:
-                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      source: "/payments/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      self: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      source: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+        '404':
+          description: not found
 components:
   parameters:
-    type:
-      name: paymentType
-      in: query
-      description: 'The type of payment.'
-      required: true
-      schema:
-        type: string
-        enum:
-          - collection
-#          - payin
-#          - payout
-#          - wallet-transfer
     method:
       name: paymentTypeMethod
       in: query
-      description: 'The method the payment will be/was carried out with.'
+      description: The method the payment will be/was carried out with.
       required: false
       style: form
       explode: true
@@ -288,11 +252,9 @@ components:
         type: string
         enum:
           - batch
-#          - fast
-#          - card
       example: ''
   schemas:
-    listofjobs:
+    jobs:
       properties:
         type:
           type: string
@@ -302,39 +264,27 @@ components:
           type: integer
         data:
           allOf:
-          - $ref: '#/components/schemas/job'
+            - $ref: '#/components/schemas/job'
         links:
           type: object
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     job:
       type: object
       properties:
-        type: 
-          type: string
-        id:
-          type: string
-        links:
-          type: object
-          properties:
-            link:
-              type: string
-    jobdetails:
-      type: object
-      properties:
-        type: 
+        type:
           type: string
         id:
           type: string
         created:
-          description: date and time in ISO format of when the job request was created 
+          description: date and time in ISO format of when the job request was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the job request was updated 
+          description: date and time in ISO format of when the job request was updated
           type: string
           format: date-time
         steps:
@@ -356,7 +306,7 @@ components:
           properties:
             link:
               type: string
-    listofpayments:
+    payrequests:
       properties:
         type:
           type: string
@@ -366,30 +316,32 @@ components:
           type: integer
         data:
           allOf:
-          - $ref: '#/components/schemas/payment'
+            - $ref: '#/components/schemas/payrequest'
         links:
           type: object
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
-    payment:
+    payrequest:
       type: object
       required:
+        - type
         - id
         - requestId
         - created
         - updated
-        - type
         - method
         - status
         - amount
         - currency
-        - payerUserId
-        - payerAccountId
+        - payer
         - description
       properties:
+        type:
+          description: Type of the object
+          type: string
         id:
           description: Id as assigned by Basiq to uniquely identify the payment
           type: string
@@ -397,122 +349,102 @@ components:
           description: Id as assigned by the by the partner application. This needs to be unique
           type: string
         created:
-          description: date and time in ISO format of when the payment request was created 
+          description: date and time in ISO format of when the payment request was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the payment request was updated 
+          description: date and time in ISO format of when the payment request was updated
           type: string
           format: date-time
-        type:
-          description: "type of the payment being which direction it is and whether it is pulling funds, pushing funds...etc"
-          type: string
-          enum:
-            - collection
-#            - payin
-#            - payout
-#            - wallet-transfer
         method:
-          description: "method (payment instrument) used associated with the type of payment"
+          description: method (payment instrument) used associated with the type of payment
           type: string
           enum:
             - batch
-#            - fast
-#            - card
-#            - cross-border
         status:
+          type: string
+        reason:
+          type: object
+          description: Details for the reason for failure
+          properties:
+            code:
+              type: string
+              description: Reason code for the failed payment
+            title:
+              type: string
+              description: Title of the reason code for the failed payment (short description)
+            detail:
+              type: string
+              description: Further details/description for the failed/rejected/returned payment
+        payer:
           type: object
           required:
-            - statusCode
-            - statusDescription
+            - payerUserId
           properties:
-            statusCode:
+            payerUserId:
+              description: User Id of the payer
               type: string
-            statusDescription:
+            payerBankBranchCode:
               type: string
-              enum:
-                - pending
-                - processing
-                - successful
-                - rejected
-              example: 'pending'
-            reasonCode:
+            payerAccountNumber:
               type: string
-              description: 'Reason code for the failed/rejected/returned payment'
-            reasonDescription:
-              type: string
-              description: 'Reason description for the failed/rejected/returned payment'
-        payerUserId:
-          description: 'User Id of the payer'
-          type: string
-        payerAccountId:
-          description: 'Account Id of the payer user'
-          type: string
         description:
-          description: "Description to appear on the payer's and payee's account"
+          description: Description to appear on the payer's and payee's account
           type: string
         amount:
-          description: 'Amount of the payment.'
+          description: Amount of the payment.
           type: integer
         currency:
-          description: 'Currency of the payment.'
+          description: Currency of the payment.
           type: string
         links:
           type: object
           properties:
-            self: 
+            self:
               type: string
   requestBodies:
-    payments:
+    payrequests:
       content:
         application/json:
           schema:
             type: object
             properties:
-              payments:
+              payrequests:
                 type: array
                 items:
                   type: object
+                  required:
+                    - requestId
+                    - amount
+                    - payer
+                    - description
                   properties:
-                    payment:
+                    requestId:
+                      description: Id as assigned by the by the partner application. This needs to be unique
+                      type: string
+                      example: 01824ad0-73f1-0138-3700-0a58a9feac09
+                    payer:
                       type: object
                       required:
-                        - requestId
-                        - type
-                        - amount
-                        - payerAccountId
-                        - description
+                        - payerUserId
                       properties:
-                        requestId:
-                          description: Id as assigned by the by the partner application. This needs to be unique
-                          type: string
-                          example: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        type:
-                          description: "type of the payment being which direction it is and whether it is pulling funds, pushing funds...etc"
-                          type: string
-                          enum:
-                            - collection
-#                            - payin
-#                            - payout
-#                            - wallet-transfer
-                        method:
-                          description: "method (payment instrument) used associated with the type of payment"
-                          type: string
-                          enum:
-                            - batch
-#                            - fast
-#                            - card
-#                            - cross-border
-                          example: "batch"
                         payerUserId:
-                          description: 'User Id of the payer'
+                          description: User Id of the payer
                           type: string
-                          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        description:
-                          description: "Description to appear on the payer's and payee's account. The field allows 18 characters and only accepts letters, numbers and spaces ( ) , ampersands (&), apostrophes (‘), commas (,) , hyphens (-), full stops (.), forward slashes (/), plus sign (+), dollar sign ($), exclamation mark (!), percentage sign (%), left parenthesis ((), right parenthesis ()), asterisk (*), number sign (#), equal sign (=), colon (:), question mark (?), left square bracket ([), right square bracket (]), underscore (_), circumflex (^) and the at symbol (@)"
+                          example: 21824ad0-73f1-0138-3700-0a58a9feac09
+                        payerBankBranchCode:
+                          description: Bank and branch code (e.g. bsb) of the account
                           type: string
-                          example: 'Spaceship Investment'
-                        amount:
-                          description: 'Amount of the payment.'
-                          type: number
-                          example: '173.45'
+                          example: '730002'
+                        payerAccountNumber:
+                          description: Payer account number
+                          type: string
+                          example: '123456789'
+                    description:
+                      description: Description to appear on the payer's and payee's account.
+                      type: string
+                      example: Spaceship Investment
+                    amount:
+                      description: Amount of the payment.
+                      type: number
+                      example: '173.45'
