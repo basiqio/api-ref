@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Basiq actions API 
   version: "0.0.0"
-  title: Basiq Payments
+  title: Actions
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
 servers:
   - url: https://au-api.basiq.io/
