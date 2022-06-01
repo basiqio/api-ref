@@ -835,7 +835,65 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
- 
+  /events:
+    get:
+      tags:
+      - Events
+      summary: List all events
+      description: Returns a list of all events that have taken place.
+      operationId: getEvents
+      parameters:
+      - name: filter
+        in: query
+        description: userId for the specific user you wish to retrieve events for. e.g user.id.eq('266f5849-6ef6-4aae-accf-386470d0598e')
+        schema:
+          type: string
+          example: filter=user.id.eq('266f5849-6ef6-4aae-accf-386470d0598e')
+      responses:
+        200:
+          description: Returns details of events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsGetResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  
 components:
   schemas:
     AccountClass:
@@ -1157,6 +1215,65 @@ components:
           $ref: '#/components/schemas/ConnectionInstitution'
         links:
           $ref: '#/components/schemas/GetConnectionsLinks'
+    EventsData:
+          required:
+          - createdDate
+          - id
+          - links
+          - type
+          - entity
+          - userId
+          - dataRef
+          - data
+          - eventType
+          type: object
+          properties:
+            type:
+              type: string
+              description: Type, always "event".
+              example: event
+            id:
+              type: string
+              description: Connection identification.
+              example: "61723"
+            createdDate:
+              type: string
+              description: Date the event was created.
+              example: "2019-07-29T07:34:09Z"
+            entity:
+              type: string
+              description: The entity associated with the event that has occurred
+              example: consent
+            eventType:
+              type: string
+              description: The type of event that has occurred
+              example: revoked
+            userId:
+              type: string
+              description: The identifier of the user the event belongs to.
+              example: "266f5849-6ef6-4aae-accf-386470d0598e"
+            dataRef:
+              type: string
+              description: URL to the data source the event occurred.
+              example: "https://au-api.basiq.io/users/266f5849-6ef6-4aae-accf-386470d0598e"
+            data:
+              type: string
+              description: The data associated with the event that has been created.
+              example: [
+                {
+                "email": "max@hooli.com",
+                "id": "266f5849-6ef6-4aae-accf-386470d0598e",
+                "links": {
+                    "self": "https://au-api.basiq.io/users/266f5849-6ef6-4aae-accf-386470d0598e"
+                },
+                "mobile": "+614xxxxxxxx",
+                "type": "user"
+            }]
+            links:
+              example: [
+                {
+                "self": "https://au-api.basiq.io/events/545ae104289e71bd3da34a063aaf49a5fa17ab6b8e0cab4bc56e019b7cc409e0"
+            }]
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
@@ -1171,6 +1288,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConnectionsData'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+      description: Object containing details for connections.
+    EventsGetResponseResource:
+      title: EventsGetResponseResource
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventsData'
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: Object containing details for connections.
