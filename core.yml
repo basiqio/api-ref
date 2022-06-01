@@ -1234,7 +1234,7 @@ components:
               example: event
             id:
               type: string
-              description: Connection identification.
+              description: Event identification.
               example: "61723"
             createdDate:
               type: string
