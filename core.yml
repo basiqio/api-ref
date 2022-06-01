@@ -845,7 +845,7 @@ paths:
       parameters:
       - name: filter
         in: query
-        description: userId for the specific user you wish to retrieve events for. e.g user.id.eq('266f5849-6ef6-4aae-accf-386470d0598e')
+        description: userId for the specific user you wish to retrieve events for. e.g user.id.eq(userId)
         schema:
           type: string
           example: user.id.eq('266f5849-6ef6-4aae-accf-386470d0598e')
