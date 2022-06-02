@@ -153,7 +153,7 @@ paths:
     get:
       tags:
         - Payments
-      summary: Get a payment request by its basiq Id
+      summary: Retrieve a payment request
       operationId: getPayRequest
       parameters:
         - name: id
@@ -199,7 +199,7 @@ paths:
     get:
       tags:
         - Jobs
-      summary: Get a job by its id (example of response of a payins job)
+      summary: Retrieve a payment request job
       operationId: getJob
       parameters:
         - name: id
@@ -448,3 +448,29 @@ components:
                       description: Amount of the payment.
                       type: number
                       example: '173.45'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-default: "Basic NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw=="
+    application:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://au-api.basiq.io/token
+          scopes:
+            SERVER_ACCESS: Server access scope
+            CLIENT_ACCESS: Client access scope
+security:
+    - api_key: []  
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  samples-enabled: true
+  samples-languages: 
+  - curl
+  - node
+  - ruby
+  - javascript
+  - python
