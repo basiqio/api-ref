@@ -2045,7 +2045,7 @@ components:
           example: [
                     {
                       type: 'consentPolicy',
-                      duration: 31536000,
+                      expiryDate: "2023-03-30T12:48:50Z",
                       status: 'active',
                       purpose: {
                         primary: {
