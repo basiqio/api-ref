@@ -1251,6 +1251,13 @@ components:
               type: string
               description: The type of event that has occurred
               example: revoked
+              enum: 
+                - revoked
+                - expired
+                - updated
+                - created
+                - archived
+                - deleted
             userId:
               type: string
               description: The identifier of the user the event belongs to.
