@@ -1244,6 +1244,9 @@ components:
               type: string
               description: The entity associated with the event that has occurred
               example: consent
+              enum:
+                - consent
+                - connection
             eventType:
               type: string
               description: The type of event that has occurred
