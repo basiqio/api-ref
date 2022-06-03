@@ -60,18 +60,6 @@ paths:
                         detail: Amount value is not valid.
                         source:
                           parameter: amount
-                User not found:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                      - requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
-                        type: error
-                        title: Resource not found.
-                        code: resource-not-found
-                        detail: User ID cannot be found.
-                        source:
-                          parameter: payerUserId
                 Multiple invalid:
                   value:
                     type: list
@@ -91,6 +79,15 @@ paths:
                         detail: Method value is not valid.
                         source:
                           parameter: method
+                Invalid content:
+                  value:
+                    type: list
+                    correlationId: f4e79e17-6431-42d3-85b5-0dfa5a5d6900
+                    data:
+                    - type: error
+                      code: invalid-content
+                      title: Invalid request content
+                      detail: Posted payrequest is not in valid format.                          
     get:
       tags:
         - Payments
