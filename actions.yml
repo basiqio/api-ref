@@ -59,7 +59,7 @@ paths:
                         code: parameter-not-valid
                         detail: Amount value is not valid.
                         source:
-                          parameter: '/payrequests[0]/amount'
+                          pointer: '/payrequests[0]/amount'
                 Multiple invalid:
                   value:
                     type: list
@@ -71,14 +71,14 @@ paths:
                         code: parameter-not-valid
                         detail: Amount value is not valid.
                         source:
-                          parameter: '/payrequests[0]/amount'
+                          pointer: '/payrequests[0]/amount'
                       - id: '12824ad0-73f1-0138-3700-0a58a9feac09'
                         type: error
                         title: Parameter not valid.
                         code: parameter-not-valid
                         detail: Amount value is not valid.
                         source:
-                          parameter: '/payrequests[1]/amount'
+                          pointer: '/payrequests[1]/amount'
                 Invalid content:
                   value:
                     type: list
