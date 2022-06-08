@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   description: All endpoints related to Basiq's actions offering
-  version: "0.0.0"
+  version: "1.0.1"
   title: "COMING SOON: Actions"
 servers:
   - url: https://au-api.basiq.io/
@@ -53,32 +53,32 @@ paths:
                     type: list
                     correlationId: ac5ah5i
                     data:
-                      - requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
+                      - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
                         type: error
                         title: Parameter not valid.
                         code: parameter-not-valid
                         detail: Amount value is not valid.
                         source:
-                          parameter: amount
+                          parameter: '/payrequests[0]/amount'
                 Multiple invalid:
                   value:
                     type: list
                     correlationId: ac5ah5i
                     data:
-                      - requestId: 01824ad0-73f1-0138-3700-0a58a9feac09
+                      - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
                         type: error
                         title: Parameter not valid.
                         code: parameter-not-valid
                         detail: Amount value is not valid.
                         source:
-                          parameter: amount
-                      - requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
+                          parameter: '/payrequests[0]/amount'
+                      - id: '12824ad0-73f1-0138-3700-0a58a9feac09'
                         type: error
                         title: Parameter not valid.
                         code: parameter-not-valid
-                        detail: Method value is not valid.
+                        detail: Amount value is not valid.
                         source:
-                          parameter: method
+                          parameter: '/payrequests[1]/amount'
                 Invalid content:
                   value:
                     type: list
