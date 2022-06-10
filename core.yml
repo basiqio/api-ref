@@ -718,9 +718,9 @@ paths:
     get:
       tags:
       - User consent
-      summary: Retrieve current consent
-      description: Retrieves the specified users current, active consent
-      operationId: getConsent
+      summary: Retrieve consents
+      description: Retrieves a list of the user consents
+      operationId: getConsents
       parameters:
       - name: userId
         in: path
@@ -730,7 +730,7 @@ paths:
           type: string
       responses:
         200:
-          description: Returns an active user consent if one exists.
+          description: Returns a list of user consents if they exist.
           content:
             application/json:
               schema:
