@@ -2125,7 +2125,7 @@ components:
                       },
                     }
                   ]
-      description: List containing the current active user consent.
+      description: List containing existing user consents.
     UserGetResponse:
       title: UserGetResponse
       required:
