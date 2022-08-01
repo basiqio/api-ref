@@ -2044,7 +2044,7 @@ components:
           description: User consents data.
           example: [
                     {
-                      type: 'consentPolicy',
+                      type: 'consent',
                       duration: 31536000,
                       status: 'active',
                       purpose: {
