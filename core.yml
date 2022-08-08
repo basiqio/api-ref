@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: TEST
+  title: Core
   description: All included utility endpoints for Basiq partners
   version: 3.0.0
 servers:
@@ -718,9 +718,9 @@ paths:
     get:
       tags:
       - User consent
-      summary: Retrieve current consent
-      description: Retrieves the specified users current, active consent
-      operationId: getConsent
+      summary: Retrieve consents
+      description: Retrieves a list of the user consents
+      operationId: getConsents
       parameters:
       - name: userId
         in: path
@@ -730,7 +730,7 @@ paths:
           type: string
       responses:
         200:
-          description: Returns an active user consent if one exists.
+          description: Returns a list of user consents if they exist.
           content:
             application/json:
               schema:
@@ -835,7 +835,172 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
- 
+  /events:
+    get:
+      tags:
+      - Events
+      summary: List all events
+      description: Returns a list of all events that have taken place.
+      operationId: getEvents
+      parameters:
+      - name: filter
+        in: query
+        description: userId for the specific user you wish to retrieve events for. e.g user.id.eq(userId)
+        schema:
+          type: string
+          example: user.id.eq(userId)
+      responses:
+        200:
+          description: Returns details of events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsGetResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/accounts:
+    get:
+      tags:
+      - Accounts
+      summary: List all accounts 
+      description: List all accounts belonging to a user
+      operationId: getAccounts
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a account with details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+  /users/{userId}/accounts/{accountId}:
+    get:
+      tags:
+      - Accounts
+      summary: Retrieve an account
+      description: Retrieve a specific account belonging to a user
+      operationId: getAccount
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        description: Account identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a account with details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
 components:
   schemas:
     AccountClass:
@@ -1157,6 +1322,75 @@ components:
           $ref: '#/components/schemas/ConnectionInstitution'
         links:
           $ref: '#/components/schemas/GetConnectionsLinks'
+    EventsData:
+          required:
+          - createdDate
+          - id
+          - links
+          - type
+          - entity
+          - userId
+          - dataRef
+          - data
+          - eventType
+          type: object
+          properties:
+            type:
+              type: string
+              description: Type, always "event".
+              example: event
+            id:
+              type: string
+              description: Event identification.
+              example: "61723"
+            createdDate:
+              type: string
+              description: Date the event was created.
+              example: "2019-07-29T07:34:09Z"
+            entity:
+              type: string
+              description: The entity associated with the event that has occurred
+              example: consent
+              enum:
+                - consent
+                - connection
+            eventType:
+              type: string
+              description: The type of event that has occurred
+              example: revoked
+              enum: 
+                - revoked
+                - expired
+                - updated
+                - created
+                - archived
+                - deleted
+            userId:
+              type: string
+              description: The identifier of the user the event belongs to.
+              example: "266f5849-6ef6-4aae-accf-386470d0598e"
+            dataRef:
+              type: string
+              description: URL to the data source the event occurred.
+              example: "https://au-api.basiq.io/users/266f5849-6ef6-4aae-accf-386470d0598e"
+            data:
+              type: string
+              description: The data associated with the event that has been created.
+              example: [
+                {
+                "email": "max@hooli.com",
+                "id": "266f5849-6ef6-4aae-accf-386470d0598e",
+                "links": {
+                    "self": "https://au-api.basiq.io/users/266f5849-6ef6-4aae-accf-386470d0598e"
+                },
+                "mobile": "+614xxxxxxxx",
+                "type": "user"
+            }]
+            links:
+              example: [
+                {
+                "self": "https://au-api.basiq.io/events/545ae104289e71bd3da34a063aaf49a5fa17ab6b8e0cab4bc56e019b7cc409e0"
+            }]
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
@@ -1171,6 +1405,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConnectionsData'
+        links:
+          $ref: '#/components/schemas/ResourceLink'
+      description: Object containing details for connections.
+    EventsGetResponseResource:
+      title: EventsGetResponseResource
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventsData'
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: Object containing details for connections.
@@ -1900,8 +2151,8 @@ components:
           description: User consents data.
           example: [
                     {
-                      type: 'consentPolicy',
-                      duration: 31536000,
+                      type: 'consent',
+                      expiryDate: "2023-03-30T12:48:50Z",
                       status: 'active',
                       purpose: {
                         primary: {
@@ -1981,7 +2232,7 @@ components:
                       },
                     }
                   ]
-      description: List containing the current active user consent.
+      description: List containing existing user consents.
     UserGetResponse:
       title: UserGetResponse
       required:
@@ -2049,6 +2300,14 @@ components:
           type: string
           description: The end-users mobile number.
           example: +61410888999
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: "Gavin"
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: "Belson"
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: User object with details if the creation succeeded.
@@ -2063,6 +2322,14 @@ components:
           type: string
           description: The end-users mobile number, supplied in international format. +[country-code][mobileno]. Mandatory if email is not supplied.
           example: "+61410888999"
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: "Gavin"
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: "Belson"
     updateUser:
       type: object
       properties:
@@ -2109,7 +2376,7 @@ components:
 security:
     - api_key: []  
 x-readme:
-  explorer-enabled: true
+  explorer-enabled: false
   proxy-enabled: false
   samples-enabled: true
   samples-languages: 
