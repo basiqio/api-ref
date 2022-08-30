@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: All endpoints related to Basiq's actions offering
   version: "1.0.1"
-  title: "COMING SOON: Actions"
+  title: "COMING SOON: Actions."
 servers:
   - url: https://au-api.basiq.io/
 paths:
