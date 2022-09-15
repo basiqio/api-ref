@@ -1,5 +1,6 @@
 openapi: 3.0.0
 info:
+  title: "Actions"
   description: All endpoints related to Basiq's actions offering
   version: '2.0'
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
