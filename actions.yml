@@ -629,6 +629,82 @@ paths:
                       title: Invalid request content.
                       detail: Posted requests data is not in valid format.
                       source: null                      
+  '/payments/payouts/':
+    get:
+      tags:
+        - Payouts
+      summary: List payouts
+      operationId: listPayouts
+      parameters:
+        - name: limit
+          in: query
+          description: 'Maximum number of payouts included in the response. Max value = 500 and is the default value if this field is not provided'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: '10'
+        - name: filter
+          in: query
+          description: 'Filter field that allows filtering by payer.user.id, status, date, amount'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payouts'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 2
+                    size: 2
+                    data:
+                      - type: 'payout'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payeeBankBranchCode: '730002'
+                          payeeAccountNumber: '123456789'
+                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Dividends'
+                        amount: 173.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payout'
+                        id: 'c1024ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: 'a1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payeeBankBranchCode: '730002'
+                          payeeAccountNumber: '123456789'
+                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Dividends'
+                        amount: 200.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payouts/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                    links:
+                      self: "https://au-api.basiq.io/payments/payouts"
+                      next: "https://au-api.basiq.io/payments/payouts?next=049fde"
   '/payments/payouts/{id}':
     get:
       tags:
@@ -790,83 +866,7 @@ paths:
                       self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         '404':
-          description: Payment request not found
-  '/payments/payouts/':
-    get:
-      tags:
-        - Payouts
-      summary: List payouts
-      operationId: listPayouts
-      parameters:
-        - name: limit
-          in: query
-          description: 'Maximum number of payouts included in the response. Max value = 500 and is the default value if this field is not provided'
-          style: deepObject
-          explode: false
-          schema:
-            type: integer
-          example: '10'
-        - name: filter
-          in: query
-          description: 'Filter field that allows filtering by payer.user.id, status, date, amount'
-          style: deepObject
-          explode: false
-          schema:
-            type: string
-          example: ''
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/payouts'
-              examples:
-                response:
-                  value:
-                    type: 'list'
-                    count: 2
-                    size: 2
-                    data:
-                      - type: 'payout'
-                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        created: '2022-03-21T20:28:22.378Z'
-                        updated: '2022-03-21T20:28:22.378Z'
-                        method: batch
-                        status: 'in-progress'
-                        payer:
-                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                          payeeBankBranchCode: '730002'
-                          payeeAccountNumber: '123456789'
-                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
-                        description: 'Dividends'
-                        amount: 173.45
-                        currency: AUD
-                        links:
-                          self: '/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                          job: '/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      - type: 'payout'
-                        id: 'c1024ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: 'a1824ad0-73f1-0138-3700-0a58a9feac09'
-                        created: '2022-03-21T20:28:22.378Z'
-                        updated: '2022-03-21T20:28:22.378Z'
-                        method: batch
-                        status: 'in-progress'
-                        payer:
-                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                          payeeBankBranchCode: '730002'
-                          payeeAccountNumber: '123456789'
-                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
-                        description: 'Dividends'
-                        amount: 200.45
-                        currency: AUD
-                        links:
-                          self: '/payments/payouts/c1024ad0-73f1-0138-3700-0a58a9feac09'
-                          job: '/jobs/c1024ad0-73f1-0138-3700-0a58a9feac09'
-                    links:
-                      self: "https://au-api.basiq.io/payments/payouts"
-                      next: "https://au-api.basiq.io/payments/payouts?next=049fde"
+          description: Payment request not found  
 #  '/users/{id}/payments/payouts':
 #    get:
 #      tags:
