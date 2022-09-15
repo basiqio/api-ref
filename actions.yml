@@ -5,10 +5,6 @@ info:
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
 servers:
   - url: https://au-api.basiq.io/
-servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/adam-atawneh/basiq-payments/2.0
 tags:
   - name: Payrequests
     description: APIs for collecting funds
