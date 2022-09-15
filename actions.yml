@@ -22,7 +22,7 @@ paths:
       tags:
         - Payrequests
       summary: Submit payment requests
-      operationId: submitPayRequests
+      operationId: submitPayrequests
       requestBody:
         $ref: '#/components/requestBodies/payrequests'
       responses:
@@ -156,7 +156,7 @@ paths:
       tags:
         - Payrequests
       summary: List payment requests
-      operationId: listPayRequests
+      operationId: listPayrequests
       parameters:
         - name: limit
           in: query
@@ -216,6 +216,7 @@ paths:
                         method: batch
                         status: 'in-progress'
                         payer:
+                          payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
                           payerBankBranchCode: '730002'
                           payerAccountNumber: '123456789'
                           payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
@@ -233,7 +234,7 @@ paths:
       tags:
         - Payrequests
       summary: Get a payment request by its basiq Id
-      operationId: getPayRequest
+      operationId: getPayrequest
       parameters:
         - name: id
           in: path
@@ -288,7 +289,7 @@ paths:
                       detail: 'The user name must exist and have a valid first name with more than 2 letters and last name with more than 2 letters. Please update the user name details.'
                     payer:
                       payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
                       payerBankBranchCode: '730002'
                       payerAccountNumber: '123456789'
                     description: 'Investment'
@@ -312,7 +313,7 @@ paths:
                       detail: 'Please specify payer account details.'
                     payer:
                       payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
                       payerBankBranchCode: '730002'
                       payerAccountNumber: '123456789'
                     description: 'Investment'
@@ -336,7 +337,7 @@ paths:
                       detail: 'Unable to reach downstream provider.'
                     payer:
                       payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
                       payerBankBranchCode: '730002'
                       payerAccountNumber: '123456789'
                     description: 'Investment'
@@ -360,7 +361,7 @@ paths:
                       detail: 'The transaction amount exceeds the allowed limit. Please contact support.'
                     payer:
                       payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
                       payerBankBranchCode: '730002'
                       payerAccountNumber: '123456789'
                     description: 'Investment'
@@ -384,7 +385,7 @@ paths:
                       detail: 'The transaction amount exceeds the daily processing allowed limit. Please contact support.'
                     payer:
                       payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
                       payerBankBranchCode: '730002'
                       payerAccountNumber: '123456789'
                     description: 'Investment'
@@ -400,7 +401,7 @@ paths:
 #      tags:
 #        - Payrequests
 #      summary: List user payrequests
-#      operationId: listUserPayRequests
+#      operationId: listUserPayrequests
 #      parameters:
 #        - name: id
 #          in: path
@@ -664,7 +665,7 @@ paths:
                     status: 'in-progress'
                     payee:
                       payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
-#                      payeeAccountId: '6466df03-b80c-489a-afec-ea8c5f0af875'
+                      payeeAccountId: '6466df03-b80c-489a-afec-ea8c5f0af875'
                       payeeBankBranchCode: '730002'
                       payeeAccountNumber: '123456789'
                     description: 'Dividends'
@@ -790,6 +791,82 @@ paths:
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         '404':
           description: Payment request not found
+  '/payments/payouts/':
+    get:
+      tags:
+        - Payouts
+      summary: List payouts
+      operationId: listPayouts
+      parameters:
+        - name: limit
+          in: query
+          description: 'Maximum number of payouts included in the response. Max value = 500 and is the default value if this field is not provided'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: '10'
+        - name: filter
+          in: query
+          description: 'Filter field that allows filtering by payer.user.id, status, date, amount'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payouts'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 2
+                    size: 2
+                    data:
+                      - type: 'payout'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payeeBankBranchCode: '730002'
+                          payeeAccountNumber: '123456789'
+                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Dividends'
+                        amount: 173.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payout'
+                        id: 'c1024ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: 'a1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payeeBankBranchCode: '730002'
+                          payeeAccountNumber: '123456789'
+                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Dividends'
+                        amount: 200.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payouts/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                    links:
+                      self: "https://au-api.basiq.io/payments/payouts"
+                      next: "https://au-api.basiq.io/payments/payouts?next=049fde"
 #  '/users/{id}/payments/payouts':
 #    get:
 #      tags:
