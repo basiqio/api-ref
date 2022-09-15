@@ -21,7 +21,7 @@ paths:
     post:
       tags:
         - Payrequests
-      summary: Submit payment requests
+      summary: Submit payrequests
       operationId: submitPayrequests
       requestBody:
         $ref: '#/components/requestBodies/payrequests'
@@ -155,7 +155,7 @@ paths:
     get:
       tags:
         - Payrequests
-      summary: List payment requests
+      summary: List payrequests
       operationId: listPayrequests
       parameters:
         - name: limit
@@ -233,7 +233,7 @@ paths:
     get:
       tags:
         - Payrequests
-      summary: Get a payment request by its basiq Id
+      summary: Get a payrequest by its basiq Id
       operationId: getPayrequest
       parameters:
         - name: id
@@ -941,7 +941,7 @@ paths:
     get:
       tags:
         - Jobs
-      summary: Get a job by its id (example of response of a payrequests job)
+      summary: Get a job by its id
       operationId: getJob
       parameters:
         - name: id
