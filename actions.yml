@@ -1410,9 +1410,9 @@ components:
                       description: 'Amount of the payment.'
                       type: number
                       example: '173.45'
-                    collectFundsToFloat:
-                      description: 'When passed this value overrides the default setting'
-                      type: boolean
+#                    collectFundsToFloat:
+#                      description: 'When passed this value overrides the default setting'
+#                      type: boolean
     payouts:
       content:
         application/json:
