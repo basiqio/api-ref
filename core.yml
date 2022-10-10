@@ -2045,7 +2045,10 @@ components:
           example: [
                     {
                       type: 'consent',
-                      expiryDate: "2023-03-30T12:48:50Z",
+                      id: "141233d6-f0df-48c3-8799-8bcfa5c054d7",
+                      created: "2022-10-10T22:10:15Z",
+                      updated: "2022-10-10T22:10:15Z",
+                      expiryDate: "2023-10-10T22:10:15Z",
                       status: 'active',
                       purpose: {
                         primary: {
