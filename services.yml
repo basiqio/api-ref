@@ -1548,6 +1548,7 @@ components:
       - amount
       - date
       - otherCreditLabel
+      - examples
       type: object
       properties:
         amount:
@@ -1563,7 +1564,7 @@ components:
           description: Description of the other credit series e.g. 'former regular
             income'
           example: regular income small amount
-        otherCreditLabel:
+        examples:
           type: string
           description: Credits with large time gaps 
           example: There has recently been a gap in the income series  
