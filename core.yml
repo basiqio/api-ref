@@ -1822,7 +1822,7 @@ components:
         self:
           type: string
           description: URL of the resource
-          example: https://au-api.basiq.io/jobs/61723
+          example: https://au-api.basiq.io/jobs/e9132638
         source:
           type: string
           description: Resource that initiated creation of this Job. For example,
