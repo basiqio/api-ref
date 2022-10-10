@@ -1563,6 +1563,10 @@ components:
           description: Description of the other credit series e.g. 'former regular
             income'
           example: regular income small amount
+        otherCreditLabel:
+          type: string
+          description: Credits with large time gaps 
+          example: There has recently been a gap in the income series  
     CurrentRegularSource:
       required:
       - amount
