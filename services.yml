@@ -801,17 +801,6 @@ components:
           description: Account type
           example: savings
     AccountType:
-      enum:
-      - transaction
-      - savings
-      - credit-card
-      - mortgage
-      - loan
-      - investment
-      - term-deposit
-      - insurance
-      - foreign
-      - unknown
       required:
       - product
       - type
@@ -900,6 +889,18 @@ components:
           nullable: true
           example: "356.50"
         class:
+          description: Describes the class(type) of accounts.
+          enum:
+          - transaction
+          - savings
+          - credit-card
+          - mortgage
+          - loan
+          - investment
+          - term-deposit
+          - insurance
+          - foreign
+          - unknown
           $ref: '#/components/schemas/AccountClass'
         connection:
           type: string
