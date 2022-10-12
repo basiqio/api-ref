@@ -2878,6 +2878,7 @@ components:
     TransactionsMerchant:
       required:
       - businessName
+      - ABN
       - website
       type: object
       properties:
@@ -2885,6 +2886,10 @@ components:
           type: string
           description: Merchant name
           example: Garfish Manly
+        ABN:
+          type: string
+          description: ABN
+          example: 90065628864
         phoneNumber:
           $ref: '#/components/schemas/TransactionsPhoneNumber'
         website:
