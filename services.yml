@@ -889,6 +889,7 @@ components:
           nullable: true
           example: "356.50"
         class:
+          type: string
           description: Describes the class(type) of accounts.
           enum:
           - transaction
