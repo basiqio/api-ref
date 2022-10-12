@@ -889,20 +889,12 @@ components:
           nullable: true
           example: "356.50"
         class:
-          type: string
-          description: Describes the class(type) of accounts.
-          enum:
-          - transaction
-          - savings
-          - credit-card
-          - mortgage
-          - loan
-          - investment
-          - term-deposit
-          - insurance
-          - foreign
-          - unknown
-          $ref: '#/components/schemas/AccountClass'
+          type: array
+          description: |-
+            Describes the class(type) of accounts.
+            transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
+          items:
+            $ref: '#/components/schemas/AccountClass'
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
