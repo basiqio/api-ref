@@ -835,6 +835,242 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+    /connectors:
+    get:
+      tags:
+      - Connectors
+      summary: Retrieves connectors list.
+      description: 'NOTE: This end point requires authentication.'
+      operationId: getConnectors
+      parameters:
+      - name: filter
+        in: query
+        description: |-
+          Filter parameter can be used to filter connector list by connector property. This parameter should contain comma separated list of filter statements.</br>
+          Filter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>
+          The Following list of regular expressions descirbes acceptable filter statements: </br>
+          • `(connector).(id).(eq)\(('[A-Z][A-Z][0-9]{5}')\)` </br>
+          • `(connector).(method).(eq)\(('web'||'open-banking'|'pdf'|'csv')\)` </br>
+          • `(connector).(status).(eq|ne)\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\)` </br>
+          • `(connector).(status).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(stage).(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
+          • `(connector).(stage).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(scopes).(in|eq|ne)\(([\w\W]+)\)` </br>
+          • `(connector).(institution).(country).(eq|ne)\(('Australia'|'New Zealand')\)` </br>
+          • `(connector).(institution).(country).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(institution).(tier).(eq|ne)\(('1'|'2'|'3'|'4')\)` </br>
+          • `(connector).(institution).(tier).(in)\(([\W\d]+)\)` </br>
+          • `(connector).(institution).(type).(eq|ne)\(('Bank'|'Bank \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)` </br>
+          • `(connector).(authorization).(type).(eq|ne)\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\)` </br>
+          • `(connector).(authorization).(type).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(connectorCategory).(eq|ne)\(('chrome'|'node')\)` </br>
+          Multiple filter definitions should be separated with comma (`,`). </br>
+          For example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')` </br>
+        schema:
+          type: string
+          x-go-name: Filter
+        x-go-name: Filter
+      responses:
+        200:
+          description: Returns data of single connector.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorsList'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Returns error that indicates unauthorized access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /connectors/{connectorId}/{method}:
+    get:
+      tags:
+      - Connectors
+      summary: Retrieves data for single connector.
+      description: 'NOTE: This end point requires authentication.'
+      operationId: getConnector
+      parameters:
+      - name: connectorId
+        in: path
+        description: Connector ID
+        required: true
+        schema:
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+      - name: method
+        in: path
+        description: Connector method
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns data of single connector.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Returns error that indicates unauthorized access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        404:
+          description: Returns error indicating that server cannot find requested
+            resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /public/connectors:
+    get:
+      tags:
+      - Connectors
+      summary: Retrieves publically availiable (no authentication required) connectors
+        list.
+      operationId: getPublicConnectors
+      parameters:
+      - name: filter
+        in: query
+        description: |-
+          Filter parameter can be used to filter connector list by connector property. This parameter should contain comma separated list of filter statements.</br>
+          Filter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>
+          The Following list of regular expressions descirbes acceptable filter statements: </br>
+          • `(connector).(id).(eq)\(('[A-Z][A-Z][0-9]{5}')\)` </br>
+          • `(connector).(method).(eq)\(('web'||'open-banking'|'pdf'|'csv')\)` </br>
+          • `(connector).(status).(eq|ne)\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\)` </br>
+          • `(connector).(status).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(stage).(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
+          • `(connector).(stage).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(scopes).(in|eq|ne)\(([\w\W]+)\)` </br>
+          • `(connector).(institution).(country).(eq|ne)\(('Australia'|'New Zealand')\)` </br>
+          • `(connector).(institution).(country).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(institution).(tier).(eq|ne)\(('1'|'2'|'3'|'4')\)` </br>
+          • `(connector).(institution).(tier).(in)\(([\W\d]+)\)` </br>
+          • `(connector).(institution).(type).(eq|ne)\(('Bank'|'Bank \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)` </br>
+          • `(connector).(authorization).(type).(eq|ne)\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\)` </br>
+          • `(connector).(authorization).(type).(in)\(([\w\W]+)\)` </br>
+          • `(connector).(connectorCategory).(eq|ne)\(('chrome'|'node')\)` </br>
+          Multiple filter definitions should be separated with comma (`,`). </br>
+          For example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')` </br>
+        schema:
+          type: string
+          x-go-name: Filter
+        x-go-name: Filter
+      responses:
+        200:
+          description: Returns data of single connectors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorsList'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /public/connectors/{connectorId}/{method}:
+    get:
+      tags:
+      - Connectors
+      summary: Retrieves data for single public connector.
+      description: 'NOTE: This end point requires authentication.'
+      operationId: getPublicConnector
+      parameters:
+      - name: connectorId
+        in: path
+        description: Connector ID
+        required: true
+        schema:
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+      - name: method
+        in: path
+        description: Connector method
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns data of single connector.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: Returns error that indicates unauthorized access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        404:
+          description: Returns error indicating that server cannot find requested
+            resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
   /events:
     get:
       tags:
@@ -1284,6 +1520,282 @@ components:
                 {
                 "self": "https://au-api.basiq.io/events/545ae104289e71bd3da34a063aaf49a5fa17ab6b8e0cab4bc56e019b7cc409e0"
             }]
+    Connector:
+      required:
+      - authorization
+      - id
+      - institution
+      - method
+      - scopes
+      - stage
+      - stats
+      - status
+      - type
+      type: object
+      properties:
+        authorization:
+          $ref: '#/components/schemas/ConnectorAuthorization'
+        id:
+          maxLength: 7
+          minLength: 7
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+          description: Institution ID
+          example: AU00000
+          x-go-name: ConnectorID
+        institution:
+          $ref: '#/components/schemas/ConnectorInstitutionResource'
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
+        method:
+          type: string
+          description: Current Connector method
+          example: web
+          x-go-name: Method
+        scopes:
+          type: array
+          description: Connector scopes array
+          items:
+            type: string
+          x-go-name: Scopes
+        stage:
+          type: string
+          description: Current Connector stage
+          example: beta
+          x-go-name: Stage
+        stats:
+          $ref: '#/components/schemas/InstitutionPerformanceStats'
+        status:
+          $ref: '#/components/schemas/FeatureCondition'
+        type:
+          type: string
+          description: |-
+            Resource type identifier. It is always "connector" for this model.
+            connector ConnectorEntityType
+          example: connector
+          enum:
+          - connector
+          x-go-enum-desc: connector ConnectorEntityType
+          x-go-name: EntityType
+      description: Connector contains connector data.
+    ConnectorAuthorization:
+      required:
+      - type
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ConnectorAuthorizationMeta'
+        type:
+          type: string
+          description: |-
+            Authorization type identifier
+            user AuthorizationUser  AuthorizationUser "User" authorization type identifier
+            token AuthorizationToken AuthorizationToken "Token" authorization type identifier
+            other AuthorizationOther  AuthorizationOther "Other" authorization type identifier
+            user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa" authorization type identifier
+            user-mfa-intermittent AuthorizationUserMfaIntermittent  AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization type identifier
+          example: user
+          enum:
+          - user
+          - token
+          - other
+          - user-mfa
+          - user-mfa-intermittent
+          x-go-enum-desc: |-
+            user AuthorizationUser  AuthorizationUser "User" authorization type identifier
+            token AuthorizationToken AuthorizationToken "Token" authorization type identifier
+            other AuthorizationOther  AuthorizationOther "Other" authorization type identifier
+            user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa" authorization type identifier
+            user-mfa-intermittent AuthorizationUserMfaIntermittent  AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization type identifier
+          x-go-name: Type
+    FeatureCondition:
+      type: string
+      description: FeatureCondition type that describes an feature status for institution
+    InstitutionPerformanceStats:
+      type: object
+      properties:
+        averageDurationMs:
+          type: object
+          properties:
+            retrieveAccounts:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                accounts</b> step for institution
+              format: int64
+              x-go-name: RetrieveAccounts
+            retrieveMeta:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                metadata</b> step for institution
+              format: int64
+              x-go-name: RetrieveMeta
+            retrieveTransactions:
+              type: integer
+              description: Connector average duration in milliseconds of <b>fetch
+                transactions</b> step for institution
+              format: int64
+              x-go-name: RetrieveTransactions
+            total:
+              type: integer
+              description: Total connector average duration in milliseconds
+              format: int64
+              x-go-name: Total
+            verifyCredentials:
+              type: integer
+              description: Connector average duration in milliseconds of <b>verifiy
+                credentials</b> step for institution
+              format: int64
+              x-go-name: VerifyCredentials
+          description: |-
+            AverageDurationMs average connector duration in milliseconds per segments.
+            When durations are not known for institution this field will be `null`.
+          x-go-name: AverageDurationMs
+      description: InstitutionPerformanceStats response type for institution performance
+        stats
+    ConnectorAuthorizationMeta:
+      type: object
+      properties:
+        forgotten_password_url:
+          type: string
+          description: URL to institution forgotten password page
+          example: https://example.com/forgotten-password
+          x-go-name: ForgottenPasswordUrl
+        login_id_caption:
+          type: string
+          description: Login ID field caption that should be shown on UI
+          example: User name
+          x-go-name: LoginIdCaption
+        password_caption:
+          type: string
+          description: Password field caption that should be shown on UI
+          example: Password
+          x-go-name: PasswordCaption
+        secondary_login_id_caption:
+          type: string
+          description: Secondary loginID caption that should be shown on UI
+          example: Secondary login id
+          x-go-name: SecondaryLoginIdCaption
+        security_code_caption:
+          type: string
+          description: Security code caption that should be shown on UI
+          example: Security code
+          x-go-name: SecurityCodeCaption
+    ConnectorInstitutionResource:
+      required:
+      - country
+      - logo
+      - name
+      - shortName
+      - tier
+      - type
+      type: object
+      properties:
+        country:
+          type: string
+          description: Institution country name
+          example: Australia
+          x-go-name: Country
+        logo:
+          $ref: '#/components/schemas/InstitutionLogoResource'
+        name:
+          type: string
+          description: Institution name
+          example: Hooli Bank
+          x-go-name: Name
+        shortName:
+          type: string
+          description: Institution short name
+          example: Hooli
+          x-go-name: ShortName
+        tier:
+          type: string
+          description: |-
+            Institution tier identifier
+            1 TierOne  TierOne tier identifier for tier1 institution
+            2 TierTwo  TierTwo tier identifier for tier2 institution
+            3 TierThree  TierThree tier identifier for tier3 institution
+            4 TierFour  TierFour tier identifier for tier4 institution
+          example: "1"
+          enum:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          x-go-enum-desc: |-
+            1 TierOne  TierOne tier identifier for tier1 institution
+            2 TierTwo  TierTwo tier identifier for tier2 institution
+            3 TierThree  TierThree tier identifier for tier3 institution
+            4 TierFour  TierFour tier identifier for tier4 institution
+          x-go-name: Tier
+        type:
+          type: string
+          description: |-
+            Institution type identifier
+            Bank BankInstitutionType  BankInstitutionType institution type identifier for Banks
+            Bank (Foreign) BankForeignInstitutionType  BankForeignInstitutionType institution type identifier for Foreign banks
+            Test Bank TestBankInstitutionType  TestBankInstitutionType institution type identifier for Test banks
+            Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType institution type identifier for Credit union institutions
+            Financial Services FinancialServicesInstitutionType  FinancialServicesInstitutionType institution type identifier for Financial service institutions
+            Superannuation SuperannuationInstitutionType  SuperannuationInstitutionType institution type identifier for Superannuation institutions
+            Building Society BuildingSociety  BuildingSociety institution type identifier for Building Society institutions
+            Government Government  Government institution type identifier for Government institutions
+          example: Bank
+          enum:
+          - Bank
+          - Bank (Foreign)
+          - Test Bank
+          - Credit Union
+          - Financial Services
+          - Superannuation
+          - Building Society
+          - Government
+          x-go-enum-desc: |-
+            Bank BankInstitutionType  BankInstitutionType institution type identifier for Banks
+            Bank (Foreign) BankForeignInstitutionType  BankForeignInstitutionType institution type identifier for Foreign banks
+            Test Bank TestBankInstitutionType  TestBankInstitutionType institution type identifier for Test banks
+            Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType institution type identifier for Credit union institutions
+            Financial Services FinancialServicesInstitutionType  FinancialServicesInstitutionType institution type identifier for Financial service institutions
+            Superannuation SuperannuationInstitutionType  SuperannuationInstitutionType institution type identifier for Superannuation institutions
+            Building Society BuildingSociety  BuildingSociety institution type identifier for Building Society institutions
+            Government Government  Government institution type identifier for Government institutions
+          x-go-name: Type
+      description: ConnectorInstitutionResource connector Institution  resource type
+    ConnectorsList:
+      required:
+      - data
+      - links
+      - totalCount
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          description: Data contains list of connectors
+          items:
+            $ref: '#/components/schemas/Connector'
+          x-go-name: Connectors
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
+        totalCount:
+          type: integer
+          description: TotalCount contains total count of connectors
+          format: int64
+          example: 1
+          x-go-name: TotalCount
+        type:
+          $ref: '#/components/schemas/ResponseFormat'
+      description: ConnectorsList contains list of connectors data.
+    ResourceLinks:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL to resource itself
+          x-go-name: Self
+      description: ResourceLinks contains resource links
+      x-go-package: github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models  
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
@@ -1384,6 +1896,27 @@ components:
                 example: Access to this resource is forbidden.
               source:
                 $ref: '#/components/schemas/Source'
+    InstitutionLogoResource:
+      required:
+      - links
+      - type
+      type: object
+      properties:
+        colors:
+          $ref: '#/components/schemas/Colors'
+        links:
+          $ref: '#/components/schemas/LogoResourceLinks'
+        type:
+          type: string
+          description: |-
+            Resource type identifier.
+            image ImageResourceType
+          example: image
+          enum:
+          - image
+          x-go-enum-desc: image ImageResourceType
+          x-go-name: Type
+      description: InstitutionLogoResource linstitution logo resource type
     GetConnectionLinks:
       title: GetConnectionLinks
       required:
@@ -1408,6 +1941,31 @@ components:
           description: User reference url.
           example: https://au-api.basiq.io/users/cd6fbd92
       description: Object containing links to resources.
+    LogoResourceLinks:
+      required:
+      - full
+      - square
+      type: object
+      properties:
+        full:
+          type: string
+          description: URL to full size logo
+          example: https://example.com/AU00000-full.svg
+          x-go-name: Full
+        square:
+          type: string
+          description: Square formatted logo URL
+          example: https://example.com/AU00000.svg
+          x-go-name: Square
+      description: LogoResourceLinks contains institution logo resource links
+    Colors:
+      type: object
+      properties:
+        primary:
+          type: string
+          description: Primary primary institution color
+          x-go-name: Primary
+      description: Colors contains institution colors type
     GetConnectionsLinks:
       title: GetConnectionsLinks
       required:
@@ -1715,7 +2273,7 @@ components:
         self:
           type: string
           description: URL of the resource
-          example: https://au-api.basiq.io/jobs/e9132638
+          example: https://au-api.basiq.io/jobs/61723
         source:
           type: string
           description: Resource that initiated creation of this Job. For example,
@@ -1865,6 +2423,9 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
+    ResponseFormat:
+      type: string
+      description: ResponseFormat identifies response data format
     PhysicalAddresses:
       title: PhysicalAddresses
       required:
@@ -2045,10 +2606,7 @@ components:
           example: [
                     {
                       type: 'consent',
-                      id: "141233d6-f0df-48c3-8799-8bcfa5c054d7",
-                      created: "2022-10-10T22:10:15Z",
-                      updated: "2022-10-10T22:10:15Z",
-                      expiryDate: "2023-10-10T22:10:15Z",
+                      expiryDate: "2023-03-30T12:48:50Z",
                       status: 'active',
                       purpose: {
                         primary: {
