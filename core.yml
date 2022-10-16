@@ -2413,7 +2413,7 @@ components:
             - title: verify-credentials
               status: success
               result:
-                - type: link
+                  type: link
                   url: /users/ea3a81/connections/8fce3b
             - title: retrieve-accounts
               status: in-progress
