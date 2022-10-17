@@ -2569,7 +2569,7 @@ components:
           - transfer
           - loan-interest
           - refund
-          - direct-cedit
+          - direct-credit
           - interest
           - loan-repayment
         connection:
