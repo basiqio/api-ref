@@ -136,7 +136,7 @@ paths:
       summary: 'Use this to create a new MFA challenge response to job step: mfa-challenge'
       description: |-
         Ensure that you generate an authentication token with
-        scope = CLIENT_ACCESS and basiq-version = 2.1 to create this resource
+        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
       operationId: postJobMfa
       parameters:
       - name: jobId
