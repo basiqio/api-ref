@@ -133,7 +133,7 @@ paths:
     post:
       tags:
       - Jobs
-      summary: 'Use this to create a new MFA challenge response to job step: mfa-challenge'
+      summary: 'Create MFA response'
       description: |-
         Ensure that you generate an authentication token with
         scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
