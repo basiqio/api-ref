@@ -152,6 +152,8 @@ paths:
                       title: Invalid request content.
                       detail: Posted requests data is not in valid format.
                       source: null
+      security:
+          - api_key: []
     get:
       tags:
         - Payrequests
@@ -1475,13 +1477,13 @@ components:
         name: Authorization
         in: header
         x-default: >-
-          Basic
-          NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw==
+          Bearer
+          {SERVER_ACCESS_TOKEN}
       application:
         type: oauth2
         flows:
           clientCredentials:
-            tokenUrl: https://au-api.basiq.io/token
+            tokenUrl: https://au-api.basiq.io/payments/payrequests
             scopes:
               SERVER_ACCESS: Server access scope
               CLIENT_ACCESS: Client access scope
