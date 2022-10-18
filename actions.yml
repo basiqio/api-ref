@@ -54,8 +54,6 @@ paths:
                       requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
                       links:
                         self: https://au-api.basiq.io/jobs/c29824ad0-73f1-0138-3700-0a58a9feac10
-                    security:
-                    - api_key: []
         '400':
           description: Bad Request
           content:
@@ -231,7 +229,8 @@ paths:
                     links:
                       self: "https://au-api.basiq.io/payments/payrequests"
                       next: "https://au-api.basiq.io/payments/payrequests?next=049fde"
-                    
+      security:
+          - api_key: []
   '/payments/payrequests/{id}':
     get:
       tags:
