@@ -1442,7 +1442,7 @@ components:
       properties:
         amount:
           type: string
-          description: Amount of payment
+          description: Amount of payment, always needs to be in float
           example: "-146.50"
         date:
           type: string
