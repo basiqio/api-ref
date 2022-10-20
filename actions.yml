@@ -1210,7 +1210,7 @@ components:
           description: "Description to appear on the payer's and payee's account"
           type: string
         amount:
-          description: 'Amount of the payment.'
+          description: 'Amount of the payment. This amount must always be a float value.'
           type: integer
         currency:
           description: 'Currency of the payment.'
