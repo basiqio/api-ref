@@ -970,7 +970,7 @@ paths:
     get:
       tags:
         - Connectors
-      summary: Retrieves connectors list.
+      summary: Retrieve connectors
       description: 'NOTE: This end point requires authentication.'
       operationId: getConnectors
       parameters:
@@ -1077,7 +1077,7 @@ paths:
     get:
       tags:
         - Connectors
-      summary: Retrieves data for single connector.
+      summary: Retrieve a connector
       description: 'NOTE: This end point requires authentication.'
       operationId: getConnector
       parameters:
