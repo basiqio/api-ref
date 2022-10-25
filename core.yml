@@ -1920,8 +1920,6 @@ components:
           description: URL to resource itself
           x-go-name: Self
       description: ResourceLinks contains resource links
-      x-go-package: >-
-        github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
@@ -2232,15 +2230,6 @@ components:
           description: Transactions reference url.
           example: https://au-api.basiq.io/users/a3dgf4567a89/transactions
       description: Object containing links to resources.
-    InstitutionModel:
-      required:
-        - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Institution identification.
-          example: AU00000
     InternalServerError:
       required:
         - correlationId
