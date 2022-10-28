@@ -433,11 +433,72 @@ paths:
         - application:
             - SERVER_ACCESS
   /users/{userId}/auth_link:
+    post:
+      tags:
+      - AuthLinks
+      summary: Create an auth_link
+      description: |-
+        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
+
+        Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
+      operationId: postAuthLink
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+        required: false
+      responses:
+        201:
+          description: Returns a created auth_link resource, if the operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksPostResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: AuthLinksPostData
     get:
       tags:
       - AuthLinks
-      summary: Use this to retrieve the latest/last auth_link generated for the specified
-        user..
+      summary: Retrieve an auth_link
       description: Returns the latest/last auth_link generated for the specified user.
         Returns an error otherwise.
       operationId: getAuthLink
@@ -500,75 +561,10 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
-    post:
-      tags:
-      - AuthLinks
-      summary: An Auth Link object can be generated to securely capture data from
-        a User. Using the URL allows data to be captured via the hosted Basiq Connect
-        Consent workflow for a given User.
-      description: |-
-        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
-
-        Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
-      operationId: postAuthLink
-      parameters:
-      - name: userId
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                mobile:
-                  type: string
-        required: false
-      responses:
-        201:
-          description: Returns a created auth_link resource, if the operation succeeded
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthLinksPostResponseResource'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: AuthLinksPostData
     delete:
       tags:
       - AuthLinks
-      summary: Permanently deletes an auth_link resource. Once deleted the URL associated
-        with the deleted object will no longer be valid.
+      summary: Delete an auth_link
       description: |-
         <blockquote>Note that this action cannot be undone.</blockquote>
 
