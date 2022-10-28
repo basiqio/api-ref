@@ -432,6 +432,192 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
+  /users/{userId}/auth_link:
+    get:
+      tags:
+      - AuthLinks
+      summary: Use this to retrieve the latest/last auth_link generated for the specified
+        user..
+      description: Returns the latest/last auth_link generated for the specified user.
+        Returns an error otherwise.
+      operationId: getAuthLink
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns details of a connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        410:
+          description: Returns error indicating that access to the target resource
+            is no longer available at the origin server and that this condition is
+            likely to be permanent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoneError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+    post:
+      tags:
+      - AuthLinks
+      summary: An Auth Link object can be generated to securely capture data from
+        a User. Using the URL allows data to be captured via the hosted Basiq Connect
+        Consent workflow for a given User.
+      description: |-
+        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
+
+        Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
+      operationId: postAuthLink
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+        required: false
+      responses:
+        201:
+          description: Returns a created auth_link resource, if the operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksPostResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: AuthLinksPostData
+    delete:
+      tags:
+      - AuthLinks
+      summary: Permanently deletes an auth_link resource. Once deleted the URL associated
+        with the deleted object will no longer be valid.
+      description: |-
+        <blockquote>Note that this action cannot be undone.</blockquote>
+
+        <blockquote>The auth_link is a URL that directs a User to Basiq's hosted consent workflow to link banks and securely share data. When the user selects 'I have disclosed all my accounts' the auth_link is automatically deleted.</blockquote>
+
+        Returns an empty body if the delete succeeded. Otherwise, this call returns an error in the event of a failure.
+      operationId: deleteAuthLink
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: Returns an empty body if the delete succeeded.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
   /users/{userId}/connections:
     get:
       tags:
@@ -1303,6 +1489,79 @@ components:
           type: string
           description: self link to the requested account
           example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
+    AuthLinksResponseResource:
+      required:
+      - expiresAt
+      - id
+      - mobile
+      - type
+      - userId
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          description: The date time of auth link expiry.
+          example: 2019-11-21T04:08:50Z
+        id:
+          type: string
+          description: Uniquely identifies the auth link.
+          example: 63448be4
+        links:
+          $ref: '#/components/schemas/AuthLinkLinks'
+        mobile:
+          type: string
+          description: A user's mobile phone, used as for authentication.
+          example: +61410000000
+        type:
+          type: string
+          description: Type of the response, always "auth_link".
+          example: auth_link
+        userId:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: ec4ea48d
+    GoneError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: resource-no-longer-available
+                enum:
+                - resource-no-longer-available
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+              title:
+                type: string
+                description: Title of the error
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
     BadRequestError:
       required:
         - correlationId
@@ -1354,6 +1613,47 @@ components:
                 example: ID value is not valid.
               source:
                 $ref: '#/components/schemas/Source'
+    AuthLinkLinks:
+      required:
+      - public
+      - self
+      type: object
+      properties:
+        public:
+          type: string
+          description: Public URL of auth link.
+          example: https://connect.basiq.io/63448be4
+        self:
+          type: string
+          description: URL of the resource
+          example: /users/ec4ea48d/auth_link
+    AuthLinksPostResponseResource:
+      required:
+      - expiresAt
+      - mobile
+      - type
+      - userId
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          description: The date time of auth link expiry.
+          example: 2019-11-21T04:08:50Z
+        links:
+          $ref: '#/components/schemas/AuthLinkLinks'
+        mobile:
+          type: string
+          description: A user's mobile phone, used as for authentication.
+          example: +61410000000
+        type:
+          type: string
+          description: Type of the response, always "auth_link".
+          example: auth_link
+        userId:
+          type: string
+          description: A string that uniquely identifies the user.
+          example: ec4ea48d
+   
     ConnectionGetResponseResource:
       title: ConnectionGetResponseResource
       required:
