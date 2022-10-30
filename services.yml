@@ -2890,7 +2890,7 @@ components:
       properties:
         id:
           type: string
-          description: ABN
+          description: id
           example: "ae4a051c-4791-11e8-8750-0a87c0279fe8"
         businessName:
           type: string
