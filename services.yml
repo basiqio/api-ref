@@ -2888,6 +2888,10 @@ components:
       - website
       type: object
       properties:
+        id:
+          type: string
+          description: ABN
+          example: "ae4a051c-4791-11e8-8750-0a87c0279fe8"
         businessName:
           type: string
           description: Merchant name
@@ -2896,10 +2900,6 @@ components:
           type: string
           description: ABN
           example: 90065628864
-        id:
-          type: string
-          description: ABN
-          example: ""
         phoneNumber:
           $ref: '#/components/schemas/TransactionsPhoneNumber'
         website:
