@@ -2882,6 +2882,7 @@ components:
           example: Manly
     TransactionsMerchant:
       required:
+      - id
       - businessName
       - ABN
       - website
@@ -2895,6 +2896,10 @@ components:
           type: string
           description: ABN
           example: 90065628864
+        id:
+          type: string
+          description: ABN
+          example: ""
         phoneNumber:
           $ref: '#/components/schemas/TransactionsPhoneNumber'
         website:
