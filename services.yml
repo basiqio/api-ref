@@ -2886,6 +2886,8 @@ components:
       - businessName
       - ABN
       - website
+      - logoMaster
+      - logoThumb
       type: object
       properties:
         id:
@@ -2900,6 +2902,14 @@ components:
           type: string
           description: ABN
           example: 90065628864
+        logoMaster:
+          type: string
+          description: full merchant logo
+          example: 'https://enrich-enrichmerchantslogobucket-x62p53eh5ld9.s3-ap-southeast-2.amazonaws.com/officeworks-master.png'
+        logoThumb:
+          type: string
+          description: thumbnail merchant logo
+          example: 'https://enrich-enrichmerchantslogobucket-x62p53eh5ld9.s3-ap-southeast-2.amazonaws.com/officeworks-thumb.png'
         phoneNumber:
           $ref: '#/components/schemas/TransactionsPhoneNumber'
         website:
