@@ -1335,10 +1335,10 @@ paths:
           in: query
           description: >-
             Entity can be filtered with type for events for. e.g
-            event.entity.eq(eventid)
+            event.entity.eq(entity)
           schema:
             type: string
-            example: event.entity.eq(eventid)
+            example: event.entity.eq(entity)
         - name: Type filter
           in: query
           description: >-
