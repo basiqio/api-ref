@@ -1328,25 +1328,11 @@ paths:
           description: >-
             userId for the specific user you wish to retrieve events for. e.g
             user.id.eq(userId)
-          schema:
-            type: string
-            example: user.id.eq(userId)
-        - name: filter
-          in: query
-          description: >-
             Entity can be filtered with type for events for. e.g
-            event.entity.eq(entity)
+            event.entity.eq(entity), event.type.eq(type)
           schema:
             type: string
-            example: event.entity.eq(entity)
-        - name: filter
-          in: query
-          description: >-
-            Entity can be filtered with type for events for. e.g
-            event.type.eq(type)
-          schema:
-            type: string
-            example: event.type.eq(type)
+            example: user.id.eq(userId) OR event.entity.eq(entity), event.type.eq(type)
       responses:
         '200':
           description: Returns details of events.
