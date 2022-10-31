@@ -1323,7 +1323,7 @@ paths:
       description: Returns a list of all events that have taken place.
       operationId: getEvents
       parameters:
-        - name: filter
+        - name: UserID filter
           in: query
           description: >-
             userId for the specific user you wish to retrieve events for. e.g
@@ -1331,6 +1331,22 @@ paths:
           schema:
             type: string
             example: user.id.eq(userId)
+        - name: Entity filter
+          in: query
+          description: >-
+            Entity can be filtered with type for events for. e.g
+            event.entity.eq(eventid)
+          schema:
+            type: string
+            example: event.entity.eq(eventid)
+        - name: Type filter
+          in: query
+          description: >-
+            Entity can be filtered with type for events for. e.g
+            event.type.eq(type)
+          schema:
+            type: string
+            example: event.type.eq(type)
       responses:
         '200':
           description: Returns details of events.
