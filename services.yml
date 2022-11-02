@@ -676,7 +676,6 @@ paths:
           enum:
           - account.id
           - transaction.postDate
-          - connection.id
           - transaction.status
           - institution.id
           - transaction.direction
