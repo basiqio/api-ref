@@ -3027,7 +3027,10 @@ components:
           description: User consents data.
           example:
             - type: consent
-              expiryDate: '2023-03-30T12:48:50Z'
+              id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
+              created: '2022-11-01T05:07:00Z'
+              updated: '2022-11-01T05:07:00Z'
+              expiryDate: '2023-11-01T05:07:00Z'
               status: active
               purpose:
                 primary:
