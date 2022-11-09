@@ -3251,7 +3251,7 @@ security:
   - api_key: []
 x-readme:
   explorer-enabled: true
-  proxy-enabled: false
+  proxy-enabled: true
   samples-enabled: true
   samples-languages:
     - curl
