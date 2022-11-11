@@ -1656,6 +1656,7 @@ components:
       title: ConnectionGetResponseResource
       required:
         - createdDate
+        - method
         - id
         - institution
         - links
@@ -1670,6 +1671,10 @@ components:
           type: string
           description: A string that uniquely identifies the user connection.
           example: '61723'
+        method:
+          type: string
+          description: A string that uniquely identifies the user connections either it is web or openbanking
+          example: 'web'
         createdDate:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
@@ -1784,6 +1789,7 @@ components:
       required:
         - createdDate
         - id
+        - method
         - institution
         - links
         - type
@@ -1797,6 +1803,10 @@ components:
           type: string
           description: Connection identification.
           example: '61723'
+        method:
+          type: string
+          description: method identification.
+          example: 'openbanking'
         status:
           type: string
           description: Connection status, available only for SERVER_SCOPE.
