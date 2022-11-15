@@ -1,15 +1,17 @@
 openapi: 3.0.0
 info:
-  title: "Actions"
-  description: All endpoints related to Basiq's actions offering
+  title: Payments
+  description: |
+    All endpoints related to Basiq's payments offering
   version: '3.0'
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
 servers:
+  # Added by API Auto Mocking Plugin
   - url: https://au-api.basiq.io/
 tags:
-  - name: Payrequests
+  - name: Collect (Payrequests)
     description: APIs for collecting funds
-  - name: Payouts
+  - name: Send (Payouts)
     description: APIs for sending funds
   - name: Jobs
     description: APIs for querying jobs
@@ -20,7 +22,7 @@ paths:
   /payments/payrequests:
     post:
       tags:
-        - Payrequests
+        - Collect (Payrequests)
       summary: Submit payrequests
       operationId: submitPayrequests
       requestBody:
@@ -156,7 +158,7 @@ paths:
           - api_key: []
     get:
       tags:
-        - Payrequests
+        - Collect (Payrequests)
       summary: List payrequests
       operationId: listPayrequests
       parameters:
@@ -236,7 +238,7 @@ paths:
   '/payments/payrequests/{id}':
     get:
       tags:
-        - Payrequests
+        - Collect (Payrequests)
       summary: Get a payrequest by its basiq Id
       operationId: getPayrequest
       parameters:
@@ -403,7 +405,7 @@ paths:
 #  '/users/{id}/payments/payrequests':
 #    get:
 #      tags:
-#        - Payrequests
+#        - Collect (Payrequests)
 #      summary: List user payrequests
 #      operationId: listUserPayrequests
 #      parameters:
@@ -472,7 +474,7 @@ paths:
   /payments/payouts:
     post:
       tags:
-        - Payouts
+        - 'Send (Payouts)'
       summary: Submit payouts
       operationId: submitPayouts
       requestBody:
@@ -636,7 +638,7 @@ paths:
   '/payments/payouts/':
     get:
       tags:
-        - Payouts
+        - Send (Payouts)
       summary: List payouts
       operationId: listPayouts
       parameters:
@@ -712,7 +714,7 @@ paths:
   '/payments/payouts/{id}':
     get:
       tags:
-        - Payouts
+        - Send (Payouts)
       summary: Get a payout by its basiq Id
       operationId: getPayout
       parameters:
@@ -870,11 +872,11 @@ paths:
                       self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         '404':
-          description: Payment request not found  
+          description: Payout not found    
 #  '/users/{id}/payments/payouts':
 #    get:
 #      tags:
-#        - Payouts
+#        - Send (Payouts)
 #      summary: List user payouts
 #      operationId: listUserPayouts
 #      parameters:
@@ -1394,10 +1396,10 @@ components:
                           description: 'User Id of the payer'
                           type: string
                           example: '21824ad0-73f1-0138-3700-0a58a9feac09'
-  #                            payerAccountId:
-  #                              description: 'ID of the account as stored within Basiq'
-  #                              type: string
-  #                              example: "31824ad0-73f1-0138-3700-0a58a9feac09"
+#                       payerAccountId:
+#                         description: 'ID of the account as stored within Basiq'
+#                         type: string
+#                         example: "31824ad0-73f1-0138-3700-0a58a9feac09"
                         payerBankBranchCode:
                           description: 'Bank and branch code (e.g. bsb) of the account'
                           type: string
@@ -1414,9 +1416,49 @@ components:
                       description: 'Amount of the payment.'
                       type: number
                       example: '173.45'
-#                    collectFundsToFloat:
-#                      description: 'When passed this value overrides the default setting'
-#                      type: boolean
+                    collectFundsToFloat:
+                      description: 'When passed this value overrides the default setting'
+                      type: boolean
+                      example: null
+                      default: null
+                    checkAccountBalance:
+                      description: 'When set to true then as part of validating the payrequest the account balance will be checked. If the balance < payrequest amount then it will be rejected'
+                      type: boolean
+                      example: null
+                      default: null
+          examples:
+            Single:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45
+            Collect to Float:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45
+                  collectFundsToFloat: true
+            Check Account Balance:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45
+                  checkAccountBalance: true
     payouts:
       content:
         application/json:
@@ -1471,6 +1513,40 @@ components:
                       description: 'Amount of the payment.'
                       type: number
                       example: '173.45'
+          examples:
+            Batch Payout:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: batch
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                    payeeBankBranchCode: '730002'
+                    payeeAccountNumber: '123456789'
+                  description: Dividends
+                  amount: 173.45
+            Fast Payout:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: fast
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                    payeeBankBranchCode: '730002'
+                    payeeAccountNumber: '123456789'
+                  description: Dividends
+                  amount: 173.45
+            Fast/Batch Payout:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: fast/batch
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                    payeeBankBranchCode: '730002'
+                    payeeAccountNumber: '123456789'
+                  description: Dividends
+                  amount: 173.45
   securitySchemes:
     api_key:
       type: apiKey
