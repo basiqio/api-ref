@@ -1491,8 +1491,8 @@ components:
   schemas:
     AccountClass:
       required:
-        - product
         - type
+        - product
       type: object
       properties:
         type:

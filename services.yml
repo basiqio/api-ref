@@ -787,18 +787,18 @@ components:
   schemas:
     AccountClass:
       required:
-      - product
       - type
+      - product
       type: object
       properties:
-        product:
-          type: string
-          description: Product name.
-          example: saver
         type:
           type: string
           description: Account type
           example: savings
+        product:
+          type: string
+          description: Product name.
+          example: saver
     AccountType:
       required:
       - product
