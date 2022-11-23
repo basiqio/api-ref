@@ -1381,12 +1381,118 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
+  /users/{userId}/identitites:
+    get:
+      tags:
+      - Identities
+      summary: Retrieve identities.
+      description: Returns a list with a data property that contains an array of user
+        identities. Each entry in the array is a separate object. If no data is returned,
+        the resulting array will be empty.
+      operationId: getUserIdentities
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns list of identities.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentitiesGetResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
+  /users/{userId}/identitites/{identityId}:
+    get:
+      tags:
+      - Identities
+      summary: Retrieve an identity.
+      description: Returns a specific identity object.
+      operationId: getUserIdentity
+      parameters:
+      - name: userId
+        in: path
+        description: User identifier.
+        required: true
+        schema:
+          type: string
+      - name: identityId
+        in: path
+        description: Identity identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityData'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
 components:
   schemas:
     AccountClass:
       required:
-        - product
         - type
+        - product
       type: object
       properties:
         type:
@@ -1785,6 +1891,141 @@ components:
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: Object containing details for connection post.
+    IdentitiesGetResponseResource:
+      title: IdentitiesGetResponseResource
+      required:
+      - count
+      - data
+      - type
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityData'
+        type:
+          type: string
+          description: Type, always "list".
+          example: list
+        count:
+          type: integer
+          description: Count of the identities in the response.
+          format: int64
+          example: 100
+      description: Object containing details for identities.
+    IdentityData:
+      required:
+      - created
+      - id
+      - links
+      - type
+      - updated
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type, always "identity".
+          example: identity
+        id:
+          type: string
+          description: Identity identification.
+          example: "61723"
+        created:
+          type: string
+          description: Created date of the identity.
+          example: 2019-07-29T07:34:09Z
+        updated:
+          type: string
+          description: Created date of the identity.
+          example: 2019-07-29T07:34:09Z
+        links:
+          $ref: '#/components/schemas/IdentityLinks'
+        source:
+          type: string
+          description: Data source.
+          example: web
+        fullName:
+          type: string
+          description: FullName of the identity owner.
+        firstName:
+          type: string
+          description: FirstName of the identity owner.
+        lastName:
+          type: string
+          description: LastName of the identity owner.
+        middleName:
+          type: string
+          description: MiddleName of the identity owner.
+        title:
+          type: string
+          description: Title is the prefix to the name of the identity owner.
+        DOB:
+          type: string
+          description: Date of birth of the identity owner.
+        occupationCode:
+          type: string
+          description: Code relating to the occupation held by the identity owner.
+        occupationCodeVersion:
+          type: string
+          description: Occupation Code Version.
+        phoneNumbers:
+          type: array
+          description: List of phone numbers of the identity owner.
+          items:
+            type: string
+        emails:
+          type: array
+          description: List of email addresses of the identity owner.
+          items:
+            type: string
+        physicalAddresses:
+          type: array
+          description: List of physical addresses of the identity owner.
+          items:
+            $ref: '#/components/schemas/PhysicalAddressData'
+        organisation:
+          type: object
+          properties:
+            agentFirstName:
+              type: string
+              description: Agent first name.
+            agentLastName:
+              type: string
+              description: Agent last name.
+            agentRole:
+              type: string
+              description: Agent role.
+            businessName:
+              type: string
+              description: Business name.
+            legalName:
+              type: string
+              description: Legal name.
+            shortName:
+              type: string
+              description: Short name.
+            abn:
+              type: string
+              description: Australian Business Number.
+            acn:
+              type: string
+              description: Australian Company Number.
+            isACNCRegistered:
+              type: boolean
+              description: Indicates whether is Australian Company Number registered.
+            industryCode:
+              type: string
+              description: Industry Code.
+            industryCodeVersion:
+              type: string
+              description: Industry Code Version.
+            organisationType:
+              type: string
+              description: Organisation Type.
+            registeredCountry:
+              type: string
+              description: Registered Country.
+          description: Organisation data.
     ConnectionsData:
       required:
         - createdDate
@@ -1827,6 +2068,53 @@ components:
           $ref: '#/components/schemas/ConnectionInstitution'
         links:
           $ref: '#/components/schemas/GetConnectionsLinks'
+    PhysicalAddressData:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Physical Address Type.
+        addressLine1:
+          type: string
+          description: AddressLine1.
+        addressLine2:
+          type: string
+          description: AddressLine2.
+        addressLine3:
+          type: string
+          description: AddressLine3.
+        postcode:
+          type: string
+          description: Postcode.
+        city:
+          type: string
+          description: City.
+        state:
+          type: string
+          description: State.
+        country:
+          type: string
+          description: Country.
+        countryCode:
+          type: string
+          description: Country Code.
+        formattedAddress:
+          type: string
+          description: Formatted Address.
+    IdentityLinks:
+      required:
+      - job
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: Self link to the requested identity
+          example: https://au-api.basiq.io/users/cd6fbd92/identities/ea3a81
+        job:
+          type: string
+          description: Link to the job associated with this identity
+          example: https://au-api.basiq.io/users/ea3a81/connection/s55bf3
     EventsData:
       required:
         - createdDate
