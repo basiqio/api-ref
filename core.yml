@@ -1385,7 +1385,7 @@ paths:
     get:
       tags:
       - Identities
-      summary: Retrieve identities.
+      summary: Retrieve identities
       description: Returns a list with a data property that contains an array of user
         identities. Each entry in the array is a separate object. If no data is returned,
         the resulting array will be empty.
@@ -1433,7 +1433,7 @@ paths:
     get:
       tags:
       - Identities
-      summary: Retrieve an identity.
+      summary: Retrieve an identity
       description: Returns a specific identity object.
       operationId: getUserIdentity
       parameters:
