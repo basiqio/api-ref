@@ -1566,8 +1566,8 @@ components:
 security:
   - api_key: []
 x-readme:
-  explorer-enabled: false
-  proxy-enabled: false
+  explorer-enabled: true
+  proxy-enabled: true
   samples-enabled: true
   samples-languages:
     - curl
