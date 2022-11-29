@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
   title: Payments
   description: |
@@ -6,7 +6,6 @@ info:
   version: '3.0'
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
 servers:
-  # Added by API Auto Mocking Plugin
   - url: https://au-api.basiq.io/
 tags:
   - name: Collect (Payrequests)
@@ -155,7 +154,7 @@ paths:
                       detail: Posted requests data is not in valid format.
                       source: null
       security:
-          - api_key: []
+          - payment_apiKey: []
     get:
       tags:
         - Collect (Payrequests)
@@ -234,7 +233,7 @@ paths:
                       self: "https://au-api.basiq.io/payments/payrequests"
                       next: "https://au-api.basiq.io/payments/payrequests?next=049fde"
       security:
-          - api_key: []
+          - payment_apiKey: []
   '/payments/payrequests/{id}':
     get:
       tags:
@@ -1548,10 +1547,10 @@ components:
                   description: Dividends
                   amount: 173.45
   securitySchemes:
-    api_key:
-      type: apiKey
-      name: Authorization
-      in: header
+    payment_apiKey:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
       x-default: >-
         Bearer
         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI3ZDU5NDRkNi1iM2MzLTQ1MTUtODFiYy0yYTdkMGVkNzM5YzMiLCJhcHBsaWNhdGlvbmlkIjoiYjc2YjYzY2EtMzc2NS00YWEwLTkzNTEtZTg4ZTZhNGFiM2Q4Iiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2Njg0ODk3OTgsImlhdCI6MTY2ODQ4NjE5OCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119
@@ -1564,7 +1563,7 @@ components:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
 security:
-  - api_key: []
+  - payment_apiKey: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
