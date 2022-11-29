@@ -71,7 +71,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - bearerAuth: []
+        - api_key: []
   /jobs/{jobId}:
     get:
       tags:
@@ -3232,8 +3232,10 @@ components:
           type: string
           example: Bearer
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
-      type: http
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
       scheme: bearer
       bearerFormat: JWT
       x-default: >-
@@ -3248,7 +3250,7 @@ components:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
 security:
-  - bearerAuth: []
+  - api_key: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
