@@ -126,6 +126,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
+        - api_key_bearer: []
         - application:
             - SERVER_ACCESS
             - CLIENT_ACCESS
@@ -3233,12 +3234,16 @@ components:
           example: Bearer
   securitySchemes:
     api_key:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+      type: apiKey
+      name: Authorization
+      in: header
       x-default: >-
         Basic
         NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw==
+    api_key_bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
     application:
       type: oauth2
       flows:
@@ -3249,6 +3254,7 @@ components:
             CLIENT_ACCESS: Client access scope
 security:
   - api_key: []
+  - api_key_bearer: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
