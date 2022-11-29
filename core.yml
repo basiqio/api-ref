@@ -3232,10 +3232,10 @@ components:
           type: string
           example: Bearer
   securitySchemes:
-    api_key:
-      type: apiKey
-      name: Authorization
-      in: header
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
       x-default: >-
         Basic
         NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw==
@@ -3248,7 +3248,7 @@ components:
             SERVER_ACCESS: Server access scope
             CLIENT_ACCESS: Client access scope
 security:
-  - api_key: []
+  - bearerAuth: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
