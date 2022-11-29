@@ -315,123 +315,6 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /jobs/{jobId}:
-    get:
-      tags:
-        - Jobs
-      summary: Retrieve a job
-      description: >-
-        Retrieves the details of an existing job. You need only supply the
-        unique job identifier that was returned upon job creation.
-      operationId: getJobs
-      parameters:
-        - name: jobId
-          in: path
-          description: The identifier of the job to be retrieved.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns a job details if a valid job ID was provided.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobData'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
-  /jobs/{jobId}/mfa:
-    post:
-      tags:
-      - Jobs
-      summary: 'Create MFA response'
-      description: |-
-        Ensure that you generate an authentication token with
-        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
-      operationId: postJobMfa
-      parameters:
-      - name: jobId
-        in: path
-        description: The identifier of the job.
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/JobPostRequest'
-        required: true
-      responses:
-        202:
-          description: Returns a job if MFA response was correct. Returns an error
-            otherwise.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionResponseResource'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-      - application:
-        - CLIENT_ACCESS
   /users/{userId}/connections:
     get:
       tags:
@@ -966,6 +849,123 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
+  /jobs/{jobId}:
+    get:
+      tags:
+        - Jobs
+      summary: Retrieve a job
+      description: >-
+        Retrieves the details of an existing job. You need only supply the
+        unique job identifier that was returned upon job creation.
+      operationId: getJobs
+      parameters:
+        - name: jobId
+          in: path
+          description: The identifier of the job to be retrieved.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a job details if a valid job ID was provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobData'
+        '400':
+          description: >-
+            Returns error that server cannot or will not process the request due
+            to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+        - application:
+            - SERVER_ACCESS
+            - CLIENT_ACCESS
+  /jobs/{jobId}/mfa:
+    post:
+      tags:
+      - Jobs
+      summary: 'Create MFA response'
+      description: |-
+        Ensure that you generate an authentication token with
+        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
+      operationId: postJobMfa
+      parameters:
+      - name: jobId
+        in: path
+        description: The identifier of the job.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobPostRequest'
+        required: true
+      responses:
+        202:
+          description: Returns a job if MFA response was correct. Returns an error
+            otherwise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - CLIENT_ACCESS
   /connectors: 
     get:
       tags:
@@ -1384,7 +1384,7 @@ paths:
   /users/{userId}/identities:
     get:
       tags:
-      - identities
+      - Identities
       summary: Retrieve identities
       description: Returns a list with a data property that contains an array of user
         identities. Each entry in the array is a separate object. If no data is returned,
