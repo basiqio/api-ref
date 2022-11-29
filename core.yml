@@ -72,123 +72,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
       security:
         - api_key: []
-  /jobs/{jobId}:
-    get:
-      tags:
-        - Jobs
-      summary: Retrieve a job
-      description: >-
-        Retrieves the details of an existing job. You need only supply the
-        unique job identifier that was returned upon job creation.
-      operationId: getJobs
-      parameters:
-        - name: jobId
-          in: path
-          description: The identifier of the job to be retrieved.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns a job details if a valid job ID was provided.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobData'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
-  /jobs/{jobId}/mfa:
-    post:
-      tags:
-      - Jobs
-      summary: 'Create MFA response'
-      description: |-
-        Ensure that you generate an authentication token with
-        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
-      operationId: postJobMfa
-      parameters:
-      - name: jobId
-        in: path
-        description: The identifier of the job.
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/JobPostRequest'
-        required: true
-      responses:
-        202:
-          description: Returns a job if MFA response was correct. Returns an error
-            otherwise.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionResponseResource'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-      - application:
-        - CLIENT_ACCESS
   /users:
     post:
       tags:
@@ -432,19 +315,76 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /users/{userId}/auth_link:
+  /jobs/{jobId}:
+    get:
+      tags:
+        - Jobs
+      summary: Retrieve a job
+      description: >-
+        Retrieves the details of an existing job. You need only supply the
+        unique job identifier that was returned upon job creation.
+      operationId: getJobs
+      parameters:
+        - name: jobId
+          in: path
+          description: The identifier of the job to be retrieved.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a job details if a valid job ID was provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobData'
+        '400':
+          description: >-
+            Returns error that server cannot or will not process the request due
+            to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+        - application:
+            - SERVER_ACCESS
+            - CLIENT_ACCESS
+  /jobs/{jobId}/mfa:
     post:
       tags:
-      - AuthLinks
-      summary: Create an auth_link
+      - Jobs
+      summary: 'Create MFA response'
       description: |-
-        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
-
-        Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
-      operationId: postAuthLink
+        Ensure that you generate an authentication token with
+        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
+      operationId: postJobMfa
       parameters:
-      - name: userId
+      - name: jobId
         in: path
+        description: The identifier of the job.
         required: true
         schema:
           type: string
@@ -452,18 +392,16 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                mobile:
-                  type: string
-        required: false
+              $ref: '#/components/schemas/JobPostRequest'
+        required: true
       responses:
-        201:
-          description: Returns a created auth_link resource, if the operation succeeded
+        202:
+          description: Returns a job if MFA response was correct. Returns an error
+            otherwise.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthLinksPostResponseResource'
+                $ref: '#/components/schemas/ConnectionResponseResource'
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
@@ -493,126 +431,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
       security:
       - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: AuthLinksPostData
-    get:
-      tags:
-      - AuthLinks
-      summary: Retrieve an auth_link
-      description: Returns the latest/last auth_link generated for the specified user.
-        Returns an error otherwise.
-      operationId: getAuthLink
-      parameters:
-      - name: userId
-        in: path
-        description: The identifier of the user.
-        required: true
-        schema:
-          type: string
-      responses:
-        200:
-          description: Returns details of a connection.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthLinksResponseResource'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        410:
-          description: Returns error indicating that access to the target resource
-            is no longer available at the origin server and that this condition is
-            likely to be permanent.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GoneError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-        503:
-          description: Returns error response code indicates that the server is not
-            ready to handle the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusServiceUnavailableError'
-      security:
-      - application:
-        - SERVER_ACCESS
-    delete:
-      tags:
-      - AuthLinks
-      summary: Delete an auth_link
-      description: |-
-        <blockquote>Note that this action cannot be undone.</blockquote>
-
-        <blockquote>The auth_link is a URL that directs a User to Basiq's hosted consent workflow to link banks and securely share data. When the user selects 'I have disclosed all my accounts' the auth_link is automatically deleted.</blockquote>
-
-        Returns an empty body if the delete succeeded. Otherwise, this call returns an error in the event of a failure.
-      operationId: deleteAuthLink
-      parameters:
-      - name: userId
-        in: path
-        description: The identifier of the user.
-        required: true
-        schema:
-          type: string
-      responses:
-        204:
-          description: Returns an empty body if the delete succeeded.
-          content: {}
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-        503:
-          description: Returns error response code indicates that the server is not
-            ready to handle the request.
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StatusServiceUnavailableError'
-      security:
-      - application:
-        - SERVER_ACCESS
         - CLIENT_ACCESS
   /users/{userId}/connections:
     get:
@@ -1315,6 +1133,188 @@ paths:
         - application:
             - SERVER_ACCESS
             - CLIENT_ACCESS
+  /users/{userId}/auth_link:
+    post:
+      tags:
+      - AuthLinks
+      summary: Create an auth_link
+      description: |-
+        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
+
+        Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
+      operationId: postAuthLink
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+        required: false
+      responses:
+        201:
+          description: Returns a created auth_link resource, if the operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksPostResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - SERVER_ACCESS
+      x-codegen-request-body-name: AuthLinksPostData
+    get:
+      tags:
+      - AuthLinks
+      summary: Retrieve an auth_link
+      description: Returns the latest/last auth_link generated for the specified user.
+        Returns an error otherwise.
+      operationId: getAuthLink
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns details of a connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLinksResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        410:
+          description: Returns error indicating that access to the target resource
+            is no longer available at the origin server and that this condition is
+            likely to be permanent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoneError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+    delete:
+      tags:
+      - AuthLinks
+      summary: Delete an auth_link
+      description: |-
+        <blockquote>Note that this action cannot be undone.</blockquote>
+
+        <blockquote>The auth_link is a URL that directs a User to Basiq's hosted consent workflow to link banks and securely share data. When the user selects 'I have disclosed all my accounts' the auth_link is automatically deleted.</blockquote>
+
+        Returns an empty body if the delete succeeded. Otherwise, this call returns an error in the event of a failure.
+      operationId: deleteAuthLink
+      parameters:
+      - name: userId
+        in: path
+        description: The identifier of the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: Returns an empty body if the delete succeeded.
+          content: {}
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        503:
+          description: Returns error response code indicates that the server is not
+            ready to handle the request.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+      - application:
+        - SERVER_ACCESS
+        - CLIENT_ACCESS
   /events:
     get:
       tags:
@@ -1381,10 +1381,10 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /users/{userId}/identitites:
+  /users/{userId}/identities:
     get:
       tags:
-      - Identities
+      - identities
       summary: Retrieve identities
       description: Returns a list with a data property that contains an array of user
         identities. Each entry in the array is a separate object. If no data is returned,
@@ -1429,7 +1429,7 @@ paths:
       - application:
         - SERVER_ACCESS
         - CLIENT_ACCESS
-  /users/{userId}/identitites/{identityId}:
+  /users/{userId}/identities/{identityId}:
     get:
       tags:
       - Identities
