@@ -678,7 +678,7 @@ paths:
                         updated: '2022-03-21T20:28:22.378Z'
                         method: batch
                         status: 'in-progress'
-                        payer:
+                        payee:
                           payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
                           payeeBankBranchCode: '730002'
                           payeeAccountNumber: '123456789'
