@@ -1080,8 +1080,8 @@ components:
 security:
   - reporting_token: []
 x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
+  explorer-enabled: false
+  proxy-enabled: false
   samples-enabled: true
   samples-languages:
     - curl
