@@ -3,7 +3,7 @@ info:
   title: Basiq Reporting API
   version: '1.0'
 servers:
-  - url: https://api-au.basiq.io
+  - url: https://au-api.basiq.io
 paths:
   /reports:
     post:
