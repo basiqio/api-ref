@@ -1,4 +1,4 @@
-openapi: '3.0.2'
+openapi: 3.0.2
 info:
   title: Basiq Reporting API
   version: '1.0'
@@ -10,12 +10,23 @@ paths:
       summary: Create a report
       tags:
         - Reports
-      description: |
-        Use this endpoint to create a new report. Report creation is an asynchronous task, meaning a job will be returned to let you know the progress of the report generation.
-        You can poll the job to know when the report has been generated. You can create any supported report (see reportTypes for a list of supported reports). Ensure you provide the necessary filters when generating a report.
-        All created reports, will store a copy of the data as a snapshot - this ensures that you have access to the raw data that was used to create the report. 
+      description: >
+        Use this endpoint to create a new report. Report creation is an
+        asynchronous task, meaning a job will be returned to let you know the
+        progress of the report generation.
+
+        You can poll the job to know when the report has been generated. You can
+        create any supported report (see reportTypes for a list of supported
+        reports). Ensure you provide the necessary filters when generating a
+        report.
+
+        All created reports, will store a copy of the data as a snapshot - this
+        ensures that you have access to the raw data that was used to create the
+        report. 
       requestBody:
-        description: Include the details of the report you would like to create along with the filters.
+        description: >-
+          Include the details of the report you would like to create along with
+          the filters.
         content:
           application/json:
             schema:
@@ -24,21 +35,22 @@ paths:
               reportType: CON_AFFOR_01
               title: John Smith Affordability Report 2022-03-26
               filters:
-              - name: fromDate
-                value: '2022-01-01'
-              - name: toDate
-                value: '2022-12-01'
-              - name: accounts
-                value:
-                - ag829sj
-                - aj82gka
-              - name: users
-                value:
-                - sj29sjd
+                - name: fromDate
+                  value: '2022-01-01'
+                - name: toDate
+                  value: '2022-12-01'
+                - name: accounts
+                  value:
+                    - ag829sj
+                    - aj82gka
+                - name: users
+                  value:
+                    - sj29sjd
       responses:
-        "202":
-          description: |
-            The server will return link to a job endpoint which can be polled to track the progress of the report creation.
+        '202':
+          description: >
+            The server will return link to a job endpoint which can be polled to
+            track the progress of the report creation.
           content:
             application/json:
               schema:
@@ -48,75 +60,82 @@ paths:
                 id: '29523951'
                 links:
                   self: https://au-api.basiq.io/jobs/a3dgf4567a89
-        "400":
+        '400':
           $ref: '#/components/responses/400BadRequest'
-        "403":
+        '403':
           $ref: '#/components/responses/403Forbidden'
-        "404":
+        '404':
           $ref: '#/components/responses/404NotFound'
-        "500":
+        '500':
           $ref: '#/components/responses/500Server'
     get:
       summary: Returns a list of created reports
       tags:
         - Reports
-      description: |
-        Use this endpoint to retrieve a list of created reports. Every created report is saved as a snapshot and can be retrieved at a later date.
-        You can call the reports/types endpoint to see the list of supported reports.
+      description: >
+        Use this endpoint to retrieve a list of created reports. Every created
+        report is saved as a snapshot and can be retrieved at a later date.
+
+        You can call the reports/types endpoint to see the list of supported
+        reports.
       responses:
-        "200":
-          description: "OK"
-          content: 
+        '200':
+          description: OK
+          content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/collection'
+                $ref: '#/components/schemas/collection'
               example:
                 type: list
                 count: 1
                 size: 0
                 data:
-                - type: report
-                  id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                  title: John Smith Affordability Report 2022-03-26
-                  reportType: CON_AFFOR_01
-                  createdDate: '2022-03-26T06:56:44'
-                  createdBy: David Smith
-                  filters:
-                  - name: fromDate
-                    value: '2022-01-01'
-                  - name: toDate
-                    value: '2022-12-01'
-                  - name: accounts
-                    value:
-                    - ag829sj
-                    - aj82gka
-                  - name: users
-                    value:
-                    - sj29sjd
-                  links:
-                    self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                    transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-                    reportType: https://au-api.basiq.io/reports/types/2847gf
+                  - type: report
+                    id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                    title: John Smith Affordability Report 2022-03-26
+                    reportType: CON_AFFOR_01
+                    createdDate: '2022-03-26T06:56:44'
+                    createdBy: David Smith
+                    filters:
+                      - name: fromDate
+                        value: '2022-01-01'
+                      - name: toDate
+                        value: '2022-12-01'
+                      - name: accounts
+                        value:
+                          - ag829sj
+                          - aj82gka
+                      - name: users
+                        value:
+                          - sj29sjd
+                    links:
+                      self: >-
+                        https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+                      transactions: >-
+                        https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+                      reportType: https://au-api.basiq.io/reports/types/2847gf
                 links:
                   self: https://au-api.basiq.io/users/ea3a81/transactions
-                  next: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
-        "400":
+                  next: >-
+                    https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
+        '400':
           $ref: '#/components/responses/400BadRequest'
-        "403":
+        '403':
           $ref: '#/components/responses/403Forbidden'
-        "404":
+        '404':
           $ref: '#/components/responses/404NotFound'
-        "500":
+        '500':
           $ref: '#/components/responses/500Server'
   /reports/{id}:
-    summary: ""
-    description: ""
+    summary: ''
+    description: ''
     get:
       summary: Returns the requested report results.
       tags:
         - Reports
-      description: |
-        Use this endpoint to retrieve a specific report. Ensure you check the documentation for the schema of each report type.
+      description: >
+        Use this endpoint to retrieve a specific report. Ensure you check the
+        documentation for the schema of each report type.
       parameters:
         - in: path
           name: id
@@ -125,12 +144,12 @@ paths:
           required: true
           description: The ID of the generated report
       responses:
-        "200":
-          description: "OK"
-          content: 
+        '200':
+          description: OK
+          content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/report'
+                $ref: '#/components/schemas/report'
               example:
                 type: report
                 id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -139,261 +158,235 @@ paths:
                 createdDate: '2022-03-26T06:56:44'
                 createdBy: David Smith
                 filters:
-                - name: fromDate
-                  value: '2022-01-01'
-                - name: toDate
-                  value: '2022-12-01'
-                - name: accounts
-                  value:
-                  - ag829sj
-                  - aj82gka
-                - name: users
-                  value:
-                  - sj29sjd
+                  - name: fromDate
+                    value: '2022-01-01'
+                  - name: toDate
+                    value: '2022-12-01'
+                  - name: accounts
+                    value:
+                      - ag829sj
+                      - aj82gka
+                  - name: users
+                    value:
+                      - sj29sjd
                 data:
                   metrics:
-                  - id: ME001
-                    title: "# of identified income sources"
-                    description: xxxx
-                    group: Income Sources
-                    result:
-                      value: '4'
-                      format: integer
-                  - id: ME002
-                    title: Average monthly amount from salary
-                    description: xxx
-                    group: Income Sources
-                    result:
-                      value: '7228.00'
-                      format: money
-                  - id: ME003
-                    title: Income has been stable for (months)
-                    description: xxx
-                    group: Income Sources
-                    result:
-                      value: '5'
-                      format: integer
-                  - id: ME004
-                    title: Other possible income
-                    description: xxx
-                    group: Income Sources
-                    result:
-                      value: '266.00'
-                      format: money
-                  - id: ME005
-                    title: Youth Allowance monthly
-                    description: xxx
-                    group: Government Services
-                    result:
-                      value: '125.00'
-                      format: money
-                  - id: ME006
-                    title: Rental Assistance monthly
-                    description: xxx
-                    group: Government Services
-                    result:
-                      value: '0.00'
-                      format: money
-                  - id: ME007
-                    title: Misc Government services monthly
-                    description: xxx
-                    group: Government Services
-                    result:
-                      value: '488.00'
-                      format: money
-                  - id: ME008
-                    title: Average monthly amount
-                    description: xxx
-                    group: Financial Commitments
-                    result:
-                      value: "-2553.00"
-                      format: money
-                  - id: ME009
-                    title: "# of identified companies"
-                    description: xxx
-                    group: Financial Commitments
-                    result:
-                      value: '8'
-                      format: integer
-                  - id: ME010
-                    title: Total credit card limit
-                    description: xxx
-                    group: Financial Commitments
-                    result:
-                      value: '5000.00'
-                      format: money
-                  - id: ME011
-                    title: Total credit card balance
-                    description: xxx
-                    group: Financial Commitments
-                    result:
-                      value: "-2625.00"
-                      format: money
-                  - id: ME012
-                    title: Monthly spend on non-discretionary expenses (inc. liabilities)
-                    description: xxx
-                    group: Expenses
-                    result:
-                      value: "-3851.00"
-                      format: money
-                  - id: ME013
-                    title: "% of spend on non-non-discretionary expenses"
-                    description: xxx
-                    group: Expenses
-                    result:
-                      value: '26.2'
-                      format: percent
-                  - id: ME014
-                    title: Monthly spend on discretionary expenses
-                    description: xxx
-                    group: Expenses
-                    result:
-                      value: "-2632.00"
-                      format: money
-                  - id: ME015
-                    title: "% of spend on discretionary expenses"
-                    description: xxx
-                    group: Expenses
-                    result:
-                      value: '53.1'
-                      format: percent
-                  - id: ME016
-                    title: Monthly spend on other expenses
-                    description: xxx
-                    group: Expenses
-                    result:
-                      value: "-1054.00"
-                      format: money
-                  - id: ME017
-                    title: "# of SACC loans"
-                    description: xxx
-                    group: Risk Metrics
-                    result:
-                      value: '3'
-                      format: integer
-                  - id: ME018
-                    title: "% of income withdrawn via ATM"
-                    description: xxx
-                    group: Risk Metrics
-                    result:
-                      value: '6.1'
-                      format: percent
-                  - id: ME019
-                    title: "# of financial dishonours"
-                    description: xxx
-                    group: Risk Metrics
-                    result:
-                      value: '3'
-                      format: integer
-                  - id: ME020
-                    title: "% of income spent on High Risk Merchants"
-                    description: xxx
-                    group: Risk Metrics
-                    result:
-                      value: '12.4'
-                      format: percent
-                  - id: ME021
-                    title: Total spend on High Risk Merchants
-                    description: xxx
-                    group: Risk Metrics
-                    result:
-                      value: "-3690.00"
-                      format: money
-                  - id: ME022
-                    title: Has recent changes to income circumstances
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'true'
-                      format: boolean
-                  - id: ME023
-                    title: Has received crisis support payments
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'false'
-                      format: boolean
-                  - id: ME024
-                    title: Has superannuation credits
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'false'
-                      format: boolean
-                  - id: ME025
-                    title: Has cash advances
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'true'
-                      format: boolean
-                  - id: ME026
-                    title: Has redraws
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'true'
-                      format: boolean
-                  - id: ME027
-                    title: Has High-Cost Finance
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'true'
-                      format: boolean
-                  - id: ME028
-                    title: 'Missing non-discretionary expenses: groceries'
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'false'
-                      format: boolean
-                  - id: ME029
-                    title: 'Missing non-discretionary expenses: telecommunication'
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'true'
-                      format: boolean
-                  - id: ME030
-                    title: 'Missing non-discretionary expenses: utilities'
-                    description: xxx
-                    group: Risk Flags
-                    result:
-                      value: 'false'
-                      format: boolean
+                    - id: ME001
+                      title: '# of identified income sources'
+                      description: xxxx
+                      group: Income Sources
+                      result:
+                        value: '4'
+                        format: integer
+                    - id: ME002
+                      title: Average monthly amount from salary
+                      description: xxx
+                      group: Income Sources
+                      result:
+                        value: '7228.00'
+                        format: money
+                    - id: ME003
+                      title: Income has been stable for (months)
+                      description: xxx
+                      group: Income Sources
+                      result:
+                        value: '5'
+                        format: integer
+                    - id: ME004
+                      title: Other possible income
+                      description: xxx
+                      group: Income Sources
+                      result:
+                        value: '266.00'
+                        format: money
+                    - id: ME005
+                      title: Youth Allowance monthly
+                      description: xxx
+                      group: Government Services
+                      result:
+                        value: '125.00'
+                        format: money
+                    - id: ME006
+                      title: Rental Assistance monthly
+                      description: xxx
+                      group: Government Services
+                      result:
+                        value: '0.00'
+                        format: money
+                    - id: ME007
+                      title: Misc Government services monthly
+                      description: xxx
+                      group: Government Services
+                      result:
+                        value: '488.00'
+                        format: money
+                    - id: ME008
+                      title: Average monthly amount
+                      description: xxx
+                      group: Financial Commitments
+                      result:
+                        value: '-2553.00'
+                        format: money
+                    - id: ME009
+                      title: '# of identified companies'
+                      description: xxx
+                      group: Financial Commitments
+                      result:
+                        value: '8'
+                        format: integer
+                    - id: ME010
+                      title: Total credit card limit
+                      description: xxx
+                      group: Financial Commitments
+                      result:
+                        value: '5000.00'
+                        format: money
+                    - id: ME011
+                      title: Total credit card balance
+                      description: xxx
+                      group: Financial Commitments
+                      result:
+                        value: '-2625.00'
+                        format: money
+                    - id: ME012
+                      title: >-
+                        Monthly spend on non-discretionary expenses (inc.
+                        liabilities)
+                      description: xxx
+                      group: Expenses
+                      result:
+                        value: '-3851.00'
+                        format: money
+                    - id: ME013
+                      title: '% of spend on non-non-discretionary expenses'
+                      description: xxx
+                      group: Expenses
+                      result:
+                        value: '26.2'
+                        format: percent
+                    - id: ME014
+                      title: Monthly spend on discretionary expenses
+                      description: xxx
+                      group: Expenses
+                      result:
+                        value: '-2632.00'
+                        format: money
+                    - id: ME015
+                      title: '% of spend on discretionary expenses'
+                      description: xxx
+                      group: Expenses
+                      result:
+                        value: '53.1'
+                        format: percent
+                    - id: ME016
+                      title: Monthly spend on other expenses
+                      description: xxx
+                      group: Expenses
+                      result:
+                        value: '-1054.00'
+                        format: money
+                    - id: ME017
+                      title: '# of SACC loans'
+                      description: xxx
+                      group: Risk Metrics
+                      result:
+                        value: '3'
+                        format: integer
+                    - id: ME018
+                      title: '% of income withdrawn via ATM'
+                      description: xxx
+                      group: Risk Metrics
+                      result:
+                        value: '6.1'
+                        format: percent
+                    - id: ME019
+                      title: '# of financial dishonours'
+                      description: xxx
+                      group: Risk Metrics
+                      result:
+                        value: '3'
+                        format: integer
+                    - id: ME020
+                      title: '% of income spent on High Risk Merchants'
+                      description: xxx
+                      group: Risk Metrics
+                      result:
+                        value: '12.4'
+                        format: percent
+                    - id: ME021
+                      title: Total spend on High Risk Merchants
+                      description: xxx
+                      group: Risk Metrics
+                      result:
+                        value: '-3690.00'
+                        format: money
+                    - id: ME022
+                      title: Has recent changes to income circumstances
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'true'
+                        format: boolean
+                    - id: ME023
+                      title: Has received crisis support payments
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'false'
+                        format: boolean
+                    - id: ME024
+                      title: Has superannuation credits
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'false'
+                        format: boolean
+                    - id: ME025
+                      title: Has cash advances
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'true'
+                        format: boolean
+                    - id: ME026
+                      title: Has redraws
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'true'
+                        format: boolean
+                    - id: ME027
+                      title: Has High-Cost Finance
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'true'
+                        format: boolean
+                    - id: ME028
+                      title: 'Missing non-discretionary expenses: groceries'
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'false'
+                        format: boolean
+                    - id: ME029
+                      title: 'Missing non-discretionary expenses: telecommunication'
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'true'
+                        format: boolean
+                    - id: ME030
+                      title: 'Missing non-discretionary expenses: utilities'
+                      description: xxx
+                      group: Risk Flags
+                      result:
+                        value: 'false'
+                        format: boolean
                   groups:
-                  - id: S2
-                    title: Other Finance
-                    section: Liabilities
-                    analysis:
-                      summary:
-                        transactionCount: 5
-                        overallPercentage:
-                          credit: 0
-                          debit: 67
-                      range:
-                        startDate: '2022-01-13T20:03:37'
-                        endDate: '2022-05-13T20:03:37'
-                        duration: 16
-                      amount:
-                        total: "-586"
-                        min: "-146.50"
-                        max: "-146.50"
-                        average:
-                          transaction: "-123"
-                          month: "-439.50"
-                      frequency:
-                        type: P1W
-                        amount: "-146.50"
-                        day: Monday
-                        display: Weekly
-                        next:
-                          date: '2022-12-26T20:03:37'
-                          amount: "-146.50"
-                    subgroup:
-                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
-                      name: SUNSHINE LOANS
+                    - id: S2
+                      title: Other Finance
+                      section: Liabilities
                       analysis:
                         summary:
                           transactionCount: 5
@@ -405,255 +398,301 @@ paths:
                           endDate: '2022-05-13T20:03:37'
                           duration: 16
                         amount:
-                          total: "-586"
-                          min: "-146.50"
-                          max: "-146.50"
+                          total: '-586'
+                          min: '-146.50'
+                          max: '-146.50'
                           average:
-                            transaction: "-123"
-                            month: "-439.50"
+                            transaction: '-123'
+                            month: '-439.50'
                         frequency:
                           type: P1W
-                          amount: "-146.50"
+                          amount: '-146.50'
                           day: Monday
                           display: Weekly
                           next:
                             date: '2022-12-26T20:03:37'
-                            amount: "-146.50"
-                      transactions:
-                      - amount: "-146.50"
-                        date: '2022-12-19'
-                        source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                        id: d3de1ca1
-                      - amount: "-146.50"
-                        date: '2022-12-12'
-                        source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                        id: d3de1ca1
-                      - amount: "-146.50"
-                        date: '2022-12-05'
-                        source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                        id: d3de1ca1
-                      - amount: "-146.50"
-                        date: '2022-11-28'
-                        source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                        id: d3de1ca1
+                            amount: '-146.50'
+                      subgroup:
+                        - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                          name: SUNSHINE LOANS
+                          analysis:
+                            summary:
+                              transactionCount: 5
+                              overallPercentage:
+                                credit: 0
+                                debit: 67
+                            range:
+                              startDate: '2022-01-13T20:03:37'
+                              endDate: '2022-05-13T20:03:37'
+                              duration: 16
+                            amount:
+                              total: '-586'
+                              min: '-146.50'
+                              max: '-146.50'
+                              average:
+                                transaction: '-123'
+                                month: '-439.50'
+                            frequency:
+                              type: P1W
+                              amount: '-146.50'
+                              day: Monday
+                              display: Weekly
+                              next:
+                                date: '2022-12-26T20:03:37'
+                                amount: '-146.50'
+                          transactions:
+                            - amount: '-146.50'
+                              date: '2022-12-19'
+                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
+                              id: d3de1ca1
+                            - amount: '-146.50'
+                              date: '2022-12-12'
+                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
+                              id: d3de1ca1
+                            - amount: '-146.50'
+                              date: '2022-12-05'
+                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
+                              id: d3de1ca1
+                            - amount: '-146.50'
+                              date: '2022-11-28'
+                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
+                              id: d3de1ca1
                 links:
-                  self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                  data-users: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
-                  data-connections: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
-                  data-accounts: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-                  data-transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-
-
-          $ref: '#/components/responses/400BadRequest'
-        "403":
+                  self: >-
+                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+                  data-users: >-
+                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
+                  data-connections: >-
+                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
+                  data-accounts: >-
+                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
+                  data-transactions: >-
+                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+        '403':
           $ref: '#/components/responses/403Forbidden'
-        "404":
+        '404':
           $ref: '#/components/responses/404NotFound'
-        "500":
+        '500':
           $ref: '#/components/responses/500Server'
   /reports/types:
     get:
       summary: Return a list of supported report types.
       tags:
         - Reports
-      description: |
-        Use this endpoint to retrieve a list of supported reports. This identifies the complete list of supported reports, which can be used to create reports on.
+      description: >
+        Use this endpoint to retrieve a list of supported reports. This
+        identifies the complete list of supported reports, which can be used to
+        create reports on.
       responses:
-        "200":
-          description: "OK"
-          content: 
+        '200':
+          description: OK
+          content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/reportType'
+                $ref: '#/components/schemas/reportType'
               example:
                 type: list
                 count: 3
                 data:
-                - type: reportType
-                  id: CON_AFFOR_01
-                  name: Consumer Affordability Report
-                  description: In depth consumer affordability assessment.
-                  filters:
-                  - name: fromDate
-                    type: string
-                  - name: toDate
-                    type: string
-                  - name: accounts
-                    type: array
-                  - name: users
-                    type: array
-                - type: reportType
-                  id: BUS_AFFOR_01
-                  name: Business Affordability Report
-                  description: In depth business affordability assessment.
-                  filters:
-                  - name: fromDate
-                    type: string
-                  - name: toDate
-                    type: string
-                  - name: accounts
-                    type: array
-                  - name: users
-                    type: array
-                - type: reportType
-                  id: ROUNDUP_OPP_01
-                  name: Roundup Amount Report
-                  description: Identifies the roundup amount to be processed for each day.
-                  filters:
-                  - name: fromDate
-                    type: string
-                  - name: toDate
-                    type: string
-                  - name: accounts
-                    type: array
-                  - name: user
-                    type: string
-        "400":
+                  - type: reportType
+                    id: CON_AFFOR_01
+                    name: Consumer Affordability Report
+                    description: In depth consumer affordability assessment.
+                    filters:
+                      - name: fromDate
+                        type: string
+                      - name: toDate
+                        type: string
+                      - name: accounts
+                        type: array
+                      - name: users
+                        type: array
+                  - type: reportType
+                    id: BUS_AFFOR_01
+                    name: Business Affordability Report
+                    description: In depth business affordability assessment.
+                    filters:
+                      - name: fromDate
+                        type: string
+                      - name: toDate
+                        type: string
+                      - name: accounts
+                        type: array
+                      - name: users
+                        type: array
+                  - type: reportType
+                    id: ROUNDUP_OPP_01
+                    name: Roundup Amount Report
+                    description: >-
+                      Identifies the roundup amount to be processed for each
+                      day.
+                    filters:
+                      - name: fromDate
+                        type: string
+                      - name: toDate
+                        type: string
+                      - name: accounts
+                        type: array
+                      - name: user
+                        type: string
+        '400':
           $ref: '#/components/responses/400BadRequest'
-        "403":
+        '403':
           $ref: '#/components/responses/403Forbidden'
-        "404":
+        '404':
           $ref: '#/components/responses/404NotFound'
-        "500":
-          $ref: '#/components/responses/500Server'                   
+        '500':
+          $ref: '#/components/responses/500Server'
 components:
-
-  #######################
-  # Common Responses
-  #######################
   responses:
-    400BadRequest: 
-      description: Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
+    400BadRequest:
+      description: >-
+        Returns error that server cannot or will not process the request due to
+        something that is perceived to be a client error.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    403Forbidden: 
-      description: Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
+    403Forbidden:
+      description: >-
+        Error that access is forbidden and tied to the application logic, such
+        as insufficient rights to a resource.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    404NotFound: 
+    404NotFound:
       description: Returns error indicating that server can't find requested resource.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    500Server: 
-      description: Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
+    500Server:
+      description: >-
+        Returns error response code indicates that the server encountered an
+        unexpected condition that prevented it from fulfilling the request.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-
-  #######################
-  # Common Schemas
-  #######################            
   schemas:
-    "error":
-      required: 
+    error:
+      required:
         - type
         - correlationId
         - data
       properties:
-        type: 
-            type: string
-            description: Always "list".
-            example: list
-        correlationId: 
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
           type: string
           description: Unique identifier for this particular occurrence of the problem.
           example: ac5ah5i
-        data: 
+        data:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
-              type: 
+            properties:
+              type:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-              title: 
+              title:
                 type: string
                 description: Title of the error
                 example: Parameter not valid.
-              code: 
+              code:
                 type: string
-                enum: ["parameter-not-supplied", "parameter-not-valid", "unsupported-accept", "invalid-content", "institution-not-supported", "invalid-credentials"]
+                enum:
+                  - parameter-not-supplied
+                  - parameter-not-valid
+                  - unsupported-accept
+                  - invalid-content
+                  - institution-not-supported
+                  - invalid-credentials
                 description: Application-specific error code, expressed as a string value.
                 example: parameter-not-valid
-              detail: 
+              detail:
                 type: string
-                description: Human-readable explanation specific to this occurrence of the problem.
+                description: >-
+                  Human-readable explanation specific to this occurrence of the
+                  problem.
                 example: ID value is not valid.
-              source: 
+              source:
                 type: object
-                properties: 
+                properties:
                   pointer:
                     type: string
-                    example: "connection/id"
-                    description: The location to the object or attribute that the error relates to
+                    example: connection/id
+                    description: >-
+                      The location to the object or attribute that the error
+                      relates to
                   parameter:
                     type: string
                     example: id
-                    description: A string indicating which URI query parameter caused the error.
-    "reports":
-      title: ""
+                    description: >-
+                      A string indicating which URI query parameter caused the
+                      error.
+    reports:
+      title: ''
       type: object
       properties:
-        type: 
+        type:
           type: string
           example: report
-        id: 
+        id:
           type: string
           example: b1824ad0-73f1-0138-3700-0a58a9feac09
-        title: 
+        title:
           type: string
           example: John Smith Affordability Report 2022-03-26
-        reportType: 
+        reportType:
           type: string
           example: affordability-consumer
-        createdDate: 
+        createdDate:
           type: string
-          example: 2022-03-26T06:56:44
-        createdBy: 
+          example: 2022-03-26T06:56:44.000Z
+        createdBy:
           type: string
           example: David Smith
-        filters: 
+        filters:
           type: object
-          properties: 
-            fromDate: 
+          properties:
+            fromDate:
               type: string
               format: date
-              example: 2022-01-01
-            toDate: 
+              example: 2022-01-01T00:00:00.000Z
+            toDate:
               type: string
               format: date
-              example: 2022-04-01
-            accounts: 
+              example: 2022-04-01T00:00:00.000Z
+            accounts:
               type: array
-              items: 
+              items:
                 type: string
                 example: s55bf5
-            users: 
+            users:
               type: array
-              items: 
+              items:
                 type: string
                 example: 25c8d1ed77
-        links: 
+        links:
           type: object
-          properties: 
-            self: 
+          properties:
+            self:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            transactions: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+            transactions:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-            reportType: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+            reportType:
               type: string
               example: https://au-api.basiq.io/reports/types/2847gf
-    "collection":
+    collection:
       properties:
         type:
           type: string
@@ -668,407 +707,415 @@ components:
           description: Size of the pages in the response.
         data:
           type: array
-          items: 
+          items:
             type: object
             $ref: '#/components/schemas/reportSummary'
-        links: 
+        links:
           type: object
-          properties: 
-            self: 
+          properties:
+            self:
               type: string
-              description: Self reference URL. 
+              description: Self reference URL.
               example: https://au-api.basiq.io/users/ea3a81/transactions
-            next: 
+            next:
               type: string
               description: Url to next result.
-              example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
-    "reportSummary":
+              example: >-
+                https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
+    reportSummary:
       properties:
-        type: 
+        type:
           type: string
           example: report
-        id: 
+        id:
           type: string
           example: b1824ad0-73f1-0138-3700-0a58a9feac09
-        title: 
+        title:
           type: string
           example: John Smith Affordability Report 2022-03-26
-        reportType: 
+        reportType:
           type: string
           example: affordability-consumer
-        createdDate: 
+        createdDate:
           type: string
-          example: 2022-03-26T06:56:44
-        createdBy: 
+          example: 2022-03-26T06:56:44.000Z
+        createdBy:
           type: string
           example: David Smith
-        filters: 
+        filters:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
-              name: 
+            properties:
+              name:
                 type: string
                 example: fromDate
-              value: 
+              value:
                 additionalProperties:
                   oneOf:
                     - type: string
                     - type: array
                 format: date
-                example: 2022-01-01
-        links: 
+                example: 2022-01-01T00:00:00.000Z
+        links:
           type: object
-          properties: 
-            self: 
+          properties:
+            self:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            transactions: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+            transactions:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-            reportType: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+            reportType:
               type: string
               example: https://au-api.basiq.io/reports/types/2847gf
-    "reportType":
-      properties: 
+    reportType:
+      properties:
         type:
           type: string
           description: Always "list".
           example: list
         data:
           type: array
-          items: 
+          items:
             type: object
             properties:
-              type: 
+              type:
                 type: string
                 example: reportType
-              id: 
+              id:
                 type: string
                 example: CON_AFFOR_01
-              name: 
+              name:
                 type: string
                 example: Consumer Affordability Report
-              description: 
+              description:
                 type: string
                 example: In depth consumer affordability assessment.
-              filters: 
+              filters:
                 type: array
-                items: 
+                items:
                   type: object
-                  properties: 
-                    name: 
+                  properties:
+                    name:
                       type: string
                       example: fromDate
-                    type: 
+                    type:
                       type: string
                       example: string
-    "reportRequest":
+    reportRequest:
       properties:
-        reportType: 
+        reportType:
           type: string
           example: CON_AFFOR_01
-        title: 
+        title:
           type: string
           example: John Smith Affordability Report 2022-03-26
-        filters: 
+        filters:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
-              name: 
+            properties:
+              name:
                 type: string
                 example: fromDate
-              value: 
+              value:
                 type: string
                 format: date
-                example: 2022-01-01
-    "job":
+                example: 2022-01-01T00:00:00.000Z
+    job:
       properties:
-        type: 
+        type:
           type: string
           example: job
-        id: 
+        id:
           type: string
           example: 29523951
-        links: 
+        links:
           type: object
-          properties: 
-            self: 
+          properties:
+            self:
               type: string
               example: https://au-api.basiq.io/jobs/a3dgf4567a89
-    "report":
+    report:
       properties:
-        type: 
+        type:
           type: string
           example: report
-        id: 
+        id:
           type: string
           example: b1824ad0-73f1-0138-3700-0a58a9feac09
-        title: 
+        title:
           type: string
           example: John Smith Affordability Report 2022-03-26
-        reportType: 
+        reportType:
           type: string
           example: CON_AFFOR_01
-        createdDate: 
+        createdDate:
           type: string
-          example: 2022-03-26T06:56:44
-        createdBy: 
+          example: 2022-03-26T06:56:44.000Z
+        createdBy:
           type: string
           example: David Smith
-        filters: 
+        filters:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
-              name: 
+            properties:
+              name:
                 type: string
                 example: fromDate
-              value: 
+              value:
                 type: string
                 format: date
-                example: 2022-01-01
-        data: 
+                example: 2022-01-01T00:00:00.000Z
+        data:
           type: object
-          properties: 
-            metrics: 
+          properties:
+            metrics:
               type: array
-              items: 
+              items:
                 type: object
-                properties: 
-                  id: 
+                properties:
+                  id:
                     type: string
                     example: ME001
-                  title: 
+                  title:
                     type: string
-                    example: # of identified income sources
-                  description: 
+                    example: null
+                  description:
                     type: string
                     example: xxxx
-                  group: 
+                  group:
                     type: string
                     example: Income Sources
-                  result: 
+                  result:
                     type: object
-                    properties: 
-                      value: 
+                    properties:
+                      value:
                         type: string
                         example: 4
-                      format: 
+                      format:
                         type: string
                         example: integer
-            groups: 
+            groups:
               type: array
-              items: 
+              items:
                 type: object
-                properties: 
-                  id: 
+                properties:
+                  id:
                     type: string
                     example: S2
-                  title: 
+                  title:
                     type: string
                     example: Other Finance
-                  section: 
+                  section:
                     type: string
                     example: Liabilities
-                  analysis: 
+                  analysis:
                     type: object
-                    properties: 
-                      summary: 
+                    properties:
+                      summary:
                         type: object
-                        properties: 
-                          transactionCount: 
+                        properties:
+                          transactionCount:
                             type: number
                             example: 5
-                          overallPercentage: 
+                          overallPercentage:
                             type: object
-                            properties: 
-                              credit: 
+                            properties:
+                              credit:
                                 type: number
                                 example: 0
-                              debit: 
+                              debit:
                                 type: number
                                 example: 67
-                      range: 
+                      range:
                         type: object
-                        properties: 
-                          startDate: 
+                        properties:
+                          startDate:
                             type: string
-                            example: 2022-01-13T20:03:37
-                          endDate: 
+                            example: 2022-01-13T20:03:37.000Z
+                          endDate:
                             type: string
-                            example: 2022-05-13T20:03:37
-                          duration: 
+                            example: 2022-05-13T20:03:37.000Z
+                          duration:
                             type: number
                             example: 16
-                      amount: 
+                      amount:
                         type: object
-                        properties: 
-                          total: 
+                        properties:
+                          total:
                             type: string
                             example: -586
-                          min: 
+                          min:
                             type: string
-                            example: -146.50
-                          max: 
+                            example: -146.5
+                          max:
                             type: string
-                            example: -146.50
-                          average: 
+                            example: -146.5
+                          average:
                             type: object
-                            properties: 
-                              transaction: 
+                            properties:
+                              transaction:
                                 type: string
                                 example: -123
-                              month: 
+                              month:
                                 type: string
-                                example: -439.50
-                      frequency: 
+                                example: -439.5
+                      frequency:
                         type: object
-                        properties: 
-                          type: 
+                        properties:
+                          type:
                             type: string
                             example: P1W
-                          amount: 
+                          amount:
                             type: string
-                            example: -146.50
-                          day: 
+                            example: -146.5
+                          day:
                             type: string
                             example: Monday
-                          display: 
+                          display:
                             type: string
                             example: Weekly
-                          next: 
+                          next:
                             type: object
-                            properties: 
-                              date: 
+                            properties:
+                              date:
                                 type: string
-                                example: 2022-12-26T20:03:37
-                              amount: 
+                                example: 2022-12-26T20:03:37.000Z
+                              amount:
                                 type: string
-                                example: -146.50
-                  subgroup: 
+                                example: -146.5
+                  subgroup:
                     type: array
-                    items: 
+                    items:
                       type: object
-                      properties: 
-                        id: 
+                      properties:
+                        id:
                           type: string
                           example: 6d97ec2e37e4d1d24a105bdaea33b427
-                        name: 
+                        name:
                           type: string
                           example: SUNSHINE LOANS
-                        analysis: 
+                        analysis:
                           type: object
-                          properties: 
-                            summary: 
+                          properties:
+                            summary:
                               type: object
-                              properties: 
-                                transactionCount: 
+                              properties:
+                                transactionCount:
                                   type: number
                                   example: 5
-                                overallPercentage: 
+                                overallPercentage:
                                   type: object
-                                  properties: 
-                                    credit: 
+                                  properties:
+                                    credit:
                                       type: number
                                       example: 0
-                                    debit: 
+                                    debit:
                                       type: number
                                       example: 67
-                            range: 
+                            range:
                               type: object
-                              properties: 
-                                startDate: 
+                              properties:
+                                startDate:
                                   type: string
-                                  example: 2022-01-13T20:03:37
-                                endDate: 
+                                  example: 2022-01-13T20:03:37.000Z
+                                endDate:
                                   type: string
-                                  example: 2022-05-13T20:03:37
-                                duration: 
+                                  example: 2022-05-13T20:03:37.000Z
+                                duration:
                                   type: number
                                   example: 16
-                            amount: 
+                            amount:
                               type: object
-                              properties: 
-                                total: 
+                              properties:
+                                total:
                                   type: string
                                   example: -586
-                                min: 
+                                min:
                                   type: string
-                                  example: -146.50
-                                max: 
+                                  example: -146.5
+                                max:
                                   type: string
-                                  example: -146.50
-                                average: 
+                                  example: -146.5
+                                average:
                                   type: object
-                                  properties: 
-                                    transaction: 
+                                  properties:
+                                    transaction:
                                       type: string
                                       example: -123
-                                    month: 
+                                    month:
                                       type: string
-                                      example: -439.50
-                            frequency: 
+                                      example: -439.5
+                            frequency:
                               type: object
-                              properties: 
-                                type: 
+                              properties:
+                                type:
                                   type: string
                                   example: P1W
-                                amount: 
+                                amount:
                                   type: string
-                                  example: -146.50
-                                day: 
+                                  example: -146.5
+                                day:
                                   type: string
                                   example: Monday
-                                display: 
+                                display:
                                   type: string
                                   example: Weekly
-                                next: 
+                                next:
                                   type: object
-                                  properties: 
-                                    date: 
+                                  properties:
+                                    date:
                                       type: string
-                                      example: 2022-12-26T20:03:37
-                                    amount: 
+                                      example: 2022-12-26T20:03:37.000Z
+                                    amount:
                                       type: string
-                                      example: -146.50
-                        transactions: 
+                                      example: -146.5
+                        transactions:
                           type: array
-                          items: 
+                          items:
                             type: object
-                            properties: 
-                              amount: 
+                            properties:
+                              amount:
                                 type: string
-                                example: -146.50
-                              date: 
+                                example: -146.5
+                              date:
                                 type: string
                                 format: date
-                                example: 2022-12-19
-                              source: 
+                                example: 2022-12-19T00:00:00.000Z
+                              source:
                                 type: string
                                 example: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                              id: 
+                              id:
                                 type: string
                                 example: d3de1ca1
-        links: 
+        links:
           type: object
-          properties: 
-            self: 
+          properties:
+            self:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            data-users: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+            data-users:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
-            data-connections: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
+            data-connections:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
-            data-accounts: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
+            data-accounts:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-            data-transactions: 
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
+            data-transactions:
               type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+              example: >-
+                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
   securitySchemes:
     reporting_token:
       type: http
