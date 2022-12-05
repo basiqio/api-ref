@@ -6,6 +6,56 @@ servers:
   - url: https://api-au.basiq.io
 paths:
   /reports:
+    post:
+      summary: Create a report
+      tags:
+        - Reports
+      description: |
+        Use this endpoint to create a new report. Report creation is an asynchronous task, meaning a job will be returned to let you know the progress of the report generation.
+        You can poll the job to know when the report has been generated. You can create any supported report (see reportTypes for a list of supported reports). Ensure you provide the necessary filters when generating a report.
+        All created reports, will store a copy of the data as a snapshot - this ensures that you have access to the raw data that was used to create the report. 
+      requestBody:
+        description: Include the details of the report you would like to create along with the filters.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reportRequest'
+            example:
+              reportType: CON_AFFOR_01
+              title: John Smith Affordability Report 2022-03-26
+              filters:
+              - name: fromDate
+                value: '2022-01-01'
+              - name: toDate
+                value: '2022-12-01'
+              - name: accounts
+                value:
+                - ag829sj
+                - aj82gka
+              - name: users
+                value:
+                - sj29sjd
+      responses:
+        "202":
+          description: |
+            The server will return link to a job endpoint which can be polled to track the progress of the report creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/job'
+              example:
+                type: job
+                id: '29523951'
+                links:
+                  self: https://au-api.basiq.io/jobs/a3dgf4567a89
+        "400":
+          $ref: '#/components/responses/400BadRequest'
+        "403":
+          $ref: '#/components/responses/403Forbidden'
+        "404":
+          $ref: '#/components/responses/404NotFound'
+        "500":
+          $ref: '#/components/responses/500Server'
     get:
       summary: Returns a list of created reports
       tags:
@@ -50,56 +100,6 @@ paths:
                 links:
                   self: https://au-api.basiq.io/users/ea3a81/transactions
                   next: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
-        "400":
-          $ref: '#/components/responses/400BadRequest'
-        "403":
-          $ref: '#/components/responses/403Forbidden'
-        "404":
-          $ref: '#/components/responses/404NotFound'
-        "500":
-          $ref: '#/components/responses/500Server'
-    post:
-      summary: Create a report
-      tags:
-        - Reports
-      description: |
-        Use this endpoint to create a new report. Report creation is an asynchronous task, meaning a job will be returned to let you know the progress of the report generation.
-        You can poll the job to know when the report has been generated. You can create any supported report (see reportTypes for a list of supported reports). Ensure you provide the necessary filters when generating a report.
-        All created reports, will store a copy of the data as a snapshot - this ensures that you have access to the raw data that was used to create the report. 
-      requestBody:
-        description: Include the details of the report you would like to create along with the filters.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/reportRequest'
-            example:
-              reportType: CON_AFFOR_01
-              title: John Smith Affordability Report 2022-03-26
-              filters:
-              - name: fromDate
-                value: '2022-01-01'
-              - name: toDate
-                value: '2022-12-01'
-              - name: accounts
-                value:
-                - ag829sj
-                - aj82gka
-              - name: users
-                value:
-                - sj29sjd
-      responses:
-        "202":
-          description: |
-            The server will return link to a job endpoint which can be polled to track the progress of the report creation.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/job'
-              example:
-                type: job
-                id: '29523951'
-                links:
-                  self: https://au-api.basiq.io/jobs/a3dgf4567a89
         "400":
           $ref: '#/components/responses/400BadRequest'
         "403":
@@ -451,7 +451,6 @@ paths:
           $ref: '#/components/responses/404NotFound'
         "500":
           $ref: '#/components/responses/500Server'
-
   /reports/types:
     get:
       summary: Return a list of supported report types.
