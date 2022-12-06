@@ -788,7 +788,7 @@ paths:
     delete:
       tags:
         - User consent
-      summary: Delete a user consent
+      summary: Delete a consent
       description: Permanently deletes a users consent, this action cannot be undone.
       operationId: deleteConsent
       parameters:
