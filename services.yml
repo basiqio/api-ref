@@ -56,6 +56,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/accounts/{accountId}:
     get:
       tags:
@@ -113,6 +114,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/affordability:
     get:
       tags:
@@ -158,6 +160,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
     post:
       tags:
       - Affordability
@@ -238,6 +241,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
       x-codegen-request-body-name: AffordabilityPostRequest
   /users/{userId}/affordability/{snapshotId}:
     get:
@@ -312,6 +316,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/affordability/{snapshotId}/transactions:
     get:
       tags:
@@ -392,6 +397,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/expenses:
     post:
       tags:
@@ -453,6 +459,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
       x-codegen-request-body-name: ExpensesPostRequest
   /users/{userId}/expenses/{snapshotId}:
     get:
@@ -526,6 +533,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/income:
     post:
       tags:
@@ -587,6 +595,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
       x-codegen-request-body-name: IncomePostRequest
   /users/{userId}/income/{snapshotId}:
     get:
@@ -645,6 +654,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/transactions:
     get:
       tags:
@@ -719,6 +729,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/transactions/{transactionId}:
     get:
       tags:
@@ -783,6 +794,7 @@ paths:
       security:
       - application:
         - SERVER_ACCESS
+      - services_token: []
 components:
   schemas:
     AccountClass:
