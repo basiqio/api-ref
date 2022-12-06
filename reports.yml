@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Basiq Reporting API
-  version: '1.0'
+  version: 3.0.0
 servers:
   - url: https://au-api.basiq.io
 paths:
