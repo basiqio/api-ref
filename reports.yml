@@ -477,7 +477,7 @@ paths:
     delete:
       tags:
         - Reports
-      summary: Delete a consent
+      summary: Delete a report
       description: Permanently deletes a users consent, this action cannot be undone.
       operationId: deleteConsent
       parameters:
