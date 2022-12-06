@@ -474,6 +474,31 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '500':
           $ref: '#/components/responses/500Server'
+    delete:
+      tags:
+        - Reports
+      summary: Delete a consent
+      description: Permanently deletes a users consent, this action cannot be undone.
+      operationId: deleteConsent
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: The ID of the generated report
+      responses:
+        '204':
+          description: Deletion succeeded.
+          content: {}
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500Server'
   /reports/types:
     get:
       summary: List report types
