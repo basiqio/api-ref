@@ -69,7 +69,7 @@ paths:
         '500':
           $ref: '#/components/responses/500Server'
     get:
-      summary: Returns a list of created reports
+      summary: List all reports
       tags:
         - Reports
       description: >
@@ -130,7 +130,7 @@ paths:
     summary: ''
     description: ''
     get:
-      summary: Returns the requested report results.
+      summary: Retrieve a report
       tags:
         - Reports
       description: >
@@ -476,7 +476,7 @@ paths:
           $ref: '#/components/responses/500Server'
   /reports/types:
     get:
-      summary: Return a list of supported report types.
+      summary: List report types
       tags:
         - Reports
       description: >
