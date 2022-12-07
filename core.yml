@@ -315,415 +315,10 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /users/{userId}/connections:
-    get:
-      tags:
-        - Connections
-      summary: List all connections
-      description: >-
-        Returns a list of connections belonging to this user. Each entry in the
-        array is a separate object. If no data is returned, the resulting array
-        will be empty.
-      operationId: getConnections
-      parameters:
-        - name: userId
-          in: path
-          description: User identifier.
-          required: true
-          schema:
-            type: string
-        - name: filter
-          in: query
-          description: >-
-            Connections filters, id, status, institution.id. e.g
-            institution.id.eq('AU00000')
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns details of connections.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionsGetResponseResource'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-        '503':
-          description: >-
-            Returns error response code indicates that the server is not ready
-            to handle the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusServiceUnavailableError'
-      security:
-        - application:
-            - SERVER_ACCESS
-  /users/{userId}/connections/refresh:
-    post:
-      tags:
-        - Connections
-      summary: Refresh all connections
-      description: Use this to refresh all connections belonging to the specified user.
-      operationId: refreshConnections
-      parameters:
-        - name: userId
-          in: path
-          description: The identifier of the user.
-          required: true
-          schema:
-            type: string
-      responses:
-        '202':
-          description: Returns a created jobs resource, if the operation succeeded.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionsRefreshResource'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
-  /users/{userId}/connections/{connectionId}:
-    get:
-      tags:
-        - Connections
-      summary: Retrieve a connection
-      description: >-
-        Use this to retrieve details of a specific connection. Note that due to
-        security the loginId, password, securityCode are never returned.
-      operationId: getConnection
-      parameters:
-        - name: userId
-          in: path
-          description: The identifier of the user.
-          required: true
-          schema:
-            type: string
-        - name: connectionId
-          in: path
-          description: The identifier of the connection.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns details of a connection.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionGetResponseResource'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '401':
-          description: >-
-            Error status response code indicates that the request has not been
-            applied because it lacks valid authentication credentials for the
-            target resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnauthorizedError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-        '503':
-          description: >-
-            Returns error response code indicates that the server is not ready
-            to handle the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusServiceUnavailableError'
-      security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
-    delete:
-      tags:
-        - Connections
-      summary: Delete a connection
-      description: >-
-        Permanently deletes a connection. This does not include the existing
-        account and transaction data associated with it. This can not be undone.
-      operationId: deleteConnection
-      parameters:
-        - name: userId
-          in: path
-          description: The identifier of the user.
-          required: true
-          schema:
-            type: string
-        - name: connectionId
-          in: path
-          description: The identifier of the connection.
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Returns an empty body if the delete succeeded.
-          content: {}
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-        '503':
-          description: >-
-            Returns error response code indicates that the server is not ready
-            to handle the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusServiceUnavailableError'
-      security:
-        - application:
-            - SERVER_ACCESS
-  /users/{userId}/connections/{connectionId}/refresh:
-    post:
-      tags:
-        - Connections
-      summary: Refresh a connection
-      description: >-
-        Use this to refresh an existing connection. This will not return a new
-        connection. Instead will return a job resource which is resonsible for
-        refreshing the connection and fetching data asynchronously. Use this job
-        resource to track the connections progress.
-      operationId: refreshConnection
-      parameters:
-        - name: userId
-          in: path
-          description: The identifier of the user.
-          required: true
-          schema:
-            type: string
-        - name: connectionId
-          in: path
-          description: The identifier of the connection.
-          required: true
-          schema:
-            type: string
-      responses:
-        '202':
-          description: Returns a created job resource, if the operation succeeded.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionResponseResource'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-        '503':
-          description: >-
-            Returns error response code indicates that the server is not ready
-            to handle the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusServiceUnavailableError'
-      security:
-        - application:
-            - SERVER_ACCESS
-  /users/{userId}/jobs:
-    get:
-      tags:
-        - Jobs
-      summary: Get user jobs
-      description: >-
-        Retrieves the details of all existing and previous jobs associated with
-        a user.
-      operationId: getUserJobs
-      parameters:
-        - name: userId
-          in: path
-          description: User identifier
-          required: true
-          schema:
-            type: string
-        - name: filter
-          in: query
-          description: Connection identification filter. e.g. connection.id.eq('ab63cd')
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns a list of jobs with details.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobsResponseResource'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
   /users/{userId}/consents:
     get:
       tags:
-        - User consent
+        - Consents
       summary: Retrieve consents
       description: Retrieves a list of the user consents
       operationId: getConsents
@@ -787,7 +382,7 @@ paths:
   /users/{userId}/consents/{consentId}:
     delete:
       tags:
-        - User consent
+        - Consents
       summary: Delete a consent
       description: Permanently deletes a users consent, this action cannot be undone.
       operationId: deleteConsent
@@ -849,290 +444,6 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /jobs/{jobId}:
-    get:
-      tags:
-        - Jobs
-      summary: Retrieve a job
-      description: >-
-        Retrieves the details of an existing job. You need only supply the
-        unique job identifier that was returned upon job creation.
-      operationId: getJobs
-      parameters:
-        - name: jobId
-          in: path
-          description: The identifier of the job to be retrieved.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns a job details if a valid job ID was provided.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobData'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '403':
-          description: >-
-            Error that access is forbidden and tied to the application logic,
-            such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        '404':
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
-  /jobs/{jobId}/mfa:
-    post:
-      tags:
-      - Jobs
-      summary: 'Create MFA response'
-      description: |-
-        Ensure that you generate an authentication token with
-        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
-      operationId: postJobMfa
-      parameters:
-      - name: jobId
-        in: path
-        description: The identifier of the job.
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/JobPostRequest'
-        required: true
-      responses:
-        202:
-          description: Returns a job if MFA response was correct. Returns an error
-            otherwise.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionResponseResource'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-      - application:
-        - CLIENT_ACCESS
-  /connectors: 
-    get:
-      tags:
-        - Connectors
-      summary: Retrieve connectors
-      description: 'NOTE: This end point requires authentication.'
-      operationId: getConnectors
-      parameters:
-        - name: filter
-          in: query
-          description: >-
-            Filter parameter can be used to filter connector list by connector
-            property. This parameter should contain comma separated list of
-            filter statements.</br>
-
-            Filter statement is composed from entity name (in this case it is
-            always `institution`), property name (e.g. `stage`), filter operator
-            (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`).
-            </br>
-
-            The Following list of regular expressions descirbes acceptable
-            filter statements: </br>
-
-            • `(connector).(id).(eq)\(('[A-Z][A-Z][0-9]{5}')\)` </br>
-
-            • `(connector).(method).(eq)\(('web'||'open-banking'|'pdf'|'csv')\)`
-            </br>
-
-            •
-            `(connector).(status).(eq|ne)\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\)`
-            </br>
-
-            • `(connector).(status).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(stage).(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
-
-            • `(connector).(stage).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(scopes).(in|eq|ne)\(([\w\W]+)\)` </br>
-
-            • `(connector).(institution).(country).(eq|ne)\(('Australia'|'New
-            Zealand')\)` </br>
-
-            • `(connector).(institution).(country).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(institution).(tier).(eq|ne)\(('1'|'2'|'3'|'4')\)`
-            </br>
-
-            • `(connector).(institution).(tier).(in)\(([\W\d]+)\)` </br>
-
-            • `(connector).(institution).(type).(eq|ne)\(('Bank'|'Bank
-            \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial
-            Services'|'Superannuation')\)` </br>
-
-            •
-            `(connector).(authorization).(type).(eq|ne)\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\)`
-            </br>
-
-            • `(connector).(authorization).(type).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(connectorCategory).(eq|ne)\(('chrome'|'node')\)`
-            </br>
-
-            Multiple filter definitions should be separated with comma (`,`).
-            </br>
-
-            For example, this is filter statement will keep only live tier 1 and
-            tier 2 institutions:
-            `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')`
-            </br>
-          schema:
-            type: string
-            x-go-name: Filter
-          x-go-name: Filter
-      responses:
-        '200':
-          description: Returns data of single connector.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorsList'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '401':
-          description: Returns error that indicates unauthorized access.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnauthorizedError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
-  /connectors/{connectorId}/{method}:
-    get:
-      tags:
-        - Connectors
-      summary: Retrieve a connector
-      description: 'NOTE: This end point requires authentication.'
-      operationId: getConnector
-      parameters:
-        - name: connectorId
-          in: path
-          description: Connector ID
-          required: true
-          schema:
-            pattern: ^[A-Z]{2}[0-9]{5}$
-            type: string
-        - name: method
-          in: path
-          description: Connector method
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Returns data of single connector.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Connector'
-        '400':
-          description: >-
-            Returns error that server cannot or will not process the request due
-            to something that is perceived to be a client error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '401':
-          description: Returns error that indicates unauthorized access.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnauthorizedError'
-        '404':
-          description: Returns error indicating that server cannot find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        '500':
-          description: >-
-            Returns error response code indicates that the server encountered an
-            unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
   /users/{userId}/auth_link:
     post:
       tags:
@@ -1381,112 +692,50 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /users/{userId}/identities:
+  /jobs/{id}:
     get:
       tags:
-      - Identities
-      summary: Retrieve identities
-      description: Returns a list with a data property that contains an array of user
-        identities. Each entry in the array is a separate object. If no data is returned,
-        the resulting array will be empty.
-      operationId: getUserIdentities
+        - Jobs 
+      summary: Get a job by its id
+      operationId: getJob
       parameters:
-      - name: userId
-        in: path
-        description: User identifier.
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          description: Job Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
       responses:
-        200:
-          description: Returns list of identities.
+        '404':
+          description: not found
+        '200':
+          description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IdentitiesGetResponseResource'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-      - application:
-        - SERVER_ACCESS
-        - CLIENT_ACCESS
-  /users/{userId}/identities/{identityId}:
-    get:
-      tags:
-      - Identities
-      summary: Retrieve an identity
-      description: Returns a specific identity object.
-      operationId: getUserIdentity
-      parameters:
-      - name: userId
-        in: path
-        description: User identifier.
-        required: true
-        schema:
-          type: string
-      - name: identityId
-        in: path
-        description: Identity identifier.
-        required: true
-        schema:
-          type: string
-      responses:
-        200:
-          description: Returns identity.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IdentityData'
-        400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        403:
-          description: Error that access is forbidden and tied to the application
-            logic, such as insufficient rights to a resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenAccessError'
-        404:
-          description: Returns error indicating that server can't find requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-        500:
-          description: Returns error response code indicates that the server encountered
-            an unexpected condition that prevented it from fulfilling the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-      security:
-      - application:
-        - SERVER_ACCESS
-        - CLIENT_ACCESS
+                $ref: '#/components/schemas/job'
+              examples:
+                response:
+                  value:
+                    type: job
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2016-06-08T09:10:32.000Z'
+                    updated: '2016-06-08T09:14:28.000Z'
+                    steps:
+                    - title: validate-payment
+                      status: success
+                      result:
+                        type: link
+                        url: "/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                    - title: validate-payer-information
+                      status: in-progress
+                      result: null
+                    links:
+                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      source: "/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09"
 components:
   schemas:
     AccountClass:
@@ -1503,6 +752,40 @@ components:
           type: string
           description: Product name.
           example: saver
+    job:
+      type: object
+      properties:
+        type: 
+          type: string
+        id:
+          type: string
+        created:
+          description: date and time in ISO format of when the job request was created 
+          type: string
+          format: date-time
+        updated:
+          description: date and time in ISO format of when the job request was updated 
+          type: string
+          format: date-time
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: object
+              status:
+                type: object
+              result:
+                type: object
+                properties:
+                  type:
+                    type: string
+        links:
+          type: object
+          properties:
+            link:
+              type: string
     AccountsContainer:
       required:
         - data
@@ -1757,7 +1040,6 @@ components:
           type: string
           description: A string that uniquely identifies the user.
           example: ec4ea48d
-   
     ConnectionGetResponseResource:
       title: ConnectionGetResponseResource
       required:
