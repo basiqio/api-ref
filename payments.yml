@@ -1,0 +1,1522 @@
+openapi: 3.0.1
+info:
+  title: Payments
+  description: |
+    All endpoints related to Basiq's payments offering
+  version: '3.0'
+  termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+servers:
+  - url: https://au-api.basiq.io/
+tags:
+  - name: Collect
+    description: APIs for collecting funds
+  - name: Send 
+    description: APIs for sending funds
+  - name: Float accounts
+    description: APIs for querying float accounts
+paths:
+# payrequests
+  /payments/payrequests:
+    post:
+      tags:
+        - Collect
+      summary: Submit payrequests
+      operationId: submitPayrequests
+      requestBody:
+        $ref: '#/components/requestBodies/payrequests'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jobs'
+              examples:
+                Single Payment Request:
+                  value:
+                    jobs:
+                      - type: job
+                        id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        links:
+                          self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Multiple Payment Requests:
+                  value:
+                    jobs:
+                    - type: job
+                      id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      links:
+                        self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                    - type: job
+                      id: c29824ad0-73f1-0138-3700-0a58a9feac10
+                      requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
+                      links:
+                        self: https://au-api.basiq.io/jobs/c29824ad0-73f1-0138-3700-0a58a9feac10
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid amount:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: parameter-not-valid
+                      title: Parameter not valid.
+                      detail: Amount value is not valid.
+                      source:
+                        pointer: '/payrequests[0]/amount'
+                Invalid payerBankBranchCode:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: parameter-not-valid
+                      title: Parameter not valid.
+                      detail: payerBankBranchCode is not valid.
+                      source:
+                        pointer: '/payrequests[0]/payerBankBranchCode'
+                Invalid payerAccountNumber:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: parameter-not-valid
+                      title: Parameter not valid.
+                      detail: payerAccountNumber is not valid.
+                      source:
+                        pointer: '/payrequests[0]/payerAccountNumber'
+                Duplicate request:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: resource-already-exists
+                      title: Resource already exists.
+                      detail: A resource with the same Request ID already exists.
+                      source:
+                        pointer: '/payrequests[0]/requestId'
+                Duplicate request within the same message:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: resource-already-exists
+                      title: Resource already exists.
+                      detail: A resource with the same Request ID already exists in this request.
+                      source:
+                        pointer: '/payrequests[0]/requestId'
+                Bulk limit exceeded:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: maximum-count-exceeded
+                      title: Maximum count exceeded.
+                      detail: The request has exceeded the maximum count.
+                      source: null
+                Payments not enabled:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: payments-not-enabled
+                      title: Payments not enabled.
+                      detail: Payments not enabled for this application.
+                      source: null
+                Invalid content:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: invalid-content
+                      title: Invalid request content.
+                      detail: Posted requests data is not in valid format.
+                      source: null
+      security:
+          - payment_apiKey: []
+    get:
+      tags:
+        - Collect 
+      summary: List payrequests
+      operationId: listPayrequests
+      parameters:
+        - name: limit
+          in: query
+          description: 'Maximum number of payment requests included in the response. Max value = 500 and is the default value if this field is not provided'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: '10'
+        - name: filter
+          in: query
+          description: 'Filter field that allows filtering by payer.user.id, status, date, amount'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: ''
+      responses:
+        '404':
+          description: not found
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payrequests'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 2
+                    size: 2
+                    data:
+                      - type: 'payrequest'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payerBankBranchCode: '730002'
+                          payerAccountNumber: '123456789'
+                          payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Investment'
+                        amount: 173.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payrequest'
+                        id: 'c1024ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: 'a1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payerBankBranchCode: '730002'
+                          payerAccountNumber: '123456789'
+                          payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Investment'
+                        amount: 173.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payrequests/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                    links:
+                      self: "https://au-api.basiq.io/payments/payrequests"
+                      next: "https://au-api.basiq.io/payments/payrequests?next=049fde"
+      security:
+          - payment_apiKey: []
+  /payments/payrequests/{id}:
+    get:
+      tags:
+        - Collect 
+      summary: Get a payrequest by its basiq Id
+      operationId: getPayrequest
+      parameters:
+        - name: id
+          in: path
+          description: Payment request Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payrequest'
+              examples:
+                In-progress:
+                  value:
+                    type: 'payrequest'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'in-progress'
+                    payer:
+                      payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: 'Investment'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - User name invalid:
+                  value:
+                    type: 'payrequest'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: 'batch'
+                    status: 'failed'
+                    reason: 
+                      code: 'invalid-user-name'
+                      title: 'Invalid user name.'
+                      detail: 'The user name must exist and have a valid first name with more than 2 letters and last name with more than 2 letters. Please update the user name details.'
+                    payer:
+                      payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: 'Investment'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - Missing payer account details:
+                  value:
+                    type: 'payrequest'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: 'batch'
+                    status: 'failed'
+                    reason: 
+                      code: 'missing-payer-account-details'
+                      title: 'Missing Payer account details.'
+                      detail: 'Please specify payer account details.'
+                    payer:
+                      payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: 'Investment'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09                      
+                Failed - External provider unreachable:
+                  value:
+                    type: 'payrequest'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: 'batch'
+                    status: 'failed'
+                    reason: 
+                      code: 'external-provider-unreachable'
+                      title: 'External provider unreachable.'
+                      detail: 'Unable to reach downstream provider.'
+                    payer:
+                      payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: 'Investment'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - Payment transaction limit reached:
+                  value:
+                    type: 'payrequest'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: 'batch'
+                    status: 'failed'
+                    reason: 
+                      code: 'transaction-limit-reached'
+                      title: 'Transaction limit reached.'
+                      detail: 'The transaction amount exceeds the allowed limit. Please contact support.'
+                    payer:
+                      payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: 'Investment'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - Daily limit reached:
+                  value:
+                    type: 'payrequest'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: 'batch'
+                    status: 'failed'
+                    reason: 
+                      code: 'daily-limit-reached'
+                      title: 'Daily limit reached.'
+                      detail: 'The transaction amount exceeds the daily processing allowed limit. Please contact support.'
+                    payer:
+                      payerUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: 'Investment'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09                      
+        '404':
+          description: Payment request not found
+#  '/users/{id}/payments/payrequests':
+#    get:
+#      tags:
+#        - Collect (Payrequests)
+#      summary: List user payrequests
+#      operationId: listUserPayrequests
+#      parameters:
+#        - name: id
+#          in: path
+#          description: User Id
+#          required: true
+#          style: simple
+#          explode: false
+#          schema:
+#            type: string
+#            default: '21824ad0-73f1-0138-3700-0a58a9feac09'
+#          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
+#        - name: limit
+#          in: query
+#          description: 'Maximum number of payments included in the response. Max value = 500 and is the default value if this field is not provided'
+#          style: deepObject
+#          explode: false
+#          schema:
+#            type: integer
+#          example: '10'
+#        - name: filter
+#          in: query
+#          description: Filter field that allows filtering by payment.status, payment.date
+#          style: deepObject
+#          explode: false
+#          schema:
+#            type: string
+#          example: ''        
+#      responses:
+#       '200':
+#          description: OK
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/payrequests'
+#              examples:
+#                response:
+#                  value:
+#                    type: 'list'
+#                    count: 1
+#                    size: 1
+#                    data:
+#                      - type: 'payrequest'
+#                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+#                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+#                        created: '2022-03-21T20:28:22.378Z'
+#                        updated: '2022-03-21T20:28:22.378Z'
+#                        method: batch
+#                        status: 'in-progress'
+#                        payer:
+#                          payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+#                          payerAccountId: 31824ad0-73f1-0138-3700-0a58a9feac09
+#                          payerBankBranchCode: '730002'
+#                          payerAccountNumber: '123456789'
+#                        description: 'Investment'
+#                        amount: 173.45
+#                        currency: AUD
+#                        links:
+#                          self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
+#                          job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+#                    links:
+#                      self: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payrequests"
+#                      next: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payrequests?next=049fde"
+# payouts
+  /payments/payouts:
+    post:
+      tags:
+        - Send 
+      summary: Submit payouts
+      operationId: submitPayouts
+      requestBody:
+        $ref: '#/components/requestBodies/payouts'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jobs'
+              examples:
+                Single Payout:
+                  value:
+                    jobs:
+                      - type: job
+                        id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        links:
+                          self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Multiple Payouts:
+                  value:
+                    jobs:
+                    - type: job
+                      id: b1824ad0-73f1-0138-3700-0a58a9feac09
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      links:
+                        self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                    - type: job
+                      id: c29824ad0-73f1-0138-3700-0a58a9feac10
+                      requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
+                      links:
+                        self: https://au-api.basiq.io/jobs/c29824ad0-73f1-0138-3700-0a58a9feac10
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid amount:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      title: Parameter not valid.
+                      code: parameter-not-valid
+                      detail: Amount value is not valid.
+                      source:
+                        pointer: '/payouts[0]/amount'
+                Multiple invalid:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      title: Parameter not valid.
+                      code: parameter-not-valid
+                      detail: Amount value is not valid.
+                      source:
+                        pointer: '/payouts[0]/amount'
+                    - id: '12824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      title: Parameter not valid.
+                      code: parameter-not-valid
+                      detail: Amount value is not valid.
+                      source:
+                        pointer: '/payouts[1]/amount'
+                Invalid payeeBankBranchCode:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: parameter-not-valid
+                      title: Parameter not valid.
+                      detail: payeeBankBranchCode is not valid.
+                      source:
+                        pointer: '/payouts[0]/payeeBankBranchCode'
+                Invalid payeeAccountNumber:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: parameter-not-valid
+                      title: Parameter not valid.
+                      detail: payeeAccountNumber is not valid.
+                      source:
+                        pointer: '/payouts[0]/payeeAccountNumber'
+                Invalid payout method:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: parameter-not-valid
+                      title: Parameter not valid.
+                      detail: method is not valid.
+                      source:
+                        pointer: '/payouts[0]/method'
+                Duplicate request:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: resource-already-exists
+                      title: Resource already exists.
+                      detail: A resource with the same Request ID already exists.
+                      source:
+                        pointer: '/payouts[0]/requestId'
+                Duplicate request within the same message:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: resource-already-exists
+                      title: Resource already exists.
+                      detail: A resource with the same Request ID already exists in this request.
+                      source:
+                        pointer: '/payouts[0]/requestId'
+                Bulk limit exceeded:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: maximum-count-exceeded
+                      title: Maximum count exceeded.
+                      detail: The request has exceeded the maximum count.
+                Payments not enabled:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: payments-not-enabled
+                      title: Payments not enabled.
+                      detail: Payments not enabled for this application.
+                Invalid content:
+                  value:
+                    type: list
+                    correlationId: ac5ah5i
+                    data:
+                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      type: error
+                      code: invalid-content
+                      title: Invalid request content.
+                      detail: Posted requests data is not in valid format.
+                      source: null                      
+  /payments/payouts/:
+    get:
+      tags:
+        - Send 
+      summary: List payouts
+      operationId: listPayouts
+      parameters:
+        - name: limit
+          in: query
+          description: 'Maximum number of payouts included in the response. Max value = 500 and is the default value if this field is not provided'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: '10'
+        - name: filter
+          in: query
+          description: 'Filter field that allows filtering by payer.user.id, status, date, amount'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payouts'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 2
+                    size: 2
+                    data:
+                      - type: 'payout'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payee:
+                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payeeBankBranchCode: '730002'
+                          payeeAccountNumber: '123456789'
+                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Dividends'
+                        amount: 173.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payout'
+                        id: 'c1024ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: 'a1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        method: batch
+                        status: 'in-progress'
+                        payer:
+                          payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payeeBankBranchCode: '730002'
+                          payeeAccountNumber: '123456789'
+                          payeeAccountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                        description: 'Dividends'
+                        amount: 200.45
+                        currency: AUD
+                        links:
+                          self: '/payments/payouts/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                          job: '/jobs/c1024ad0-73f1-0138-3700-0a58a9feac09'
+                    links:
+                      self: "https://au-api.basiq.io/payments/payouts"
+                      next: "https://au-api.basiq.io/payments/payouts?next=049fde"
+  /payments/payouts/{id}:
+    get:
+      tags:
+        - Send 
+      summary: Get a payout by its basiq Id
+      operationId: getPayout
+      parameters:
+        - name: id
+          in: path
+          description: Payout Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payout'
+              examples:
+                In-progress:
+                  value:
+                    type: 'payout'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'in-progress'
+                    payee:
+                      payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+                      payeeAccountId: '6466df03-b80c-489a-afec-ea8c5f0af875'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                    description: 'Dividends'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - User name invalid:
+                  value:
+                    type: 'payout'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'failed'
+                    reason: 
+                      code: 'invalid-user-name'
+                      title: 'Invalid user name.'
+                      detail: 'The user name must exist and have a valid first name with more than 2 letters and last name with more than 2 letters. Please update the user name details.'
+                    payee:
+                      payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                    description: 'Dividends'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - Missing payer account details:
+                  value:
+                    type: 'payout'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'failed'
+                    reason: 
+                      code: 'missing-payer-account-details'
+                      title: 'Missing Payer account details.'
+                      detail: 'Please specify payer account details.'
+                    payee:
+                      payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                    description: 'Dividends'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - External provider unreachable:
+                  value:
+                    type: 'payout'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'failed'
+                    reason: 
+                      code: 'external-provider-unreachable'
+                      title: 'External provider unreachable.'
+                      detail: 'Unable to reach downstream provider.'
+                    payee:
+                      payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                    description: 'Dividends'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - Payment transaction limit reached:
+                  value:
+                    type: 'payout'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'failed'
+                    reason: 
+                      code: 'transaction-limit-reached'
+                      title: 'Transaction limit reached.'
+                      detail: 'The transaction amount exceeds the allowed limit. Please contact support.'
+                    payee:
+                      payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                    description: 'Dividends'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Failed - Daily limit reached:
+                  value:
+                    type: 'payout'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    created: '2022-03-21T20:28:22.378Z'
+                    updated: '2022-03-21T20:28:22.378Z'
+                    method: batch
+                    status: 'failed'
+                    reason: 
+                      code: 'daily-limit-reached'
+                      title: 'Daily limit reached.'
+                      detail: 'The transaction amount exceeds the daily processing allowed limit. Please contact support.'
+                    payee:
+                      payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                    description: 'Dividends'
+                    amount: 173.45
+                    currency: AUD
+                    links:
+                      self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+        '404':
+          description: Payout not found    
+#  '/users/{id}/payments/payouts':
+#    get:
+#      tags:
+#        - Send (Payouts)
+#      summary: List user payouts
+#      operationId: listUserPayouts
+#      parameters:
+#        - name: id
+#          in: path
+#          description: User Id
+#          required: true
+#          style: simple
+#          explode: false
+#          schema:
+#            type: string
+#            default: '21824ad0-73f1-0138-3700-0a58a9feac09'
+#          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
+#        - name: limit
+#          in: query
+#         description: 'Maximum number of payments included in the response. Max value = 500 and is the default value if this field is not provided'
+#          style: deepObject
+#          explode: false
+#          schema:
+#            type: integer
+#          example: '10'
+#        - name: filter
+#          in: query
+#          description: Filter field that allows filtering by payment.status, payment.date
+#          style: deepObject
+#          explode: false
+#          schema:
+#            type: string
+#          example: ''        
+#      responses:
+#       '200':
+#          description: OK
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/payouts'
+#              examples:
+#                In-progress:
+#                  value:
+#                    type: 'list'
+#                    count: 1
+#                    size: 1
+#                    data:
+#                      - type: 'payout'
+#                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+#                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+#                        created: '2022-03-21T20:28:22.378Z'
+#                        updated: '2022-03-21T20:28:22.378Z'
+#                        method: batch
+#                        status: 'in-progress'
+#                        payee:
+#                          payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
+#                          payeeAccountId: '6466df03-b80c-489a-afec-ea8c5f0af875'
+#                          payerBankBranchCode: '730002'
+#                          payerBccountNumber: '123456789'
+#                        description: 'Dividends'
+#                        amount: 173.45
+#                        currency: AUD
+#                        links:
+#                          self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
+#                          job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+#                    links:
+#                      self: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payouts"
+#                      next: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payouts?next=049fde"
+#       '404':
+#         description: Payout not found
+# float accounts
+  /payments/float-accounts/{id}:
+    get:
+      tags:
+        - Float accounts
+      summary: Get a float account by its Id
+      operationId: getFloatAccount
+      parameters:
+        - name: id
+          in: path
+          description: Float Account Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+      responses:
+        '404':
+          description: Float account not found
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/floataccount'
+              examples:
+                response:
+                  value:
+                    type: 'floataccount'
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    bankBranchCode: '802919'
+                    accountNumber: '1748212'
+                    availableBalance: 10000.00
+                    status: 'active'
+                    links:
+                      self: /payments/float-accounts/b1824ad0-73f1-0138-3700-0a58a9feac09
+  '/payments/float-accounts/':
+    get:
+      tags:
+        - Float accounts
+      summary: List float accounts
+      operationId: listFloatAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/floataccounts'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 1
+                    size: 1
+                    data:
+                      - type: 'floataccount'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        bankBranchCode: '802919'
+                        accountNumber: '1748212'
+                        availableBalance: 10000.00
+                        status: 'active'
+                        links:
+                          self: /payments/float-accounts/b1824ad0-73f1-0138-3700-0a58a9feac09
+                    links:
+                      self: /payments/float-accounts/
+components:
+  parameters:
+    method:
+      name: paymentTypeMethod
+      in: query
+      description: 'The method the payment will be/was carried out with.'
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+          - batch
+          - fast
+  schemas:
+    jobs:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          allOf:
+          - $ref: '#/components/schemas/job'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    job:
+      type: object
+      properties:
+        type: 
+          type: string
+        id:
+          type: string
+        created:
+          description: date and time in ISO format of when the job request was created 
+          type: string
+          format: date-time
+        updated:
+          description: date and time in ISO format of when the job request was updated 
+          type: string
+          format: date-time
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: object
+              status:
+                type: object
+              result:
+                type: object
+                properties:
+                  type:
+                    type: string
+        links:
+          type: object
+          properties:
+            link:
+              type: string
+    payrequests:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          allOf:
+          - $ref: '#/components/schemas/payrequest'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    payrequest:
+      type: object
+      required:
+        - type
+        - id
+        - requestId
+        - created
+        - updated
+        - method
+        - status
+        - amount
+        - currency
+        - payer
+        - description
+      properties:
+        type:
+          description: Type of the object
+          type: string
+        id:
+          description: Id as assigned by Basiq to uniquely identify the payment
+          type: string
+        requestId:
+          description: Id as assigned by the by the partner application. This needs to be unique
+          type: string
+        created:
+          description: date and time in ISO format of when the payment request was created 
+          type: string
+          format: date-time
+        updated:
+          description: date and time in ISO format of when the payment request was updated 
+          type: string
+          format: date-time
+        method:
+          description: "method (payment instrument) used associated with the type of payment"
+          type: string
+          enum:
+            - batch
+#            - fast
+        status:
+          type: string
+        reason:
+          type: object
+          description: 'Details for the reason for failure' 
+          properties:
+            code:
+              type: string
+              description: 'Reason code for the failed payment'
+            title:
+              type: string
+              description: 'Title of the reason code for the failed payment (short description)'
+            detail:
+              type: string
+              description: 'Further details/description for the failed/rejected/returned payment'
+        payer:
+          type: object
+          required: 
+            - payerUserId
+          properties:
+            payerUserId:
+              description: 'User Id of the payer'
+              type: string
+            payerBankBranchCode:
+              type: string
+            payerAccountNumber:
+              type: string
+            payerAccountId:
+              description: 'Account Id of the payer user'
+              type: string
+        description:
+          description: "Description to appear on the payer's and payee's account"
+          type: string
+        amount:
+          description: 'Amount of the payment. This amount must always be a float value.'
+          type: integer
+        currency:
+          description: 'Currency of the payment.'
+          type: string
+        links:
+          type: object
+          properties:
+            self: 
+              type: string
+    payouts:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          allOf:
+          - $ref: '#/components/schemas/payout'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    payout:
+      type: object
+      required:
+        - type
+        - id
+        - requestId
+        - created
+        - updated
+        - method
+        - status
+        - amount
+        - currency
+        - payee
+        - description
+      properties:
+        type:
+          description: Type of the object
+          type: string
+        id:
+          description: Id as assigned by Basiq to uniquely identify the payment
+          type: string
+        requestId:
+          description: Id as assigned by the by the partner application. This needs to be unique
+          type: string
+        created:
+          description: date and time in ISO format of when the payment request was created 
+          type: string
+          format: date-time
+        updated:
+          description: date and time in ISO format of when the payment request was updated 
+          type: string
+          format: date-time
+        method:
+          description: "method (payment instrument) used associated with the type of payment"
+          type: string
+          enum:
+            - batch
+            - fast
+        status:
+          type: string
+        reason:
+          type: object
+          description: 'Details for the reason for failure' 
+          properties:
+            code:
+              type: string
+              description: 'Reason code for the failed payment'
+            title:
+              type: string
+              description: 'Title of the reason code for the failed payment (short description)'
+            detail:
+              type: string
+              description: 'Further details/description for the failed/rejected/returned payment'
+        payee:
+          type: object
+          properties:
+            payeeUserId:
+              type: string
+            payeeAccountId:
+              type: string
+            payeeBankBranchCode:
+              type: string
+            payeeAccountNumber:
+              type: string
+        description:
+          description: "Description to appear on the payer's and payee's account"
+          type: string
+        amount:
+          description: 'Amount of the payment.'
+          type: integer
+        currency:
+          description: 'Currency of the payment.'
+          type: string
+        links:
+          type: object
+          properties:
+            self: 
+              type: string
+    floataccounts:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          allOf:
+          - $ref: '#/components/schemas/floataccount'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    floataccount:
+      type: object
+      required:
+        - type
+        - id
+        - bankBranchCode
+        - accountNumber
+        - status
+        - availableBalance
+      properties:
+        type:
+          description: Type of the object
+          type: string
+        id:
+          description: Id as assigned by Basiq to uniquely identify the float account
+          type: string
+        status:
+          type: string
+        BankBranchCode:
+          type: string
+        accountNumber:
+          type: string
+        availableBalance:
+          description: 'Balance of the float account.'
+          type: number
+        links:
+          type: object
+          properties:
+            self: 
+              type: string
+  requestBodies:
+    payrequests:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              payrequests:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - requestId
+                    - amount
+                    - payer
+                    - description
+                  properties:
+                    requestId:
+                      description: Id as assigned by the by the partner application. This needs to be unique
+                      type: string
+                      example: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    payer:
+                      type: object
+                      required:
+                        - payerUserId
+                      properties:
+                        payerUserId:
+                          description: 'User Id of the payer'
+                          type: string
+                          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
+#                       payerAccountId:
+#                         description: 'ID of the account as stored within Basiq'
+#                         type: string
+#                         example: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        payerBankBranchCode:
+                          description: 'Bank and branch code (e.g. bsb) of the account'
+                          type: string
+                          example: "730002"
+                        payerAccountNumber:
+                          description: 'Payer account number'
+                          type: string
+                          example: "123456789"
+                    description:
+                      description: "Description to appear on the payer's and payee's account."
+                      type: string
+                      example: 'Investment'
+                    amount:
+                      description: 'Amount of the payment.'
+                      type: number
+                      example: '173.45'
+                    collectFundsToFloat:
+                      description: 'When passed this value overrides the default setting'
+                      type: boolean
+                      example: null
+                      default: null
+                    checkAccountBalance:
+                      description: 'When set to true then as part of validating the payrequest the account balance will be checked. If the balance < payrequest amount then it will be rejected'
+                      type: boolean
+                      example: null
+                      default: null
+          examples:
+            Single:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45
+            Collect to Float:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45
+                  collectFundsToFloat: true
+            Check Account Balance:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45
+                  checkAccountBalance: true
+    payouts:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              payouts:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - requestId
+                    - amount
+                    - payee
+                    - description
+                  properties:
+                    requestId:
+                      description: Id as assigned by the partner application. This needs to be unique
+                      type: string
+                      example: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method:
+                      description: "method (payment instrument) used associated with the type of payment. This field is optional and when provided overrides the default method specified in configuration"
+                      type: string
+                      enum:
+                        - batch
+                        - fast
+                        - fast/batch
+                    payee:
+                      type: object
+                      required:
+                        - payeeUserId
+                        - payeeBankBranchCode
+                        - payeeAccountNumber
+                      properties:
+                        payeeUserId:
+                          description: 'Unique identifer of the payee User Id'
+                          type: string
+                          example: "1d45b7f9-98e9-4f01-a1da-4620c8599ab6"
+                        payeeBankBranchCode:
+                          description: 'Bank and branch code (e.g. bsb) of the payee account'
+                          type: string
+                          example: "730002"
+                        payeeAccountNumber:
+                          description: 'Payee account number'
+                          type: string
+                          example: "123456789"
+                    description:
+                      description: "Description to appear on the payer's and payee's account."
+                      type: string
+                      example: 'Dividends'
+                    amount:
+                      description: 'Amount of the payment.'
+                      type: number
+                      example: '173.45'
+          examples:
+            Batch Payout:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: batch
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                    payeeBankBranchCode: '730002'
+                    payeeAccountNumber: '123456789'
+                  description: Dividends
+                  amount: 173.45
+            Fast Payout:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: fast
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                    payeeBankBranchCode: '730002'
+                    payeeAccountNumber: '123456789'
+                  description: Dividends
+                  amount: 173.45
+            Fast/Batch Payout:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: fast/batch
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                    payeeBankBranchCode: '730002'
+                    payeeAccountNumber: '123456789'
+                  description: Dividends
+                  amount: 173.45
+  securitySchemes:
+    payment_apiKey:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-default: >-
+        Bearer
+        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI3ZDU5NDRkNi1iM2MzLTQ1MTUtODFiYy0yYTdkMGVkNzM5YzMiLCJhcHBsaWNhdGlvbmlkIjoiYjc2YjYzY2EtMzc2NS00YWEwLTkzNTEtZTg4ZTZhNGFiM2Q4Iiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2Njg0ODk3OTgsImlhdCI6MTY2ODQ4NjE5OCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119
+security:
+  - payment_apiKey: []
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+  samples-languages:
+    - curl
+    - node
+    - ruby
+    - javascript
+    - python
