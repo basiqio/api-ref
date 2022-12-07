@@ -602,7 +602,7 @@ paths:
   /users/{userId}/jobs:
     get:
       tags:
-        - Data retrieval Jobs
+        - Jobs (data retrieval)
       summary: Get user jobs
       description: >-
         Retrieves the details of all existing and previous jobs associated with
@@ -663,7 +663,7 @@ paths:
   /jobs/{jobId}:
     get:
       tags:
-        - Data retrieval Jobs
+        - Jobs (data retrieval)
       summary: Retrieve a job
       description: >-
         Retrieves the details of an existing job. You need only supply the
@@ -720,7 +720,7 @@ paths:
   /jobs/{jobId}/mfa:
     post:
       tags:
-      - Data retrieval Jobs
+      - Jobs (data retrieval)
       summary: 'Create MFA response'
       description: |-
         Ensure that you generate an authentication token with

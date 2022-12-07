@@ -382,7 +382,7 @@ paths:
   /users/{userId}/consents/{consentId}:
     delete:
       tags:
-        - User consent
+        - Consents
       summary: Delete a consent
       description: Permanently deletes a users consent, this action cannot be undone.
       operationId: deleteConsent
@@ -695,7 +695,7 @@ paths:
   /jobs/{id}:
     get:
       tags:
-        - Jobs (Payments)
+        - Jobs 
       summary: Get a job by its id
       operationId: getJob
       parameters:
