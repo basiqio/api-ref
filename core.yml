@@ -752,6 +752,40 @@ components:
           type: string
           description: Product name.
           example: saver
+    job:
+      type: object
+      properties:
+        type: 
+          type: string
+        id:
+          type: string
+        created:
+          description: date and time in ISO format of when the job request was created 
+          type: string
+          format: date-time
+        updated:
+          description: date and time in ISO format of when the job request was updated 
+          type: string
+          format: date-time
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: object
+              status:
+                type: object
+              result:
+                type: object
+                properties:
+                  type:
+                    type: string
+        links:
+          type: object
+          properties:
+            link:
+              type: string
     AccountsContainer:
       required:
         - data
