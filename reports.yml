@@ -3532,7 +3532,7 @@ paths:
                         amount: "-100.00"
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                  data-users: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
+                  #data-users: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
                   data-connections: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
                   data-accounts: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
                   data-transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
@@ -3600,8 +3600,8 @@ paths:
                         type: string
                       - name: accounts
                         type: array
-                      - name: users
-                        type: array
+                      #- name: users
+                      #  type: array
                   - type: reportType
                     id: BUS_AFFOR_01
                     name: Business Affordability Report
@@ -3613,8 +3613,8 @@ paths:
                         type: string
                       - name: accounts
                         type: array
-                      - name: users
-                        type: array
+                      #- name: users
+                      #  type: array
                   - type: reportType
                     id: ROUNDUP_OPP_01
                     name: Roundup Amount Report
@@ -3628,8 +3628,8 @@ paths:
                         type: string
                       - name: accounts
                         type: array
-                      - name: user
-                        type: string
+                      #- name: user
+                      #  type: string
         '400':
           $ref: '#/components/responses/400BadRequest'
         '403':
