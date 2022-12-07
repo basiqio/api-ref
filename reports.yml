@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: Basiq Reporting API
+  title: Reporting
   version: 3.0.0
 servers:
   - url: https://au-api.basiq.io
@@ -158,316 +158,3386 @@ paths:
                 createdDate: '2022-03-26T06:56:44'
                 createdBy: David Smith
                 filters:
-                  - name: fromDate
-                    value: '2022-01-01'
-                  - name: toDate
-                    value: '2022-12-01'
-                  - name: accounts
-                    value:
-                      - ag829sj
-                      - aj82gka
-                  - name: users
-                    value:
-                      - sj29sjd
+                - name: fromDate
+                  value: '2022-01-01'
+                - name: toDate
+                  value: '2022-12-01'
+                - name: accounts
+                  value:
+                  - ag829sj
+                  - aj82gka
+                - name: users
+                  value:
+                  - sj29sjd
                 data:
                   metrics:
-                    - id: ME001
-                      title: '# of identified income sources'
-                      description: xxxx
-                      group: Income Sources
-                      result:
-                        value: '4'
-                        format: integer
-                    - id: ME002
-                      title: Average monthly amount from salary
-                      description: xxx
-                      group: Income Sources
-                      result:
-                        value: '7228.00'
-                        format: money
-                    - id: ME003
-                      title: Income has been stable for (months)
-                      description: xxx
-                      group: Income Sources
-                      result:
-                        value: '5'
-                        format: integer
-                    - id: ME004
-                      title: Other possible income
-                      description: xxx
-                      group: Income Sources
-                      result:
-                        value: '266.00'
-                        format: money
-                    - id: ME005
-                      title: Youth Allowance monthly
-                      description: xxx
-                      group: Government Services
-                      result:
-                        value: '125.00'
-                        format: money
-                    - id: ME006
-                      title: Rental Assistance monthly
-                      description: xxx
-                      group: Government Services
-                      result:
-                        value: '0.00'
-                        format: money
-                    - id: ME007
-                      title: Misc Government services monthly
-                      description: xxx
-                      group: Government Services
-                      result:
-                        value: '488.00'
-                        format: money
-                    - id: ME008
-                      title: Average monthly amount
-                      description: xxx
-                      group: Financial Commitments
-                      result:
-                        value: '-2553.00'
-                        format: money
-                    - id: ME009
-                      title: '# of identified companies'
-                      description: xxx
-                      group: Financial Commitments
-                      result:
-                        value: '8'
-                        format: integer
-                    - id: ME010
-                      title: Total credit card limit
-                      description: xxx
-                      group: Financial Commitments
-                      result:
-                        value: '5000.00'
-                        format: money
-                    - id: ME011
-                      title: Total credit card balance
-                      description: xxx
-                      group: Financial Commitments
-                      result:
-                        value: '-2625.00'
-                        format: money
-                    - id: ME012
-                      title: >-
-                        Monthly spend on non-discretionary expenses (inc.
-                        liabilities)
-                      description: xxx
-                      group: Expenses
-                      result:
-                        value: '-3851.00'
-                        format: money
-                    - id: ME013
-                      title: '% of spend on non-non-discretionary expenses'
-                      description: xxx
-                      group: Expenses
-                      result:
-                        value: '26.2'
-                        format: percent
-                    - id: ME014
-                      title: Monthly spend on discretionary expenses
-                      description: xxx
-                      group: Expenses
-                      result:
-                        value: '-2632.00'
-                        format: money
-                    - id: ME015
-                      title: '% of spend on discretionary expenses'
-                      description: xxx
-                      group: Expenses
-                      result:
-                        value: '53.1'
-                        format: percent
-                    - id: ME016
-                      title: Monthly spend on other expenses
-                      description: xxx
-                      group: Expenses
-                      result:
-                        value: '-1054.00'
-                        format: money
-                    - id: ME017
-                      title: '# of SACC loans'
-                      description: xxx
-                      group: Risk Metrics
-                      result:
-                        value: '3'
-                        format: integer
-                    - id: ME018
-                      title: '% of income withdrawn via ATM'
-                      description: xxx
-                      group: Risk Metrics
-                      result:
-                        value: '6.1'
-                        format: percent
-                    - id: ME019
-                      title: '# of financial dishonours'
-                      description: xxx
-                      group: Risk Metrics
-                      result:
-                        value: '3'
-                        format: integer
-                    - id: ME020
-                      title: '% of income spent on High Risk Merchants'
-                      description: xxx
-                      group: Risk Metrics
-                      result:
-                        value: '12.4'
-                        format: percent
-                    - id: ME021
-                      title: Total spend on High Risk Merchants
-                      description: xxx
-                      group: Risk Metrics
-                      result:
-                        value: '-3690.00'
-                        format: money
-                    - id: ME022
-                      title: Has recent changes to income circumstances
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'true'
-                        format: boolean
-                    - id: ME023
-                      title: Has received crisis support payments
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'false'
-                        format: boolean
-                    - id: ME024
-                      title: Has superannuation credits
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'false'
-                        format: boolean
-                    - id: ME025
-                      title: Has cash advances
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'true'
-                        format: boolean
-                    - id: ME026
-                      title: Has redraws
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'true'
-                        format: boolean
-                    - id: ME027
-                      title: Has High-Cost Finance
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'true'
-                        format: boolean
-                    - id: ME028
-                      title: 'Missing non-discretionary expenses: groceries'
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'false'
-                        format: boolean
-                    - id: ME029
-                      title: 'Missing non-discretionary expenses: telecommunication'
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'true'
-                        format: boolean
-                    - id: ME030
-                      title: 'Missing non-discretionary expenses: utilities'
-                      description: xxx
-                      group: Risk Flags
-                      result:
-                        value: 'false'
-                        format: boolean
+                  - id: ME001
+                    title: "# of identified income sources"
+                    description: Number of recent salary income sources
+                    group: Income Sources
+                    result:
+                      value: '4'
+                      format: integer
+                  - id: ME002
+                    title: Average monthly amount from salary
+                    description: Median monthly amount from salary income sources over the reporting
+                      period
+                    group: Income Sources
+                    result:
+                      value: '7228.00'
+                      format: money
+                  - id: ME003
+                    title: Income has been stable for (months)
+                    description: Number of months within report over which income has been stable
+                    group: Income Sources
+                    result:
+                      value: '5'
+                      format: integer
+                  - id: ME004
+                    title: Other possible income
+                    description: Median monthly income from sources not covered within Salary and
+                      Benefits
+                    group: Income Sources
+                    result:
+                      value: '266.00'
+                      format: money
+                  - id: ME005
+                    title: Youth Allowance monthly
+                    description: Median monthly income from Youth Allowance
+                    group: Government Services
+                    result:
+                      value: '125.00'
+                      format: money
+                  - id: ME006
+                    title: Rental Assistance monthly
+                    description: Median monthly income from Rental Assistance
+                    group: Government Services
+                    result:
+                      value: '0.00'
+                      format: money
+                  - id: ME007
+                    title: Misc Government services monthly
+                    description: Median monthly income through government benefits other than Rental
+                      Assistance and Youth Allowance
+                    group: Government Services
+                    result:
+                      value: '488.00'
+                      format: money
+                  - id: ME008
+                    title: Average monthly amount
+                    description: Median monthly repayments to lenders
+                    group: Financial Commitments
+                    result:
+                      value: "-2553.00"
+                      format: money
+                  - id: ME009
+                    title: "# of identified companies"
+                    description: Number of relationships with lending merchants
+                    group: Financial Commitments
+                    result:
+                      value: '8'
+                      format: integer
+                  - id: ME010
+                    title: Total credit card limit
+                    description: Total limits on available credit card accounts
+                    group: Financial Commitments
+                    result:
+                      value: '5000.00'
+                      format: money
+                  - id: ME011
+                    title: Total credit card balance
+                    description: Total of latest available balances on available credit card accounts
+                    group: Financial Commitments
+                    result:
+                      value: "-2625.00"
+                      format: money
+                  - id: ME012
+                    title: Monthly spend on non-discretionary expenses (inc. liabilities)
+                    description: Median monthly spend on non-discretionary expenses
+                    group: Expenses
+                    result:
+                      value: "-3851.00"
+                      format: money
+                  - id: ME013
+                    title: "% of spend on non-non-discretionary expenses"
+                    description: Median monthly spend on non-discretionary expenses as a percentage
+                      of total expenses
+                    group: Expenses
+                    result:
+                      value: '26.2'
+                      format: percent
+                  - id: ME014
+                    title: Median monthly spend on discretionary expenses
+                    description: Median monthly spend on discretionary expenses
+                    group: Expenses
+                    result:
+                      value: "-2632.00"
+                      format: money
+                  - id: ME015
+                    title: "% of spend on discretionary expenses"
+                    description: Median monthly spend on discretionary expenses as a percentage of
+                      total expenses
+                    group: Expenses
+                    result:
+                      value: '53.1'
+                      format: percent
+                  - id: ME016
+                    title: Monthly spend on other expenses
+                    description: Median monthly spend on uncategorised expenses
+                    group: Expenses
+                    result:
+                      value: "-1054.00"
+                      format: money
+                  - id: ME017
+                    title: "# of SACC loans"
+                    description: Number of relationships with SACC lenders
+                    group: Risk Metrics
+                    result:
+                      value: '3'
+                      format: integer
+                  - id: ME018
+                    title: "% of income withdrawn via ATM"
+                    description: Percentage of salary income withdrawn as cash at ATM's over the reporting
+                      period
+                    group: Risk Metrics
+                    result:
+                      value: '6.1'
+                      format: percent
+                  - id: ME019
+                    title: "# of financial dishonours"
+                    description: Number of financial dishonour transactions detected during reporting
+                      period
+                    group: Risk Metrics
+                    result:
+                      value: '3'
+                      format: integer
+                  - id: ME020
+                    title: "% of income spent on High Risk Activities"
+                    description: Percentage of salary income withdrawn at ATM's (including from credit
+                      cards), spent on gambling and credit card interest, and withdrawn via redraws
+                    group: Risk Metrics
+                    result:
+                      value: '12.4'
+                      format: percent
+                  - id: ME021
+                    title: Total spend on High Risk Activities
+                    description: Total withdrawn at ATM's (including from credit cards), spent on
+                      gambling and credit card interest, and withdrawn via redraws during reporting
+                      period
+                    group: Risk Metrics
+                    result:
+                      value: "-3690.00"
+                      format: money
+                  - id: ME022
+                    title: Has recent changes to income circumstances
+                    description: Indicates new income source in 2 months before end of reporting period
+                      or income source stopping in 2 months prior to end of reporting period
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean
+                  - id: ME023
+                    title: Has received crisis support payments
+                    description: Indicates if any crisis support income has been received during reporting
+                      period
+                    group: Risk Flags
+                    result:
+                      value: 'false'
+                      format: boolean
+                  - id: ME024
+                    title: Has superannuation credits
+                    description: Indicates if any superannuation income has been received during reporting
+                      period
+                    group: Risk Flags
+                    result:
+                      value: 'false'
+                      format: boolean
+                  - id: ME025
+                    title: Has cash advances
+                    description: Indicates cash withdrawals from credit card accounts during reporting
+                      period
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean
+                  - id: ME026
+                    title: Has redraws
+                    description: Indicates transfers from mortgage accounts during reporting period
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean
+                  - id: ME027
+                    title: Has High-Cost Finance
+                    description: Indicates repayments (during reporting period) to lenders that may
+                      charge high interest rates
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean
+                  - id: ME031
+                    title: Has Unemployment Benefit
+                    description: Indicates if Jobseeker payments have been received
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean
+                  - id: ME028
+                    title: 'Missing non-discretionary expenses: groceries'
+                    description: 'no instances of non-discretionary expenses: groceries detected'
+                    group: Risk Flags
+                    result:
+                      value: 'false'
+                      format: boolean
+                  - id: ME029
+                    title: 'Missing non-discretionary expenses: telecommunication'
+                    description: 'no instances of non-discretionary expenses: telecommunication detected'
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean
+                  - id: ME030
+                    title: 'Missing non-discretionary expenses: utilities'
+                    description: 'no instances of non-discretionary expenses: utilities detected'
+                    group: Risk Flags
+                    result:
+                      value: 'false'
+                      format: boolean
                   groups:
-                    - id: S2
-                      title: Other Finance
-                      section: Liabilities
+                  - id: INC-001
+                    title: Benefits
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
                       analysis:
                         summary:
-                          transactionCount: 5
-                          overallPercentage:
-                            credit: 0
-                            debit: 67
+                          transactionCount: 3
                         range:
-                          startDate: '2022-01-13T20:03:37'
-                          endDate: '2022-05-13T20:03:37'
-                          duration: 16
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
                         amount:
-                          total: '-586'
-                          min: '-146.50'
-                          max: '-146.50'
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
                           average:
-                            transaction: '-123'
-                            month: '-439.50'
+                            transaction: '100.00'
+                            month: '100.00'
                         frequency:
-                          type: P1W
-                          amount: '-146.50'
-                          day: Monday
-                          display: Weekly
+                          type: monthly
+                          amount: '100.00'
                           next:
-                            date: '2022-12-26T20:03:37'
-                            amount: '-146.50'
-                      subgroup:
-                        - id: 6d97ec2e37e4d1d24a105bdaea33b427
-                          name: SUNSHINE LOANS
-                          analysis:
-                            summary:
-                              transactionCount: 5
-                              overallPercentage:
-                                credit: 0
-                                debit: 67
-                            range:
-                              startDate: '2022-01-13T20:03:37'
-                              endDate: '2022-05-13T20:03:37'
-                              duration: 16
-                            amount:
-                              total: '-586'
-                              min: '-146.50'
-                              max: '-146.50'
-                              average:
-                                transaction: '-123'
-                                month: '-439.50'
-                            frequency:
-                              type: P1W
-                              amount: '-146.50'
-                              day: Monday
-                              display: Weekly
-                              next:
-                                date: '2022-12-26T20:03:37'
-                                amount: '-146.50'
-                          transactions:
-                            - amount: '-146.50'
-                              date: '2022-12-19'
-                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                              id: d3de1ca1
-                            - amount: '-146.50'
-                              date: '2022-12-12'
-                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                              id: d3de1ca1
-                            - amount: '-146.50'
-                              date: '2022-12-05'
-                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                              id: d3de1ca1
-                            - amount: '-146.50'
-                              date: '2022-11-28'
-                              source: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                              id: d3de1ca1
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-002
+                    title: Child Support Income
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-003
+                    title: Insurance Credits
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-004
+                    title: Interest Income
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-005
+                    title: Investment Income
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-006
+                    title: Other Earnings
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-007
+                    title: Other Income
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-008
+                    title: Rent & Board Income
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-009
+                    title: Salary
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-010
+                    title: Superannuation Credits
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: INC-011
+                    title: Tax Credits
+                    sections:
+                    - Income
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: '300.00'
+                        min: '100.00'
+                        max: '100.00'
+                        average:
+                          transaction: '100.00'
+                          month: '100.00'
+                      frequency:
+                        type: monthly
+                        amount: '100.00'
+                        next:
+                          date: '2022-04-01'
+                          amount: '100.00'
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: '300.00'
+                          min: '100.00'
+                          max: '100.00'
+                          average:
+                            transaction: '100.00'
+                            month: '100.00'
+                        frequency:
+                          type: monthly
+                          amount: '100.00'
+                          next:
+                            date: '2022-04-01'
+                            amount: '100.00'
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: '100.00'
+                  - id: EXP-002
+                    title: Automotive
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-004
+                    title: Children's Retail
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-007
+                    title: Department Stores
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-008
+                    title: Dining Out
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-010
+                    title: Donations
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-012
+                    title: Entertainment
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-014
+                    title: Gambling
+                    sections:
+                    - Discretionary Expenses
+                    - High Risk Activities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-015
+                    title: Government & Council Services
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-017
+                    title: Gyms and memberships
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-018
+                    title: Health
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-019
+                    title: Home Improvement
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-024
+                    title: Online Retail
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-027
+                    title: Personal Care
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-028
+                    title: Pet Care
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-031
+                    title: Retail
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-034
+                    title: Subscription Services
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-035
+                    title: Subscription TV
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-038
+                    title: Travel
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-039
+                    title: Uncategorised Debits
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-041
+                    title: Vehicle and Transport
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-011
+                    title: Education and Childcare
+                    sections:
+                    - Non-Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-016
+                    title: Groceries
+                    sections:
+                    - Non-Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-021
+                    title: Insurance
+                    sections:
+                    - Non-Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-030
+                    title: Rent
+                    sections:
+                    - Non-Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-036
+                    title: Telecommunication
+                    sections:
+                    - Non-Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-040
+                    title: Utilities
+                    sections:
+                    - Non-Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-003
+                    title: Cash Advances
+                    sections:
+                    - Other Expenses
+                    - High Risk Activities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-009
+                    title: Dishonours
+                    sections:
+                    - Other Expenses
+                    - High Risk Activities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-013
+                    title: External Transfers
+                    sections:
+                    - Other Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-032
+                    title: Returns & Refunds
+                    sections:
+                    - Other Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-037
+                    title: Third Party Payment Providers
+                    sections:
+                    - Other Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-001
+                    title: ATM Withdrawals
+                    sections:
+                    - Other Expenses
+                    - High Risk Activities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-006
+                    title: Debt Interest Accrual
+                    sections:
+                    - Other Expenses
+                    - High Risk Activities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-029
+                    title: Redraws
+                    sections:
+                    - Other Expenses
+                    - High Risk Activities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-005
+                    title: Collection Agencies
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-020
+                    title: Insolvency
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-022
+                    title: Lease & Rental
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-023
+                    title: Motor Finance
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-025
+                    title: Other Finance
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-026
+                    title: Peer to Peer Finance
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-033
+                    title: Small Amount Lending
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        source: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
                 links:
-                  self: >-
-                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                  data-users: >-
-                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
-                  data-connections: >-
-                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
-                  data-accounts: >-
-                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-                  data-transactions: >-
-                    https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+                  self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+                  data-users: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
+                  data-connections: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
+                  data-accounts: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
+                  data-transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+
+
         '403':
           $ref: '#/components/responses/403Forbidden'
         '404':
@@ -866,281 +3936,255 @@ components:
               example: https://au-api.basiq.io/jobs/a3dgf4567a89
     report:
       properties:
-        type:
+        type: 
           type: string
           example: report
-        id:
+        id: 
           type: string
           example: b1824ad0-73f1-0138-3700-0a58a9feac09
-        title:
+        title: 
           type: string
           example: John Smith Affordability Report 2022-03-26
-        reportType:
+        reportType: 
           type: string
           example: CON_AFFOR_01
-        createdDate:
+        createdDate: 
           type: string
-          example: 2022-03-26T06:56:44.000Z
-        createdBy:
+          example: 2022-03-26T06:56:44
+        createdBy: 
           type: string
           example: David Smith
-        filters:
+        filters: 
           type: array
-          items:
+          items: 
             type: object
-            properties:
-              name:
+            properties: 
+              name: 
                 type: string
                 example: fromDate
-              value:
+              value: 
                 type: string
                 format: date
-                example: 2022-01-01T00:00:00.000Z
-        data:
+                example: 2022-01-01
+        data: 
           type: object
-          properties:
-            metrics:
+          properties: 
+            metrics: 
               type: array
-              items:
+              items: 
                 type: object
-                properties:
-                  id:
+                properties: 
+                  id: 
                     type: string
                     example: ME001
-                  title:
+                  title: 
                     type: string
-                    example: null
-                  description:
+                    example: # of identified income sources
+                  description: 
                     type: string
-                    example: xxxx
-                  group:
+                    example: Number of recent salary income sources
+                  group: 
                     type: string
                     example: Income Sources
-                  result:
+                  result: 
                     type: object
-                    properties:
-                      value:
+                    properties: 
+                      value: 
                         type: string
                         example: 4
-                      format:
+                      format: 
                         type: string
                         example: integer
-            groups:
+            groups: 
               type: array
-              items:
+              items: 
                 type: object
-                properties:
-                  id:
+                properties: 
+                  id: 
                     type: string
-                    example: S2
-                  title:
+                    example: INC-001
+                  title: 
                     type: string
-                    example: Other Finance
-                  section:
-                    type: string
-                    example: Liabilities
-                  analysis:
-                    type: object
-                    properties:
-                      summary:
-                        type: object
-                        properties:
-                          transactionCount:
-                            type: number
-                            example: 5
-                          overallPercentage:
-                            type: object
-                            properties:
-                              credit:
-                                type: number
-                                example: 0
-                              debit:
-                                type: number
-                                example: 67
-                      range:
-                        type: object
-                        properties:
-                          startDate:
-                            type: string
-                            example: 2022-01-13T20:03:37.000Z
-                          endDate:
-                            type: string
-                            example: 2022-05-13T20:03:37.000Z
-                          duration:
-                            type: number
-                            example: 16
-                      amount:
-                        type: object
-                        properties:
-                          total:
-                            type: string
-                            example: -586
-                          min:
-                            type: string
-                            example: -146.5
-                          max:
-                            type: string
-                            example: -146.5
-                          average:
-                            type: object
-                            properties:
-                              transaction:
-                                type: string
-                                example: -123
-                              month:
-                                type: string
-                                example: -439.5
-                      frequency:
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            example: P1W
-                          amount:
-                            type: string
-                            example: -146.5
-                          day:
-                            type: string
-                            example: Monday
-                          display:
-                            type: string
-                            example: Weekly
-                          next:
-                            type: object
-                            properties:
-                              date:
-                                type: string
-                                example: 2022-12-26T20:03:37.000Z
-                              amount:
-                                type: string
-                                example: -146.5
-                  subgroup:
+                    example: Benefits
+                  sections: 
                     type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          example: 6d97ec2e37e4d1d24a105bdaea33b427
-                        name:
-                          type: string
-                          example: SUNSHINE LOANS
-                        analysis:
-                          type: object
-                          properties:
-                            summary:
-                              type: object
-                              properties:
-                                transactionCount:
-                                  type: number
-                                  example: 5
-                                overallPercentage:
-                                  type: object
-                                  properties:
-                                    credit:
-                                      type: number
-                                      example: 0
-                                    debit:
-                                      type: number
-                                      example: 67
-                            range:
-                              type: object
-                              properties:
-                                startDate:
-                                  type: string
-                                  example: 2022-01-13T20:03:37.000Z
-                                endDate:
-                                  type: string
-                                  example: 2022-05-13T20:03:37.000Z
-                                duration:
-                                  type: number
-                                  example: 16
-                            amount:
-                              type: object
-                              properties:
-                                total:
-                                  type: string
-                                  example: -586
-                                min:
-                                  type: string
-                                  example: -146.5
-                                max:
-                                  type: string
-                                  example: -146.5
-                                average:
-                                  type: object
-                                  properties:
-                                    transaction:
-                                      type: string
-                                      example: -123
-                                    month:
-                                      type: string
-                                      example: -439.5
-                            frequency:
-                              type: object
-                              properties:
-                                type:
-                                  type: string
-                                  example: P1W
-                                amount:
-                                  type: string
-                                  example: -146.5
-                                day:
-                                  type: string
-                                  example: Monday
-                                display:
-                                  type: string
-                                  example: Weekly
-                                next:
-                                  type: object
-                                  properties:
-                                    date:
-                                      type: string
-                                      example: 2022-12-26T20:03:37.000Z
-                                    amount:
-                                      type: string
-                                      example: -146.5
-                        transactions:
-                          type: array
-                          items:
+                    items: 
+                      type: string
+                      example: Income
+                  analysis: 
+                    type: object
+                    properties: 
+                      summary: 
+                        type: object
+                        properties: 
+                          transactionCount: 
+                            type: number
+                            example: 3
+                      range: 
+                        type: object
+                        properties: 
+                          startDate: 
+                            type: string
+                            format: date
+                            example: 2022-01-01
+                          endDate: 
+                            type: string
+                            format: date
+                            example: 2022-03-01
+                          duration: 
+                            type: number
+                            example: 59
+                      amount: 
+                        type: object
+                        properties: 
+                          total: 
+                            type: string
+                            example: 300.00
+                          min: 
+                            type: string
+                            example: 100.00
+                          max: 
+                            type: string
+                            example: 100.00
+                          average: 
                             type: object
-                            properties:
-                              amount:
+                            properties: 
+                              transaction: 
                                 type: string
-                                example: -146.5
-                              date:
+                                example: 100.00
+                              month: 
+                                type: string
+                                example: 100.00
+                      frequency: 
+                        type: object
+                        properties: 
+                          type: 
+                            type: string
+                            example: monthly
+                          amount: 
+                            type: string
+                            example: 100.00
+                          next: 
+                            type: object
+                            properties: 
+                              date: 
                                 type: string
                                 format: date
-                                example: 2022-12-19T00:00:00.000Z
-                              source:
+                                example: 2022-04-01
+                              amount: 
                                 type: string
-                                example: SUNSHINE LN MELBOURNE VI AUS Card xx3854
-                              id:
+                                example: 100.00
+                  subgroup: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                          example: 6d97ec2e37e4d1d24a105bdaea33b427
+                        name: 
+                          type: string
+                          example: SAMPLE TRANSACTION
+                        analysis: 
+                          type: object
+                          properties: 
+                            summary: 
+                              type: object
+                              properties: 
+                                transactionCount: 
+                                  type: number
+                                  example: 3
+                            range: 
+                              type: object
+                              properties: 
+                                startDate: 
+                                  type: string
+                                  format: date
+                                  example: 2022-01-01
+                                endDate: 
+                                  type: string
+                                  format: date
+                                  example: 2022-03-01
+                                duration: 
+                                  type: number
+                                  example: 59
+                            amount: 
+                              type: object
+                              properties: 
+                                total: 
+                                  type: string
+                                  example: 300.00
+                                min: 
+                                  type: string
+                                  example: 100.00
+                                max: 
+                                  type: string
+                                  example: 100.00
+                                average: 
+                                  type: object
+                                  properties: 
+                                    transaction: 
+                                      type: string
+                                      example: 100.00
+                                    month: 
+                                      type: string
+                                      example: 100.00
+                            frequency: 
+                              type: object
+                              properties: 
+                                type: 
+                                  type: string
+                                  example: monthly
+                                amount: 
+                                  type: string
+                                  example: 100.00
+                                next: 
+                                  type: object
+                                  properties: 
+                                    date: 
+                                      type: string
+                                      format: date
+                                      example: 2022-04-01
+                                    amount: 
+                                      type: string
+                                      example: 100.00
+                        transactions: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              id: 
                                 type: string
-                                example: d3de1ca1
-        links:
+                                example: 59018149cab77cd2ab7df477f6760cc9
+                              date: 
+                                type: string
+                                format: date
+                                example: 2022-01-01
+                              source: 
+                                type: string
+                                example: SAMPLE TRANSACTION 0000023
+                              amount: 
+                                type: string
+                                example: 100.00
+        links: 
           type: object
-          properties:
-            self:
+          properties: 
+            self: 
               type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            data-users:
+              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+            data-users: 
               type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
-            data-connections:
+              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
+            data-connections: 
               type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
-            data-accounts:
+              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
+            data-accounts: 
               type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-            data-transactions:
+              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
+            data-transactions: 
               type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+
   securitySchemes:
     reporting_token:
       type: http
