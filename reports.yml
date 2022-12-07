@@ -389,6 +389,13 @@ paths:
                     result:
                       value: 'false'
                       format: boolean
+                  - id: ME032
+                    title: 'Receives Child Support'
+                    description: 'Indicates if child support payments have been detected'
+                    group: Risk Flags
+                    result:
+                      value: 'true'
+                      format: boolean  
                   - id: ME029
                     title: 'Missing non-discretionary expenses: telecommunication'
                     description: 'no instances of non-discretionary expenses: telecommunication detected'
