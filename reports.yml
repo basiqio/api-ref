@@ -180,7 +180,7 @@ paths:
                       format: integer
                   - id: ME002
                     title: Average monthly amount from salary
-                    description: Median monthly amount from salary income sources over the reporting
+                    description: Mean monthly amount from salary income sources over the reporting
                       period
                     group: Income Sources
                     result:
@@ -195,7 +195,7 @@ paths:
                       format: integer
                   - id: ME004
                     title: Other possible income
-                    description: Median monthly income from sources not covered within Salary and
+                    description: Mean monthly income from sources not covered within Salary and
                       Benefits
                     group: Income Sources
                     result:
@@ -203,21 +203,21 @@ paths:
                       format: money
                   - id: ME005
                     title: Youth Allowance monthly
-                    description: Median monthly income from Youth Allowance
+                    description: Mean monthly income from Youth Allowance
                     group: Government Services
                     result:
                       value: '125.00'
                       format: money
                   - id: ME006
                     title: Rental Assistance monthly
-                    description: Median monthly income from Rental Assistance
+                    description: Mean monthly income from Rental Assistance
                     group: Government Services
                     result:
                       value: '0.00'
                       format: money
                   - id: ME007
                     title: Misc Government services monthly
-                    description: Median monthly income through government benefits other than Rental
+                    description: Mean monthly income through government benefits other than Rental
                       Assistance and Youth Allowance
                     group: Government Services
                     result:
@@ -225,7 +225,7 @@ paths:
                       format: money
                   - id: ME008
                     title: Average monthly amount
-                    description: Median monthly repayments to lenders
+                    description: Mean monthly repayments to lenders
                     group: Financial Commitments
                     result:
                       value: "-2553.00"
@@ -253,29 +253,29 @@ paths:
                       format: money
                   - id: ME012
                     title: Monthly spend on non-discretionary expenses (inc. liabilities)
-                    description: Median monthly spend on non-discretionary expenses
+                    description: Mean monthly spend on non-discretionary expenses
                     group: Expenses
                     result:
                       value: "-3851.00"
                       format: money
                   - id: ME013
                     title: "% of spend on non-non-discretionary expenses"
-                    description: Median monthly spend on non-discretionary expenses as a percentage
+                    description: Mean monthly spend on non-discretionary expenses as a percentage
                       of total expenses
                     group: Expenses
                     result:
                       value: '26.2'
                       format: percent
                   - id: ME014
-                    title: Median monthly spend on discretionary expenses
-                    description: Median monthly spend on discretionary expenses
+                    title: Mean monthly spend on discretionary expenses
+                    description: Mean monthly spend on discretionary expenses
                     group: Expenses
                     result:
                       value: "-2632.00"
                       format: money
                   - id: ME015
                     title: "% of spend on discretionary expenses"
-                    description: Median monthly spend on discretionary expenses as a percentage of
+                    description: Mean monthly spend on discretionary expenses as a percentage of
                       total expenses
                     group: Expenses
                     result:
@@ -283,7 +283,7 @@ paths:
                       format: percent
                   - id: ME016
                     title: Monthly spend on other expenses
-                    description: Median monthly spend on uncategorised expenses
+                    description: Mean monthly spend on uncategorised expenses
                     group: Expenses
                     result:
                       value: "-1054.00"
