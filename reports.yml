@@ -4172,9 +4172,9 @@ components:
             self: 
               type: string
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            data-users: 
-              type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
+            #data-users: 
+            #  type: string
+            #  example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
             data-connections: 
               type: string
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
