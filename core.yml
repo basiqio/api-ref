@@ -695,8 +695,11 @@ paths:
   /jobs/{id}:
     get:
       tags:
-        - Jobs 
+        - Jobs
       summary: Get a job by its id
+      description: 'The job object is used to run and track asynchronous operations within Basiq. 
+        When submitting a payment or report creation request then a job is returned with a unique identifier. 
+        You can call this API passing the job Id to track the progress of the job and your request.'
       operationId: getJob
       parameters:
         - name: id
@@ -718,24 +721,114 @@ paths:
               schema:
                 $ref: '#/components/schemas/job'
               examples:
-                response:
+                payrequest - in-progress:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
+                    status: in-progress,
+                    jobType: payrequest,
                     steps:
                     - title: validate-payment
                       status: success
                       result:
                         type: link
                         url: "/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                    - title: validate-payer-information
+                    - title: external-processing
                       status: in-progress
                       result: null
                     links:
                       self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       source: "/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                payout - failed:
+                  value:
+                    type: job
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    created: '2016-06-08T09:10:32.000Z'
+                    updated: '2016-06-08T09:14:28.000Z'
+                    status: failed,
+                    jobType: payout,
+                    steps:
+                    - title: validate-payment
+                      status: failed,
+                      result: 
+                        type: error
+                        code: 'missing-payee-account-details.'
+                        title: 'Missing Payee account details.'
+                        detail: 'Please specify payee account details.'
+                    links:
+                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                payout - completed:
+                  value:
+                    type: job
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    created: '2016-06-08T09:10:32.000Z'
+                    updated: '2016-06-08T09:14:28.000Z'
+                    status: success,
+                    jobType: payout,
+                    steps:
+                    - title: validate-payment
+                      status: success
+                      result:
+                        type: link
+                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                    - title: external-processing
+                      status: success
+                      result:
+                        type: link
+                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"                    
+                    - title: payment-completed
+                      status: success
+                      result:
+                        type: link
+                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"                    
+                    links:
+                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                report - in-progress:
+                  value:
+                    type: job
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    created: '2016-06-08T09:10:32.000Z'
+                    updated: '2016-06-08T09:14:28.000Z'
+                    status: in-progress,
+                    jobType: report,
+                    steps:
+                    - title: create-report
+                      status: in-progress
+                      result: null
+                    links:
+                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      source: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                report - success:
+                  value:
+                    type: job
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    created: '2016-06-08T09:10:32.000Z'
+                    updated: '2016-06-08T09:14:28.000Z'
+                    status: success,
+                    jobType: report,
+                    steps:
+                    - title: create-report
+                      status: success
+                      result: 
+                        type: link
+                        url: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                    links:
+                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      source: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
 components:
   schemas:
     AccountClass:
