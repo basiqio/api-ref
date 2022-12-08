@@ -692,35 +692,113 @@ paths:
       security:
         - application:
             - SERVER_ACCESS
-  /jobs/{id}:
+  /users/{userId}/jobs:
     get:
       tags:
         - Jobs
-      summary: Get a job by its id
-      description: 'The job object is used to run and track asynchronous operations within Basiq. 
-        When submitting a payment or report creation request then a job is returned with a unique identifier. 
-        You can call this API passing the job Id to track the progress of the job and your request.'
-      operationId: getJob
+      summary: Get user jobs
+      description: >-
+        Retrieves the details of all existing and previous jobs associated with
+        a user.
+      operationId: getUserJobs
       parameters:
-        - name: id
+        - name: userId
           in: path
-          description: Job Id
+          description: User identifier
           required: true
-          style: simple
-          explode: false
           schema:
             type: string
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+        - name: filter
+          in: query
+          description: Connection identification filter. e.g. connection.id.eq('ab63cd')
+          schema:
+            type: string
       responses:
-        '404':
-          description: not found
         '200':
-          description: OK
+          description: Returns a list of jobs with details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobsResponseResource'
+        '400':
+          description: >-
+            Returns error that server cannot or will not process the request due
+            to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+        - application:
+            - SERVER_ACCESS
+  /jobs/{jobId}:
+    get:
+      tags:
+        - Jobs 
+      summary: Retrieve a job
+      description: >-
+        Retrieves the details of an existing job. You need only supply the
+        unique job identifier that was returned upon job creation.
+      operationId: getJobs
+      parameters:
+        - name: jobId
+          in: path
+          description: The identifier of the job to be retrieved.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a job details if a valid job ID was provided.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/job'
               examples:
+                Data - in-progress:
+                  value:
+                    type: job
+                    id: 'e9132638'
+                    created: '2020-06-10T09:59:00Z'
+                    updated: '2020-06-10T09:59:00Z'
+                    steps:
+                    - title: verify-credentials
+                      status: success
+                      result:
+                        type: link
+                        url: "/users/ea3a81/connections/8fce3b"
+                    - title: retrieve-accounts
+                      status: in-progress
+                      result:
+                    - title: retrieve-transactions
+                      status: pending
+                      result:
+                    links:
+                      self: https://au-api.basiq.io/jobs/61723
+                      source: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
+
                 payrequest - in-progress:
                   value:
                     type: job
@@ -829,6 +907,100 @@ paths:
                     links:
                       self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       source: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
+        '400':
+          description: >-
+            Returns error that server cannot or will not process the request due
+            to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+        - application:
+            - SERVER_ACCESS
+            - CLIENT_ACCESS
+  /jobs/{jobId}/mfa:
+    post:
+      tags:
+      - Jobs 
+      summary: 'Create MFA response'
+      description: |-
+        Ensure that you generate an authentication token with
+        scope = CLIENT_ACCESS and basiq-version = 3.0 to create this resource
+      operationId: postJobMfa
+      parameters:
+      - name: jobId
+        in: path
+        description: The identifier of the job.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobPostRequest'
+        required: true
+      responses:
+        202:
+          description: Returns a job if MFA response was correct. Returns an error
+            otherwise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionResponseResource'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - application:
+        - CLIENT_ACCESS
 components:
   schemas:
     AccountClass:
