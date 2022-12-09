@@ -97,6 +97,7 @@ paths:
                     reportType: CON_AFFOR_01
                     createdDate: '2022-03-26T06:56:44'
                     createdBy: David Smith
+                    expiresAt: '2022-12-25T06:56:44'
                     filters:
                       - name: fromDate
                         value: '2022-01-01'
@@ -167,15 +168,12 @@ paths:
                   value:
                   - ag829sj
                   - aj82gka
-                - name: users
-                  value:
-                  - sj29sjd
                 data:
                   metrics:
                   - id: ME001
                     title: "# of identified income sources"
                     description: Number of recent salary income sources
-                    sections: 
+                    sections:
                     - Income Sources
                     result:
                       value: '4'
@@ -184,7 +182,7 @@ paths:
                     title: Average monthly amount from salary
                     description: Mean monthly amount from salary income sources over the reporting
                       period
-                    sections: 
+                    sections:
                     - Income Sources
                     result:
                       value: '7228.00'
@@ -192,16 +190,15 @@ paths:
                   - id: ME003
                     title: Income has been stable for (months)
                     description: Number of months within report over which income has been stable
-                    sections: 
+                    sections:
                     - Income Sources
                     result:
                       value: '5'
                       format: integer
                   - id: ME004
                     title: Other possible income
-                    description: Mean monthly income from sources not covered within Salary and
-                      Benefits
-                    sections: 
+                    description: Mean monthly income from sources not covered within Salary and Benefits
+                    sections:
                     - Income Sources
                     result:
                       value: '266.00'
@@ -209,7 +206,7 @@ paths:
                   - id: ME005
                     title: Youth Allowance monthly
                     description: Mean monthly income from Youth Allowance
-                    sections: 
+                    sections:
                     - Government Services
                     result:
                       value: '125.00'
@@ -217,7 +214,7 @@ paths:
                   - id: ME006
                     title: Rental Assistance monthly
                     description: Mean monthly income from Rental Assistance
-                    sections: 
+                    sections:
                     - Government Services
                     result:
                       value: '0.00'
@@ -226,7 +223,7 @@ paths:
                     title: Misc Government services monthly
                     description: Mean monthly income through government benefits other than Rental
                       Assistance and Youth Allowance
-                    sections: 
+                    sections:
                     - Government Services
                     result:
                       value: '488.00'
@@ -234,7 +231,7 @@ paths:
                   - id: ME008
                     title: Average monthly amount
                     description: Mean monthly repayments to lenders
-                    sections: 
+                    sections:
                     - Financial Commitments
                     result:
                       value: "-2553.00"
@@ -242,7 +239,7 @@ paths:
                   - id: ME009
                     title: "# of identified companies"
                     description: Number of relationships with lending merchants
-                    sections: 
+                    sections:
                     - Financial Commitments
                     result:
                       value: '8'
@@ -250,7 +247,7 @@ paths:
                   - id: ME010
                     title: Total credit card limit
                     description: Total limits on available credit card accounts
-                    sections: 
+                    sections:
                     - Financial Commitments
                     result:
                       value: '5000.00'
@@ -258,7 +255,7 @@ paths:
                   - id: ME011
                     title: Total credit card balance
                     description: Total of latest available balances on available credit card accounts
-                    sections: 
+                    sections:
                     - Financial Commitments
                     result:
                       value: "-2625.00"
@@ -266,7 +263,7 @@ paths:
                   - id: ME012
                     title: Monthly spend on non-discretionary expenses (inc. liabilities)
                     description: Mean monthly spend on non-discretionary expenses
-                    sections: 
+                    sections:
                     - Expenses
                     result:
                       value: "-3851.00"
@@ -275,7 +272,7 @@ paths:
                     title: "% of spend on non-non-discretionary expenses"
                     description: Mean monthly spend on non-discretionary expenses as a percentage
                       of total expenses
-                    sections: 
+                    sections:
                     - Expenses
                     result:
                       value: '26.2'
@@ -283,16 +280,16 @@ paths:
                   - id: ME014
                     title: Mean monthly spend on discretionary expenses
                     description: Mean monthly spend on discretionary expenses
-                    sections: 
+                    sections:
                     - Expenses
                     result:
                       value: "-2632.00"
                       format: money
                   - id: ME015
                     title: "% of spend on discretionary expenses"
-                    description: Mean monthly spend on discretionary expenses as a percentage of
-                      total expenses
-                    sections: 
+                    description: Mean monthly spend on discretionary expenses as a percentage of total
+                      expenses
+                    sections:
                     - Expenses
                     result:
                       value: '53.1'
@@ -300,7 +297,7 @@ paths:
                   - id: ME016
                     title: Monthly spend on other expenses
                     description: Mean monthly spend on uncategorised expenses
-                    sections: 
+                    sections:
                     - Expenses
                     result:
                       value: "-1054.00"
@@ -308,7 +305,7 @@ paths:
                   - id: ME017
                     title: "# of SACC loans"
                     description: Number of relationships with SACC lenders
-                    sections: 
+                    sections:
                     - Risk Metrics
                     result:
                       value: '3'
@@ -317,7 +314,7 @@ paths:
                     title: "% of income withdrawn via ATM"
                     description: Percentage of salary income withdrawn as cash at ATM's over the reporting
                       period
-                    sections: 
+                    sections:
                     - Risk Metrics
                     result:
                       value: '6.1'
@@ -326,7 +323,7 @@ paths:
                     title: "# of financial dishonours"
                     description: Number of financial dishonour transactions detected during reporting
                       period
-                    sections: 
+                    sections:
                     - Risk Metrics
                     result:
                       value: '3'
@@ -335,7 +332,7 @@ paths:
                     title: "% of income spent on High Risk Activities"
                     description: Percentage of salary income withdrawn at ATM's (including from credit
                       cards), spent on gambling and credit card interest, and withdrawn via redraws
-                    sections: 
+                    sections:
                     - Risk Metrics
                     result:
                       value: '12.4'
@@ -345,7 +342,7 @@ paths:
                     description: Total withdrawn at ATM's (including from credit cards), spent on
                       gambling and credit card interest, and withdrawn via redraws during reporting
                       period
-                    sections: 
+                    sections:
                     - Risk Metrics
                     result:
                       value: "-3690.00"
@@ -354,7 +351,7 @@ paths:
                     title: Has recent changes to income circumstances
                     description: Indicates new income source in 2 months before end of reporting period
                       or income source stopping in 2 months prior to end of reporting period
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
@@ -363,7 +360,7 @@ paths:
                     title: Has received crisis support payments
                     description: Indicates if any crisis support income has been received during reporting
                       period
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'false'
@@ -372,7 +369,7 @@ paths:
                     title: Has superannuation credits
                     description: Indicates if any superannuation income has been received during reporting
                       period
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'false'
@@ -381,7 +378,7 @@ paths:
                     title: Has cash advances
                     description: Indicates cash withdrawals from credit card accounts during reporting
                       period
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
@@ -389,7 +386,7 @@ paths:
                   - id: ME026
                     title: Has redraws
                     description: Indicates transfers from mortgage accounts during reporting period
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
@@ -398,7 +395,7 @@ paths:
                     title: Has High-Cost Finance
                     description: Indicates repayments (during reporting period) to lenders that may
                       charge high interest rates
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
@@ -406,7 +403,7 @@ paths:
                   - id: ME031
                     title: Has Unemployment Benefit
                     description: Indicates if Jobseeker payments have been received
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
@@ -414,23 +411,23 @@ paths:
                   - id: ME028
                     title: 'Missing non-discretionary expenses: groceries'
                     description: 'no instances of non-discretionary expenses: groceries detected'
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'false'
                       format: boolean
                   - id: ME032
-                    title: 'Receives Child Support'
-                    description: 'Indicates if child support payments have been detected'
-                    sections: 
+                    title: Receives Child Support
+                    description: Indicates if child support payments have been detected
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
-                      format: boolean  
+                      format: boolean
                   - id: ME029
                     title: 'Missing non-discretionary expenses: telecommunication'
                     description: 'no instances of non-discretionary expenses: telecommunication detected'
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'true'
@@ -438,11 +435,28 @@ paths:
                   - id: ME030
                     title: 'Missing non-discretionary expenses: utilities'
                     description: 'no instances of non-discretionary expenses: utilities detected'
-                    sections: 
+                    sections:
                     - Risk Flags
                     result:
                       value: 'false'
                       format: boolean
+                  - id: ME033
+                    title: Average Income monthly
+                    description: Mean monthly total income excluding benefits, tax, insurance, superannuation
+                      credits
+                    sections:
+                    - Income Sources
+                    result:
+                      value: '125.00'
+                      format: money
+                  - id: ME034
+                    title: Average Expenses monthly
+                    description: Mean monthly total expenses
+                    sections:
+                    - Expenses
+                    result:
+                      value: "-325.00"
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
@@ -805,7 +819,7 @@ paths:
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-007
-                    title: Other Income
+                    title: Other Credits
                     sections:
                     - Income
                     analysis:
@@ -1646,9 +1660,9 @@ paths:
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-018
-                    title: Health
+                    title: Medical
                     sections:
-                    - Discretionary Expenses
+                    - Non-Discretionary Expenses
                     analysis:
                       summary:
                         transactionCount: 3
@@ -2066,7 +2080,7 @@ paths:
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-035
-                    title: Subscription TV
+                    title: Subscription Media
                     sections:
                     - Discretionary Expenses
                     analysis:
@@ -3570,10 +3584,281 @@ paths:
                         date: '2022-03-01'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
+                  - id: EXP-051
+                    title: Alcohol and Tobacco
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-052
+                    title: Sports and Hobbies
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-054
+                    title: Other Categorised
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-055
+                    title: Clothing and Footwear
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  accounts:
+                  - type: account
+                    id: ag829sj
+                    accountHolder: GAVIN BELSON
+                    accountNo: 600000-157441965
+                    availableFunds: '420.28'
+                    balance: '356.50'
+                    class:
+                    - type: savings
+                      product: saver
+                    currency: AUD
+                    institution: AU00000
+                    name: Master Savings
+                    links:
+                      user: https://au-api.basiq.io/users/ea3a81
+                      transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('ag829sj')
+                  - type: account
+                    id: aj82gka
+                    accountHolder: GAVIN BELSON
+                    accountNo: 600000-9292938
+                    availableFunds: '716.50'
+                    balance: '890.50'
+                    class:
+                    - type: credit-card
+                      product: Shopper Plus CC
+                    currency: AUD
+                    institution: AU00000
+                    name: My Credit Card
+                    links:
+                      user: https://au-api.basiq.io/users/ea3a81
+                      transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('aj82gka')
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                  data-accounts: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-                  data-transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+
+
 
 
         '403':
@@ -3991,6 +4276,10 @@ components:
           type: string
           description: Identifies who created the report.
           example: David Smith
+        expiresAt: 
+          type: string
+          description: Identifies when the report expires.
+          example: 2022-12-25T06:56:44
         filters: 
           type: array
           description: |
@@ -4263,6 +4552,73 @@ components:
                                 type: string
                                 description: The value (amount) of the transaction.
                                 example: 100.00
+            accounts: 
+              type: array
+              description: List of accounts used for analysis.
+              items: 
+                type: object
+                properties: 
+                  type: 
+                    type: string
+                    description: Identifies the object type, always 'account'
+                    example: account
+                  id: 
+                    type: string
+                    description: Uniquely identifies the account.
+                    example: ag829sj
+                  accountHolder: 
+                    type: string
+                    description: The name of the account holder as returned by the institution. No formatting is applied. Returns a string or null when not available.
+                    example: GAVIN BELSON
+                  accountNo: 
+                    type: string
+                    description: Full account number.
+                    example: 600000-157441965
+                  availableFunds: 
+                    type: string
+                    description: Funds that are available to an account holder for withdrawal or other use. This may include funds from an overdraft facility or line of credit. As well as funds classified as the available balance, such as from cleared and existing deposits.
+                    example: 420.28
+                  balance: 
+                    type: string
+                    description: Amount of funds in the account right now - excluding any pending transactions. For a credit card this would be zero or the minus amount spent.
+                    example: 356.50
+                  class: 
+                    type: array
+                    description: Describes the class(type) of accounts - transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
+                    items: 
+                      type: object
+                      properties: 
+                        type: 
+                          type: string
+                          description: Account type
+                          example: savings
+                        product: 
+                          type: string
+                          description: Product name.
+                          example: saver
+                  currency: 
+                    type: string
+                    description: The currency the funds are stored in, using ISO 4217 standard.
+                    example: AUD
+                  institution: 
+                    type: string
+                    description: The id of the institution resource the account originated from.
+                    example: AU00000
+                  name: 
+                    type: string
+                    description: Account name as defined by institution or user.
+                    example: Master Savings
+                  links: 
+                    type: object
+                    properties: 
+                      user: 
+                        type: string
+                        description: The link to the user (that the accounts belong to).
+                        example: https://au-api.basiq.io/users/ea3a81
+                      transactions: 
+                        type: string
+                        description: The link to the transactions used for analysis.
+                        example: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01''2022-12-01')account.id.eq('ag829sj')                                
         links: 
           type: object
           properties: 
