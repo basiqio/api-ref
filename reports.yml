@@ -61,14 +61,33 @@ paths:
                 id: '29523951'
                 links:
                   self: https://au-api.basiq.io/jobs/a3dgf4567a89
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
     get:
       summary: List all reports
       tags:
@@ -3857,16 +3876,33 @@ paths:
                       transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('aj82gka')
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-
-
-
-
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
     delete:
       tags:
         - Reports
@@ -3883,14 +3919,33 @@ paths:
         '204':
           description: Deletion succeeded.
           content: {}
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
   /reports/types:
     get:
       summary: List report types
@@ -3946,14 +4001,33 @@ paths:
                         type: string
                       - name: accounts
                         type: array
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 components:
   responses:
     400BadRequest:
@@ -4046,6 +4120,164 @@ components:
                     description: >-
                       A string indicating which URI query parameter caused the
                       error.
+    Source:
+      title: Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: String indicating which URI query parameter caused the error.
+          example: userId
+        pointer:
+          type: string
+          description: Location to the object or attribute that the error relates
+            to.
+          example: users/userId
+      description: An object containing references to the source of the error.
+    NotFoundError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: resource-not-found
+                enum:
+                - resource-not-found
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Resource not found.
+              title:
+                type: string
+                description: Title of the error
+                example: Requested resource is not found.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    ForbiddenAccessError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - source
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: forbidden-access
+                enum:
+                - forbidden-access
+                - no-production-access
+                - access-denied
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Access to this resource is forbidden.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Forbidden Access
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    BadRequestError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: parameter-not-valid
+                enum:
+                - parameter-not-supplied
+                - parameter-not-valid
+                - unsupported-accept
+                - invalid-content
+                - institution-not-supported
+                - invalid-credentials
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: ID value is not valid.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Parameter not valid.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
     reports:
       title: ''
       type: object
@@ -4276,10 +4508,6 @@ components:
           type: string
           description: Identifies who created the report.
           example: David Smith
-        expiresAt: 
-          type: string
-          description: Identifies when the report expires.
-          example: 2022-12-25T06:56:44
         filters: 
           type: array
           description: |
@@ -4552,73 +4780,6 @@ components:
                                 type: string
                                 description: The value (amount) of the transaction.
                                 example: 100.00
-            accounts: 
-              type: array
-              description: List of accounts used for analysis.
-              items: 
-                type: object
-                properties: 
-                  type: 
-                    type: string
-                    description: Identifies the object type, always 'account'
-                    example: account
-                  id: 
-                    type: string
-                    description: Uniquely identifies the account.
-                    example: ag829sj
-                  accountHolder: 
-                    type: string
-                    description: The name of the account holder as returned by the institution. No formatting is applied. Returns a string or null when not available.
-                    example: GAVIN BELSON
-                  accountNo: 
-                    type: string
-                    description: Full account number.
-                    example: 600000-157441965
-                  availableFunds: 
-                    type: string
-                    description: Funds that are available to an account holder for withdrawal or other use. This may include funds from an overdraft facility or line of credit. As well as funds classified as the available balance, such as from cleared and existing deposits.
-                    example: 420.28
-                  balance: 
-                    type: string
-                    description: Amount of funds in the account right now - excluding any pending transactions. For a credit card this would be zero or the minus amount spent.
-                    example: 356.50
-                  class: 
-                    type: array
-                    description: Describes the class(type) of accounts - transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
-                    items: 
-                      type: object
-                      properties: 
-                        type: 
-                          type: string
-                          description: Account type
-                          example: savings
-                        product: 
-                          type: string
-                          description: Product name.
-                          example: saver
-                  currency: 
-                    type: string
-                    description: The currency the funds are stored in, using ISO 4217 standard.
-                    example: AUD
-                  institution: 
-                    type: string
-                    description: The id of the institution resource the account originated from.
-                    example: AU00000
-                  name: 
-                    type: string
-                    description: Account name as defined by institution or user.
-                    example: Master Savings
-                  links: 
-                    type: object
-                    properties: 
-                      user: 
-                        type: string
-                        description: The link to the user (that the accounts belong to).
-                        example: https://au-api.basiq.io/users/ea3a81
-                      transactions: 
-                        type: string
-                        description: The link to the transactions used for analysis.
-                        example: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01''2022-12-01')account.id.eq('ag829sj')                                
         links: 
           type: object
           properties: 
@@ -4634,6 +4795,50 @@ components:
               type: string
               description: Snapshot of the raw data used to generate the report. See transactions object for schema.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+    InternalServerError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: internal-server-error
+                enum:
+                - internal-server-error
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
 
   securitySchemes:
     reporting_token:
