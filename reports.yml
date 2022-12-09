@@ -3,7 +3,7 @@ info:
   title: Reporting
   version: 3.0.0
 servers:
-  - url: https://au-api.basiq.io
+  - url: https://440c03c0-6d1e-4cfb-a167-53124a5dbf6e.mock.pstmn.io
 paths:
   /reports:
     post:
@@ -27,6 +27,7 @@ paths:
         description: >-
           Include the details of the report you would like to create along with
           the filters.
+        required: true
         content:
           application/json:
             schema:
@@ -60,14 +61,33 @@ paths:
                 id: '29523951'
                 links:
                   self: https://au-api.basiq.io/jobs/a3dgf4567a89
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
     get:
       summary: List all reports
       tags:
@@ -96,6 +116,7 @@ paths:
                     reportType: CON_AFFOR_01
                     createdDate: '2022-03-26T06:56:44'
                     createdBy: David Smith
+                    expiresAt: '2022-12-25T06:56:44'
                     filters:
                       - name: fromDate
                         value: '2022-01-01'
@@ -166,132 +187,145 @@ paths:
                   value:
                   - ag829sj
                   - aj82gka
-                - name: users
-                  value:
-                  - sj29sjd
                 data:
                   metrics:
                   - id: ME001
                     title: "# of identified income sources"
                     description: Number of recent salary income sources
-                    group: Income Sources
+                    sections:
+                    - Income Sources
                     result:
                       value: '4'
                       format: integer
                   - id: ME002
                     title: Average monthly amount from salary
-                    description: Median monthly amount from salary income sources over the reporting
+                    description: Mean monthly amount from salary income sources over the reporting
                       period
-                    group: Income Sources
+                    sections:
+                    - Income Sources
                     result:
                       value: '7228.00'
                       format: money
                   - id: ME003
                     title: Income has been stable for (months)
                     description: Number of months within report over which income has been stable
-                    group: Income Sources
+                    sections:
+                    - Income Sources
                     result:
                       value: '5'
                       format: integer
                   - id: ME004
                     title: Other possible income
-                    description: Median monthly income from sources not covered within Salary and
-                      Benefits
-                    group: Income Sources
+                    description: Mean monthly income from sources not covered within Salary and Benefits
+                    sections:
+                    - Income Sources
                     result:
                       value: '266.00'
                       format: money
                   - id: ME005
                     title: Youth Allowance monthly
-                    description: Median monthly income from Youth Allowance
-                    group: Government Services
+                    description: Mean monthly income from Youth Allowance
+                    sections:
+                    - Government Services
                     result:
                       value: '125.00'
                       format: money
                   - id: ME006
                     title: Rental Assistance monthly
-                    description: Median monthly income from Rental Assistance
-                    group: Government Services
+                    description: Mean monthly income from Rental Assistance
+                    sections:
+                    - Government Services
                     result:
                       value: '0.00'
                       format: money
                   - id: ME007
                     title: Misc Government services monthly
-                    description: Median monthly income through government benefits other than Rental
+                    description: Mean monthly income through government benefits other than Rental
                       Assistance and Youth Allowance
-                    group: Government Services
+                    sections:
+                    - Government Services
                     result:
                       value: '488.00'
                       format: money
                   - id: ME008
                     title: Average monthly amount
-                    description: Median monthly repayments to lenders
-                    group: Financial Commitments
+                    description: Mean monthly repayments to lenders
+                    sections:
+                    - Financial Commitments
                     result:
                       value: "-2553.00"
                       format: money
                   - id: ME009
                     title: "# of identified companies"
                     description: Number of relationships with lending merchants
-                    group: Financial Commitments
+                    sections:
+                    - Financial Commitments
                     result:
                       value: '8'
                       format: integer
                   - id: ME010
                     title: Total credit card limit
                     description: Total limits on available credit card accounts
-                    group: Financial Commitments
+                    sections:
+                    - Financial Commitments
                     result:
                       value: '5000.00'
                       format: money
                   - id: ME011
                     title: Total credit card balance
                     description: Total of latest available balances on available credit card accounts
-                    group: Financial Commitments
+                    sections:
+                    - Financial Commitments
                     result:
                       value: "-2625.00"
                       format: money
                   - id: ME012
                     title: Monthly spend on non-discretionary expenses (inc. liabilities)
-                    description: Median monthly spend on non-discretionary expenses
-                    group: Expenses
+                    description: Mean monthly spend on non-discretionary expenses
+                    sections:
+                    - Expenses
                     result:
                       value: "-3851.00"
                       format: money
                   - id: ME013
                     title: "% of spend on non-non-discretionary expenses"
-                    description: Median monthly spend on non-discretionary expenses as a percentage
+                    description: Mean monthly spend on non-discretionary expenses as a percentage
                       of total expenses
-                    group: Expenses
+                    sections:
+                    - Expenses
                     result:
                       value: '26.2'
                       format: percent
                   - id: ME014
-                    title: Median monthly spend on discretionary expenses
-                    description: Median monthly spend on discretionary expenses
-                    group: Expenses
+                    title: Mean monthly spend on discretionary expenses
+                    description: Mean monthly spend on discretionary expenses
+                    sections:
+                    - Expenses
                     result:
                       value: "-2632.00"
                       format: money
                   - id: ME015
                     title: "% of spend on discretionary expenses"
-                    description: Median monthly spend on discretionary expenses as a percentage of
-                      total expenses
-                    group: Expenses
+                    description: Mean monthly spend on discretionary expenses as a percentage of total
+                      expenses
+                    sections:
+                    - Expenses
                     result:
                       value: '53.1'
                       format: percent
                   - id: ME016
                     title: Monthly spend on other expenses
-                    description: Median monthly spend on uncategorised expenses
-                    group: Expenses
+                    description: Mean monthly spend on uncategorised expenses
+                    sections:
+                    - Expenses
                     result:
                       value: "-1054.00"
                       format: money
                   - id: ME017
                     title: "# of SACC loans"
                     description: Number of relationships with SACC lenders
-                    group: Risk Metrics
+                    sections:
+                    - Risk Metrics
                     result:
                       value: '3'
                       format: integer
@@ -299,7 +333,8 @@ paths:
                     title: "% of income withdrawn via ATM"
                     description: Percentage of salary income withdrawn as cash at ATM's over the reporting
                       period
-                    group: Risk Metrics
+                    sections:
+                    - Risk Metrics
                     result:
                       value: '6.1'
                       format: percent
@@ -307,7 +342,8 @@ paths:
                     title: "# of financial dishonours"
                     description: Number of financial dishonour transactions detected during reporting
                       period
-                    group: Risk Metrics
+                    sections:
+                    - Risk Metrics
                     result:
                       value: '3'
                       format: integer
@@ -315,7 +351,8 @@ paths:
                     title: "% of income spent on High Risk Activities"
                     description: Percentage of salary income withdrawn at ATM's (including from credit
                       cards), spent on gambling and credit card interest, and withdrawn via redraws
-                    group: Risk Metrics
+                    sections:
+                    - Risk Metrics
                     result:
                       value: '12.4'
                       format: percent
@@ -324,7 +361,8 @@ paths:
                     description: Total withdrawn at ATM's (including from credit cards), spent on
                       gambling and credit card interest, and withdrawn via redraws during reporting
                       period
-                    group: Risk Metrics
+                    sections:
+                    - Risk Metrics
                     result:
                       value: "-3690.00"
                       format: money
@@ -332,7 +370,8 @@ paths:
                     title: Has recent changes to income circumstances
                     description: Indicates new income source in 2 months before end of reporting period
                       or income source stopping in 2 months prior to end of reporting period
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'true'
                       format: boolean
@@ -340,7 +379,8 @@ paths:
                     title: Has received crisis support payments
                     description: Indicates if any crisis support income has been received during reporting
                       period
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'false'
                       format: boolean
@@ -348,7 +388,8 @@ paths:
                     title: Has superannuation credits
                     description: Indicates if any superannuation income has been received during reporting
                       period
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'false'
                       format: boolean
@@ -356,14 +397,16 @@ paths:
                     title: Has cash advances
                     description: Indicates cash withdrawals from credit card accounts during reporting
                       period
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'true'
                       format: boolean
                   - id: ME026
                     title: Has redraws
                     description: Indicates transfers from mortgage accounts during reporting period
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'true'
                       format: boolean
@@ -371,38 +414,68 @@ paths:
                     title: Has High-Cost Finance
                     description: Indicates repayments (during reporting period) to lenders that may
                       charge high interest rates
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'true'
                       format: boolean
                   - id: ME031
                     title: Has Unemployment Benefit
                     description: Indicates if Jobseeker payments have been received
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'true'
                       format: boolean
                   - id: ME028
                     title: 'Missing non-discretionary expenses: groceries'
                     description: 'no instances of non-discretionary expenses: groceries detected'
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'false'
+                      format: boolean
+                  - id: ME032
+                    title: Receives Child Support
+                    description: Indicates if child support payments have been detected
+                    sections:
+                    - Risk Flags
+                    result:
+                      value: 'true'
                       format: boolean
                   - id: ME029
                     title: 'Missing non-discretionary expenses: telecommunication'
                     description: 'no instances of non-discretionary expenses: telecommunication detected'
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'true'
                       format: boolean
                   - id: ME030
                     title: 'Missing non-discretionary expenses: utilities'
                     description: 'no instances of non-discretionary expenses: utilities detected'
-                    group: Risk Flags
+                    sections:
+                    - Risk Flags
                     result:
                       value: 'false'
                       format: boolean
+                  - id: ME033
+                    title: Average Income monthly
+                    description: Mean monthly total income excluding benefits, tax, insurance, superannuation
+                      credits
+                    sections:
+                    - Income Sources
+                    result:
+                      value: '125.00'
+                      format: money
+                  - id: ME034
+                    title: Average Expenses monthly
+                    description: Mean monthly total expenses
+                    sections:
+                    - Expenses
+                    result:
+                      value: "-325.00"
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
@@ -454,15 +527,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-002
                     title: Child Support Income
@@ -514,15 +587,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-003
                     title: Insurance Credits
@@ -574,15 +647,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-004
                     title: Interest Income
@@ -634,15 +707,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-005
                     title: Investment Income
@@ -694,15 +767,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-006
                     title: Other Earnings
@@ -754,18 +827,18 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-007
-                    title: Other Income
+                    title: Other Credits
                     sections:
                     - Income
                     analysis:
@@ -814,15 +887,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-008
                     title: Rent & Board Income
@@ -874,15 +947,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-009
                     title: Salary
@@ -934,15 +1007,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-010
                     title: Superannuation Credits
@@ -994,15 +1067,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-011
                     title: Tax Credits
@@ -1054,15 +1127,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: EXP-002
                     title: Automotive
@@ -1114,15 +1187,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-004
                     title: Children's Retail
@@ -1174,15 +1247,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-007
                     title: Department Stores
@@ -1234,15 +1307,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-008
                     title: Dining Out
@@ -1294,15 +1367,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-010
                     title: Donations
@@ -1354,15 +1427,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-012
                     title: Entertainment
@@ -1414,15 +1487,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-014
                     title: Gambling
@@ -1475,15 +1548,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-015
                     title: Government & Council Services
@@ -1535,15 +1608,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-017
                     title: Gyms and memberships
@@ -1595,20 +1668,20 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-018
-                    title: Health
+                    title: Medical
                     sections:
-                    - Discretionary Expenses
+                    - Non-Discretionary Expenses
                     analysis:
                       summary:
                         transactionCount: 3
@@ -1655,15 +1728,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-019
                     title: Home Improvement
@@ -1715,15 +1788,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-024
                     title: Online Retail
@@ -1775,15 +1848,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-027
                     title: Personal Care
@@ -1835,15 +1908,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-028
                     title: Pet Care
@@ -1895,15 +1968,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-031
                     title: Retail
@@ -1955,15 +2028,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-034
                     title: Subscription Services
@@ -2015,18 +2088,18 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-035
-                    title: Subscription TV
+                    title: Subscription Media
                     sections:
                     - Discretionary Expenses
                     analysis:
@@ -2075,15 +2148,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-038
                     title: Travel
@@ -2135,15 +2208,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-039
                     title: Uncategorised Debits
@@ -2195,15 +2268,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-041
                     title: Vehicle and Transport
@@ -2255,15 +2328,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-011
                     title: Education and Childcare
@@ -2315,15 +2388,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-016
                     title: Groceries
@@ -2375,15 +2448,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-021
                     title: Insurance
@@ -2435,15 +2508,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-030
                     title: Rent
@@ -2495,15 +2568,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-036
                     title: Telecommunication
@@ -2555,15 +2628,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-040
                     title: Utilities
@@ -2615,15 +2688,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-003
                     title: Cash Advances
@@ -2676,15 +2749,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-009
                     title: Dishonours
@@ -2737,15 +2810,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-013
                     title: External Transfers
@@ -2797,15 +2870,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-032
                     title: Returns & Refunds
@@ -2857,15 +2930,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-037
                     title: Third Party Payment Providers
@@ -2917,15 +2990,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-001
                     title: ATM Withdrawals
@@ -2978,15 +3051,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-006
                     title: Debt Interest Accrual
@@ -3039,15 +3112,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-029
                     title: Redraws
@@ -3100,15 +3173,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-005
                     title: Collection Agencies
@@ -3160,15 +3233,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-020
                     title: Insolvency
@@ -3220,15 +3293,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-022
                     title: Lease & Rental
@@ -3280,15 +3353,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-023
                     title: Motor Finance
@@ -3340,15 +3413,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-025
                     title: Other Finance
@@ -3400,15 +3473,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-026
                     title: Peer to Peer Finance
@@ -3460,15 +3533,15 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-033
                     title: Small Amount Lending
@@ -3520,36 +3593,321 @@ paths:
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
                         date: '2022-01-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: ad775e551f8f66b8fe693071cd024cef
                         date: '2022-03-01'
-                        source: SAMPLE TRANSACTION 0000023
+                        description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
+                  - id: EXP-051
+                    title: Alcohol and Tobacco
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-052
+                    title: Sports and Hobbies
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-054
+                    title: Other Categorised
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-055
+                    title: Clothing and Footwear
+                    sections:
+                    - Discretionary Expenses
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                      frequency:
+                        type: monthly
+                        amount: "-100.00"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                        frequency:
+                          type: monthly
+                          amount: "-100.00"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  accounts:
+                  - type: account
+                    id: ag829sj
+                    accountHolder: GAVIN BELSON
+                    accountNo: 600000-157441965
+                    availableFunds: '420.28'
+                    balance: '356.50'
+                    class:
+                    - type: savings
+                      product: saver
+                    currency: AUD
+                    institution: AU00000
+                    name: Master Savings
+                    links:
+                      user: https://au-api.basiq.io/users/ea3a81
+                      transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('ag829sj')
+                  - type: account
+                    id: aj82gka
+                    accountHolder: GAVIN BELSON
+                    accountNo: 600000-9292938
+                    availableFunds: '716.50'
+                    balance: '890.50'
+                    class:
+                    - type: credit-card
+                      product: Shopper Plus CC
+                    currency: AUD
+                    institution: AU00000
+                    name: My Credit Card
+                    links:
+                      user: https://au-api.basiq.io/users/ea3a81
+                      transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('aj82gka')
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                  data-users: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
-                  data-connections: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
-                  data-accounts: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-                  data-transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-
-
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
     delete:
       tags:
         - Reports
       summary: Delete a report
-      description: Permanently deletes a users consent, this action cannot be undone.
-      operationId: deleteConsent
+      description: Permanently deletes a report and all associated snapshot data.
       parameters:
         - in: path
           name: id
@@ -3561,14 +3919,33 @@ paths:
         '204':
           description: Deletion succeeded.
           content: {}
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
   /reports/types:
     get:
       summary: List report types
@@ -3600,8 +3977,6 @@ paths:
                         type: string
                       - name: accounts
                         type: array
-                      - name: users
-                        type: array
                   - type: reportType
                     id: BUS_AFFOR_01
                     name: Business Affordability Report
@@ -3612,8 +3987,6 @@ paths:
                       - name: toDate
                         type: string
                       - name: accounts
-                        type: array
-                      - name: users
                         type: array
                   - type: reportType
                     id: ROUNDUP_OPP_01
@@ -3628,16 +4001,33 @@ paths:
                         type: string
                       - name: accounts
                         type: array
-                      - name: user
-                        type: string
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-        '403':
-          $ref: '#/components/responses/403Forbidden'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '500':
-          $ref: '#/components/responses/500Server'
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        404:
+          description: Returns error indicating that server can't find requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 components:
   responses:
     400BadRequest:
@@ -3730,6 +4120,164 @@ components:
                     description: >-
                       A string indicating which URI query parameter caused the
                       error.
+    Source:
+      title: Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: String indicating which URI query parameter caused the error.
+          example: userId
+        pointer:
+          type: string
+          description: Location to the object or attribute that the error relates
+            to.
+          example: users/userId
+      description: An object containing references to the source of the error.
+    NotFoundError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: resource-not-found
+                enum:
+                - resource-not-found
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Resource not found.
+              title:
+                type: string
+                description: Title of the error
+                example: Requested resource is not found.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    ForbiddenAccessError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - source
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: forbidden-access
+                enum:
+                - forbidden-access
+                - no-production-access
+                - access-denied
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Access to this resource is forbidden.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Forbidden Access
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
+    BadRequestError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: parameter-not-valid
+                enum:
+                - parameter-not-supplied
+                - parameter-not-valid
+                - unsupported-accept
+                - invalid-content
+                - institution-not-supported
+                - invalid-credentials
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: ID value is not valid.
+              source:
+                $ref: '#/components/schemas/Source'
+              title:
+                type: string
+                description: Title of the error
+                example: Parameter not valid.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
     reports:
       title: ''
       type: object
@@ -3938,24 +4486,32 @@ components:
       properties:
         type: 
           type: string
+          description: Always "report".
           example: report
         id: 
           type: string
+          description: Uniquely identifies the report.
           example: b1824ad0-73f1-0138-3700-0a58a9feac09
         title: 
           type: string
+          description: User defined title for the report.
           example: John Smith Affordability Report 2022-03-26
         reportType: 
           type: string
+          description: Identifies the report type, see list of reportTypes.
           example: CON_AFFOR_01
         createdDate: 
           type: string
+          description: The date and time of when the report was created.
           example: 2022-03-26T06:56:44
         createdBy: 
           type: string
+          description: Identifies who created the report.
           example: David Smith
         filters: 
           type: array
+          description: |
+            List of filters that were supplied to generate the report. See /reports/reportType for a list of supported filters.
           items: 
             type: object
             properties: 
@@ -3968,222 +4524,321 @@ components:
                 example: 2022-01-01
         data: 
           type: object
+          description: Includes the primary data generated for the requested report.
           properties: 
             metrics: 
               type: array
+              description: Metrics are calculated single value answers.
               items: 
                 type: object
                 properties: 
                   id: 
                     type: string
+                    description: A unique code that identifies the metric.
                     example: ME001
                   title: 
                     type: string
+                    description: Name of the metric.
                     example: # of identified income sources
                   description: 
                     type: string
+                    description: Described the metric in greater detail.
                     example: Number of recent salary income sources
-                  group: 
-                    type: string
-                    example: Income Sources
+                  sections: 
+                    type: array
+                    description: A header for the metric. This helps organise metrics into sections.
+                    items: 
+                      type: string
+                      example: Risk Metrics
                   result: 
                     type: object
+                    description: Contains the result / output for the metric.
                     properties: 
                       value: 
                         type: string
+                        description: The calculated value.
                         example: 4
                       format: 
                         type: string
+                        description: Identifies the value type.
+                        enum: [boolean, money, percent, integer , date , string , double]
                         example: integer
             groups: 
               type: array
+              description: Contains a list of analysed transaction groups e.g. Income, Expenses
               items: 
                 type: object
                 properties: 
                   id: 
                     type: string
+                    description: Unique code that identifies the anlysis group.
                     example: INC-001
                   title: 
                     type: string
+                    description: Name of the group being analysed.
                     example: Benefits
                   sections: 
                     type: array
+                    description: A list of sections that the group belongs to. This helps organise groups into sections. e.g. The group "Gambling" may belong to "Non-Discretionary Expenses" and "High Risk Activities".
                     items: 
                       type: string
                       example: Income
                   analysis: 
                     type: object
+                    description: Included statistical values for the analysed group.
                     properties: 
                       summary: 
                         type: object
                         properties: 
                           transactionCount: 
                             type: number
+                            description: The total number of transactions that belong to the group.
                             example: 3
                       range: 
                         type: object
                         properties: 
                           startDate: 
                             type: string
+                            description: The date of the earliest transaction found in the group.
                             format: date
                             example: 2022-01-01
                           endDate: 
                             type: string
+                            description: The date of the most recent transaction found in the group.
                             format: date
                             example: 2022-03-01
                           duration: 
                             type: number
+                            description: The duration between the start date and end date. Expressed in days.
                             example: 59
                       amount: 
                         type: object
                         properties: 
                           total: 
                             type: string
+                            description: The total sum of all transactions belonging to the group.
                             example: 300.00
                           min: 
                             type: string
+                            description: The smallest transaction value in the group.
                             example: 100.00
                           max: 
                             type: string
+                            description: The largest transaction value in the group.
                             example: 100.00
                           average: 
                             type: object
                             properties: 
                               transaction: 
                                 type: string
+                                description: The average unique transaction value.
                                 example: 100.00
                               month: 
                                 type: string
+                                description: The average monthly value. 
                                 example: 100.00
                       frequency: 
                         type: object
+                        description: Identifies the occurance pattern of the transactions within the group.
                         properties: 
                           type: 
                             type: string
+                            description: The frequency pattern found of the transactions e.g. how often do they occur.
+                            enum: [daily, weekly, fortnightly, monthly, yearly]
                             example: monthly
                           amount: 
                             type: string
+                            description: The average amount for each occuring transaction.
                             example: 100.00
                           next: 
                             type: object
+                            description: Identifies the next transaction is likely to occur.
                             properties: 
                               date: 
                                 type: string
+                                description: The predicted date of when the next transaction will likely occur.
                                 format: date
                                 example: 2022-04-01
                               amount: 
                                 type: string
+                                description: The predicted value of the next transaction.
                                 example: 100.00
                   subgroup: 
                     type: array
+                    description: The unqiue transaction clusters that belong to a group.
                     items: 
                       type: object
                       properties: 
                         id: 
                           type: string
+                          description: The unique id of the subgroup.
                           example: 6d97ec2e37e4d1d24a105bdaea33b427
                         name: 
                           type: string
+                          description: The name of the subgroup.
                           example: SAMPLE TRANSACTION
                         analysis: 
                           type: object
+                          description: Included statistical values for the analysed subgroup.
                           properties: 
                             summary: 
                               type: object
                               properties: 
                                 transactionCount: 
                                   type: number
+                                  description: The total number of transactions that belong to the subgroup.
                                   example: 3
                             range: 
                               type: object
                               properties: 
                                 startDate: 
                                   type: string
+                                  description: The date of the earliest transaction found in the subgroup.
                                   format: date
                                   example: 2022-01-01
                                 endDate: 
                                   type: string
+                                  description: The date of the most recent transaction found in the subgroup.
                                   format: date
                                   example: 2022-03-01
                                 duration: 
                                   type: number
+                                  description: The duration between the start date and end date. Expressed in days.
                                   example: 59
                             amount: 
                               type: object
                               properties: 
                                 total: 
                                   type: string
+                                  description: The total sum of all transactions belonging to the subgroup.
                                   example: 300.00
                                 min: 
                                   type: string
+                                  description: The smallest transaction value in the subgroup.
                                   example: 100.00
                                 max: 
                                   type: string
+                                  description: The largest transaction value in the subgroup.
                                   example: 100.00
                                 average: 
                                   type: object
                                   properties: 
                                     transaction: 
                                       type: string
+                                      description: The average unique transaction value.
                                       example: 100.00
                                     month: 
                                       type: string
+                                      description: The average monthly value. 
                                       example: 100.00
                             frequency: 
                               type: object
+                              description: Identifies the occurance pattern of the transactions within the subgroup.
                               properties: 
                                 type: 
                                   type: string
+                                  description: The frequency pattern found of the transactions e.g. how often do they occur.
+                                  enum: [daily, weekly, fortnightly, monthly, yearly]
                                   example: monthly
                                 amount: 
                                   type: string
+                                  description: The average amount for each occuring transaction.
                                   example: 100.00
                                 next: 
                                   type: object
+                                  description: Identifies the next transaction is likely to occur.
                                   properties: 
                                     date: 
                                       type: string
+                                      description: The predicted date of when the next transaction will likely occur.
                                       format: date
                                       example: 2022-04-01
                                     amount: 
                                       type: string
+                                      description: The predicted value of the next transaction.
                                       example: 100.00
                         transactions: 
                           type: array
+                          description: Includes the list of transactions that belong to the subgroup.
                           items: 
                             type: object
                             properties: 
                               id: 
                                 type: string
+                                description: Unique id of the transaction record.
                                 example: 59018149cab77cd2ab7df477f6760cc9
                               date: 
                                 type: string
+                                description: The date of when the transaction occured.
                                 format: date
                                 example: 2022-01-01
-                              source: 
+                              description: 
                                 type: string
+                                description: The description of the transaction.
                                 example: SAMPLE TRANSACTION 0000023
                               amount: 
                                 type: string
+                                description: The value (amount) of the transaction.
                                 example: 100.00
         links: 
           type: object
           properties: 
             self: 
               type: string
+              description: Url of the current report.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            data-users: 
-              type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/users
-            data-connections: 
-              type: string
-              example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/connections
             data-accounts: 
               type: string
+              description: Snapshot of the raw data used to generate the report. See accounts object for schema.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
             data-transactions: 
               type: string
+              description: Snapshot of the raw data used to generate the report. See transactions object for schema.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
+    InternalServerError:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: internal-server-error
+                enum:
+                - internal-server-error
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence
+                  of the problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+        type:
+          type: string
+          description: Always "list".
+          example: list
 
   securitySchemes:
     reporting_token:
