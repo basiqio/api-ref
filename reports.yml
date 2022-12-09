@@ -4,6 +4,9 @@ info:
   version: 3.0.0
 servers:
   - url: https://440c03c0-6d1e-4cfb-a167-53124a5dbf6e.mock.pstmn.io
+    description: Sandbox server
+  - url: https://au-api.basiq.io
+    description: Production server (Coming Soon)
 paths:
   /reports:
     post:
