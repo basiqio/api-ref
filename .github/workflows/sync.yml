@@ -1,4 +1,4 @@
-name: Sync OpenAPI definition to ReadMe
+name: Sync API docs to Readme
 
 # Run workflow for every push to the `main` branch
 on:
@@ -19,4 +19,4 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi ./core.json --key=${{ secrets.README_API_KEY }} --id=API_DEFINITION_ID
+          rdme: openapi ./core.yml --key=rdme_xn8s9h3a245d24eed3214ce561a13ff81829c89b4ec92d0bccbcff452e63f05fb57c45 --id=624e064b6902450045d52684
