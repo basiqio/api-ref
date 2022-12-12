@@ -896,8 +896,8 @@ paths:
                     applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: success,
-                    jobType: report,
+                    status: success
+                    jobType: report
                     steps:
                     - title: create-report
                       status: success
