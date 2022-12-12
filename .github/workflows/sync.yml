@@ -19,4 +19,45 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi ./core.yml --key=${{ secrets.README_API_KEY }} --id=CORE_API_DEFINITION_ID
+          rdme: openapi ./core.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.CORE_API_DEFINITION_ID }}
+
+      # Run GitHub Action to sync OpenAPI file at ./data.yml
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @v8
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@v8
+        with:
+          rdme: openapi ./data.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.DATA_API_DEFINITION_ID }}
+
+      # Run GitHub Action to sync OpenAPI file at ./core.json
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @v8
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@v8
+        with:
+          rdme: openapi ./identity.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.IDENTITY_API_DEFINITION_ID }}
+
+      # Run GitHub Action to sync OpenAPI file at ./core.json
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @v8
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@v8
+        with:
+          rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
+
+
+      # Run GitHub Action to sync OpenAPI file at ./core.json
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @v8
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@v8
+        with:
+          rdme: openapi ./reports.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.REPORTS_API_DEFINITION_ID }}
+
+      # Run GitHub Action to sync OpenAPI file at ./core.json
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @v8
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@v8
+        with:
+          rdme: openapi ./affordability.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.AFFORDABILITY_API_DEFINITION_ID }}
