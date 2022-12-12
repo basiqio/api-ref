@@ -756,7 +756,7 @@ paths:
   /jobs/{jobId}:
     get:
       tags:
-        - Jobs 
+        - Jobs
       summary: Retrieve a job
       description: >-
         Retrieves the details of an existing job. You need only supply the
@@ -804,7 +804,7 @@ paths:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                     partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: in-progress,
@@ -826,7 +826,7 @@ paths:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                     partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: failed,
@@ -834,7 +834,7 @@ paths:
                     steps:
                     - title: validate-payment
                       status: failed,
-                      result: 
+                      result:
                         type: error
                         code: 'missing-payee-account-details.'
                         title: 'Missing Payee account details.'
@@ -847,7 +847,7 @@ paths:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                     partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: success,
@@ -862,12 +862,12 @@ paths:
                       status: success
                       result:
                         type: link
-                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"                    
+                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
                     - title: payment-completed
                       status: success
                       result:
                         type: link
-                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"                    
+                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
                     links:
                       self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
@@ -876,11 +876,11 @@ paths:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                     partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: in-progress,
-                    jobType: report,
+                    status: in-progress
+                    jobType: report
                     steps:
                     - title: create-report
                       status: in-progress
@@ -893,7 +893,7 @@ paths:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                     partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,                    
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: success,
@@ -901,7 +901,7 @@ paths:
                     steps:
                     - title: create-report
                       status: success
-                      result: 
+                      result:
                         type: link
                         url: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
                     links:
@@ -944,7 +944,7 @@ paths:
   /jobs/{jobId}/mfa:
     post:
       tags:
-      - Jobs 
+      - Jobs
       summary: 'Create MFA response'
       description: |-
         Ensure that you generate an authentication token with
@@ -1020,16 +1020,16 @@ components:
     job:
       type: object
       properties:
-        type: 
+        type:
           type: string
         id:
           type: string
         created:
-          description: date and time in ISO format of when the job request was created 
+          description: date and time in ISO format of when the job request was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the job request was updated 
+          description: date and time in ISO format of when the job request was updated
           type: string
           format: date-time
         steps:
@@ -1804,7 +1804,7 @@ components:
             user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa"
             authorization type identifier
 
-            user-mfa-intermittent AuthorizationUserMfaIntermittent 
+            user-mfa-intermittent AuthorizationUserMfaIntermittent
             AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization
             type identifier
           example: user
@@ -1827,7 +1827,7 @@ components:
             user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa"
             authorization type identifier
 
-            user-mfa-intermittent AuthorizationUserMfaIntermittent 
+            user-mfa-intermittent AuthorizationUserMfaIntermittent
             AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization
             type identifier
           x-go-name: Type
@@ -1966,7 +1966,7 @@ components:
             Bank BankInstitutionType  BankInstitutionType institution type
             identifier for Banks
 
-            Bank (Foreign) BankForeignInstitutionType 
+            Bank (Foreign) BankForeignInstitutionType
             BankForeignInstitutionType institution type identifier for Foreign
             banks
 
@@ -1976,11 +1976,11 @@ components:
             Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType
             institution type identifier for Credit union institutions
 
-            Financial Services FinancialServicesInstitutionType 
+            Financial Services FinancialServicesInstitutionType
             FinancialServicesInstitutionType institution type identifier for
             Financial service institutions
 
-            Superannuation SuperannuationInstitutionType 
+            Superannuation SuperannuationInstitutionType
             SuperannuationInstitutionType institution type identifier for
             Superannuation institutions
 
@@ -2003,7 +2003,7 @@ components:
             Bank BankInstitutionType  BankInstitutionType institution type
             identifier for Banks
 
-            Bank (Foreign) BankForeignInstitutionType 
+            Bank (Foreign) BankForeignInstitutionType
             BankForeignInstitutionType institution type identifier for Foreign
             banks
 
@@ -2013,11 +2013,11 @@ components:
             Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType
             institution type identifier for Credit union institutions
 
-            Financial Services FinancialServicesInstitutionType 
+            Financial Services FinancialServicesInstitutionType
             FinancialServicesInstitutionType institution type identifier for
             Financial service institutions
 
-            Superannuation SuperannuationInstitutionType 
+            Superannuation SuperannuationInstitutionType
             SuperannuationInstitutionType institution type identifier for
             Superannuation institutions
 
