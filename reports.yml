@@ -4478,7 +4478,7 @@ components:
           example: job
         id:
           type: string
-          example: 29523951
+          example: b1824ad0-73f1-0138-3700-0a58a9feac09
         links:
           type: object
           properties:
