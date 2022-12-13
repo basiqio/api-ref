@@ -61,7 +61,7 @@ paths:
                 $ref: '#/components/schemas/job'
               example:
                 type: job
-                id: '29523951'
+                id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                 links:
                   self: https://au-api.basiq.io/jobs/a3dgf4567a89
         400:
