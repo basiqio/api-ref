@@ -99,7 +99,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenAccessError'
         404:
-          description: Returns error indicating that server can't find requested resource.
+          description: Returns error ss indicating that server can't find requested resource.
           content:
             application/json:
               schema:
