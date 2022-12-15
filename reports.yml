@@ -4452,6 +4452,10 @@ components:
                       type: string
                       example: string
     reportRequest:
+      required:
+        - reportType
+        - title
+        - filters
       properties:
         reportType:
           type: string
@@ -4470,7 +4474,7 @@ components:
               value:
                 type: string
                 format: date
-                example: 2022-01-01T00:00:00.000Z
+                example: 2021-12-01T00:00:00.000Z
     job:
       properties:
         type:
