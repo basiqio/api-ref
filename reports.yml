@@ -45,11 +45,8 @@ paths:
                   value: '2022-12-01'
                 - name: accounts
                   value:
-                    - ag829sj
-                    - aj82gka
-                - name: users
-                  value:
-                    - sj29sjd
+                    - cf925c68-40e4-4e7a-95a1-6cb61c1d5304
+                    - df925c68-40e4-4e7a-95a1-6cb61c1d5305
       responses:
         '202':
           description: >
@@ -63,7 +60,7 @@ paths:
                 type: job
                 id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                 links:
-                  self: https://au-api.basiq.io/jobs/a3dgf4567a89
+                  self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
@@ -4467,6 +4464,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - name
+              - value
             properties:
               name:
                 type: string
