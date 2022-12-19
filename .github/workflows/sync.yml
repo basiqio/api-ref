@@ -1,4 +1,4 @@
-name: Sync API docs to Readme
+name: Deploy Prod
 
 # Run workflow for every push to the `main` branch
 on:
