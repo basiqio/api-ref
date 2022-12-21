@@ -19,5 +19,5 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi ./draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
+          rdme: openapi ../draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
 
