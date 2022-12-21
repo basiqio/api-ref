@@ -20,3 +20,4 @@ jobs:
         uses: readmeio/rdme@v8
         with:
           rdme: openapi ./core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
+
