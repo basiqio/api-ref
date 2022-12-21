@@ -14,10 +14,9 @@ jobs:
         uses: actions/checkout@v3
 
       # Run GitHub Action to sync OpenAPI file at ./core.yml
-      - name: Upload core to dev environment
+      - name: Checking Core
         # We recommend specifying a fixed version, i.e. @v8
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi ./draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
-
+          rdme: openapi [./draft-release/core.yml] --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
