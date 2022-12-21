@@ -4,7 +4,7 @@ name: Deploy Dev
 on:
   push:
     branches:
-      - Dev
+      - Dev-api-draft
 
 jobs:
   sync:
