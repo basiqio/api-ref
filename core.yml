@@ -802,12 +802,12 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: in-progress,
-                    jobType: payrequest,
+                    status: in-progress
+                    jobType: payrequest
                     steps:
                     - title: validate-payment
                       status: success
@@ -824,15 +824,15 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: failed,
-                    jobType: payout,
+                    status: failed
+                    jobType: payout
                     steps:
                     - title: validate-payment
-                      status: failed,
+                      status: failed
                       result:
                         type: error
                         code: 'missing-payee-account-details.'
@@ -845,12 +845,12 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: success,
-                    jobType: payout,
+                    status: success
+                    jobType: payout
                     steps:
                     - title: validate-payment
                       status: success
@@ -874,8 +874,8 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: in-progress
@@ -891,8 +891,8 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: success
