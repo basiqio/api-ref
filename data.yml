@@ -772,7 +772,6 @@ components:
       required:
       - type
       - product
-      type: object
       properties:
         type:
           type: string
@@ -1929,12 +1928,10 @@ components:
           nullable: true
           example: "356.50"
         class:
-          type: object
+          $ref: '#/components/schemas/AccountClass'
           description: |-
             Describes the class(type) of accounts.
             transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
-          items:
-            $ref: '#/components/schemas/AccountClass'
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
