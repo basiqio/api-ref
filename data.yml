@@ -3813,11 +3813,17 @@ components:
           example: H
     TransactionsEnrich:
       required:
+      - cleanDescription
+      - tags
       - category
       - location
       - merchant
       type: object
       properties:
+        cleanDescription: 
+          description: "string"
+        tags: 
+          description: "[ ]"
         category:
           $ref: '#/components/schemas/TransactionsCategory'
         location:
