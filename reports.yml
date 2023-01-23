@@ -132,13 +132,10 @@ paths:
                     links:
                       self: >-
                         https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                      transactions: >-
-                        https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-                      reportType: https://au-api.basiq.io/reports/types/2847gf
                 links:
-                  self: https://au-api.basiq.io/users/ea3a81/transactions
+                  self: https://au-api.basiq.io/reports
                   next: >-
-                    https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
+                    https://au-api.basiq.io/reports?next=bf1ec9d4
         '400':
           $ref: '#/components/responses/400BadRequest'
         '403':
