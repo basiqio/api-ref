@@ -4404,13 +4404,6 @@ components:
               type: string
               example: >-
                 https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            transactions:
-              type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-            reportType:
-              type: string
-              example: https://au-api.basiq.io/reports/types/2847gf
     reportType:
       properties:
         type:
