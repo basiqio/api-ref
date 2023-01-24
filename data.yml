@@ -143,13 +143,7 @@ paths:
         description: Transaction filters.
         schema:
           type: string
-          enum:
-          - account.id
-          - transaction.postDate
-          - transaction.status
-          - institution.id
-          - transaction.direction
-          - transaction.class
+          description: account.id, transaction.postDate, transaction.status, institution.id, transaction.direction, transaction.class
       responses:
         200:
           description: 'Returns a paginated list with a data property that contains
