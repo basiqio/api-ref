@@ -285,7 +285,7 @@ paths:
                       value: "-3851.00"
                       format: money
                   - id: ME013
-                    title: "% of spend on non-non-discretionary expenses"
+                    title: "% of spend on non-discretionary expenses"
                     description: Mean monthly spend on non-discretionary expenses as a percentage
                       of total expenses
                     sections:
@@ -312,7 +312,7 @@ paths:
                       format: percent
                   - id: ME016
                     title: Monthly spend on other expenses
-                    description: Mean monthly spend on uncategorised expenses
+                    description: Mean monthly spend on other expenses
                     sections:
                     - Expenses
                     result:
