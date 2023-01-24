@@ -140,10 +140,9 @@ paths:
           default: 500
       - name: filter
         in: query
-        description: Transaction filters.
+        description: Transaction filters; account.id, transaction.postDate, transaction.status, institution.id, transaction.direction, transaction.class
         schema:
           type: string
-          description: account.id, transaction.postDate, transaction.status, institution.id, transaction.direction, transaction.class
       responses:
         200:
           description: 'Returns a paginated list with a data property that contains
