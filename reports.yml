@@ -285,8 +285,8 @@ paths:
                       value: "-3851.00"
                       format: money
                   - id: ME013
-                    title: "% of spend on discretionary expenses"
-                    description: Mean monthly spend on discretionary expenses as a percentage
+                    title: "% of spend on non-discretionary expenses"
+                    description: Mean monthly spend on non-discretionary expenses as a percentage
                       of total expenses
                     sections:
                     - Expenses
