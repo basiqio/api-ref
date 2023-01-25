@@ -140,16 +140,9 @@ paths:
           default: 500
       - name: filter
         in: query
-        description: Transaction filters.
+        description: Transaction filters; account.id, transaction.postDate, transaction.status, institution.id, transaction.direction, transaction.class
         schema:
           type: string
-          enum:
-          - account.id
-          - transaction.postDate
-          - transaction.status
-          - institution.id
-          - transaction.direction
-          - transaction.class
       responses:
         200:
           description: 'Returns a paginated list with a data property that contains
@@ -772,7 +765,6 @@ components:
       required:
       - type
       - product
-      type: object
       properties:
         type:
           type: string
@@ -1929,12 +1921,10 @@ components:
           nullable: true
           example: "356.50"
         class:
-          type: array
+          $ref: '#/components/schemas/AccountClass'
           description: |-
             Describes the class(type) of accounts.
             transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
-          items:
-            $ref: '#/components/schemas/AccountClass'
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
@@ -3813,17 +3803,28 @@ components:
           example: H
     TransactionsEnrich:
       required:
+      - cleanDescription
+      - tags
       - category
       - location
       - merchant
       type: object
       properties:
+        cleanDescription: 
+          $ref: "#/components/schemas/TransactionscleanDescription"
+        tags: 
+          $ref: "#/components/schemas/Transactionstags"
         category:
           $ref: '#/components/schemas/TransactionsCategory'
         location:
           $ref: '#/components/schemas/TransactionsLocation'
         merchant:
           $ref: '#/components/schemas/TransactionsMerchant'
+    Transactionstags: 
+      type: object
+    TransactionscleanDescription:
+      type: string
+      description: ""
     TransactionsGeometry:
       type: object
       properties:

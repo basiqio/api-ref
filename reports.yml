@@ -3,10 +3,10 @@ info:
   title: Reporting
   version: 3.0.0
 servers:
-  - url: https://440c03c0-6d1e-4cfb-a167-53124a5dbf6e.mock.pstmn.io
-    description: Sandbox server
   - url: https://au-api.basiq.io
     description: Production server (Coming Soon)
+  - url: https://440c03c0-6d1e-4cfb-a167-53124a5dbf6e.mock.pstmn.io
+    description: Sandbox server
 paths:
   /reports:
     post:
@@ -132,13 +132,10 @@ paths:
                     links:
                       self: >-
                         https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-                      transactions: >-
-                        https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-                      reportType: https://au-api.basiq.io/reports/types/2847gf
                 links:
-                  self: https://au-api.basiq.io/users/ea3a81/transactions
+                  self: https://au-api.basiq.io/reports
                   next: >-
-                    https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
+                    https://au-api.basiq.io/reports?next=bf1ec9d4
         '400':
           $ref: '#/components/responses/400BadRequest'
         '403':
@@ -288,7 +285,7 @@ paths:
                       value: "-3851.00"
                       format: money
                   - id: ME013
-                    title: "% of spend on non-non-discretionary expenses"
+                    title: "% of spend on non-discretionary expenses"
                     description: Mean monthly spend on non-discretionary expenses as a percentage
                       of total expenses
                     sections:
@@ -315,7 +312,7 @@ paths:
                       format: percent
                   - id: ME016
                     title: Monthly spend on other expenses
-                    description: Mean monthly spend on uncategorised expenses
+                    description: Mean monthly spend on other expenses
                     sections:
                     - Expenses
                     result:
@@ -3851,7 +3848,7 @@ paths:
                     availableFunds: '420.28'
                     balance: '356.50'
                     class:
-                    - type: savings
+                      type: savings
                       product: saver
                     currency: AUD
                     institution: AU00000
@@ -3866,7 +3863,7 @@ paths:
                     availableFunds: '716.50'
                     balance: '890.50'
                     class:
-                    - type: credit-card
+                      type: credit-card
                       product: Shopper Plus CC
                     currency: AUD
                     institution: AU00000
@@ -4407,13 +4404,6 @@ components:
               type: string
               example: >-
                 https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            transactions:
-              type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-            reportType:
-              type: string
-              example: https://au-api.basiq.io/reports/types/2847gf
     reportType:
       properties:
         type:
