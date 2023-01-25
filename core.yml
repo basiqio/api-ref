@@ -335,7 +335,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserConsentGetResponse'
+                #$ref: '#/components/schemas/UserConsentGetResponse'
+                $ref: '#/components/schemas/UserConsentGetResponses'
+            
+
         '400':
           description: >-
             Returns error that server cannot or will not process the request due
@@ -3078,6 +3081,113 @@ components:
         token_type:
           type: string
           example: Bearer
+    UserConsentGetResponses:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+          format: uuid
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        expiryDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+        purpose:
+          $ref: '#/components/schemas/Purpose'
+        data:
+          $ref: '#/components/schemas/Data'
+      required:
+        - created
+        - data
+        - expiryDate
+        - id
+        - purpose
+        - status
+        - type
+        - updated
+      title: UserConsentGetResponse
+    Data:
+      type: object
+      additionalProperties: false
+      properties:
+        retainData:
+          type: boolean
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+      required:
+        - permissions
+        - retainData
+      title: Data
+    Permission:
+      type: object
+      additionalProperties: false
+      properties:
+        scope:
+          type: string
+        required:
+          type: boolean
+        entity:
+          type: string
+        information:
+          $ref: '#/components/schemas/Information'
+        purpose:
+          $ref: '#/components/schemas/Primary'
+      required:
+        - entity
+        - information
+        - purpose
+        - required
+        - scope
+      title: Permission
+    Information:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        attributeList:
+          type: array
+          items:
+            type: string
+      required:
+        - attributeList
+        - description
+        - name
+      title: Information
+    Primary:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - description
+        - title
+      title: Primary
+    Purpose:
+      type: object
+      additionalProperties: false
+      properties:
+        primary:
+          $ref: '#/components/schemas/Primary'
+      required:
+        - primary
+      title: Purpose
   securitySchemes:
     api_key:
       type: apiKey
