@@ -335,7 +335,6 @@ paths:
           content:
             application/json:
               schema:
-                #$ref: '#/components/schemas/UserConsentGetResponse'
                 $ref: '#/components/schemas/UserConsentGetResponses'
               example:
                 - type: consent
@@ -3180,6 +3179,7 @@ components:
           format: date-time
         status:
           type: string
+          description: active, revoked and expired
         purpose:
           $ref: '#/components/schemas/Purpose'
         data:
