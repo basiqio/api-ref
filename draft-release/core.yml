@@ -335,7 +335,89 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserConsentGetResponse'
+                #$ref: '#/components/schemas/UserConsentGetResponse'
+                $ref: '#/components/schemas/UserConsentGetResponses'
+              example:
+                - type: consent
+                  id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
+                  created: '2022-11-01T05:07:00Z'
+                  updated: '2022-11-01T05:07:00Z'
+                  expiryDate: '2023-11-01T05:07:00Z'
+                  status: active
+                  purpose:
+                    primary:
+                      title: >-
+                        Services requiring full ongoing Personal, Account and
+                        Transaction details
+                      description: >-
+                        We need ongoing access to your Personal, Account and
+                        Transaction details in order to fully enable our services.
+                  data:
+                    retainData: true
+                    permissions:
+                      - scope: customer.person.detail
+                        required: true
+                        entity: connection
+                        information:
+                          name: Name, occupation, contact details
+                          description: >-
+                            This allows access to personally identifiable
+                            information. Specifically your name, occupation,
+                            address(es) and contact details.
+                          attributeList:
+                            - Name
+                            - Occupation
+                            - Phone
+                            - Email address
+                            - Mail address
+                            - Residential address
+                        purpose:
+                          title: Your Details
+                          description: We need to confirm your identity.
+                      - scope: account.detail
+                        required: true
+                        entity: account
+                        information:
+                          name: Account balance and details
+                          description: >-
+                            This allows access to detailed information of your
+                            accounts. It includes basic account information plus
+                            account identifiers and product information. It does not
+                            include transaction data.
+                          attributeList:
+                            - Name of account
+                            - Type of account
+                            - Account balance
+                            - Account number
+                            - Interest rates
+                            - Fees
+                            - Discounts
+                            - Account terms
+                            - Account mail address
+                        purpose:
+                          title: Account Details
+                          description: We need to capture your account details.
+                      - scope: transaction.detail
+                        required: true
+                        entity: transaction
+                        information:
+                          name: Transaction details
+                          description: >-
+                            This allows access to transaction data for your
+                            accounts. It includes all account transaction data.
+                          attributeList:
+                            - Incoming and outgoing transactions
+                            - Amounts
+                            - Dates
+                            - Descriptions of transactions
+                            - Who you have sent money to and received money from
+                        purpose:
+                          title: Transaction details
+                          description: >-
+                            This allows access to transaction data for your
+                            accounts. It includes all account transaction data.
+            
+
         '400':
           description: >-
             Returns error that server cannot or will not process the request due
@@ -802,12 +884,12 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: in-progress,
-                    jobType: payrequest,
+                    status: in-progress
+                    jobType: payrequest
                     steps:
                     - title: validate-payment
                       status: success
@@ -824,15 +906,15 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: failed,
-                    jobType: payout,
+                    status: failed
+                    jobType: payout
                     steps:
                     - title: validate-payment
-                      status: failed,
+                      status: failed
                       result:
                         type: error
                         code: 'missing-payee-account-details.'
@@ -845,12 +927,12 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
-                    status: success,
-                    jobType: payout,
+                    status: success
+                    jobType: payout
                     steps:
                     - title: validate-payment
                       status: success
@@ -874,8 +956,8 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: in-progress
@@ -891,8 +973,8 @@ paths:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1,
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184,
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
                     created: '2016-06-08T09:10:32.000Z'
                     updated: '2016-06-08T09:14:28.000Z'
                     status: success
@@ -3078,6 +3160,113 @@ components:
         token_type:
           type: string
           example: Bearer
+    UserConsentGetResponses:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+          format: uuid
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        expiryDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+        purpose:
+          $ref: '#/components/schemas/Purpose'
+        data:
+          $ref: '#/components/schemas/Data'
+      required:
+        - created
+        - data
+        - expiryDate
+        - id
+        - purpose
+        - status
+        - type
+        - updated
+      title: UserConsentGetResponse
+    Data:
+      type: object
+      additionalProperties: false
+      properties:
+        retainData:
+          type: boolean
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+      required:
+        - permissions
+        - retainData
+      title: Data
+    Permission:
+      type: object
+      additionalProperties: false
+      properties:
+        scope:
+          type: string
+        required:
+          type: boolean
+        entity:
+          type: string
+        information:
+          $ref: '#/components/schemas/Information'
+        purpose:
+          $ref: '#/components/schemas/Primary'
+      required:
+        - entity
+        - information
+        - purpose
+        - required
+        - scope
+      title: Permission
+    Information:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        attributeList:
+          type: array
+          items:
+            type: string
+      required:
+        - attributeList
+        - description
+        - name
+      title: Information
+    Primary:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - description
+        - title
+      title: Primary
+    Purpose:
+      type: object
+      additionalProperties: false
+      properties:
+        primary:
+          $ref: '#/components/schemas/Primary'
+      required:
+        - primary
+      title: Purpose
   securitySchemes:
     api_key:
       type: apiKey
