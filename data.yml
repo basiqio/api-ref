@@ -3638,7 +3638,7 @@ components:
             fully processed yet (i.e. has not been posted). Find out more about pending
             transaction and how to deal with them within your app. Note that pending
             transactions are not available for all institutions.
-          example: pending
+          example: posted
           enum:
           - pending
           - posted
