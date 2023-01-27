@@ -42,11 +42,14 @@ paths:
                 - name: fromDate
                   value: '2022-01-01'
                 - name: toDate
-                  value: '2022-12-01'
+                  value: '2023-01-01'
                 - name: accounts
                   value:
                     - cf925c68-40e4-4e7a-95a1-6cb61c1d5304
                     - df925c68-40e4-4e7a-95a1-6cb61c1d5305
+                - name: users
+                  value: 
+                    - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
       responses:
         '202':
           description: >
@@ -184,6 +187,9 @@ paths:
                   value:
                   - ag829sj
                   - aj82gka
+                - name: users
+                  value: 
+                  - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
                 data:
                   metrics:
                   - id: ME001
