@@ -3980,6 +3980,8 @@ paths:
                         type: string
                       - name: accounts
                         type: array
+                      - name: users
+                        type: array
                   - type: reportType
                     id: BUS_AFFOR_01
                     name: Business Affordability Report
@@ -3990,6 +3992,8 @@ paths:
                       - name: toDate
                         type: string
                       - name: accounts
+                        type: array
+                      - name: users
                         type: array
                   - type: reportType
                     id: ROUNDUP_OPP_01
@@ -4003,6 +4007,8 @@ paths:
                       - name: toDate
                         type: string
                       - name: accounts
+                        type: array
+                      - name: users
                         type: array
         400:
           description: Returns error that server cannot or will not process the request
