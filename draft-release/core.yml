@@ -712,8 +712,11 @@ paths:
     get:
       tags:
         - Events
-      summary: List all events
-      description: Returns a list of all events that have taken place.
+      summary: > 
+        Beta: List all events
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-green) <br/>
+        Returns a list of all events that have taken place.
       operationId: getEvents
       parameters:
         - name: filter
