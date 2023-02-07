@@ -3645,7 +3645,7 @@ components:
         transactionDate:
           type: string
           description: Date that the user executed the transaction as provided by
-            the istitution. Note that not all transactions provide this value (varies
+            the institution. Note that not all transactions provide this value (varies
             by institution) e.g. "2017-11-10T00:00:00Z"
           example: null
         links:
