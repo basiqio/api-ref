@@ -72,6 +72,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
       security:
         - api_key: []
+        - basicAuth: []
   /users:
     post:
       tags:
@@ -335,7 +336,6 @@ paths:
           content:
             application/json:
               schema:
-                #$ref: '#/components/schemas/UserConsentGetResponse'
                 $ref: '#/components/schemas/UserConsentGetResponses'
               example:
                 - type: consent
@@ -3180,6 +3180,7 @@ components:
           format: date-time
         status:
           type: string
+          description: active, revoked and expired
         purpose:
           $ref: '#/components/schemas/Purpose'
         data:
@@ -3275,6 +3276,11 @@ components:
       x-default: >-
         Basic
         NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw==
+    basicAuth:
+      description: 'Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>'
+      scheme: basic
+      type: http
     application:
       type: oauth2
       flows:
