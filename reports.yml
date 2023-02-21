@@ -4476,7 +4476,7 @@ components:
               value:
                 type: string
                 format: date
-                example: 2021-12-01T00:00:00.000Z
+                example: 2021-12-01
     job:
       properties:
         type:
