@@ -4315,11 +4315,11 @@ components:
             fromDate:
               type: string
               format: date
-              example: 2022-01-01T00:00:00.000Z
+              example: 2022-01-01
             toDate:
               type: string
               format: date
-              example: 2022-04-01T00:00:00.000Z
+              example: 2022-04-01
             accounts:
               type: array
               items:
@@ -4476,7 +4476,7 @@ components:
               value:
                 type: string
                 format: date
-                example: 2021-12-01
+                example: '2021-12-01'
     job:
       properties:
         type:
