@@ -769,11 +769,11 @@ components:
         type:
           type: string
           description: Account type
-          example: savings
+          example: mortgage
         product:
           type: string
           description: Product name.
-          example: saver
+          example: Hooli Home Loan
     AccountType:
       required:
       - product
@@ -1875,6 +1875,7 @@ components:
       - accountNo
       - availableFunds
       - balance
+      - creditLimit
       - class
       - connection
       - currency
@@ -1920,6 +1921,11 @@ components:
             spent.
           nullable: true
           example: "356.50"
+        creditLimit: 
+          type: string
+          description: Eligible account types are credit-card, loan and mortgage.
+          nullable: true
+          example: "400000.00"
         class:
           $ref: '#/components/schemas/AccountClass'
           description: |-
