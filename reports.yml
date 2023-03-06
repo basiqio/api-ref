@@ -4248,10 +4248,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     ForbiddenAccessError:
       required:
       - correlationId
@@ -4297,10 +4293,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
     BadRequestError:
       required:
       - correlationId
@@ -4909,11 +4901,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-        type:
-          type: string
-          description: Always "list".
-          example: list
-
   securitySchemes:
     reporting_token:
       type: http
