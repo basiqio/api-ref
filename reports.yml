@@ -3949,6 +3949,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
+  /reports/{id}/transactions:
+    get:
+      tags:
+      - Reports
+      summary: Retrieve Report Transactions
+      description: List all transactions belong to that particular report. 
+      operationId: getTransactions
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The ID of the generated report
+      responses:
+        200:
+          description: 'Returns a list with a data property that contains
+            an array of transactions. Each entry in the array is a separate object.
+            If no data is returned, the resulting array will be empty. '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsGetResource'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500Server'
+      security:
+      - application:
+        - SERVER_ACCESS
+      - services_token: []
   /reports/types:
     get:
       summary: List report types
@@ -4248,6 +4283,462 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
+    TransactionData:
+      required:
+      - account
+      - amount
+      - balance
+      - class
+      - connection
+      - description
+      - direction
+      - enrich
+      - id
+      - institution
+      - links
+      - postDate
+      - status
+      - transactionDate
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Value is "transaction".
+          example: transaction
+        id:
+          type: string
+          description: Uniquely identifies the transaction for this connection. Note
+            that when a connection is refreshed pending transactions will receive
+            new id's, whilst posted transactions will receive the same id's as before
+            the refresh.
+          example: d3de1ca1
+        account:
+          type: string
+          description: The id of the account resource the transaction belongs to.
+          example: d3de1ca1
+        amount:
+          type: string
+          description: Transaction amount. Outgoing funds are expressed as negative
+            values.
+          example: "123.12"
+        balance:
+          type: string
+          description: Value of the account balance at time the transaction was completed.
+          example: "123.12"
+        class:
+          type: string
+          description: Describes the class(type) of transaction.
+          example: payment
+          enum:
+          - bank-fee
+          - payment
+          - cash-withdrawal
+          - transfer
+          - loan-interest
+          - refund
+          - direct-credit
+          - interest
+          - loan-repayment
+        connection:
+          type: string
+          description: The id of the connection resource that was used to retrieve
+            the transaction.
+          example: d3de1ca1
+        description:
+          type: string
+          description: The transaction description as submitted by the institution..
+        direction:
+          type: string
+          description: Identifies if the transaction is of debit or credit type.
+          example: debit
+          enum:
+          - debit
+          - credit
+        enrich:
+          $ref: '#/components/schemas/TransactionsEnrich'
+        institution:
+          type: string
+          description: The id of the institution resource the transaction originated
+            from.
+          example: AU00000
+        postDate:
+          type: string
+          description: Date the transaction was posted as provided by the institution
+            (this is the same date that appears on a bank statement). This value is
+            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+          example: "2018-11-02T00:00:00Z"
+        status:
+          type: string
+          description: Identifies if a transaction is pending or posted. A pending
+            transaction is an approved debit or credit transaction that has not been
+            fully processed yet (i.e. has not been posted). Find out more about pending
+            transaction and how to deal with them within your app. Note that pending
+            transactions are not available for all institutions.
+          example: posted
+          enum:
+          - pending
+          - posted
+        transactionDate:
+          type: string
+          description: Date that the user executed the transaction as provided by
+            the institution. Note that not all transactions provide this value (varies
+            by institution) e.g. "2017-11-10T00:00:00Z"
+          example: null
+        links:
+          $ref: '#/components/schemas/TransactionLinks'
+    TransactionDataAffordability:
+      required:
+      - account
+      - amount
+      - balance
+      - class
+      - description
+      - direction
+      - id
+      - institution
+      - links
+      - postDate
+      - status
+      - transactionDate
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Value is "transaction".
+          example: transaction
+        id:
+          type: string
+          description: Uniquely identifies the transaction.
+          example: d3de1ca1
+        account:
+          type: string
+          description: The id of the account resource the transaction belongs to.
+          example: d3de1ca1
+        amount:
+          type: string
+          description: Transaction amount. Outgoing funds are expressed as negative
+            values.
+          example: "123.12"
+        balance:
+          type: string
+          description: Value of the account balance at time the transaction was completed.
+          example: "123.12"
+        class:
+          type: string
+          description: Describes the class(type) of transaction.
+          example: payment
+          enum:
+          - bank-fee
+          - payment
+          - cash-withdrawal
+          - transfer
+          - loan-interest
+          - refund
+          - direct-cedit
+          - interest
+          - loan-repayment
+        description:
+          type: string
+          description: The transaction description as submitted by the institution..
+          example: DEBIT Only About Children Seaforth
+        direction:
+          type: string
+          description: Identifies if the transaction is of debit or credit type.
+          example: credit
+          enum:
+          - debit
+          - credit
+        institution:
+          type: string
+          description: The id of the institution resource the transaction originated
+            from.
+          example: AU00000
+        postDate:
+          type: string
+          description: Date the transaction was posted as provided by the institution
+            (this is the same date that appears on a bank statement). This value is
+            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+          example: "2018-11-02T00:00:00Z"
+        status:
+          type: string
+          description: Identifies if a transaction is pending or posted. A pending
+            transaction is an approved debit or credit transaction that has not been
+            fully processed yet (i.e. has not been posted). Find out more about pending
+            transaction and how to deal with them within your app. Note that pending
+            transactions are not available for all institutions.
+          example: pending
+          enum:
+          - pending
+          - posted
+        transactionDate:
+          type: string
+          description: Date that the user executed the transaction as provided by
+            the institution. Note that not all transactions provide this value (varies
+            by institution) e.g. "2017-11-10T00:00:00Z"
+          example: "2018-11-02T00:00:00Z"
+        links:
+          $ref: '#/components/schemas/AffordabilityTransactionLinks'
+    AffordabilityTransactionLinks:
+      required:
+      - account
+      - institution
+      type: object
+      properties:
+        account:
+          type: string
+          description: Url of the account.
+          example: "https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0"
+        institution:
+          type: string
+          description: Url of the institution.
+          example: "https://au-api.basiq.io/institutions/AU00000"
+    AffordabilityTransactionsGetLinks:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: Self reference url.
+          example: "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions"
+        next:
+          type: string
+          description: Url to next result.
+          example: "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64"
+    TransactionLinks:
+      required:
+      - account
+      - connection
+      - institution
+      - self
+      type: object
+      properties:
+        account:
+          type: string
+          description: Url of the account.
+          example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
+        institution:
+          type: string
+          description: Url of the institution.
+          example: https://au-api.basiq.io/institutions/AU00000
+        self:
+          type: string
+          description: Transaction self reference.
+          example: https://au-api.basiq.io/users/6a52015e/transactions/2082c765
+    TransactionsAnzsic:
+      type: object
+      properties:
+        class:
+          $ref: '#/components/schemas/TransactionsClass'
+        division:
+          $ref: '#/components/schemas/TransactionsDivision'
+        group:
+          $ref: '#/components/schemas/TransactionsGroup'
+        subdivision:
+          $ref: '#/components/schemas/TransactionsSubdivision'
+    TransactionsCategory:
+      type: object
+      properties:
+        anzsic:
+          $ref: '#/components/schemas/TransactionsAnzsic'
+    TransactionsClass:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Class Details
+          example: Cafes and Restaurants
+        code:
+          type: string
+          description: Class Code
+          example: "4511"
+    TransactionsDivision:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Division Details
+          example: Accommodation and  Food Services
+        code:
+          type: string
+          description: Division Code
+          example: H
+    TransactionsEnrich:
+      required:
+      - cleanDescription
+      - tags
+      - category
+      - location
+      - merchant
+      type: object
+      properties:
+        cleanDescription: 
+          $ref: "#/components/schemas/TransactionscleanDescription"
+        tags: 
+          $ref: "#/components/schemas/Transactionstags"
+        category:
+          $ref: '#/components/schemas/TransactionsCategory'
+        location:
+          $ref: '#/components/schemas/TransactionsLocation'
+        merchant:
+          $ref: '#/components/schemas/TransactionsMerchant'
+    Transactionstags: 
+      type: object
+    TransactionscleanDescription:
+      type: string
+      description: ""
+    TransactionsGeometry:
+      type: object
+      properties:
+        lat:
+          type: string
+          description: Latitude
+          example: "-33.79988520000001"
+        lng:
+          type: string
+          description: Longitude
+          example: "151.2858021"
+    TransactionsGetLinks:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: Self reference url.
+          example: https://au-api.basiq.io/users/ea3a81/transactions
+        next:
+          type: string
+          description: Url to next result.
+          example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
+    TransactionsGetResource:
+      title: Transactions container object.
+      required:
+      - count
+      - data
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Value is "list".
+          example: list
+        count:
+          type: integer
+          description: Count of the transactions in the response.
+          format: int64
+          example: 1000
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionData'
+        links:
+          $ref: '#/components/schemas/TransactionsGetLinks'
+      description: A transaction object is created whenever money is debited or credited from a particular account.
+    TransactionsGroup:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Group Code
+          example: "451"
+        title:
+          type: string
+          description: Group Details
+          example: Cafes, Restaurants and Takeaway Food Services
+    TransactionsLocation:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country
+          example: Australia
+        formattedAddress:
+          type: string
+          description: Address
+          example: "1/39 E Esplanade, Manly NSW 2095"
+        geometry:
+          $ref: '#/components/schemas/TransactionsGeometry'
+        postalCode:
+          type: string
+          description: Postal Code
+          example: "2095"
+        route:
+          type: string
+          description: Route Name
+          example: E Esplanade
+        routeNo:
+          type: string
+          description: Route Number
+          example: "29"
+        state:
+          type: string
+          description: State
+          example: NSW
+        suburb:
+          type: string
+          description: Suburb
+          example: Manly
+    TransactionsMerchant:
+      required:
+      - id
+      - businessName
+      - ABN
+      - website
+      - logoMaster
+      - logoThumb
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+          example: "ae4a051c-4791-11e8-8750-0a87c0279fe8"
+        businessName:
+          type: string
+          description: Merchant name
+          example: Garfish Manly
+        ABN:
+          type: string
+          description: ABN
+          example: 90065628864
+        logoMaster:
+          type: string
+          description: full merchant logo
+          example: 'https://enrich-enrichmerchantslogobucket-x62p53eh5ld9.s3-ap-southeast-2.amazonaws.com/officeworks-master.png'
+        logoThumb:
+          type: string
+          description: thumbnail merchant logo
+          example: 'https://enrich-enrichmerchantslogobucket-x62p53eh5ld9.s3-ap-southeast-2.amazonaws.com/officeworks-thumb.png'
+        phoneNumber:
+          $ref: '#/components/schemas/TransactionsPhoneNumber'
+        website:
+          type: string
+          description: Merchant Website
+          example: "http://garfish.com.au/garfish-manly/"
+    TransactionsPhoneNumber:
+      type: object
+      properties:
+        international:
+          type: string
+          description: International Phone Number
+          example: "+61 2 9977 0707"
+        local:
+          type: string
+          description: Local Phone Number
+          example: "(02) 9977 0707"
+    TransactionsSubdivision:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Subdivision Code
+          example: "45"
+        title:
+          type: string
+          description: Subdivision Details
+          example: Food and Beverage Services
     ForbiddenAccessError:
       required:
       - correlationId
@@ -4902,6 +5393,13 @@ components:
                 description: Type of the response, always "error"
                 example: error
   securitySchemes:
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-default: >-
+        Bearer
+        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI3ZDU5NDRkNi1iM2MzLTQ1MTUtODFiYy0yYTdkMGVkNzM5YzMiLCJhcHBsaWNhdGlvbmlkIjoiYjc2YjYzY2EtMzc2NS00YWEwLTkzNTEtZTg4ZTZhNGFiM2Q4Iiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2Njg0ODk3OTgsImlhdCI6MTY2ODQ4NjE5OCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119
     reporting_token:
       type: http
       scheme: bearer
@@ -4909,6 +5407,14 @@ components:
       x-default: >-
         Bearer
         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI3ZDU5NDRkNi1iM2MzLTQ1MTUtODFiYy0yYTdkMGVkNzM5YzMiLCJhcHBsaWNhdGlvbmlkIjoiYjc2YjYzY2EtMzc2NS00YWEwLTkzNTEtZTg4ZTZhNGFiM2Q4Iiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2Njg0ODk3OTgsImlhdCI6MTY2ODQ4NjE5OCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119
+    application:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://au-api.basiq.io/token
+          scopes:
+            SERVER_ACCESS: Server access scope
+            CLIENT_ACCESS: Client access scope
 security:
   - reporting_token: []
 x-readme:
