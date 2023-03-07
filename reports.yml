@@ -3953,7 +3953,7 @@ paths:
     get:
       tags:
       - Reports
-      summary: Retrieve Report Transactions
+      summary: Retrieve report transactions
       description: List all transactions belong to that particular report. 
       operationId: getTransactions
       parameters:
@@ -4494,19 +4494,6 @@ components:
           type: string
           description: Url of the institution.
           example: "https://au-api.basiq.io/institutions/AU00000"
-    AffordabilityTransactionsGetLinks:
-      required:
-      - self
-      type: object
-      properties:
-        self:
-          type: string
-          description: Self reference url.
-          example: "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions"
-        next:
-          type: string
-          description: Url to next result.
-          example: "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64"
     TransactionLinks:
       required:
       - account
@@ -4634,8 +4621,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransactionData'
-        links:
-          $ref: '#/components/schemas/TransactionsGetLinks'
       description: A transaction object is created whenever money is debited or credited from a particular account.
     TransactionsGroup:
       type: object
