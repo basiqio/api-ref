@@ -3953,7 +3953,7 @@ paths:
     get:
       tags:
       - Reports
-      summary: Retrieve report transactions
+      summary: Retrieve Report Transactions
       description: List all transactions belong to that particular report. 
       operationId: getTransactions
       parameters:
@@ -4385,8 +4385,6 @@ components:
             the institution. Note that not all transactions provide this value (varies
             by institution) e.g. "2017-11-10T00:00:00Z"
           example: null
-        links:
-          $ref: '#/components/schemas/TransactionLinks'
     TransactionDataAffordability:
       required:
       - account
