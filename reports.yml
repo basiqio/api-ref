@@ -3850,6 +3850,7 @@ paths:
                   - type: account
                     id: ag829sj
                     accountHolder: GAVIN BELSON
+                    accountOwnership: UNKNOWN
                     accountNo: 600000-157441965
                     availableFunds: '420.28'
                     balance: '356.50'
@@ -3865,6 +3866,7 @@ paths:
                   - type: account
                     id: aj82gka
                     accountHolder: GAVIN BELSON
+                    accountOwnership: UNKNOWN
                     accountNo: 600000-9292938
                     availableFunds: '716.50'
                     balance: '890.50'
@@ -3953,7 +3955,7 @@ paths:
     get:
       tags:
       - Reports
-      summary: Retrieve Report Transactions
+      summary: Retrieve report transactions
       description: List all transactions belong to that particular report. 
       operationId: getTransactions
       parameters:
