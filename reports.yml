@@ -3858,9 +3858,6 @@ paths:
                     currency: AUD
                     institution: AU00000
                     name: Master Savings
-                    links:
-                      user: https://au-api.basiq.io/users/ea3a81
-                      transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('ag829sj')
                   - type: account
                     id: aj82gka
                     accountHolder: GAVIN BELSON
@@ -3874,9 +3871,6 @@ paths:
                     currency: AUD
                     institution: AU00000
                     name: My Credit Card
-                    links:
-                      user: https://au-api.basiq.io/users/ea3a81
-                      transactions: https://au-api.basiq.io/users/ea3a81/transactions?filter=transaction.postDate.bt('2022-01-01','2022-12-01'),account.id.eq('aj82gka')
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
         400:
@@ -4170,6 +4164,134 @@ components:
           schema:
             $ref: '#/components/schemas/error'
   schemas:
+    AccountResponseResource:
+      title: AccountResponseResource
+      required:
+      - id
+      - accountHolder
+      - accountNo
+      - availableFunds
+      - balance
+      - creditLimit
+      - class
+      - connection
+      - currency
+      - institution
+      - lastUpdated
+      - links
+      - name
+      - status
+      - transactionIntervals
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "account".
+          example: account
+        id:
+          type: string
+          description: Uniquely identifies the account.
+          example: s55bf3
+        accountHolder:
+          type: string
+          description: The name of the account holder as returned by the institution.
+            No formatting is applied. Returns a string or null when not available.
+          nullable: true
+          example: GAVIN BELSON
+        accountNo:
+          type: string
+          description: Full account number.
+          example: 600000-157441965
+        availableFunds:
+          type: string
+          description: Funds that are available to an account holder for withdrawal
+            or other use. This may include funds from an overdraft facility or line
+            of credit. As well as funds classified as the available balance, such
+            as from cleared and existing deposits.
+          nullable: true
+          example: "420.28"
+        balance:
+          type: string
+          description: Amount of funds in the account right now - excluding any pending
+            transactions. For a credit card this would be zero or the minus amount
+            spent.
+          nullable: true
+          example: "356.50"
+        creditLimit: 
+          type: string
+          description: Eligible account types are credit-card, loan and mortgage.
+          nullable: true
+          example: "400000.00"
+        class:
+          $ref: '#/components/schemas/AccountClass'
+          description: |-
+            Describes the class(type) of accounts.
+            transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
+        connection:
+          type: string
+          description: The id of the connection resource that was used to retrieve
+            the account.
+          example: 8fce3b
+        currency:
+          type: string
+          description: The currency the funds are stored in, using ISO 4217 standard.
+          example: AUD
+        institution:
+          type: string
+          description: The id of the institution resource the account originated from.
+          example: AU00000
+        lastUpdated:
+          type: string
+          description: Timestamp of last update, UTC, RFC 3339 format e.g. "2017-09-28T13:39:33Z"
+          example: "2019-09-28T13:39:33Z"
+        name:
+          type: string
+          description: Account name as defined by institution or user.
+          example: Master Savings
+        status:
+          type: string
+          description: Account status
+          example: available
+          enum:
+          - available
+          - unavailable
+        transactionIntervals:
+          type: array
+          description: |-
+            An array of date intervals indicating the coverage of the transaction data relating to the account.
+            Will return a single element for accounts sourced from a single bank connection.
+            Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
+          items:
+            $ref: '#/components/schemas/AccountTransactionInterval'
+      description: Container object with account details
+    AccountTransactionInterval:
+      required:
+      - from
+      - to
+      type: object
+      properties:
+        from:
+          type: string
+          description: Date of first transaction on this account
+          example: "2018-07-01"
+        to:
+          type: string
+          description: Date of last transaction on this account
+          example: "2018-12-30"
+    AccountClass:
+      required:
+      - type
+      - product
+      properties:
+        type:
+          type: string
+          description: Account type
+          example: mortgage
+        product:
+          type: string
+          description: Product name.
+          example: Hooli Home Loan
     error:
       required:
         - type
@@ -5320,6 +5442,15 @@ components:
                                 type: string
                                 description: The value (amount) of the transaction.
                                 example: 100.00
+            accounts:
+              type: array
+              description: Container object, containing account details.
+              items:
+                $ref: '#/components/schemas/AccountResponseResource'
+            transactions:
+              type: string
+              description: Retrieve report transactions EP
+              example: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions
         links: 
           type: object
           properties: 
