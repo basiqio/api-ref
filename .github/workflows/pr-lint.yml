@@ -23,4 +23,4 @@ jobs:
           regex: '^(DEVX|Dev|DX).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
-          max_length: 100 # Max length of the branch name
+          max_length: 1000 # Max length of the branch name
