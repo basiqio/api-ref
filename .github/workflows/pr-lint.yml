@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@v1.1.2
       with:
-        title-regex: '^(DEVX|Dev).+' # Supports either DEVX prefixed PRs
+        title-regex: '^(DEVX|Dev|DX).+' # Supports either DEVX prefixed PRs
         title-regex-flags: 'g' # optional
         error-message: 'Add Jira ID to your title in the correct format'
   branch-naming-rules:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@v1.0.0
         with:
-          regex: '^(DEVX|Dev).+' # Supports either DEVX prefixed Branches
+          regex: '^(DEVX|Dev|DX).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
           max_length: 100 # Max length of the branch name
