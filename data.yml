@@ -19,6 +19,11 @@ paths:
         required: true
         schema:
           type: string
+      - name: filter
+        in: query
+        description: Account filters; account.id, connection.id, institution.id, Only equals (eq) and not equals (ne) operations are currently supported.
+        schema:
+          type: string
       responses:
         200:
           description: Returns a account with details.
@@ -75,6 +80,11 @@ paths:
         in: path
         description: Account identifier
         required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Account filters; account.id, connection.id, institution.id, Only equals (eq) and not equals (ne) operations are currently supported.
         schema:
           type: string
       responses:
