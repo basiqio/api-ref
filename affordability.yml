@@ -994,6 +994,21 @@ components:
             of data retrieved (e.g. 13 months)
           nullable: true
           example: "93.00"
+    subClassAffordability:
+      required:
+      - title
+      - Code
+      type: object
+      properties:
+        title:
+          type: string
+          description: The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) ( [affordability only] - HEC classification class is returned by default or custom class is returned if configured - ask us about custom category mapping)
+          example: Formal child care services nec
+        Code:
+          type: integer
+          description: The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) ( [affordability only] - HEC classification class is returned by default or custom class is returned if configured - ask us about custom category mapping)
+          example: 0801050199
+   
     AffordabilityTransactionLinks:
       required:
       - account
@@ -2425,6 +2440,8 @@ components:
             (this is the same date that appears on a bank statement). This value is
             null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
           example: "2018-11-02T00:00:00Z"
+        subClass:
+          $ref: '#/components/schemas/subClassAffordability'
         status:
           type: string
           description: Identifies if a transaction is pending or posted. A pending
