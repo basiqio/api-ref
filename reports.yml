@@ -3845,32 +3845,43 @@ paths:
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   accounts:
-                  - type: account
-                    id: ag829sj
-                    accountHolder: GAVIN BELSON
-                    accountOwnership: UNKNOWN
+                  - id: 271f2f4b-243e-4ebb-b598-639ff8fee4c8
                     accountNo: 600000-157441965
-                    availableFunds: '420.28'
+                    name: Master Savings
+                    currency: AUD
                     balance: '356.50'
+                    availableFunds: '420.28'
+                    lastUpdated: 2023-01-19T13:00:00Z
+                    institution: AU00000
                     class:
                       type: savings
                       product: saver
-                    currency: AUD
-                    institution: AU00000
-                    name: Master Savings
-                  - type: account
-                    id: aj82gka
+                    transactionIntervals:
+                    - from: 2020-12-31
+                      to: 2022-02-20
                     accountHolder: GAVIN BELSON
                     accountOwnership: UNKNOWN
+                    status: available
+                    creditLimit: '0.00'
+                  - id: a6e4dc76-03e0-46e9-9fb3-04b6623b3392
                     accountNo: 600000-9292938
-                    availableFunds: '716.50'
+                    name: My Credit Card
+                    currency: AUD
                     balance: '890.50'
+                    availableFunds: '716.50'
+                    lastUpdated: 2022-02-19T12:00:00Z
+                    institution: AU00000
                     class:
                       type: credit-card
                       product: Shopper Plus CC
-                    currency: AUD
-                    institution: AU00000
-                    name: My Credit Card
+                    transactionIntervals:
+                    - from: 2020-12-31
+                      to: 2022-02-20
+                    accountHolder: GAVIN BELSON
+                    accountOwnership: UNKNOWN
+                    connection: a59e4077-2626-45f2-ae5a-39ea7ffbf51a
+                    status: available
+                    creditLimit: '2000.00'
                   transactions: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
