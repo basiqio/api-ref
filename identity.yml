@@ -51,9 +51,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-        - CLIENT_ACCESS
+      - api_key: []
   /users/{userId}/identities/{identityId}:
     get:
       tags:
@@ -109,9 +107,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-        - CLIENT_ACCESS
+      - api_key: []
 components:
   schemas:
     AccountClass:
@@ -2147,8 +2143,6 @@ components:
       properties:
         access_token:
           type: string
-          example: >-
-            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
         expires_in:
           type: integer
           description: Expires in seconds
@@ -2159,20 +2153,9 @@ components:
           example: Bearer
   securitySchemes:
     api_key:
-      type: apiKey
-      name: Authorization
-      in: header
-      x-default: >-
-        Basic
-        NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw==
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 security:
   - api_key: []
 x-readme:
