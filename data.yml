@@ -4001,9 +4001,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      x-default: >-
-        Bearer
-        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI3ZDU5NDRkNi1iM2MzLTQ1MTUtODFiYy0yYTdkMGVkNzM5YzMiLCJhcHBsaWNhdGlvbmlkIjoiYjc2YjYzY2EtMzc2NS00YWEwLTkzNTEtZTg4ZTZhNGFiM2Q4Iiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2Njg0ODk3OTgsImlhdCI6MTY2ODQ4NjE5OCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119
     application:
       type: oauth2
       flows:
