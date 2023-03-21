@@ -8,7 +8,7 @@ on:
 
 jobs:
   sync:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v3
