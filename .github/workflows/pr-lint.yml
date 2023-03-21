@@ -16,11 +16,11 @@ jobs:
         error-message: 'Add Jira ID to your title in the correct format'
   branch-naming-rules:
     name: Branch Linting
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: deepakputhraya/action-branch-name@v1.0.0
         with:
           regex: '^(DEVX|Dev|DX|DSO).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
-          max_length: 1000 # Max length of the branch name
+          max_length: 500 # Max length of the branch name
