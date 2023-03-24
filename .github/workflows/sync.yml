@@ -92,16 +92,16 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
   Test:
-  name: Test Actions
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout Main
-      uses: actions/checkout@v3
-      with:
-        repository: basiqio/basiq-github-actions
-        ref: main
-        token: ${{ env.PAT_GITHUB_TOKEN }}
-        path: ./.github/actions/basiq-github-actions
+    name: Test Actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Main
+        uses: actions/checkout@v3
+        with:
+          repository: basiqio/basiq-github-actions
+          ref: main
+          token: ${{ env.PAT_GITHUB_TOKEN }}
+          path: ./.github/actions/basiq-github-actions
   TagAndRelease:
     name: Tag and Release
     runs-on: ubuntu-latest
