@@ -26,13 +26,6 @@ jobs:
           token: ${{ env.PAT_GITHUB_TOKEN }}
           path: ./.github/actions/basiq-github-actions
 
-      # Test Prometheus Action
-      - name: Post Prometheus Metrics
-        uses: ./.github/actions/basiq-github-actions/prometheus
-        with:
-          metric_name: basiqio_new_releases
-          metric_value: 1
-
   TagAndRelease:
     name: Tag and Release
     runs-on: ubuntu-latest
