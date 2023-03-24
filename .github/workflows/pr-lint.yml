@@ -16,7 +16,7 @@ jobs:
         error-message: 'Add Jira ID to your title in the correct format'
   branch-naming-rules:
     name: Branch Linting
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: deepakputhraya/action-branch-name@v1.0.0
         with:
