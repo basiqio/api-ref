@@ -53,7 +53,6 @@ jobs:
         with:
           rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
 
-
       # Run GitHub Action to sync OpenAPI file at ./core.json
       - name: Checking Reports
         # We recommend specifying a fixed version, i.e. @v8
@@ -69,6 +68,19 @@ jobs:
         uses: readmeio/rdme@v8
         with:
           rdme: openapi ./affordability.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.AFFORDABILITY_API_DEFINITION_ID }}
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1 # Leverages SemVer as per https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
 
       - name: Send custom JSON data to Slack workflow
         id: slack
@@ -91,23 +103,3 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-  TagAndRelease:
-    name: Tag and Release
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Bump version and push tag
-      id: tag_version
-      uses: mathieudutour/github-tag-action@v6.1 # Leverages SemVer as per https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Create a GitHub release
-      uses: ncipollo/release-action@v1.12.0
-      with:
-        tag: ${{ steps.tag_version.outputs.new_tag }}
-        name: Release ${{ steps.tag_version.outputs.new_tag }}
-        body: ${{ steps.tag_version.outputs.changelog }}
