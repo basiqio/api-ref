@@ -496,6 +496,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -519,6 +521,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -556,6 +560,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -579,6 +585,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -616,6 +624,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -639,6 +649,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'                     
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -676,6 +688,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'                   
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -699,6 +713,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -736,6 +752,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -759,6 +777,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -796,6 +816,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -819,6 +841,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -856,6 +880,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -879,6 +905,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -916,6 +944,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -939,6 +969,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -976,6 +1008,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -999,6 +1033,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -1036,6 +1072,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -1059,6 +1097,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -1096,6 +1136,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -1119,6 +1161,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -1156,6 +1200,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1179,6 +1225,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1216,6 +1264,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1239,6 +1289,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1276,6 +1328,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1299,6 +1353,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1336,6 +1392,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1359,6 +1417,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1396,6 +1456,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1419,6 +1481,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1456,6 +1520,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1479,6 +1545,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1517,6 +1585,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1540,6 +1610,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1577,6 +1649,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1600,6 +1674,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1637,6 +1713,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1660,6 +1738,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1697,6 +1777,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1720,6 +1802,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1757,6 +1841,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1780,6 +1866,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1817,6 +1905,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1840,6 +1930,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1877,6 +1969,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1900,6 +1994,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1937,6 +2033,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1960,6 +2058,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1997,6 +2097,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2020,6 +2122,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2057,6 +2161,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2080,6 +2186,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2117,6 +2225,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2140,6 +2250,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2177,6 +2289,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2200,6 +2314,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2237,6 +2353,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2260,6 +2378,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2297,6 +2417,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2320,6 +2442,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2357,6 +2481,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2380,6 +2506,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2417,6 +2545,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2440,6 +2570,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2477,6 +2609,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2500,6 +2634,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2537,6 +2673,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2560,6 +2698,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2597,6 +2737,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2620,6 +2762,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2657,6 +2801,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2680,6 +2826,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2718,6 +2866,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2741,6 +2891,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2779,6 +2931,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2802,6 +2956,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2839,6 +2995,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2862,6 +3020,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2899,6 +3059,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2922,6 +3084,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2959,6 +3123,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2982,6 +3148,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3020,6 +3188,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3043,6 +3213,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3081,6 +3253,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3104,6 +3278,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3142,6 +3318,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3165,6 +3343,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3202,6 +3382,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3225,6 +3407,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3262,6 +3446,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3285,6 +3471,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3322,6 +3510,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3345,6 +3535,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3382,6 +3574,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3405,6 +3599,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3442,6 +3638,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3465,6 +3663,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3502,6 +3702,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3525,6 +3727,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3562,6 +3766,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3585,6 +3791,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3622,6 +3830,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3645,6 +3855,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3682,6 +3894,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3705,6 +3919,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3742,6 +3958,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3765,6 +3983,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3802,6 +4022,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3825,6 +4047,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -5311,6 +5535,14 @@ components:
                                 type: string
                                 description: The average monthly value. 
                                 example: 100.00
+                              medianTransaction:
+                                type: integer
+                                description: The median amount of all transactions.
+                                example: 20.00
+                              medianMonth:
+                                type: integer
+                                description: The median amount of the monthly sum of all transaction amounts.
+                                example: 20.00
                       frequency: 
                         type: object
                         description: Identifies the occurance pattern of the transactions within the group.
@@ -5405,6 +5637,14 @@ components:
                                       type: string
                                       description: The average monthly value. 
                                       example: 100.00
+                                    medianTransaction:
+                                      type: integer
+                                      description: The median amount of all transactions.
+                                      example: 20.00
+                                    medianMonth:
+                                      type: integer
+                                      description: The median amount of the monthly sum of all transaction amounts.
+                                      example: 20.00
                             frequency: 
                               type: object
                               description: Identifies the occurance pattern of the transactions within the subgroup.
