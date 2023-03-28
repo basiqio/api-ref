@@ -3101,6 +3101,10 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
+        middleName: 
+          type: string
+          description: The end-users middle name as an optional additional parameter.
+          example: middle name
         lastName:
           type: string
           description: The end-users last name as an optional additional parameter.
@@ -3125,6 +3129,10 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
+        middleName: 
+          type: string
+          description: The end-users middle name as an optional additional parameter.
+          example: middle name
         lastName:
           type: string
           description: The end-users last name as an optional additional parameter.
@@ -3140,6 +3148,18 @@ components:
           type: string
           description: The end-users mobile number.
           example: '+61410888666'
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: Malcolm
+        middleName: 
+          type: string
+          description: The end-users middle name as an optional additional parameter.
+          example: Malcom middle name
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: Malcolm last name
     TokenPostResponse:
       required:
         - access_token
