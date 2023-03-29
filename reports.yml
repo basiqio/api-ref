@@ -4106,7 +4106,7 @@ paths:
                     connection: a59e4077-2626-45f2-ae5a-39ea7ffbf51a
                     status: available
                     creditLimit: '2000.00'
-                  transactions: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions
+                  transactions: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
         400:
@@ -5702,7 +5702,7 @@ components:
             transactions:
               type: string
               description: Retrieve report transactions EP
-              example: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions
+              example: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
         links: 
           type: object
           properties: 
