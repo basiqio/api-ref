@@ -4211,8 +4211,6 @@ paths:
         '500':
           $ref: '#/components/responses/500Server'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /reports/types:
     get:
