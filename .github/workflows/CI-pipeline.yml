@@ -18,7 +18,7 @@ env:
 
 jobs:
   sync:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5
@@ -61,16 +61,19 @@ jobs:
         with:
           rdme: openapi ./affordability.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.AFFORDABILITY_API_DEFINITION_ID }}
 
-      - name: Check out Basiq Github Actions
-        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2 # v6.1
         with:
-          repository: basiqio/basiq-github-actions
-          ref: v1.6.27
-          path: ./.github/actions/basiq-github-actions
-          token: ${{ env.PAT_GITHUB_TOKEN }}
+          github_token: ${{ env.PAT_GITHUB_TOKEN }}
+          fetch_all_tags: true
 
-      - name: Release
-        uses: ./.github/actions/basiq-github-actions/release
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@a2e71bdd4e7dab70ca26a852f29600c98b33153e # v1.12
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
 
       - name: Send custom JSON data to Slack workflow
         id: slack
