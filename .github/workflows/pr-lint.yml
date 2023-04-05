@@ -9,7 +9,7 @@ jobs:
     name: PR Linting
     runs-on: ubuntu-latest
     steps:
-    - uses: seferov/pr-lint-action@v1.1.2
+    - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
       with:
         title-regex: '^(DEVX|Dev|DX|DSO).+' # Supports either DEVX prefixed PRs
         title-regex-flags: 'g' # optional
@@ -18,7 +18,7 @@ jobs:
     name: Branch Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: deepakputhraya/action-branch-name@v1.0.0
+      - uses: deepakputhraya/action-branch-name@e0f8db53a8e289f1ae6f6c3e8dc70a3d366fd876 #v1.0.0
         with:
           regex: '^(DEVX|Dev|DX|DSO).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
