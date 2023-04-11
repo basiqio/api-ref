@@ -5761,20 +5761,8 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    reporting_token:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
 security:
-  - reporting_token: []
+  - services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
