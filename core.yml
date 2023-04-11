@@ -858,7 +858,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/job'
               examples:
-                Data - in-progress:
+                Data - in progress:
                   value:
                     type: job
                     id: 'e9132638'
@@ -879,7 +879,61 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/61723
                       source: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
-                payrequest - in-progress:
+                Mygov - in progress:
+                  value:
+                    type: job
+                    id: ff6fc9d4-13da-45e4-8c6b-acdeadc40a1c
+                    created: '2023-04-11T00:41:34Z'
+                    updated: '2023-04-11T00:41:37Z'
+                    jobType: connection
+                    steps:
+                      - title: verify-credentials
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/connections/b525059f-51fd-434d-8ee5-77fb35837f65
+                      - title: retrieve-accounts
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/accounts?filter=institution.id.eq('AU00004')
+                      - title: retrieve-transactions
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/transactions?filter=institution.id.eq('AU00004')
+                      - title: retrieve-statements
+                        status: in-progress
+                        result: null
+                Mygov - Completed:
+                  value:
+                    type: job
+                    id: ff6fc9d4-13da-45e4-8c6b-acdeadc40a1c
+                    created: '2023-04-11T00:41:34Z'
+                    updated: '2023-04-11T00:41:37Z'
+                    jobType: connection
+                    steps:
+                      - title: verify-credentials
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/connections/b525059f-51fd-434d-8ee5-77fb35837f65
+                      - title: retrieve-accounts
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/accounts?filter=institution.id.eq('AU00004')
+                      - title: retrieve-transactions
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/transactions?filter=institution.id.eq('AU00004')
+                      - title: retrieve-statements
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/statements
+                payrequest - in progress:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -951,7 +1005,7 @@ paths:
                     links:
                       self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                report - in-progress:
+                report - in progress:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
