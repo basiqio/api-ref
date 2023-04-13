@@ -477,6 +477,22 @@ paths:
                     result:
                       value: "-325.00"
                       format: money
+                  - id: ME035
+                    title: Total Income has been stable for (months)
+                    description: Number of months within report over which total income has been stable
+                    sections:
+                    - Expenses
+                    result:
+                      value: "25.00"
+                      format: money
+                  - id: ME039
+                    title: Average expenses excluding liabilities
+                    description: Mean monthly total expenses excluding liability payments
+                    sections:
+                    - Expenses
+                    result:
+                      value: "25.00"
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
