@@ -141,7 +141,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - api_key: []
+      - services_token: []
 components:
   schemas:
     Enrich: 
@@ -433,12 +433,12 @@ components:
           example: id
       description: An object containing references to the source of the error.
   securitySchemes:
-    api_key:
+    services_token:
       type: http
       scheme: bearer
       bearerFormat: JWT
 security:
-  - api_key: []
+  - services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
