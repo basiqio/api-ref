@@ -54,8 +54,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/accounts/{accountId}:
     get:
       tags:
@@ -111,8 +110,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/affordability:
     get:
       tags:
@@ -156,8 +154,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
     post:
       tags:
       - Affordability
@@ -236,9 +233,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: AffordabilityPostRequest
+      - services_token: []
   /users/{userId}/affordability/{snapshotId}:
     get:
       tags:
@@ -310,8 +305,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/affordability/{snapshotId}/transactions:
     get:
       tags:
@@ -413,8 +407,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/expenses:
     post:
       tags:
@@ -474,9 +467,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: ExpensesPostRequest
+      - services_token: []
   /users/{userId}/expenses/{snapshotId}:
     get:
       tags:
@@ -547,8 +538,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/income:
     post:
       tags:
@@ -608,9 +598,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: IncomePostRequest
+      - services_token: []
   /users/{userId}/income/{snapshotId}:
     get:
       tags:
@@ -666,8 +654,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/transactions:
     get:
       tags:
@@ -740,8 +727,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/transactions/{transactionId}:
     get:
       tags:
@@ -804,8 +790,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
 components:
   schemas:
     AccountClass:
@@ -2961,18 +2946,12 @@ components:
           description: Subdivision Details
           example: Food and Beverage Services
   securitySchemes:
-    api_key:
-      type: apiKey
-      name: Authorization
-      in: header
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
