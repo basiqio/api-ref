@@ -42,12 +42,6 @@ jobs:
         with:
           rdme: openapi ./identity.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.IDENTITY_API_DEFINITION_ID }}
 
-      # Run GitHub Action to sync OpenAPI file at ./payments.yml
-      - name: Checking Payments
-        uses: readmeio/rdme@9824100d73c58e58adc52d80ac2c6fc4f96caabf # v8
-        with:
-          rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
-
       # Run GitHub Action to sync OpenAPI file at ./reports.yml
       - name: Checking Reports
         uses: readmeio/rdme@9824100d73c58e58adc52d80ac2c6fc4f96caabf # v8

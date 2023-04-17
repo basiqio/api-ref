@@ -1208,10 +1208,6 @@ components:
                           description: 'User Id of the payer'
                           type: string
                           example: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#                       payerAccountId:
-#                         description: 'ID of the account as stored within Basiq'
-#                         type: string
-#                         example: "31824ad0-73f1-0138-3700-0a58a9feac09"
                         payerBankBranchCode:
                           description: 'Bank and branch code (e.g. bsb) of the account'
                           type: string
