@@ -15,7 +15,6 @@ tags:
   - name: Float accounts
     description: APIs for querying float accounts
 paths:
-# payrequests
   /payments/payrequests:
     post:
       tags:
@@ -236,7 +235,7 @@ paths:
     get:
       tags:
         - Collect 
-      summary: Get a payrequest by its basiq Id
+      summary: Retrieve Payrequest
       operationId: getPayrequest
       parameters:
         - name: id
@@ -399,75 +398,6 @@ paths:
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09                      
         '404':
           description: Payment request not found
-#  '/users/{id}/payments/payrequests':
-#    get:
-#      tags:
-#        - Collect (Payrequests)
-#      summary: List user payrequests
-#      operationId: listUserPayrequests
-#      parameters:
-#        - name: id
-#          in: path
-#          description: User Id
-#          required: true
-#          style: simple
-#          explode: false
-#          schema:
-#            type: string
-#            default: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#        - name: limit
-#          in: query
-#          description: 'Maximum number of payments included in the response. Max value = 500 and is the default value if this field is not provided'
-#          style: deepObject
-#          explode: false
-#          schema:
-#            type: integer
-#          example: '10'
-#        - name: filter
-#          in: query
-#          description: Filter field that allows filtering by payment.status, payment.date
-#          style: deepObject
-#          explode: false
-#          schema:
-#            type: string
-#          example: ''        
-#      responses:
-#       '200':
-#          description: OK
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/payrequests'
-#              examples:
-#                response:
-#                  value:
-#                    type: 'list'
-#                    count: 1
-#                    size: 1
-#                    data:
-#                      - type: 'payrequest'
-#                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-#                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-#                        created: '2022-03-21T20:28:22.378Z'
-#                        updated: '2022-03-21T20:28:22.378Z'
-#                        method: batch
-#                        status: 'in-progress'
-#                        payer:
-#                          payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-#                          payerAccountId: 31824ad0-73f1-0138-3700-0a58a9feac09
-#                          payerBankBranchCode: '730002'
-#                          payerAccountNumber: '123456789'
-#                        description: 'Investment'
-#                        amount: 173.45
-#                        currency: AUD
-#                        links:
-#                          self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
-#                          job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-#                    links:
-#                      self: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payrequests"
-#                      next: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payrequests?next=049fde"
-# payouts
   /payments/payouts:
     post:
       tags:
@@ -712,7 +642,7 @@ paths:
     get:
       tags:
         - Send 
-      summary: Get a payout by its basiq Id
+      summary: Retrieve Payout
       operationId: getPayout
       parameters:
         - name: id
@@ -870,82 +800,11 @@ paths:
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         '404':
           description: Payout not found    
-#  '/users/{id}/payments/payouts':
-#    get:
-#      tags:
-#        - Send (Payouts)
-#      summary: List user payouts
-#      operationId: listUserPayouts
-#      parameters:
-#        - name: id
-#          in: path
-#          description: User Id
-#          required: true
-#          style: simple
-#          explode: false
-#          schema:
-#            type: string
-#            default: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
-#        - name: limit
-#          in: query
-#         description: 'Maximum number of payments included in the response. Max value = 500 and is the default value if this field is not provided'
-#          style: deepObject
-#          explode: false
-#          schema:
-#            type: integer
-#          example: '10'
-#        - name: filter
-#          in: query
-#          description: Filter field that allows filtering by payment.status, payment.date
-#          style: deepObject
-#          explode: false
-#          schema:
-#            type: string
-#          example: ''        
-#      responses:
-#       '200':
-#          description: OK
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/payouts'
-#              examples:
-#                In-progress:
-#                  value:
-#                    type: 'list'
-#                    count: 1
-#                    size: 1
-#                    data:
-#                      - type: 'payout'
-#                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-#                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-#                        created: '2022-03-21T20:28:22.378Z'
-#                        updated: '2022-03-21T20:28:22.378Z'
-#                        method: batch
-#                        status: 'in-progress'
-#                        payee:
-#                          payeeUserId: '4198c70f-210f-433f-b4a0-912ae64bb572'
-#                          payeeAccountId: '6466df03-b80c-489a-afec-ea8c5f0af875'
-#                          payerBankBranchCode: '730002'
-#                          payerBccountNumber: '123456789'
-#                        description: 'Dividends'
-#                        amount: 173.45
-#                        currency: AUD
-#                        links:
-#                          self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
-#                          job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-#                    links:
-#                      self: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payouts"
-#                      next: "https://au-api.basiq.io/users/21824ad0-73f1-0138-3700-0a58a9feac09/payouts?next=049fde"
-#       '404':
-#         description: Payout not found
-# float accounts
   /payments/float-accounts/{id}:
     get:
       tags:
         - Float accounts
-      summary: Get a float account by its Id
+      summary: Retrieve Float account
       operationId: getFloatAccount
       parameters:
         - name: id
@@ -1505,9 +1364,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      x-default: >-
-        Bearer
-        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI3ZDU5NDRkNi1iM2MzLTQ1MTUtODFiYy0yYTdkMGVkNzM5YzMiLCJhcHBsaWNhdGlvbmlkIjoiYjc2YjYzY2EtMzc2NS00YWEwLTkzNTEtZTg4ZTZhNGFiM2Q4Iiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2Njg0ODk3OTgsImlhdCI6MTY2ODQ4NjE5OCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119
 security:
   - payment_apiKey: []
 x-readme:
