@@ -483,7 +483,7 @@ paths:
                     sections:
                     - Expenses
                     result:
-                      value: "-300"
+                      value: "300"
                       format: integer
                   - id: ME039
                     title: Average expenses excluding liabilities
