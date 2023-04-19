@@ -483,16 +483,16 @@ paths:
                     sections:
                     - Expenses
                     result:
-                      value: "25.00"
-                      format: money
+                      value: "3"
+                      format: integer
                   - id: ME039
                     title: Average expenses excluding liabilities
                     description: Mean monthly total expenses excluding liability payments
                     sections:
                     - Expenses
                     result:
-                      value: "25.00"
-                      format: money
+                      value: "-300"
+                      format: integer
                   groups:
                   - id: INC-001
                     title: Benefits
