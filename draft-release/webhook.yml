@@ -1,0 +1,604 @@
+openapi: 3.0.1
+info:
+  description: Basiq Webhooks
+  version: "2.0"
+  title: Basiq Webhooks
+#  termsOfService: 'http://swagger.io/terms/'
+#  contact:
+#    email: apiteam@swagger.io
+#  license:
+#    name: Apache 2.0
+#    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - description:  Application (Core) APIs
+    url: 'https://au-api.basiq.io/'
+tags:
+  - name: Application (Core) APIs
+    description: Application (Core) APIs - The partners applications call these
+paths:
+  '/events/types/':
+    get:
+      tags:
+        - Application (Core) APIs
+      summary: get the list of event types for webhooks
+      operationId: listEventTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventTypes'
+              examples:
+                Success:
+                  value:
+                    type: list
+                    size: 6
+                    count: 6
+                    data:
+                    - type: eventType
+                      id: payrequest.completed
+                      description: when a payrequest is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payrequest.completed'
+                    - type: eventType
+                      id: payout.completed
+                      description: when a payout is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.completed'
+                    - type: eventType
+                      id: payout.failed
+                      description: when a payout is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.completed'
+                    - type: eventType
+                      id: user.created
+                      description: when a user has been created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/user.created'
+                    - type: eventType
+                      id: consent.created
+                      description: when a consent is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.created'
+                    - type: eventType
+                      id: consent.revoked
+                      description: when a consent is revoked
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.revoked'
+                    links:
+                      self: 'https://au-api.basiq.io/events/types/'
+  '/events/types/{id}':
+    get:
+      tags:
+        - Application (Core) APIs
+      summary: get the list of event types for webhooks
+      operationId: getEventTypeById
+      parameters: 
+        - name: id
+          required: true
+          schema: 
+            type: string
+          in: path
+          example: 'user.created'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventType'
+              examples:
+                Success:
+                  value:
+                    id: payrequest.completed
+                    description: when a payrequest is completed
+                    links:
+                      self: 'https://au-api.basiq.io/events/types/user.created'                      
+  '/notifications/webhooks':
+    post:
+      tags:
+        - Application (Core) APIs
+      summary: Add a webhook definition
+      operationId: addWebhook
+      requestBody:
+        $ref: '#/components/requestBodies/Webhook'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+              examples:
+                Success:
+                  value:
+                    type: 'webhook'
+                    id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    name: 'My General Webhook'
+                    description: 'Webhook that catches all my events'
+                    url: https://piper.com/basiq-messages/
+                    status: active
+                    secret: rfiuheo43934
+                    subscribedEvents:
+                      - payrequest.completed
+                      - user.created
+                    links:
+                      self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
+    get:
+      tags:
+        - Application (Core) APIs
+      summary: List an applications webhooks
+      operationId: listAppWebhooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
+              examples:
+                Success:
+                  value:
+                    type: "list"
+                    size: 1
+                    count: 1
+                    data:
+                    - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      name: 'My General Webhook'
+                      description: 'Webhook that catches all my events'
+                      url: https://piper.com/basiq-messages/
+                      status: active
+                      subscribedEvents:
+                        - payrequest.completed
+                        - user.created
+                      links:
+                        self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
+                    links:
+                      self: 'https://au-api.basiq.io/notifications/webhooks'
+                      next:
+  '/notifications/webhooks/{webhookId}':
+    post:
+      tags:
+        - Application (Core) APIs
+      summary: Update a webhook definition
+      operationId: updateWebhook
+      parameters: 
+        - name: webhookId
+          required: true
+          schema: 
+            type: string
+          in: path
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+      requestBody:
+        $ref: '#/components/requestBodies/Webhook'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+              examples:
+                Success:
+                  value:
+                    type: 'webhook'
+                    id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    name: 'My General Webhook'
+                    description: 'Webhook that catches all my events'
+                    url: https://piper.com/basiq-messages/
+                    status: active
+                    secret: rfiuheo43934
+                    subscribedEvents:
+                      - payrequest.completed
+                      - user.created
+                    links:
+                      self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
+    delete:
+      tags:
+        - Application (Core) APIs
+      summary: Delete a webhook definition
+      operationId: deleteWebhook
+      parameters: 
+        - name: webhookId
+          required: true
+          schema: 
+            type: string
+          in: path
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+      responses:
+        '204':
+          description: Deletion successful (empty body)
+    get:
+      tags:
+        - Application (Core) APIs
+      summary: Add or modify a webhook definition
+      operationId: getWebhook
+      parameters: 
+        - name: webhookId
+          required: true
+          schema: 
+            type: string
+          in: path
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+              examples:
+                Success:
+                  value:
+                    type: 'webhook'
+                    id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    name: 'My General Webhook'
+                    description: 'Webhook that catches all my events'
+                    url: https://piper.com/basiq-messages/
+                    status: active
+                    subscribedEvents:
+                      - payrequest.completed
+                      - user.created
+                    links:
+                      self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
+  '/notifications/webhooks/{webhookId}/messages':
+    get:
+      tags:
+        - Application (Core) APIs
+      summary: List messages
+      operationId: listMessages
+      parameters:
+        - name: webhookId
+          in: path
+          description: 'webhook Id'
+          required: true
+          schema:
+            type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        - name: limit
+          in: query
+          description: 'Maximum number of items included in the response. Max value = 500 and is the default value if this field is not provided'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: '10'
+        - name: filter
+          in: query
+          description: 'Filter field that allows filtering by date, status, eventTypeId, webhookId, eventId'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: ''      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+              examples:
+                Success:
+                  value:
+                    type: "list"
+                    size: 2
+                    count: 2
+                    data:
+                    - id: 11a85f64-5717-4562-b3fc-2c963f66af11
+                      payload: 
+                       eventTypeId: payrequest.completed
+                       eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
+                       links:
+                        event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
+                        eventEntity: https://au-api.basiq.io/payrequest/88a85f64-5717-4562-b3fc-2c963f66af88
+                      attempts:
+                        - id: e2du423ed
+                          url: https://piper.com/basiq-messages/
+                          response: 'OK'
+                          responseStatusCode: '200'
+                          timestamp: '2019-08-24T14:15:22Z'
+                          status: 'Success'
+                          links:
+                            self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11/attempts/e2du423ed
+                      links:
+                        self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
+                        webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      
+                    - id: 22a85f64-5717-4562-b3fc-2c963f66af22
+                      payload:
+                        eventTypeId: user.created
+                        eventId: '55a85f64-5717-4562-b3fc-2c963f66af55'
+                        links:
+                         event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
+                         eventEntity: https://au-api.basiq.io/users/12a85f64-5717-4562-b3fc-2c963f66af12
+                      attempts:
+                        - id: xmnvbsdfsdf
+                          url: https://piper.com/basiq-messages/
+                          response: 'OK'
+                          responseStatusCode: '200'
+                          timestamp: '2019-08-24T14:15:22Z'
+                          status: 'Success'
+                          links:
+                            self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/22a85f64-5717-4562-b3fc-2c963f66af22/attempts/xmnvbsdfsdf
+                      links:        
+                        self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
+                        webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+                    links:
+                      self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/
+                      next:
+  '/notifications/webhooks/{webhookId}/messages/{messageId}':
+    get:
+      tags:
+        - Application (Core) APIs
+      summary: Get Webhook Message
+      operationId: getWebhookMessage
+      parameters:
+        - name: webhookId
+          in: path
+          description: 'webhook Id'
+          required: true
+          schema:
+            type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        - name: messageId
+          in: path
+          description: 'message Id'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+              examples:
+                Success:
+                  value:
+                    id: 11a85f64-5717-4562-b3fc-2c963f66af11
+                    payload: 
+                     eventTypeId: payrequest.completed
+                     eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
+                     links:
+                      event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
+                      eventEntity: https://au-api.basiq.io/payrequest/88a85f64-5717-4562-b3fc-2c963f66af88
+                    attempts:
+                      - id: e2du423ed
+                        url: https://piper.com/basiq-messages/
+                        response: 'OK'
+                        responseStatusCode: '200'
+                        timestamp: '2019-08-24T14:15:22Z'
+                        status: 'Success'
+                        links:
+                          self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11/attempts/e2du423ed
+                    links:
+                      self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
+                      webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+  '/notifications/messages/test':
+    post:
+      tags:
+        - Application (Core) APIs
+      summary: Post a test message
+      operationId: testMessage
+      requestBody:
+        $ref: '#/components/requestBodies/TestMessage'
+      responses:
+        '201':
+          description: Created
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    EventTypes:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          description: one or more events that the webhook would send messages for.
+          allOf:
+          - $ref: '#/components/schemas/EventType'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    EventType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifer of the event type
+          example: user.created
+        description:
+          type: string
+          description: a brief description of the event type
+          example: when a user is created
+        links:
+          type: object
+          properties:
+            self:  
+              type: string
+    Webhooks:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    Webhook:
+      type: object
+      required: 
+        - url
+        - status
+        - subscribedEvents
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: unique identifer in the form of uuid for the webhook
+        name: 
+          type: string
+          description: name to describe the webhook
+        description: 
+          type: string
+          description: detailed description of the webhook
+        url: 
+          type: string
+          description: url to send webhooks to
+        status:
+          type: string
+          description: status of the webhook
+          enum: 
+            - active
+            - pending-approval
+        secret:
+          type: string
+          description: secret for signing the messages
+        subscribedEvents:
+          type: object
+          description: one or more events that the webhook would send messages for.
+          required:
+           - values
+          properties:
+            values:
+              type: array
+              description: name of the event to monitor in the form of `noun.verb`
+              items:
+                type: string
+                example: 'payrequest.completed'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+    Messages:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Message'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: unique identifer in the form of uuid for the webhook message
+        webhookId:
+          type: string
+          format: uuid
+          description: unique identifer in the form of uuid for the webhook
+        event:
+          type: string
+        eventType:
+          type: string
+        eventId:
+          type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            event:
+              type: string
+  requestBodies:
+    Webhook:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: 
+              - url
+              - subscribedEvents
+            properties:
+              name: 
+                type: string
+                description: name to describe the webhook
+              description: 
+                type: string
+                description: detailed description of the webhook
+              url: 
+                type: string
+                description: url to send webhooks to
+              subscribedEvents:
+                type: object
+                description: one or more events that the webhook would send messages for.
+                required:
+                 - values
+                properties:
+                  values:
+                    type: array
+                    description: name of the event to monitor in the form of `noun.verb`
+                    items:
+                      type: string
+                      example: 'payrequest.completed'
+          example:
+            name: 'My General Webhook'
+            description: 'Webhook to catch all events'
+            url: https://piper.com/basiq-messages/
+            subscribedEvents:
+            - payrequest.completed
+            - user.created
+      description: Webhook request object
+      required: true
+    TestMessage:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: 
+              - eventTypeId
+              - subscribedEvents
+            properties:
+              eventTypeId: 
+                type: string
+                description: The event type Id to be triggered. refer to /events/types/ for full list
+                example: 'user.created'
+              Text:
+                type: string
+                description: Text field to be supplied and replayed back
+          example:
+            eventTypeId: 'user.created'
+            Text: 'My test message'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
