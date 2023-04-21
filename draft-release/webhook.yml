@@ -3,24 +3,18 @@ info:
   description: Basiq Webhooks
   version: "2.0"
   title: Basiq Webhooks
-#  termsOfService: 'http://swagger.io/terms/'
-#  contact:
-#    email: apiteam@swagger.io
-#  license:
-#    name: Apache 2.0
-#    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
-  - description:  Application (Core) APIs
+  - description:  Webhooks
     url: 'https://au-api.basiq.io/'
 tags:
-  - name: Application (Core) APIs
+  - name: Webhooks    
     description: Application (Core) APIs - The partners applications call these
 paths:
   '/events/types/':
     get:
       tags:
-        - Application (Core) APIs
-      summary: get the list of event types for webhooks
+        - Webhooks
+      summary: List event types
       operationId: listEventTypes
       responses:
         '200':
@@ -71,8 +65,8 @@ paths:
   '/events/types/{id}':
     get:
       tags:
-        - Application (Core) APIs
-      summary: get the list of event types for webhooks
+        - Webhooks
+      summary: Retrieve an event type
       operationId: getEventTypeById
       parameters: 
         - name: id
@@ -98,8 +92,8 @@ paths:
   '/notifications/webhooks':
     post:
       tags:
-        - Application (Core) APIs
-      summary: Add a webhook definition
+        - Webhooks
+      summary: Create webhook
       operationId: addWebhook
       requestBody:
         $ref: '#/components/requestBodies/Webhook'
@@ -127,7 +121,7 @@ paths:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
     get:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: List an applications webhooks
       operationId: listAppWebhooks
       responses:
@@ -160,7 +154,7 @@ paths:
   '/notifications/webhooks/{webhookId}':
     post:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: Update a webhook definition
       operationId: updateWebhook
       parameters: 
@@ -196,7 +190,7 @@ paths:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
     delete:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: Delete a webhook definition
       operationId: deleteWebhook
       parameters: 
@@ -211,7 +205,7 @@ paths:
           description: Deletion successful (empty body)
     get:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: Add or modify a webhook definition
       operationId: getWebhook
       parameters: 
@@ -245,7 +239,7 @@ paths:
   '/notifications/webhooks/{webhookId}/messages':
     get:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: List messages
       operationId: listMessages
       parameters:
@@ -332,7 +326,7 @@ paths:
   '/notifications/webhooks/{webhookId}/messages/{messageId}':
     get:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: Get Webhook Message
       operationId: getWebhookMessage
       parameters:
@@ -382,7 +376,7 @@ paths:
   '/notifications/messages/test':
     post:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: Post a test message
       operationId: testMessage
       requestBody:
@@ -602,3 +596,15 @@ components:
       type: apiKey
       name: api_key
       in: header
+security:
+  - api_key: []
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+  samples-languages:
+    - curl
+    - node
+    - ruby
+    - javascript
+    - python
