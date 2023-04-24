@@ -593,9 +593,9 @@ components:
             Text: 'My test message'
   securitySchemes:
     api_key:
-      type: apiKey
-      name: api_key
-      in: header
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 security:
   - api_key: []
 x-readme:
