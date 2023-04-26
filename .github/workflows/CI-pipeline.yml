@@ -62,6 +62,12 @@ jobs:
         with:
           rdme: openapi ./enrich.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ENRICH_API_DEFINITION_ID }}
 
+      # Run GitHub Action to sync OpenAPI file at ./payments.yml
+      - name: Checking Payments
+        uses: readmeio/rdme@9824100d73c58e58adc52d80ac2c6fc4f96caabf # v8
+        with:
+          rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
+
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1 # Leverages SemVer as per https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
