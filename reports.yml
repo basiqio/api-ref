@@ -481,7 +481,7 @@ paths:
                     title: Total Income has been stable for (months)
                     description: Number of months within report over which total income has been stable
                     sections:
-                    - Expenses
+                    - Income Sources
                     result:
                       value: "3"
                       format: integer
