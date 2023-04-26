@@ -1241,8 +1241,6 @@ components:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                    payerBankBranchCode: '730002'
-                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
             Collect to Float:
@@ -1251,8 +1249,6 @@ components:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                    payerBankBranchCode: '730002'
-                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
                   collectFundsToFloat: true
@@ -1262,11 +1258,19 @@ components:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                    payerBankBranchCode: '730002'
-                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
                   checkAccountBalance: true
+            Single with account:
+              value:
+                payrequests:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    payerBankBranchCode: '730002'
+                    payerAccountNumber: '123456789'
+                  description: Investment
+                  amount: 173.45                  
     payouts:
       content:
         application/json:
@@ -1329,8 +1333,6 @@ components:
                   method: batch
                   payee:
                     payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
-                    payeeBankBranchCode: '730002'
-                    payeeAccountNumber: '123456789'
                   description: Dividends
                   amount: 173.45
             Fast Payout:
@@ -1340,8 +1342,6 @@ components:
                   method: fast
                   payee:
                     payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
-                    payeeBankBranchCode: '730002'
-                    payeeAccountNumber: '123456789'
                   description: Dividends
                   amount: 173.45
             Fast/Batch Payout:
@@ -1351,10 +1351,20 @@ components:
                   method: fast/batch
                   payee:
                     payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
+                  description: Dividends
+                  amount: 173.45
+            Batch Payout with account details:
+              value:
+                payouts:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: batch
+                  payee:
+                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
                     payeeBankBranchCode: '730002'
                     payeeAccountNumber: '123456789'
                   description: Dividends
                   amount: 173.45
+                  
   securitySchemes:
     payment_apiKey:
       type: http
