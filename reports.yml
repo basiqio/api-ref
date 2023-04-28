@@ -12,6 +12,10 @@ paths:
       tags:
         - Reports
       description: >
+        
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to create a new report. Report creation is an
         asynchronous task, meaning a job will be returned to let you know the
         progress of the report generation.
@@ -94,6 +98,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a list of created reports. Every created
         report is saved as a snapshot and can be retrieved at a later date.
 
@@ -153,6 +160,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a specific report. Ensure you check the
         documentation for the schema of each report type.
       parameters:
@@ -4156,7 +4166,11 @@ paths:
       tags:
         - Reports
       summary: Delete a report
-      description: Permanently deletes a report and all associated snapshot data.
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
+        Permanently deletes a report and all associated snapshot data.
       parameters:
         - in: path
           name: id
@@ -4200,7 +4214,11 @@ paths:
       tags:
       - Reports
       summary: Retrieve report transactions
-      description: List all transactions belong to that particular report. 
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
+        List all transactions belong to that particular report. 
       operationId: getTransactions
       parameters:
       - in: path
@@ -4234,6 +4252,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a list of supported reports. This
         identifies the complete list of supported reports, which can be used to
         create reports on.
@@ -4322,6 +4343,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a report type. This
         identifies the specific report, which can be used to
         create reports on.
