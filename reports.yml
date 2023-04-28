@@ -140,7 +140,8 @@ paths:
                       self: >-
                         https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
                 links:
-                  self: https://au-api.basiq.io/reports
+                  self: >-
+                    https://au-api.basiq.io/reports
                   next: >-
                     https://au-api.basiq.io/reports?next=bf1ec9d4
         '400':
