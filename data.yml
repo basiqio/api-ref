@@ -3642,6 +3642,7 @@ components:
       - amount
       - balance
       - class
+      - subClass
       - connection
       - description
       - direction
@@ -3693,6 +3694,19 @@ components:
           - direct-credit
           - interest
           - loan-repayment
+        subClass:
+          type: object
+          description: >-
+            The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) plus [new] bank fee transactions for those relating to account conduct such as account overdrawn and direct debit dishonours.
+          properties:
+            code: 
+              type: string
+              description: code
+              example: 722
+            title: 
+              type: string
+              description: SubClass title
+              example: Cafes and Restaurants
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
@@ -3856,14 +3870,16 @@ components:
     TransactionsAnzsic:
       type: object
       properties:
-        class:
-          $ref: '#/components/schemas/TransactionsClass'
         division:
           $ref: '#/components/schemas/TransactionsDivision'
-        group:
-          $ref: '#/components/schemas/TransactionsGroup'
         subdivision:
           $ref: '#/components/schemas/TransactionsSubdivision'
+        group:
+          $ref: '#/components/schemas/TransactionsGroup'
+        class:
+          $ref: '#/components/schemas/TransactionsClass'
+        subclass: 
+          $ref: '#/components/schemas/TransactionsSubClass'
     TransactionsCategory:
       type: object
       properties:
@@ -4070,6 +4086,17 @@ components:
           type: string
           description: Subdivision Details
           example: Food and Beverage Services
+    TransactionsSubClass:
+      type: object
+      properties:
+        title:
+          type: string
+          description: SubClass Details
+          example: Cafes and Restaurants
+        code:
+          type: string
+          description: SubClass Code
+          example: "451100"
   securitySchemes:
     services_token:
       type: http
