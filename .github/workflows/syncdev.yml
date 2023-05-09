@@ -16,7 +16,7 @@ jobs:
       # Run GitHub Action to sync OpenAPI file at ./core.yml
       - name: Checking Core
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
-        uses: readmeio/rdme@9824100d73c58e58adc52d80ac2c6fc4f96caabf # v8
+        uses: readmeio/rdme@9fc7a0ff9bac4cb539095cfa2f5eeec6cba48f16 # v8
         with:
           rdme: openapi ./draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
 
