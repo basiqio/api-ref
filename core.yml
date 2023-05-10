@@ -3098,6 +3098,9 @@ components:
         - links
         - mobile
         - name
+        - firstName
+        - middleName
+        - lastName
         - type
       type: object
       properties:
@@ -3125,7 +3128,19 @@ components:
         name:
           type: string
           description: Name, or empty.
-          example: Gavin Belson
+          example: ""
+        firstName: 
+          type: string
+          description: firstName, or empty
+          example: Gavin
+        middleName:
+          type: string
+          description: middleName, or empty
+          example: middleName
+        lastName: 
+          type: string
+          description: lastName, or empty
+          example: lastName
         links:
           $ref: '#/components/schemas/GetUserLinks'
       description: User object with details if the creation succeeded.
