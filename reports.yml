@@ -5327,6 +5327,7 @@ components:
     TransactionsGetResource:
       title: Transactions container object.
       required:
+      - size
       - count
       - data
       - type
@@ -5340,7 +5341,12 @@ components:
           type: integer
           description: Count of the transactions in the response.
           format: int64
-          example: 1000
+          example: 500
+        size: 
+          type: integer
+          description: Size of the transactions in the response.
+          format: int64
+          example: 2000
         data:
           type: array
           items:
