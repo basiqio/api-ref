@@ -54,8 +54,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/accounts/{accountId}:
     get:
       tags:
@@ -111,8 +110,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/affordability:
     get:
       tags:
@@ -156,8 +154,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
     post:
       tags:
       - Affordability
@@ -236,9 +233,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: AffordabilityPostRequest
+      - services_token: []
   /users/{userId}/affordability/{snapshotId}:
     get:
       tags:
@@ -310,8 +305,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/affordability/{snapshotId}/transactions:
     get:
       tags:
@@ -357,6 +351,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
             application/csv:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
@@ -390,8 +407,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/expenses:
     post:
       tags:
@@ -451,9 +467,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: ExpensesPostRequest
+      - services_token: []
   /users/{userId}/expenses/{snapshotId}:
     get:
       tags:
@@ -524,8 +538,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/income:
     post:
       tags:
@@ -585,9 +598,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: IncomePostRequest
+      - services_token: []
   /users/{userId}/income/{snapshotId}:
     get:
       tags:
@@ -643,8 +654,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/transactions:
     get:
       tags:
@@ -717,8 +727,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
   /users/{userId}/transactions/{transactionId}:
     get:
       tags:
@@ -781,8 +790,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
 components:
   schemas:
     AccountClass:
@@ -2938,18 +2946,12 @@ components:
           description: Subdivision Details
           example: Food and Beverage Services
   securitySchemes:
-    api_key:
-      type: apiKey
-      name: Authorization
-      in: header
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

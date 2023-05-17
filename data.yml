@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: Data
   version: 3.0.0
@@ -38,6 +38,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                      Bad Request:
+                       value:
+                        type: list
+                        correlationId: ac5ah5i
+                        data:
+                          - type: error
+                            title: Parameter not valid.
+                            code: parameter-not-valid
+                            detail: ID value is not valid.
+                            source:
+                              parameter: id
+                      Invalid Filters:
+                        value:
+                          type: list
+                          correlationId: ac5ah55
+                          data:
+                            - type: error
+                              code: parameter-not-valid
+                              title: Parameter value is not valid
+                              detail: The provided filter parameter is in invalid format or unsupported
+                              source:
+                                parameter: filter
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
@@ -59,8 +82,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/accounts/{accountId}:
     get:
@@ -122,8 +143,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/transactions:
     get:
@@ -169,6 +188,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
@@ -190,8 +232,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/transactions/{transactionId}:
     get:
@@ -255,8 +295,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/connections:
     get:
@@ -297,6 +335,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -328,8 +389,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /users/{userId}/connections/refresh:
     post:
       tags:
@@ -382,8 +442,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /users/{userId}/connections/{connectionId}:
     get:
       tags:
@@ -461,9 +520,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
+        - services_token: []
     delete:
       tags:
         - Connections
@@ -528,8 +585,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /users/{userId}/connections/{connectionId}/refresh:
     post:
       tags:
@@ -600,8 +656,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /connectors: 
     get:
       tags:
@@ -691,6 +746,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
         '401':
           description: Returns error that indicates unauthorized access.
           content:
@@ -706,9 +784,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
+        - services_token: []
   /connectors/{connectorId}/{method}:
     get:
       tags:
@@ -766,9 +842,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
+        - services_token: []
 components:
   schemas:
     AccountClass:
@@ -3568,6 +3642,7 @@ components:
       - amount
       - balance
       - class
+      - subClass
       - connection
       - description
       - direction
@@ -3619,6 +3694,19 @@ components:
           - direct-credit
           - interest
           - loan-repayment
+        subClass:
+          type: object
+          description: >-
+            The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) plus [new] bank fee transactions for those relating to account conduct such as account overdrawn and direct debit dishonours.
+          properties:
+            code: 
+              type: string
+              description: code
+              example: 722
+            title: 
+              type: string
+              description: SubClass title
+              example: Cafes and Restaurants
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
@@ -3782,14 +3870,16 @@ components:
     TransactionsAnzsic:
       type: object
       properties:
-        class:
-          $ref: '#/components/schemas/TransactionsClass'
         division:
           $ref: '#/components/schemas/TransactionsDivision'
-        group:
-          $ref: '#/components/schemas/TransactionsGroup'
         subdivision:
           $ref: '#/components/schemas/TransactionsSubdivision'
+        group:
+          $ref: '#/components/schemas/TransactionsGroup'
+        class:
+          $ref: '#/components/schemas/TransactionsClass'
+        subclass: 
+          $ref: '#/components/schemas/TransactionsSubClass'
     TransactionsCategory:
       type: object
       properties:
@@ -3996,19 +4086,22 @@ components:
           type: string
           description: Subdivision Details
           example: Food and Beverage Services
+    TransactionsSubClass:
+      type: object
+      properties:
+        title:
+          type: string
+          description: SubClass Details
+          example: Cafes and Restaurants
+        code:
+          type: string
+          description: SubClass Code
+          example: "451100"
   securitySchemes:
     services_token:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
 security:
   - services_token: []
 x-readme:

@@ -36,6 +36,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
@@ -51,7 +74,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - api_key: []
+      - services_token: []
   /users/{userId}/identities/{identityId}:
     get:
       tags:
@@ -107,7 +130,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - api_key: []
+      - services_token: []
 components:
   schemas:
     AccountClass:
@@ -2152,12 +2175,12 @@ components:
           type: string
           example: Bearer
   securitySchemes:
-    api_key:
+    services_token:
       type: http
       scheme: bearer
       bearerFormat: JWT
 security:
-  - api_key: []
+  - services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

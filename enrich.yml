@@ -1,0 +1,451 @@
+openapi: 3.0.1
+info:
+  title: Enrich
+  description: All included utility endpoints for Basiq partners
+  version: 3.0.0
+servers:
+  - url: https://au-api.basiq.io/
+paths:
+  /enrich:
+    get:
+      tags:
+      - Enrich
+      summary: Enrich
+      description: >-
+        The Enrich resource enables you to retrieve details by passing in a search query containing a bank transaction description. The service enriches transaction data with multiple attributes, returning a transaction classification and three metadata components. 
+        The transaction classification will first determine if the transaction is of type payment, transfer, cash-withdrawal, bank-fee etc. The engine then derives merchant information, purchase location and prescribes an industry standard categorisation for each payment transaction.
+      parameters:
+      - name: q
+        in: query
+        description: >- 
+          This is the search string that is used to lookup the entity (merchant) information. 
+          
+          ```**q=garfish%20MANLY%20NS**&country=AU&institution=AU06703```
+        schema:
+          type: string
+        required: true
+      - name: institution
+        in: query
+        description: >- 
+          Identifies the institution from where the transaction was derived. This must be a Basiq recognisable institution ID. 
+          
+          ```enrich?METRO%20PETROLEUM%20FR%20FORE&country=AU&accountType=transaction&amount=-12.95&**institution=AU04301**```
+        schema:
+          type: string
+        required: true
+      - name: country
+        in: query
+        description: >- 
+          Specifies the country the search should be narrowed down to. Passing in a country value will limit the search to the specified country. 
+          The country must be in ISO 3166 Alpha-2 format 
+          
+          ```q=garfish%20MANLY%20NS&**country=AU**&institution=AU06703```
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: >- 
+            The enrich endpoint will always return a 200 response to the user, along with a set of results for each of the datasets subscribed to: category, entity and location. If no results are found for the search query then an empty result set is returned. If parameter inputs are invalid an error is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrich'
+              example:
+                    type: enrich
+                    direction: debit
+                    class: payment
+                    data:
+                      merchant:
+                        id: f0ff1071-6a1a-45d6-b7af-8be668a3411a
+                        businessName: Woolworths
+                        website: https://www.woolworths.com.au/shop/storelocator/nsw-shellharbour-1197?utm_source=google&utm_medium=organic&utm_campaign=googleplaces
+                        abn: '88000014675'
+                        phoneNumber:
+                          local: (02) 4276 6018
+                          international: +61 2 4276 6018
+                      category:
+                        anzsic:
+                          division:
+                            code: G
+                            title: Retail Trade
+                          subdivision:
+                            code: '41'
+                            title: Food Retailing
+                          group:
+                            code: '411'
+                            title: Supermarket and Grocery Stores
+                          class:
+                            code: '4110'
+                            title: Supermarket and Grocery Stores
+                          subclass:
+                            code: '411000'
+                            title: Supermarket and Grocery Stores
+                      location:
+                        routeNo: ''
+                        route: ''
+                        postalCode: ''
+                        suburb: ''
+                        state: ''
+                        country: ''
+                        formattedAddress: ''
+                        geometry:
+                          lat: ''
+                          lng: ''
+                    links:
+                      self: https://au-api.basiq.io/enrich?country=AU&institution=AU00000&q=WOOLWORTHS
+                      logo-master: https://enrich-enrichmerchantslogobucket-6or17iuhdvs9.s3-ap-southeast-2.amazonaws.com/woolworths-master.svg
+                      logo-thumb: https://enrich-enrichmerchantslogobucket-6or17iuhdvs9.s3-ap-southeast-2.amazonaws.com/woolworths-thumb.svg
+        400:
+          description: Returns error that server cannot or will not process the request
+            due to something that is perceived to be a client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
+        403:
+          description: Error that access is forbidden and tied to the application
+            logic, such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        500:
+          description: Returns error response code indicates that the server encountered
+            an unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - services_token: []
+components:
+  schemas:
+    Enrich: 
+      required:
+      - type
+      - direction
+      - class
+      - links
+      type: object
+      properties:
+        type:
+          type: string
+          description: Value is "enrich"
+        direction:
+          type: string
+          description: Debit or Credit transaction
+        class:
+          type: string
+          description: Describes the type of transaction, payment, transfer, cash-withdrawal, bank-fee, interest, refund etc.
+        data:
+          type: object
+          description: Container object, containing enrich details.
+          properties:
+            merchant:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The merchant id.
+                businessName:
+                  type: string
+                  description: The merchant business name.
+                website:
+                  type: string
+                  description: The merchant website.
+                abn:
+                  type: string
+                  description: Provides the Australian Business Number.
+                phoneNumber:
+                  type: object
+                  description: Provides the ```local``` and ```international``` telephone numbers of the merchant.
+                  properties:
+                    local:
+                      type: string
+                    international:
+                      type: string
+            category:
+              type: object
+              properties:
+                anzsic:
+                  type: object
+                  properties:
+                    division:
+                      type: object
+                      description: Details the code and title of the merchant ANZSIC division.
+                      properties:
+                        code:
+                          type: string
+                        title:
+                          type: string
+                    subdivision:
+                      type: object
+                      description: Details the code and title of the merchant ANZSIC subdivision.
+                      properties:
+                        code:
+                          type: string
+                        title:
+                          type: string
+                    group:
+                      type: object
+                      description: Details the code and title of the merchant ANZSIC group.
+                      properties:
+                        code:
+                          type: string
+                        title:
+                          type: string
+                    class:
+                      type: object
+                      description: Details the code and title of the merchant ANZSIC class.
+                      properties:
+                        code:
+                          type: string
+                        title:
+                          type: string
+                    subclass:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        title:
+                          type: string
+            location:
+              type: object
+              properties:
+                routeNo:
+                  type: string
+                  description: The street number of the merchant location.
+                route:
+                  type: string
+                  description: The street name of the merchant location.
+                postalCode:
+                  type: string
+                  description: The post code of the merchant location.
+                suburb:
+                  type: string
+                  description: The suburb of the merchant location.
+                state:
+                  type: string
+                  description: The state of the merchant location.
+                country:
+                  type: string
+                  description: The country of the merchant location.
+                formattedAddress:
+                  type: string
+                  description: The full address for the merchant location
+                geometry:
+                  type: object
+                  description: Contains the lat and lng coordinates of the merchant location.
+                  properties:
+                    lat:
+                      type: string
+                    lng:
+                      type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Provides a reference link to the original query.
+            logo-master:
+              type: string
+              description: >- 
+                Provides link to master logo. Logos are provided in a variety of formats: .svg, .png, .jpg, jpeg, gif. Where null no merchant logo is available.
+            logo-thumb:
+              type: string
+              description: >- 
+                Provides link to thumb logo (where no thumb available master logo is returned for both). Logos are provided in a variety of formats: .svg, .png, .jpg, jpeg, gif. Where null no merchant logo is available.
+    BadRequestError:
+      required:
+        - correlationId
+        - data
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+              - code
+              - type
+            type: object
+            properties:
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              title:
+                type: string
+                description: Title of the error
+                example: Parameter not valid.
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string value.
+                example: parameter-not-valid
+                enum:
+                  - parameter-not-supplied
+                  - parameter-not-valid
+                  - unsupported-accept
+                  - invalid-content
+                  - institution-not-supported
+                  - invalid-credentials
+              detail:
+                type: string
+                description: >-
+                  Human-readable explanation specific to this occurrence of the
+                  problem.
+                example: ID value is not valid.
+              source:
+                $ref: '#/components/schemas/Source'
+    ForbiddenAccessError:
+      required:
+        - correlationId
+        - data
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+              - code
+              - source
+              - type
+            type: object
+            properties:
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              title:
+                type: string
+                description: Title of the error
+                example: Forbidden Access
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string value.
+                example: forbidden-access
+                enum:
+                  - forbidden-access
+                  - no-production-access
+                  - access-denied
+              detail:
+                type: string
+                description: >-
+                  Human-readable explanation specific to this occurrence of the
+                  problem.
+                example: Access to this resource is forbidden.
+              source:
+                $ref: '#/components/schemas/Source'
+    InternalServerError:
+      required:
+        - correlationId
+        - data
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+              - code
+              - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string value.
+                example: internal-server-error
+                enum:
+                  - internal-server-error
+              detail:
+                type: string
+                description: >-
+                  Human-readable explanation specific to this occurrence of the
+                  problem.
+                example: Internal Server error. Contact support.
+              title:
+                type: string
+                description: Title of the error
+                example: Internal Server error.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+    Source:
+      title: Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: String indicating which URI query parameter caused the error.
+          example: id
+      description: An object containing references to the source of the error.
+  securitySchemes:
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - services_token: []
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+  samples-languages:
+    - curl
+    - node
+    - ruby
+    - javascript
+    - python

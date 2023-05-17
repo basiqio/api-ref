@@ -12,6 +12,10 @@ paths:
       tags:
         - Reports
       description: >
+        
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to create a new report. Report creation is an
         asynchronous task, meaning a job will be returned to let you know the
         progress of the report generation.
@@ -94,10 +98,12 @@ paths:
       tags:
         - Reports
       description: >
-        Use this endpoint to retrieve a list of created reports. Every created
-        report is saved as a snapshot and can be retrieved at a later date.
-
-        You can call the reports/types endpoint to see the list of supported
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
+        Use this endpoint to retrieve a list of created reports. 
+        Every created report is saved as a snapshot and can be retrieved up to 24 hours after
+        creation.You can call the reports/types endpoint to see the list of supported reports.
         reports.
       responses:
         '200':
@@ -134,7 +140,8 @@ paths:
                       self: >-
                         https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
                 links:
-                  self: https://au-api.basiq.io/reports
+                  self: >-
+                    https://au-api.basiq.io/reports
                   next: >-
                     https://au-api.basiq.io/reports?next=bf1ec9d4
         '400':
@@ -153,6 +160,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a specific report. Ensure you check the
         documentation for the schema of each report type.
       parameters:
@@ -477,6 +487,22 @@ paths:
                     result:
                       value: "-325.00"
                       format: money
+                  - id: ME035
+                    title: Total Income has been stable for (months)
+                    description: Number of months within report over which total income has been stable
+                    sections:
+                    - Income Sources
+                    result:
+                      value: "3"
+                      format: integer
+                  - id: ME039
+                    title: Average expenses excluding liabilities
+                    description: Mean monthly total expenses excluding liability payments
+                    sections:
+                    - Expenses
+                    result:
+                      value: "-300"
+                      format: integer
                   groups:
                   - id: INC-001
                     title: Benefits
@@ -485,6 +511,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                          credit: 0
+                          debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -496,6 +525,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -508,6 +539,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -519,6 +553,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -545,6 +581,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -556,6 +595,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -568,6 +609,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -579,6 +623,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -605,6 +651,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -616,6 +665,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -628,6 +679,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -639,6 +693,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'                     
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -665,6 +721,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -676,6 +735,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'                   
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -688,6 +749,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -699,6 +763,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -725,6 +791,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -736,6 +805,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -748,6 +819,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -759,6 +833,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -785,6 +861,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -796,6 +875,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -808,6 +889,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -819,6 +903,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -845,6 +931,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -856,6 +945,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -868,6 +959,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -879,6 +973,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -905,6 +1001,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -916,6 +1015,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -928,6 +1029,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -939,6 +1043,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -965,6 +1071,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -976,6 +1085,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -999,6 +1110,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -1025,6 +1138,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1036,6 +1152,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -1048,6 +1166,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                              credit: 0
+                              debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1059,6 +1180,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -1085,6 +1208,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1096,6 +1222,8 @@ paths:
                         average:
                           transaction: '100.00'
                           month: '100.00'
+                          medianTransaction: '20.00'
+                          medianMonth: '20.00'
                       frequency:
                         type: monthly
                         amount: '100.00'
@@ -1108,6 +1236,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1119,6 +1250,8 @@ paths:
                           average:
                             transaction: '100.00'
                             month: '100.00'
+                            medianTransaction: '20.00'
+                            medianMonth: '20.00'
                         frequency:
                           type: monthly
                           amount: '100.00'
@@ -1145,6 +1278,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1156,6 +1292,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1168,6 +1306,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1179,6 +1320,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1205,6 +1348,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1216,6 +1362,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1228,6 +1376,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1239,6 +1390,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1265,6 +1418,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1276,6 +1432,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1288,6 +1446,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1299,6 +1460,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1325,6 +1488,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1336,6 +1502,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1348,6 +1516,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1359,6 +1530,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1385,6 +1558,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1396,6 +1572,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1408,6 +1586,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1419,6 +1600,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1445,6 +1628,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1456,6 +1642,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1468,6 +1656,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1479,6 +1670,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1506,6 +1699,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1517,6 +1713,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1529,6 +1727,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1540,6 +1741,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1566,6 +1769,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1577,6 +1783,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1589,6 +1797,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1600,6 +1811,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1626,6 +1839,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1637,6 +1853,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1649,6 +1867,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1660,6 +1881,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1686,6 +1909,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1697,6 +1923,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1709,6 +1937,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1720,6 +1951,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1746,6 +1979,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1757,6 +1993,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1769,6 +2007,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1780,6 +2021,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1806,6 +2049,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1817,6 +2063,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1829,6 +2077,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1840,6 +2091,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1866,6 +2119,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1877,6 +2133,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1889,6 +2147,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1900,6 +2161,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1926,6 +2189,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1937,6 +2203,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -1949,6 +2217,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -1960,6 +2231,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -1986,6 +2259,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -1997,6 +2273,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2009,6 +2287,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2020,6 +2301,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2046,6 +2329,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2057,6 +2343,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2069,6 +2357,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2080,6 +2371,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2106,6 +2399,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2117,6 +2413,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2129,6 +2427,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2140,6 +2441,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2166,6 +2469,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2177,6 +2483,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2189,6 +2497,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2200,6 +2511,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2226,6 +2539,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2237,6 +2553,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2249,6 +2567,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2260,6 +2581,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2286,6 +2609,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2297,6 +2623,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2309,6 +2637,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2320,6 +2651,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2346,6 +2679,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2357,6 +2693,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2369,6 +2707,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2380,6 +2721,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2406,6 +2749,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2417,6 +2763,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2429,6 +2777,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2440,6 +2791,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2466,6 +2819,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2477,6 +2833,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2489,6 +2847,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2500,6 +2861,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2526,6 +2889,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2537,6 +2903,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2549,6 +2917,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2560,6 +2931,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2586,6 +2959,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2597,6 +2973,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2609,6 +2987,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2620,6 +3001,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2646,6 +3029,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2657,6 +3043,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2669,6 +3057,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2680,6 +3071,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2707,6 +3100,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2718,6 +3114,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2730,6 +3128,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2741,6 +3142,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2768,6 +3171,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2779,6 +3185,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2791,6 +3199,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2802,6 +3213,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2828,6 +3241,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2839,6 +3255,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2851,6 +3269,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2862,6 +3283,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2888,6 +3311,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2899,6 +3325,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2911,6 +3339,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2922,6 +3353,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -2948,6 +3381,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -2959,6 +3395,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -2971,6 +3409,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -2982,6 +3423,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3009,6 +3452,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3020,6 +3466,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3032,6 +3480,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3043,6 +3494,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3070,6 +3523,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3081,6 +3537,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3093,6 +3551,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3104,6 +3565,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3131,6 +3594,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3142,6 +3608,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3153,7 +3621,7 @@ paths:
                       name: SAMPLE TRANSACTION
                       analysis:
                         summary:
-                          transactionCount: 3
+                          
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3165,6 +3633,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3191,6 +3661,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3202,6 +3675,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3214,6 +3689,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3225,6 +3703,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3251,6 +3731,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3262,6 +3745,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3274,6 +3759,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3285,6 +3773,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3311,6 +3801,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3322,6 +3815,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3334,6 +3829,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3345,6 +3843,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3371,6 +3871,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3382,6 +3885,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3394,6 +3899,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3405,6 +3913,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3431,6 +3941,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3442,6 +3955,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3454,6 +3969,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3465,6 +3983,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3491,6 +4011,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3502,6 +4025,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3514,6 +4039,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3525,6 +4053,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3551,6 +4081,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3562,6 +4095,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3574,6 +4109,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3585,6 +4123,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3611,6 +4151,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3622,6 +4165,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3634,6 +4179,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3645,6 +4193,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3671,6 +4221,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3682,6 +4235,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3694,6 +4249,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3705,6 +4263,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3731,6 +4291,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3742,6 +4305,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3754,6 +4319,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3765,6 +4333,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3791,6 +4361,9 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
+                        overallPercentage: 
+                            credit: 0
+                            debit: 0
                       range:
                         startDate: '2022-01-01'
                         endDate: '2022-03-01'
@@ -3802,6 +4375,8 @@ paths:
                         average:
                           transaction: "-100.00"
                           month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
                       frequency:
                         type: monthly
                         amount: "-100.00"
@@ -3814,6 +4389,9 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
+                          overallPercentage: 
+                            credit: 0
+                            debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -3825,6 +4403,8 @@ paths:
                           average:
                             transaction: "-100.00"
                             month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
                         frequency:
                           type: monthly
                           amount: "-100.00"
@@ -3882,7 +4462,7 @@ paths:
                     connection: a59e4077-2626-45f2-ae5a-39ea7ffbf51a
                     status: available
                     creditLimit: '2000.00'
-                  transactions: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions
+                  transactions: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
         400:
@@ -3916,7 +4496,11 @@ paths:
       tags:
         - Reports
       summary: Delete a report
-      description: Permanently deletes a report and all associated snapshot data.
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
+        Permanently deletes a report and all associated snapshot data.
       parameters:
         - in: path
           name: id
@@ -3960,7 +4544,11 @@ paths:
       tags:
       - Reports
       summary: Retrieve report transactions
-      description: List all transactions belong to that particular report. 
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
+        List all transactions belong to that particular report. 
       operationId: getTransactions
       parameters:
       - in: path
@@ -3987,8 +4575,6 @@ paths:
         '500':
           $ref: '#/components/responses/500Server'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /reports/types:
     get:
@@ -3996,6 +4582,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a list of supported reports. This
         identifies the complete list of supported reports, which can be used to
         create reports on.
@@ -4084,6 +4673,9 @@ paths:
       tags:
         - Reports
       description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+        
+        
         Use this endpoint to retrieve a report type. This
         identifies the specific report, which can be used to
         create reports on.
@@ -4735,6 +5327,7 @@ components:
     TransactionsGetResource:
       title: Transactions container object.
       required:
+      - size
       - count
       - data
       - type
@@ -4748,7 +5341,12 @@ components:
           type: integer
           description: Count of the transactions in the response.
           format: int64
-          example: 1000
+          example: 500
+        size: 
+          type: integer
+          description: Size of the transactions in the response.
+          format: int64
+          example: 2000
         data:
           type: array
           items:
@@ -5311,6 +5909,14 @@ components:
                                 type: string
                                 description: The average monthly value. 
                                 example: 100.00
+                              medianTransaction:
+                                type: integer
+                                description: The median amount of all transactions.
+                                example: 20.00
+                              medianMonth:
+                                type: integer
+                                description: The median amount of the monthly sum of all transaction amounts.
+                                example: 20.00
                       frequency: 
                         type: object
                         description: Identifies the occurance pattern of the transactions within the group.
@@ -5405,6 +6011,14 @@ components:
                                       type: string
                                       description: The average monthly value. 
                                       example: 100.00
+                                    medianTransaction:
+                                      type: integer
+                                      description: The median amount of all transactions.
+                                      example: 20.00
+                                    medianMonth:
+                                      type: integer
+                                      description: The median amount of the monthly sum of all transaction amounts.
+                                      example: 20.00
                             frequency: 
                               type: object
                               description: Identifies the occurance pattern of the transactions within the subgroup.
@@ -5462,7 +6076,7 @@ components:
             transactions:
               type: string
               description: Retrieve report transactions EP
-              example: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions
+              example: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
         links: 
           type: object
           properties: 
@@ -5523,20 +6137,8 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    reporting_token:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
 security:
-  - reporting_token: []
+  - services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

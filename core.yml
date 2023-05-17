@@ -123,9 +123,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
-      x-codegen-request-body-name: user
+        - services_token: []
   /users/{userId}:
     get:
       tags:
@@ -189,9 +187,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
+        - services_token: []
     post:
       tags:
         - Users
@@ -251,8 +247,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
       x-codegen-request-body-name: user
     delete:
       tags:
@@ -313,8 +308,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /users/{userId}/consents:
     get:
       tags:
@@ -457,9 +451,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
+        - services_token: []
   /users/{userId}/consents/{consentId}:
     delete:
       tags:
@@ -523,8 +515,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /users/{userId}/auth_link:
     post:
       tags:
@@ -585,9 +576,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
-      x-codegen-request-body-name: AuthLinksPostData
+      - services_token: []
     get:
       tags:
       - AuthLinks
@@ -652,8 +641,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-      - application:
-        - SERVER_ACCESS
+      - services_token: []
     delete:
       tags:
       - AuthLinks
@@ -704,9 +692,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-      - application:
-        - SERVER_ACCESS
-        - CLIENT_ACCESS
+      - services_token: []
   /events:
     get:
       tags:
@@ -740,6 +726,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+              examples:
+                    Bad Request:
+                     value:
+                      type: list
+                      correlationId: ac5ah5i
+                      data:
+                        - type: error
+                          title: Parameter not valid.
+                          code: parameter-not-valid
+                          detail: ID value is not valid.
+                          source:
+                            parameter: id
+                    Invalid Filters:
+                      value:
+                        type: list
+                        correlationId: ac5ah55
+                        data:
+                          - type: error
+                            code: parameter-not-valid
+                            title: Parameter value is not valid
+                            detail: The provided filter parameter is in invalid format or unsupported
+                            source:
+                              parameter: filter
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -771,8 +780,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /users/{userId}/jobs:
     get:
       tags:
@@ -832,8 +840,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
+        - services_token: []
   /jobs/{jobId}:
     get:
       tags:
@@ -858,7 +865,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/job'
               examples:
-                Data - in-progress:
+                Data - in progress:
                   value:
                     type: job
                     id: 'e9132638'
@@ -879,7 +886,61 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/61723
                       source: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
-                payrequest - in-progress:
+                Mygov - in progress:
+                  value:
+                    type: job
+                    id: ff6fc9d4-13da-45e4-8c6b-acdeadc40a1c
+                    created: '2023-04-11T00:41:34Z'
+                    updated: '2023-04-11T00:41:37Z'
+                    jobType: connection
+                    steps:
+                      - title: verify-credentials
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/connections/b525059f-51fd-434d-8ee5-77fb35837f65
+                      - title: retrieve-accounts
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/accounts?filter=institution.id.eq('AU00004')
+                      - title: retrieve-transactions
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/transactions?filter=institution.id.eq('AU00004')
+                      - title: retrieve-statements
+                        status: in-progress
+                        result: null
+                Mygov - Completed:
+                  value:
+                    type: job
+                    id: ff6fc9d4-13da-45e4-8c6b-acdeadc40a1c
+                    created: '2023-04-11T00:41:34Z'
+                    updated: '2023-04-11T00:41:37Z'
+                    jobType: connection
+                    steps:
+                      - title: verify-credentials
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/connections/b525059f-51fd-434d-8ee5-77fb35837f65
+                      - title: retrieve-accounts
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/accounts?filter=institution.id.eq('AU00004')
+                      - title: retrieve-transactions
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/transactions?filter=institution.id.eq('AU00004')
+                      - title: retrieve-statements
+                        status: success
+                        result:
+                          type: link
+                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/statements
+                payrequest - in progress:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -951,7 +1012,7 @@ paths:
                     links:
                       self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                report - in-progress:
+                report - in progress:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -1018,9 +1079,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-        - application:
-            - SERVER_ACCESS
-            - CLIENT_ACCESS
+        - services_token: []
   /jobs/{jobId}/mfa:
     post:
       tags:
@@ -1079,8 +1138,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - CLIENT_ACCESS
+      - services_token: []
 components:
   schemas:
     AccountClass:
@@ -3040,6 +3098,9 @@ components:
         - links
         - mobile
         - name
+        - firstName
+        - middleName
+        - lastName
         - type
       type: object
       properties:
@@ -3067,7 +3128,19 @@ components:
         name:
           type: string
           description: Name, or empty.
-          example: Gavin Belson
+          example: ""
+        firstName: 
+          type: string
+          description: firstName, or empty
+          example: Gavin
+        middleName:
+          type: string
+          description: middleName, or empty
+          example: middleName
+        lastName: 
+          type: string
+          description: lastName, or empty
+          example: lastName
         links:
           $ref: '#/components/schemas/GetUserLinks'
       description: User object with details if the creation succeeded.
@@ -3101,6 +3174,10 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
+        middleName: 
+          type: string
+          description: The end-users middle name as an optional additional parameter.
+          example: middle name
         lastName:
           type: string
           description: The end-users last name as an optional additional parameter.
@@ -3125,6 +3202,10 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
+        middleName: 
+          type: string
+          description: The end-users middle name as an optional additional parameter.
+          example: middle name
         lastName:
           type: string
           description: The end-users last name as an optional additional parameter.
@@ -3140,6 +3221,18 @@ components:
           type: string
           description: The end-users mobile number.
           example: '+61410888666'
+        firstName:
+          type: string
+          description: The end-users first name as an optional additional parameter.
+          example: Malcolm
+        middleName: 
+          type: string
+          description: The end-users middle name as an optional additional parameter.
+          example: Malcom middle name
+        lastName:
+          type: string
+          description: The end-users last name as an optional additional parameter.
+          example: Malcolm last name
     TokenPostResponse:
       required:
         - access_token
@@ -3275,16 +3368,13 @@ components:
       x-default: >-
         Basic
         NjMxMjNmMWMtZjYxMy00ZjMyLWFiYzUtYzBhZDdhYTY2YmU1OjQ3NWYwMzhkLTBlZmItNGM1ZS1iMzQ0LTAzMzYxOTkyYTRlMw==
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://au-api.basiq.io/token
-          scopes:
-            SERVER_ACCESS: Server access scope
-            CLIENT_ACCESS: Client access scope
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 security:
   - api_key: []
+  - services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

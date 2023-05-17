@@ -17,12 +17,12 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@4de7a6c08ce727a42e0adbbdc345f761a01240ce # v1.3.6
+        uses: dependabot/fetch-metadata@efb5c8deb113433243b6b08de1aa879d5aa01cf7 # v1.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5
 
       - name: Approve a PR if not already approved
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
