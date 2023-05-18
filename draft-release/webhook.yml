@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   description: Basiq Webhooks
-  version: "2.1"
+  version: "2.2"
   title: Basiq Webhooks
 servers:
   - description:  Application (Core) APIs
