@@ -21,7 +21,7 @@ jobs:
           rdme: openapi ./draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
       
       - name: Validating Webhooks
-        uses: readmeio/rdme@v8
+        uses: readmeio/rdme@9fc7a0ff9bac4cb539095cfa2f5eeec6cba48f16 # v8
         with:
           rdme: openapi ./draft-release/webhooks.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
 
