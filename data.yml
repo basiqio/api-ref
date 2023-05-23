@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: Data
   version: 3.0.0
@@ -1954,22 +1954,27 @@ components:
     AccountResponseResource:
       title: AccountResponseResource
       required:
+      - type
       - id
-      - accountHolder
       - accountNo
-      - availableFunds
+      - name
+      - currency
       - balance
+      - availableFunds
+      - lastUpdated
+      - institution
       - creditLimit
       - class
-      - connection
-      - currency
-      - institution
-      - lastUpdated
-      - links
-      - name
-      - status
       - transactionIntervals
-      - type
+      - accountHolder
+      - connection
+      - status
+      - fees
+      - depositRates
+      - lendingRates
+      - loan
+      - creditCard
+      - links
       type: object
       properties:
         type:
@@ -2012,9 +2017,18 @@ components:
           example: "400000.00"
         class:
           $ref: '#/components/schemas/AccountClass'
-          description: |-
-            Describes the class(type) of accounts.
-            transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
+          description: Describes the class(type) of accounts.
+          enum: 
+          - transaction 
+          - savings 
+          - credit-card 
+          - mortgage 
+          - loan 
+          - investment 
+          - term-deposit 
+          - insurance 
+          - foreign 
+          - unknown
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
@@ -2043,6 +2057,14 @@ components:
           enum:
           - available
           - unavailable
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/feesaccountMetadata'
+        depositRates:
+          type: array
+          items: 
+            $ref: '#/components/schemas/depositRateaccountMetadata'
         transactionIntervals:
           type: array
           description: |-
@@ -2054,6 +2076,63 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
+    depositRateaccountMetadata: 
+      required:
+      - depositRateType
+      - rate
+      type: object
+      properties: 
+        depositRateType:
+          type: string
+          description: >-
+            (mandatory) - The type of rate (base, bonus, etc).
+          enum:
+          - BONUS
+          - BUNDLE_BONUS
+          - FIXED
+          - FLOATING
+          - INTRODUCTORY
+          - MARKET_LINKED
+          - VARIABLE
+        rate: 
+          type: string
+          description: >- 
+            (mandatory) - The rate to be applied. 
+        applicationFrequency: 
+          type: string
+          description: >- 
+            (optional) - The period after which the calculated amount(s) (see calculationFrequency) are 'applied' (i.e. debited or credited) to the account.
+    feesaccountMetadata: 
+      required:
+      - name
+      - feeType
+      type: object
+      properties:
+        name:
+          type: string
+          description: (mandatory Field) Name of the fee
+        feeType:
+          type: string
+          description: (mandatory Field) The type of fee
+          enum:
+          - DEPOSIT
+          - EVENT
+          - EXIT
+          - PAYMENT
+          - PERIODIC
+          - PURCHASE
+          - TRANSACTION
+          - UPFRONT
+          - VARIABLE
+          - WITHDRAWAL
+        amount:
+          type: string
+          description: >-
+            (conditional) The amount charged for the fee.
+        accrualFrequency:
+          type: string
+          description: >-
+            (optional) - The indicative frequency with which the fee is calculated on the account.
     AccountTransactionInterval:
       required:
       - from
