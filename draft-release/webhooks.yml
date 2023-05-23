@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   description: Basiq Webhooks
-  version: "2.2"
+  version: "2.3"
   title: Basiq Webhooks
 servers:
   - description:  Application (Core) APIs
@@ -14,7 +14,7 @@ paths:
     get:
       tags:
         - Application (Core) APIs
-      summary: List event types
+      summary: get the list of event types for webhooks
       operationId: listEventTypes
       responses:
         '200':
@@ -62,13 +62,77 @@ paths:
                         self: 'https://au-api.basiq.io/events/types/consent.revoked'
                     links:
                       self: 'https://au-api.basiq.io/events/types/'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
   '/events/types/{id}':
     get:
       tags:
         - Application (Core) APIs
-      summary: Retrieve an event type
+      summary: get the list of event types for webhooks
       operationId: getEventTypeById
       parameters: 
         - name: id
@@ -109,6 +173,38 @@ paths:
                       detail: 'Event Type ID parameter is not valid'
                       source:
                         parameter: 'eventTypeId'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '404':
           description: 'Not Found'
           content:
@@ -125,13 +221,45 @@ paths:
                       code: 'resource-not-found'
                       title: 'Requested resource is not found'
                       detail: 'Requested event type does not exist.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
   '/notifications/webhooks':
     post:
       tags:
         - Application (Core) APIs
-      summary: Create webhook
+      summary: Add a webhook definition
       operationId: addWebhook
       requestBody:
         $ref: '#/components/requestBodies/Webhook'
@@ -182,6 +310,38 @@ paths:
                       code: 'invalid-content'
                       title: 'Invalid request content'
                       detail: 'Posted subscribedEvents contains unsupported event types.'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '409':
           description: 'Conflict'
           content:
@@ -198,12 +358,44 @@ paths:
                       code: 'resource-already-exists'
                       title: 'Resource already exists'
                       detail: 'Webhook with provided url already exists.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
     get:
       tags:
         - Application (Core) APIs
-      summary: List applications webhooks
+      summary: List an applications webhooks
       operationId: listAppWebhooks
       responses:
         '200':
@@ -215,7 +407,7 @@ paths:
               examples:
                 Success:
                   value:
-                    type: "list"
+                    type: 'list'
                     size: 1
                     count: 1
                     data:
@@ -232,13 +424,77 @@ paths:
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks'
                       next:
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
   '/notifications/webhooks/{webhookId}':
     post:
       tags:
         - Application (Core) APIs
-      summary: Update webhook definition
+      summary: Update a webhook definition
       operationId: updateWebhook
       parameters: 
         - name: webhookId
@@ -307,6 +563,38 @@ paths:
                       code: 'invalid-content'
                       title: 'Invalid request content'
                       detail: 'Posted subscribedEvents contains unsupported event types.'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '404':
           description: 'Not Found'
           content:
@@ -339,12 +627,44 @@ paths:
                       code: 'resource-already-exists'
                       title: 'Resource already exists'
                       detail: 'Webhook with provided url already exists.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
     delete:
       tags:
         - Application (Core) APIs
-      summary: Delete webhook definition
+      summary: Delete a webhook definition
       operationId: deleteWebhook
       parameters: 
         - name: webhookId
@@ -374,6 +694,38 @@ paths:
                       detail: 'Webhook ID value is not valid'
                       source:
                         parameter: webhookId
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '404':
           description: 'Not Found'
           content:
@@ -390,10 +742,42 @@ paths:
                       code: 'resource-not-found'
                       title: 'Requested resource is not found'
                       detail: "Webhook with provided id doesn't exist."
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
     get:
       tags:
         - Application (Core) APIs
-      summary: List webhook definition
+      summary: Add or modify a webhook definition
       operationId: getWebhook
       parameters: 
         - name: webhookId
@@ -441,6 +825,38 @@ paths:
                       detail: 'Webhook ID value is not valid'
                       source:
                         parameter: webhookId
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '404':
           description: 'Not Found'
           content:
@@ -457,8 +873,40 @@ paths:
                       code: 'resource-not-found'
                       title: 'Requested resource is not found'
                       detail: "Webhook with provided id doesn't exist."
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
   '/notifications/webhooks/{webhookId}/messages':
     get:
       tags:
@@ -499,7 +947,7 @@ paths:
               examples:
                 Success:
                   value:
-                    type: "list"
+                    type: 'list'
                     size: 2
                     count: 2
                     data:
@@ -516,7 +964,6 @@ paths:
                       links:
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      
                     - id: 22a85f64-5717-4562-b3fc-2c963f66af22
                       payload:
                         eventTypeId: user.created
@@ -530,7 +977,6 @@ paths:
                       links:        
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
-
                     links:
                       self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/
                       next:
@@ -552,6 +998,38 @@ paths:
                       detail: 'Webhook ID value is not valid'
                       source:
                         parameter: webhookId
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '404':
           description: 'Not Found'
           content:
@@ -567,9 +1045,41 @@ paths:
                     - type: 'error'
                       code: 'resource-not-found'
                       title: 'Requested resource is not found'
-                      detail: "Resource not found."
+                      detail: 'Resource not found.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
   '/notifications/webhooks/{webhookId}/messages/{messageId}':
     get:
       tags:
@@ -611,7 +1121,7 @@ paths:
                       - id: e2du423ed
                         url: https://piper.com/basiq-messages/
                         response: 'OK'
-                        responseStatusCode: '200'
+                        responseStatusCode: 200
                         timestamp: '2019-08-24T14:15:22Z'
                         status: 'Success'
                       - id: c3du423f1
@@ -641,6 +1151,38 @@ paths:
                       detail: 'Webhook ID value is not valid'
                       source:
                         parameter: webhookId
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
         '404':
           description: 'Not Found'
           content:
@@ -656,9 +1198,41 @@ paths:
                     - type: 'error'
                       code: 'resource-not-found'
                       title: 'Requested resource is not found'
-                      detail: "Message not found."
+                      detail: 'Message not found.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
   '/notifications/messages/test':
     post:
       tags:
@@ -704,9 +1278,72 @@ paths:
                       code: 'invalid-content'
                       title: 'Invalid request content'
                       detail: "Posted eventTypeId doesn't exists."
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Forbidden:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'forbidden-access'
+                      title: 'Forbidden Access'
+                      detail: 'Access to this resource is forbidden.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'You have exceeded the rate limit for this API.'              
         '500':
           description: 'Internal server error.'
-
+        '503':
+          description: 'Service unavailable'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Service unavailable:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'service-unavailable'
+                      title: 'Service Unavailable'
+                      detail: 'Service Unavailable. Try again later.'
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'

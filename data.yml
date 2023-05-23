@@ -1954,22 +1954,27 @@ components:
     AccountResponseResource:
       title: AccountResponseResource
       required:
+      - type
       - id
-      - accountHolder
       - accountNo
-      - availableFunds
+      - name
+      - currency
       - balance
+      - availableFunds
+      - lastUpdated
+      - institution
       - creditLimit
       - class
-      - connection
-      - currency
-      - institution
-      - lastUpdated
-      - links
-      - name
-      - status
       - transactionIntervals
-      - type
+      - accountHolder
+      - connection
+      - status
+      - fees
+      - depositRates
+      - lendingRates
+      - loan
+      - creditCard
+      - links
       type: object
       properties:
         type:
@@ -2012,9 +2017,18 @@ components:
           example: "400000.00"
         class:
           $ref: '#/components/schemas/AccountClass'
-          description: |-
-            Describes the class(type) of accounts.
-            transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
+          description: Describes the class(type) of accounts.
+          enum: 
+          - transaction 
+          - savings 
+          - credit-card 
+          - mortgage 
+          - loan 
+          - investment 
+          - term-deposit 
+          - insurance 
+          - foreign 
+          - unknown
         connection:
           type: string
           description: The id of the connection resource that was used to retrieve
@@ -2043,6 +2057,26 @@ components:
           enum:
           - available
           - unavailable
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/feesAccountMetadata'
+        depositRates:
+          type: array
+          items: 
+            $ref: '#/components/schemas/depositRateAccountMetadata'
+        lendingRates:
+          type: array
+          items: 
+            $ref: '#/components/schemas/lendingRateAccountMetadata'
+        loan:
+          type: array
+          items: 
+            $ref: '#/components/schemas/loanAccountMetadata'
+        creditCard:
+          type: array
+          items: 
+            $ref: '#/components/schemas/creditCardAccountMetadata'
         transactionIntervals:
           type: array
           description: |-
@@ -2054,6 +2088,144 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
+    creditCardAccountMetadata: 
+      required: 
+       - minPaymentAmount
+       - paymentDueAmount
+       - paymentDueDate
+      type: object
+      properties: 
+        minPaymentAmount: 
+          type: string
+          description: >- 
+            (mandatory) - The minimum payment amount due for the next card payment.
+        paymentDueAmount:
+          type: string
+          description: >-
+            (mandatory) - The amount due for the next card payment. 
+        paymentCurrency:
+          type: string
+          description: >- 
+            (optional) - If absent assumes AUD. 
+        paymentDueDate: 
+          type: string
+          description: >- 
+            (mandatory) - Date that the next payment for the card is due. 
+    loanAccountMetadata: 
+      type: object
+      properties: 
+        startDate: 
+          type: string
+          description: >- 
+            (optional) - Start date for the loan.
+        endDate:
+          type: string
+          description: >-
+            (optional) - Date that the loan is due to be repaid in full.
+        repaymentType:
+          type: string
+          description: >-
+            (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
+          enum:
+          - INTEREST_ONLY
+          - PRINCIPAL_AND_INTEREST
+        minInstalmentAmount:
+          type: string
+          description: >- 
+            (optional) - Minimum amount of next instalment. 
+    lendingRateAccountMetadata:
+      required:
+      - lendingRateType
+      - rate
+      type: object
+      properties: 
+        lendingRateType:
+          type: string
+          description: >-
+            (mandatory) - The type of rate (fixed, variable, etc).
+          enum: 
+          - BUNDLE_DISCOUNT_FIXED
+          - BUNDLE_DISCOUNT_VARIABLE
+          - CASH_ADVANCE
+          - DISCOUNT
+          - FIXED
+          - FLOATING
+          - INTRODUCTORY
+          - MARKET_LINKED
+          - PENALTY
+          - PURCHASE
+          - VARIABLE
+          - IN_ADVANCE
+          - IN_ARREARS
+          - INTEREST_ONLY
+          - PRINCIPAL_AND_INTEREST
+          - INVESTMENT
+          - OWNER_OCCUPIED
+        rate: 
+          type: string
+          description: >- 
+            (mandatory) - The rate to be applied. 
+        applicationFrequency: 
+          type: string
+          description: >- 
+            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account.
+    depositRateAccountMetadata: 
+      required:
+      - depositRateType
+      - rate
+      type: object
+      properties: 
+        depositRateType:
+          type: string
+          description: >-
+            (mandatory) - The type of rate (base, bonus, etc).
+          enum:
+          - BONUS
+          - BUNDLE_BONUS
+          - FIXED
+          - FLOATING
+          - INTRODUCTORY
+          - MARKET_LINKED
+          - VARIABLE
+        rate: 
+          type: string
+          description: >- 
+            (mandatory) - The rate to be applied. 
+        applicationFrequency: 
+          type: string
+          description: >- 
+            (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
+    feesAccountMetadata: 
+      required:
+      - name
+      - feeType
+      type: object
+      properties:
+        name:
+          type: string
+          description: (mandatory) - Name of the fee.
+        feeType:
+          type: string
+          description: (mandatory) - The type of fee.
+          enum:
+          - DEPOSIT
+          - EVENT
+          - EXIT
+          - PAYMENT
+          - PERIODIC
+          - PURCHASE
+          - TRANSACTION
+          - UPFRONT
+          - VARIABLE
+          - WITHDRAWAL
+        amount:
+          type: string
+          description: >-
+            (conditional) - The amount charged for the fee.
+        accrualFrequency:
+          type: string
+          description: >-
+            (optional) - The indicative frequency with which the fee is calculated on the account.
     AccountTransactionInterval:
       required:
       - from

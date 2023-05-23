@@ -12,3 +12,14 @@
 -   Payments
 -   Reports
 -   Services
+-   Enrich
+
+### Changelog
+Please check the [changelog](https://api.basiq.io/changelog) for more details on API changes. 
+
+### How to Contribute
+Report an issue: https://github.com/basiqio/api-ref/issues/new
+
+### API Docs
+
+Links to API docs: https://api.basiq.io/reference
