@@ -2073,6 +2073,10 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/loanaccountMetadata'
+        creditCard:
+          type: array
+          items: 
+            $ref: '#/components/schemas/creditCardaccountMetadata'
         transactionIntervals:
           type: array
           description: |-
@@ -2084,6 +2088,29 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
+    creditCardaccountMetadata: 
+      required: 
+       - minPaymentAmount
+       - paymentDueAmount
+       - paymentDueDate
+      type: object
+      properties: 
+        minPaymentAmount: 
+          type: string
+          description: >- 
+            (mandatory) - The minimum payment amount due for the next card payment.
+        paymentDueAmount:
+          type: string
+          description: >-
+            (mandatory) - The amount due for the next card payment. 
+        paymentCurrency:
+          type: string
+          description: >- 
+            (optional) - If absent assumes AUD. 
+        paymentDueDate: 
+          type: string
+          description: >- 
+            (mandatory) - Date that the next payment for the card is due. 
     loanaccountMetadata: 
       type: object
       properties: 
