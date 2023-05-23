@@ -2,19 +2,18 @@ openapi: 3.0.1
 info:
   description: Basiq Webhooks
   version: "2.3"
-  title: Basiq Webhooks
+  title: Webhooks
 servers:
-  - description:  Application (Core) APIs
+  - description:  Webhooks
     url: 'https://au-api.basiq.io/'
 tags:
-  - name: Application (Core) APIs
-    description: Application (Core) APIs - The partners applications call these
+  - name: Webhooks
 paths:
   '/events/types/':
     get:
       tags:
-        - Application (Core) APIs
-      summary: get the list of event types for webhooks
+        - Webhooks
+      summary: List event types
       operationId: listEventTypes
       responses:
         '200':
@@ -131,8 +130,8 @@ paths:
   '/events/types/{id}':
     get:
       tags:
-        - Application (Core) APIs
-      summary: get the list of event types for webhooks
+        - Webhooks
+      summary: List event types
       operationId: getEventTypeById
       parameters: 
         - name: id
@@ -258,8 +257,8 @@ paths:
   '/notifications/webhooks':
     post:
       tags:
-        - Application (Core) APIs
-      summary: Add a webhook definition
+        - Webhooks
+      summary: Create webhook
       operationId: addWebhook
       requestBody:
         $ref: '#/components/requestBodies/Webhook'
@@ -394,8 +393,8 @@ paths:
                       detail: 'Service Unavailable. Try again later.'
     get:
       tags:
-        - Application (Core) APIs
-      summary: List an applications webhooks
+        - Webhooks
+      summary: List all webhooks
       operationId: listAppWebhooks
       responses:
         '200':
@@ -493,8 +492,8 @@ paths:
   '/notifications/webhooks/{webhookId}':
     post:
       tags:
-        - Application (Core) APIs
-      summary: Update a webhook definition
+        - Webhooks
+      summary: Update webhook
       operationId: updateWebhook
       parameters: 
         - name: webhookId
@@ -663,8 +662,8 @@ paths:
                       detail: 'Service Unavailable. Try again later.'
     delete:
       tags:
-        - Application (Core) APIs
-      summary: Delete a webhook definition
+        - Webhooks
+      summary: Delete webhook
       operationId: deleteWebhook
       parameters: 
         - name: webhookId
@@ -776,8 +775,8 @@ paths:
                       detail: 'Service Unavailable. Try again later.'
     get:
       tags:
-        - Application (Core) APIs
-      summary: Add or modify a webhook definition
+        - Webhooks
+      summary: Update webhook
       operationId: getWebhook
       parameters: 
         - name: webhookId
@@ -910,7 +909,7 @@ paths:
   '/notifications/webhooks/{webhookId}/messages':
     get:
       tags:
-        - Application (Core) APIs
+        - Webhooks
       summary: List messages
       operationId: listMessages
       parameters:
@@ -958,9 +957,6 @@ paths:
                        links:
                         event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
                         eventEntity: https://au-api.basiq.io/payrequest/88a85f64-5717-4562-b3fc-2c963f66af88
-#                      attempts:
-#                        - timestamp: '2019-08-24T14:15:22Z'
-#                          status: 'Success'
                       links:
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -971,9 +967,6 @@ paths:
                         links:
                          event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
                          eventEntity: https://au-api.basiq.io/users/12a85f64-5717-4562-b3fc-2c963f66af12
-#                      attempts:
-#                        - timestamp: '2019-08-24T14:15:22Z'
-#                          status: 'Success'
                       links:        
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -1083,8 +1076,8 @@ paths:
   '/notifications/webhooks/{webhookId}/messages/{messageId}':
     get:
       tags:
-        - Application (Core) APIs
-      summary: Get Webhook Message
+        - Webhooks
+      summary: Retrieve webhook message
       operationId: getWebhookMessage
       parameters:
         - name: webhookId
@@ -1236,8 +1229,8 @@ paths:
   '/notifications/messages/test':
     post:
       tags:
-        - Application (Core) APIs
-      summary: Post a test message
+        - Webhooks
+      summary: Send test message
       operationId: testMessage
       requestBody:
         $ref: '#/components/requestBodies/TestMessage'
@@ -1344,9 +1337,6 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-externalDocs:
-  description: Find out more about Swagger
-  url: 'http://swagger.io'
 components:
   schemas:
     Error:
