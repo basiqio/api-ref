@@ -2060,23 +2060,23 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/feesaccountMetadata'
+            $ref: '#/components/schemas/feesAccountMetadata'
         depositRates:
           type: array
           items: 
-            $ref: '#/components/schemas/depositRateaccountMetadata'
+            $ref: '#/components/schemas/depositRateAccountMetadata'
         lendingRates:
           type: array
           items: 
-            $ref: '#/components/schemas/lendingRateaccountMetadata'
+            $ref: '#/components/schemas/lendingRateAccountMetadata'
         loan:
           type: array
           items: 
-            $ref: '#/components/schemas/loanaccountMetadata'
+            $ref: '#/components/schemas/loanAccountMetadata'
         creditCard:
           type: array
           items: 
-            $ref: '#/components/schemas/creditCardaccountMetadata'
+            $ref: '#/components/schemas/creditCardAccountMetadata'
         transactionIntervals:
           type: array
           description: |-
@@ -2088,7 +2088,7 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
-    creditCardaccountMetadata: 
+    creditCardAccountMetadata: 
       required: 
        - minPaymentAmount
        - paymentDueAmount
@@ -2111,13 +2111,13 @@ components:
           type: string
           description: >- 
             (mandatory) - Date that the next payment for the card is due. 
-    loanaccountMetadata: 
+    loanAccountMetadata: 
       type: object
       properties: 
         startDate: 
           type: string
           description: >- 
-            (optional) - start date for the loan.
+            (optional) - Start date for the loan.
         endDate:
           type: string
           description: >-
@@ -2133,7 +2133,7 @@ components:
           type: string
           description: >- 
             (optional) - Minimum amount of next instalment. 
-    lendingRateaccountMetadata:
+    lendingRateAccountMetadata:
       required:
       - lendingRateType
       - rate
@@ -2169,7 +2169,7 @@ components:
           type: string
           description: >- 
             (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account.
-    depositRateaccountMetadata: 
+    depositRateAccountMetadata: 
       required:
       - depositRateType
       - rate
@@ -2195,7 +2195,7 @@ components:
           type: string
           description: >- 
             (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
-    feesaccountMetadata: 
+    feesAccountMetadata: 
       required:
       - name
       - feeType
@@ -2203,10 +2203,10 @@ components:
       properties:
         name:
           type: string
-          description: (mandatory Field) Name of the fee
+          description: (mandatory) - Name of the fee.
         feeType:
           type: string
-          description: (mandatory Field) The type of fee
+          description: (mandatory) - The type of fee.
           enum:
           - DEPOSIT
           - EVENT
@@ -2221,7 +2221,7 @@ components:
         amount:
           type: string
           description: >-
-            (conditional) The amount charged for the fee.
+            (conditional) - The amount charged for the fee.
         accrualFrequency:
           type: string
           description: >-
