@@ -2069,6 +2069,10 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/lendingRateaccountMetadata'
+        loan:
+          type: array
+          items: 
+            $ref: '#/components/schemas/loanaccountMetadata'
         transactionIntervals:
           type: array
           description: |-
@@ -2080,6 +2084,28 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
+    loanaccountMetadata: 
+      type: object
+      properties: 
+        startDate: 
+          type: string
+          description: >- 
+            (optional) - start date for the loan.
+        endDate:
+          type: string
+          description: >-
+            (optional) - Date that the loan is due to be repaid in full.
+        repaymentType:
+          type: string
+          description: >-
+            (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
+          enum:
+          - INTEREST_ONLY
+          - PRINCIPAL_AND_INTEREST
+        minInstalmentAmount:
+          type: string
+          description: >- 
+            (optional) - Minimum amount of next instalment. 
     lendingRateaccountMetadata:
       required:
       - lendingRateType
