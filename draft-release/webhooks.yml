@@ -133,7 +133,7 @@ paths:
     get:
       tags:
         - Webhooks
-      summary: List event types
+      summary: List an event
       operationId: getEventTypeById
       parameters: 
         - name: id
