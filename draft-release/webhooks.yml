@@ -127,6 +127,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
   '/events/types/{id}':
     get:
       tags:
@@ -1565,7 +1567,19 @@ components:
             eventTypeId: 'user.created'
             Text: 'My test message'
   securitySchemes:
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- services_token: []
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+  samples-languages:
+    - curl
+    - node
+    - ruby
+    - javascript
+    - python
