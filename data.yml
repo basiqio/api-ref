@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Data
   version: 3.0.0
@@ -2065,6 +2065,10 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/depositRateaccountMetadata'
+        lendingRates:
+          type: array
+          items: 
+            $ref: '#/components/schemas/lendingRateaccountMetadata'
         transactionIntervals:
           type: array
           description: |-
@@ -2076,6 +2080,42 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
+    lendingRateaccountMetadata:
+      required:
+      - lendingRateType
+      - rate
+      type: object
+      properties: 
+        lendingRateType:
+          type: string
+          description: >-
+            (mandatory) - The type of rate (fixed, variable, etc).
+          enum: 
+          - BUNDLE_DISCOUNT_FIXED
+          - BUNDLE_DISCOUNT_VARIABLE
+          - CASH_ADVANCE
+          - DISCOUNT
+          - FIXED
+          - FLOATING
+          - INTRODUCTORY
+          - MARKET_LINKED
+          - PENALTY
+          - PURCHASE
+          - VARIABLE
+          - IN_ADVANCE
+          - IN_ARREARS
+          - INTEREST_ONLY
+          - PRINCIPAL_AND_INTEREST
+          - INVESTMENT
+          - OWNER_OCCUPIED
+        rate: 
+          type: string
+          description: >- 
+            (mandatory) - The rate to be applied. 
+        applicationFrequency: 
+          type: string
+          description: >- 
+            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account.
     depositRateaccountMetadata: 
       required:
       - depositRateType
@@ -2101,7 +2141,7 @@ components:
         applicationFrequency: 
           type: string
           description: >- 
-            (optional) - The period after which the calculated amount(s) (see calculationFrequency) are 'applied' (i.e. debited or credited) to the account.
+            (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
     feesaccountMetadata: 
       required:
       - name
