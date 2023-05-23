@@ -256,6 +256,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
   '/notifications/webhooks':
     post:
       tags:
@@ -393,6 +395,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
     get:
       tags:
         - Webhooks
@@ -662,6 +666,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
     delete:
       tags:
         - Webhooks
@@ -1075,6 +1081,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
   '/notifications/webhooks/{webhookId}/messages/{messageId}':
     get:
       tags:
@@ -1228,6 +1236,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
   '/notifications/messages/test':
     post:
       tags:
@@ -1339,6 +1349,8 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
+      security:
+      - services_token: []
 components:
   schemas:
     Error:
