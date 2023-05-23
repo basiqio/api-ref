@@ -4773,6 +4773,7 @@ components:
       required:
       - id
       - accountHolder
+      - accountOwnership
       - accountNo
       - availableFunds
       - balance
@@ -4803,6 +4804,17 @@ components:
             No formatting is applied. Returns a string or null when not available.
           nullable: true
           example: GAVIN BELSON
+        accountOwnership: 
+          type: string
+          description: >-
+            Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers. 
+          example: UNKNOWN
+          enum: 
+          - UNKNOWN
+          - ONE_PARTY
+          - TWO_PARTY
+          - MANY_PARTY
+          - OTHER
         accountNo:
           type: string
           description: Full account number.
