@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: Data
   version: 3.0.0
@@ -2057,26 +2057,9 @@ components:
           enum:
           - available
           - unavailable
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/feesAccountMetadata'
-        depositRates:
-          type: array
-          items: 
-            $ref: '#/components/schemas/depositRateAccountMetadata'
-        lendingRates:
-          type: array
-          items: 
-            $ref: '#/components/schemas/lendingRateAccountMetadata'
-        loan:
-          type: array
-          items: 
-            $ref: '#/components/schemas/loanAccountMetadata'
-        creditCard:
-          type: array
-          items: 
-            $ref: '#/components/schemas/creditCardAccountMetadata'
+        meta:
+          $ref: "#/components/schemas/Metadata"
+
         transactionIntervals:
           type: array
           description: |-
@@ -2088,6 +2071,28 @@ components:
         links:
           $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
+    Metadata:
+      properties:
+        fees:
+          type: array
+          items:
+            $ref: "#/components/schemas/feesAccountMetadata"
+        depositRates:
+          type: array
+          items:
+            $ref: "#/components/schemas/depositRateAccountMetadata"
+        lendingRates:
+          type: array
+          items:
+            $ref: "#/components/schemas/lendingRateAccountMetadata"
+        loan:
+          type: array
+          items:
+            $ref: "#/components/schemas/loanAccountMetadata"
+        creditCard:
+          type: array
+          items:
+            $ref: "#/components/schemas/creditCardAccountMetadata"
     creditCardAccountMetadata: 
       required: 
        - minPaymentAmount
