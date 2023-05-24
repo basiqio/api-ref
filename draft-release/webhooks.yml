@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   description: Basiq Webhooks
-  version: "2.0"
+  version: "2.4"
   title: Basiq Webhooks
 servers:
   - description:  Webhooks
@@ -10,85 +10,6 @@ tags:
   - name: Webhooks    
     description: Application (Core) APIs - The partners applications call these
 paths:
-  '/events/types/':
-    get:
-      tags:
-        - Webhooks
-      summary: List event types
-      operationId: listEventTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventTypes'
-              examples:
-                Success:
-                  value:
-                    type: list
-                    size: 6
-                    count: 6
-                    data:
-                    - type: eventType
-                      id: payrequest.completed
-                      description: when a payrequest is completed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payrequest.completed'
-                    - type: eventType
-                      id: payout.completed
-                      description: when a payout is completed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payout.completed'
-                    - type: eventType
-                      id: payout.failed
-                      description: when a payout is completed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payout.completed'
-                    - type: eventType
-                      id: user.created
-                      description: when a user has been created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/user.created'
-                    - type: eventType
-                      id: consent.created
-                      description: when a consent is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.created'
-                    - type: eventType
-                      id: consent.revoked
-                      description: when a consent is revoked
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.revoked'
-                    links:
-                      self: 'https://au-api.basiq.io/events/types/'
-  '/events/types/{id}':
-    get:
-      tags:
-        - Webhooks
-      summary: Retrieve an event type
-      operationId: getEventTypeById
-      parameters: 
-        - name: id
-          required: true
-          schema: 
-            type: string
-          in: path
-          example: 'user.created'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventType'
-              examples:
-                Success:
-                  value:
-                    id: payrequest.completed
-                    description: when a payrequest is completed
-                    links:
-                      self: 'https://au-api.basiq.io/events/types/user.created'                      
   '/notifications/webhooks':
     post:
       tags:
@@ -372,7 +293,6 @@ paths:
                     links:
                       self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                       webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
-
   '/notifications/messages/test':
     post:
       tags:
@@ -384,10 +304,85 @@ paths:
       responses:
         '201':
           description: Created
-
-externalDocs:
-  description: Find out more about Swagger
-  url: 'http://swagger.io'
+  '/events/types/':
+    get:
+      tags:
+        - Webhooks
+      summary: List event types
+      operationId: listEventTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventTypes'
+              examples:
+                Success:
+                  value:
+                    type: list
+                    size: 6
+                    count: 6
+                    data:
+                    - type: eventType
+                      id: payrequest.completed
+                      description: when a payrequest is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payrequest.completed'
+                    - type: eventType
+                      id: payout.completed
+                      description: when a payout is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.completed'
+                    - type: eventType
+                      id: payout.failed
+                      description: when a payout is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.completed'
+                    - type: eventType
+                      id: user.created
+                      description: when a user has been created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/user.created'
+                    - type: eventType
+                      id: consent.created
+                      description: when a consent is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.created'
+                    - type: eventType
+                      id: consent.revoked
+                      description: when a consent is revoked
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.revoked'
+                    links:
+                      self: 'https://au-api.basiq.io/events/types/'
+  '/events/types/{id}':
+    get:
+      tags:
+        - Webhooks
+      summary: Retrieve an event type
+      operationId: getEventTypeById
+      parameters: 
+        - name: id
+          required: true
+          schema: 
+            type: string
+          in: path
+          example: 'user.created'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventType'
+              examples:
+                Success:
+                  value:
+                    id: payrequest.completed
+                    description: when a payrequest is completed
+                    links:
+                      self: 'https://au-api.basiq.io/events/types/user.created'                      
 components:
   schemas:
     EventTypes:
