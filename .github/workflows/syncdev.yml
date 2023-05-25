@@ -7,16 +7,21 @@ on:
       - DX-dev
 
 jobs:
-  sync:
+  DeployDev:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5
-
+        
       # Run GitHub Action to sync OpenAPI file at ./core.yml
-      - name: Checking Core
+      - name: Validating Core
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@9fc7a0ff9bac4cb539095cfa2f5eeec6cba48f16 # v8
         with:
           rdme: openapi ./draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
+      
+      - name: Validating Webhooks
+        uses: readmeio/rdme@9fc7a0ff9bac4cb539095cfa2f5eeec6cba48f16 # v8
+        with:
+          rdme: openapi ./draft-release/webhooks.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
 
