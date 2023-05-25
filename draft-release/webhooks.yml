@@ -587,12 +587,12 @@ components:
             eventTypeId: 'user.created'
             Text: 'My test message'
   securitySchemes:
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
+    services_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 security:
-  - api_key: []
+  - services_token: []
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
