@@ -786,6 +786,11 @@ paths:
       tags:
         - Events
       summary: List event types
+      description: >-
+          
+          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+          <br/>
+          Returns a list of event types. 
       operationId: listEventTypes
       responses:
         '200':
@@ -1001,6 +1006,11 @@ paths:
       tags:
         - Events
       summary: Retrieve an event type
+      description: >-
+          
+          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+          <br/>
+          Returns a single event type based on the parameter input. 
       operationId: getEventTypeById
       parameters: 
         - name: id
