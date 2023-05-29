@@ -789,7 +789,8 @@ paths:
       description: >-
           
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-          <br/>
+          
+          
           Returns a list of event types. 
       operationId: listEventTypes
       responses:
@@ -950,21 +951,13 @@ paths:
                       title: 'Unauthorized Access'
                       detail: 'You are not authorized to access this resource'
         '403':
-          description: 'Forbidden'
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                Forbidden:
-                  value:
-                    type: 'list'
-                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
-                    data:
-                    - type: 'error'
-                      code: 'forbidden-access'
-                      title: 'Forbidden Access'
-                      detail: 'Access to this resource is forbidden.'
+                $ref: '#/components/schemas/ForbiddenAccessError'
         '429':
           description: 'Too many requests'
           content:
@@ -982,23 +975,21 @@ paths:
                       title: 'Too many requests'
                       detail: 'Query limit reached.'              
         '500':
-          description: 'Internal server error.'
-        '503':
-          description: 'Service unavailable'
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                Service unavailable:
-                  value:
-                    type: 'list'
-                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
-                    data:
-                    - type: 'error'
-                      code: 'service-unavailable'
-                      title: 'Service Unavailable'
-                      detail: 'Service Unavailable. Try again later.'
+                $ref: '#/components/schemas/InternalServerError'
+        '503':
+          description: >-
+            Returns error response code indicates that the server is not ready
+            to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
         - services_token: []
   /events/types/{id}:
@@ -1009,7 +1000,8 @@ paths:
       description: >-
           
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-          <br/>
+          
+          
           Returns a single event type based on the parameter input. 
       operationId: getEventTypeById
       parameters: 
@@ -1068,21 +1060,13 @@ paths:
                       title: 'Unauthorized Access'
                       detail: 'You are not authorized to access this resource'
         '403':
-          description: 'Forbidden'
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                Forbidden:
-                  value:
-                    type: 'list'
-                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
-                    data:
-                    - type: 'error'
-                      code: 'forbidden-access'
-                      title: 'Forbidden Access'
-                      detail: 'Access to this resource is forbidden.'
+                $ref: '#/components/schemas/ForbiddenAccessError'
         '404':
           description: 'Not Found'
           content:
@@ -1116,23 +1100,21 @@ paths:
                       title: 'Too many requests'
                       detail: 'Query limit reached.'
         '500':
-          description: 'Internal server error.'
-        '503':
-          description: 'Service unavailable'
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                Service unavailable:
-                  value:
-                    type: 'list'
-                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
-                    data:
-                    - type: 'error'
-                      code: 'service-unavailable'
-                      title: 'Service Unavailable'
-                      detail: 'Service Unavailable. Try again later.'
+                $ref: '#/components/schemas/InternalServerError'
+        '503':
+          description: >-
+            Returns error response code indicates that the server is not ready
+            to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
         - services_token: []
   /users/{userId}/jobs:
