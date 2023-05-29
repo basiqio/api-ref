@@ -781,6 +781,342 @@ paths:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
         - services_token: []
+  /events/types/:
+    get:
+      tags:
+        - Events
+      summary: List event types
+      description: >-
+          
+          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+          
+          
+          Returns a list of event types. 
+      operationId: listEventTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventTypes'
+              examples:
+                Success:
+                  value:
+                    type: list
+                    size: 25
+                    count: 25
+                    data:
+                    - type: eventType
+                      id: action.completed
+                      description: when an action is completed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/action.completed'
+                    - type: eventType
+                      id: action.failed
+                      description: when an action is failed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/action.failed'
+                    - type: eventType
+                      id: connection.created
+                      description: when a connection is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/connection.created'
+                    - type: eventType
+                      id: connection.deleted
+                      description: when a connection is deleted
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/connection.deleted'
+                    - type: eventType
+                      id: connection.updated
+                      description: when a connection is updated
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/connection.updated'
+                    - type: eventType
+                      id: consent.created
+                      description: when a consent is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.created'
+                    - type: eventType
+                      id: consent.reminder
+                      description: time for a consent reminder
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.reminder'
+                    - type: eventType
+                      id: consent.revoked
+                      description: when a consent is revoked
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.revoked'
+                    - type: eventType
+                      id: consent.updated
+                      description: when a consent is updated
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.updated'
+                    - type: eventType
+                      id: consent.warning
+                      description: time for a consent warning
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/consent.warning'
+                    - type: eventType
+                      id: job.created
+                      description: when a job is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/job.created'
+                    - type: eventType
+                      id: job.failed
+                      description: when a job is failed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/job.failed'
+                    - type: eventType
+                      id: job.in-progress
+                      description: when a job is in-progress
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/job.in-progress'
+                    - type: eventType
+                      id: job.successful
+                      description: when a job is successful
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/job.successful'
+                    - type: eventType
+                      id: payout.created
+                      description: when a payout is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.created'
+                    - type: eventType
+                      id: payout.failed
+                      description: when a payout is failed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.failed'
+                    - type: eventType
+                      id: payout.in-progress
+                      description: when a payout is in-progress
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.in-progress'
+                    - type: eventType
+                      id: payout.successful
+                      description: when a payout is successful
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payout.successful'
+                    - type: eventType
+                      id: payrequest.created
+                      description: when a payrequest is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payrequest.created'
+                    - type: eventType
+                      id: payrequest.failed
+                      description: when a payrequest is failed
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payrequest.failed'
+                    - type: eventType
+                      id: payrequest.in-progress
+                      description: when a payrequest is in-progress
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payrequest.in-progress'
+                    - type: eventType
+                      id: payrequest.successful
+                      description: when a payrequest is successful
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/payrequest.successful'
+                    - type: eventType
+                      id: user.created
+                      description: when an user is created
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/user.created'
+                    - type: eventType
+                      id: user.deleted
+                      description: when an user is deleted
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/user.deleted'
+                    - type: eventType
+                      id: user.updated
+                      description: when an user is updated
+                      links:
+                        self: 'https://au-api.basiq.io/events/types/user.updated'
+                    links:
+                      self: 'https://au-api.basiq.io/events/types/'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'Query limit reached.'              
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        '503':
+          description: >-
+            Returns error response code indicates that the server is not ready
+            to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+        - services_token: []
+  /events/types/{id}:
+    get:
+      tags:
+        - Events
+      summary: Retrieve an event type
+      description: >-
+          
+          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+          
+          
+          Returns a single event type based on the parameter input. 
+      operationId: getEventTypeById
+      parameters: 
+        - name: id
+          required: true
+          schema: 
+            type: string
+          in: path
+          example: 'user.created'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventType'
+              examples:
+                Success:
+                  value:
+                    id: payrequest.completed
+                    description: when a payrequest is completed
+                    links:
+                      self: 'https://au-api.basiq.io/events/types/user.created'                      
+        '400':
+          description: 'Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Parameter not valid:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'path-parameter-not-valid'
+                      title: 'Parameter value is not valid'
+                      detail: 'Event Type ID parameter is not valid'
+                      source:
+                        parameter: 'eventTypeId'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: 'Not Found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Error:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'resource-not-found'
+                      title: 'Requested resource is not found'
+                      detail: 'Requested event type does not exist.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'Query limit reached.'
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        '503':
+          description: >-
+            Returns error response code indicates that the server is not ready
+            to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+        - services_token: []
   /users/{userId}/jobs:
     get:
       tags:
@@ -1204,6 +1540,66 @@ components:
           description: Accounts details
           items:
             $ref: '#/components/schemas/AccountsData'
+    EventTypes:
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          description: one or more events that the webhook would send messages for.
+          allOf:
+          - $ref: '#/components/schemas/EventType'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next: 
+              type: string
+    Error:
+      properties:
+        type:
+          type: string
+        correlationId:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              code:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+              source:
+                type: object
+                properties:
+                  parameter:
+                    type: string
+    EventType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifer of the event type
+          example: user.created
+        description:
+          type: string
+          description: a brief description of the event type
+          example: when a user is created
+        links:
+          type: object
+          properties:
+            self:  
+              type: string
     AccountsData:
       required:
         - accountNo
