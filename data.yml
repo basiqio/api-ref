@@ -1969,11 +1969,6 @@ components:
       - accountHolder
       - connection
       - status
-      - fees
-      - depositRates
-      - lendingRates
-      - loan
-      - creditCard
       - links
       type: object
       properties:
@@ -2086,58 +2081,50 @@ components:
           items:
             $ref: "#/components/schemas/lendingRateAccountMetadata"
         loan:
-          type: array
-          items:
-            $ref: "#/components/schemas/loanAccountMetadata"
+          type: object
+          properties: 
+            startDate: 
+              type: string
+              description: >- 
+                (optional) - Start date for the loan.
+            endDate:
+              type: string
+              description: >-
+                (optional) - Date that the loan is due to be repaid in full.
+            repaymentType:
+              type: string
+              description: >-
+                (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
+              enum:
+              - INTEREST_ONLY
+              - PRINCIPAL_AND_INTEREST
+            minInstalmentAmount:
+              type: string
+              description: >- 
+                (optional) - Minimum amount of next instalment. 
         creditCard:
-          type: array
-          items:
-            $ref: "#/components/schemas/creditCardAccountMetadata"
-    creditCardAccountMetadata: 
-      required: 
-       - minPaymentAmount
-       - paymentDueAmount
-       - paymentDueDate
-      type: object
-      properties: 
-        minPaymentAmount: 
-          type: string
-          description: >- 
-            (mandatory) - The minimum payment amount due for the next card payment.
-        paymentDueAmount:
-          type: string
-          description: >-
-            (mandatory) - The amount due for the next card payment. 
-        paymentCurrency:
-          type: string
-          description: >- 
-            (optional) - If absent assumes AUD. 
-        paymentDueDate: 
-          type: string
-          description: >- 
-            (mandatory) - Date that the next payment for the card is due. 
-    loanAccountMetadata: 
-      type: object
-      properties: 
-        startDate: 
-          type: string
-          description: >- 
-            (optional) - Start date for the loan.
-        endDate:
-          type: string
-          description: >-
-            (optional) - Date that the loan is due to be repaid in full.
-        repaymentType:
-          type: string
-          description: >-
-            (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
-          enum:
-          - INTEREST_ONLY
-          - PRINCIPAL_AND_INTEREST
-        minInstalmentAmount:
-          type: string
-          description: >- 
-            (optional) - Minimum amount of next instalment. 
+          required: 
+          - minPaymentAmount
+          - paymentDueAmount
+          - paymentDueDate
+          type: object
+          properties: 
+            minPaymentAmount: 
+              type: string
+              description: >- 
+                (mandatory) - The minimum payment amount due for the next card payment.
+            paymentDueAmount:
+              type: string
+              description: >-
+                (mandatory) - The amount due for the next card payment. 
+            paymentCurrency:
+              type: string
+              description: >- 
+                (optional) - If absent assumes AUD. 
+            paymentDueDate: 
+              type: string
+              description: >- 
+                (mandatory) - Date that the next payment for the card is due.
     lendingRateAccountMetadata:
       required:
       - lendingRateType
