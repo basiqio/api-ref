@@ -670,7 +670,7 @@ paths:
           description: >-
               Filter parameter can be used to filter connector list by connector property. This parameter should contain a comma-separated list of filter statements.</br>
 
-              A filter statement is composed of the entity name (in this case, it is always 'institution'), the property name (e.g., 'stage'), the filter operator (e.g., 'eq'), and the quoted string value in parentheses (e.g., "('live')").</br>
+              A filter statement is composed of the entity name (in this case, it is always 'connector'), the property name (e.g., 'stage'), the filter operator (e.g., 'eq'), and the quoted string value in parentheses (e.g., "('live')").</br>
               
               The following list of regular expressions describes acceptable filter statements:</br>
               
