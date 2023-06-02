@@ -107,7 +107,7 @@ paths:
         reports.
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
@@ -174,7 +174,7 @@ paths:
           description: The ID of the generated report
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
@@ -4598,7 +4598,7 @@ paths:
         create reports on.
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
@@ -4696,7 +4696,7 @@ paths:
           description: The ID of the report type
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
@@ -4888,8 +4888,21 @@ components:
             Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
           items:
             $ref: '#/components/schemas/AccountTransactionInterval'
-        
+        links:
+          $ref: '#/components/schemas/accountLinks'
       description: Container object with account details
+    accountLinks:
+      type: object
+      properties: 
+        self: 
+          type: string
+          description: "/users/6a52015e/accounts/31eb30a0"
+        transactions: 
+          type: string
+          description: "/users/6a52015e/transactions?filter=account.id.eq('31eb30a0')"
+        institution: 
+          type: string
+          description: "/institutions/AU00000"
     AccountTransactionInterval:
       required:
       - from
