@@ -4888,6 +4888,7 @@ components:
             Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
           items:
             $ref: '#/components/schemas/AccountTransactionInterval'
+        
       description: Container object with account details
     AccountTransactionInterval:
       required:
