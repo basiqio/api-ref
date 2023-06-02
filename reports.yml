@@ -4446,7 +4446,7 @@ paths:
                     links:
                       self: "/users/6a52015e/accounts/31eb30a0"
                       transactions: "/users/6a52015e/transactions?filter=account.id.eq('31eb30a0')"
-                      institution: "/institutions/AU00601"
+                      institution: "/institutions/AU00000"
                   - id: a6e4dc76-03e0-46e9-9fb3-04b6623b3392
                     accountNo: 600000-9292938
                     name: My Credit Card
@@ -4469,7 +4469,7 @@ paths:
                     links:
                       self: "/users/6a52015e/accounts/31eb30a0"
                       transactions: "/users/6a52015e/transactions?filter=account.id.eq('31eb30a0')"
-                      institution: "/institutions/AU00601"
+                      institution: "/institutions/AU00000"
                 transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
