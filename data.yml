@@ -702,7 +702,7 @@ paths:
               
               • (connector).(authorization).(type).(in)\(([\w\W]+)\)</br>
               
-              • (connector).(connectorCategory).(eq|ne)\(('chrome'|'node')\)</br>
+              • (connector).(connectorEngine).(eq|ne)\(('chrome'|'node')\)</br>
               
               Multiple filter definitions should be separated with a comma (,).</br>
               
