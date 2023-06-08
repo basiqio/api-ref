@@ -553,7 +553,7 @@ paths:
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
@@ -706,7 +706,7 @@ paths:
           example: ''      
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
@@ -868,7 +868,7 @@ paths:
             type: string
       responses:
         '200':
-          description: OK
+          description: Success
           content:
             application/json:
               schema:
