@@ -1,14 +1,14 @@
 openapi: 3.0.1
 info:
   description: Webhooks
-  version: "2.4.0"
+  version: "2.4.1"
   title: Webhooks
 servers:
   - description: Basiq Webhooks
     url: 'https://au-api.basiq.io/'
 tags:
   - name: Webhooks
-    description: Application (Core) APIs - The partners applications call these
+    description: BASIQ Webhooks
 paths:
   '/notifications/webhooks':
     post:
