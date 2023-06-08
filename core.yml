@@ -804,8 +804,8 @@ paths:
                 Success:
                   value:
                     type: list
-                    size: 25
-                    count: 25
+                    size: 21
+                    count: 21
                     data:
                     - type: eventType
                       id: action.completed
@@ -857,26 +857,27 @@ paths:
                       description: time for a consent warning
                       links:
                         self: 'https://au-api.basiq.io/events/types/consent.warning'
-                    - type: eventType
-                      id: job.created
-                      description: when a job is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/job.created'
-                    - type: eventType
-                      id: job.failed
-                      description: when a job is failed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/job.failed'
-                    - type: eventType
-                      id: job.in-progress
-                      description: when a job is in-progress
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/job.in-progress'
-                    - type: eventType
-                      id: job.successful
-                      description: when a job is successful
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/job.successful'
+                    # The Below events are not supported
+                    # - type: eventType
+                    #   id: job.created
+                    #   description: when a job is created
+                    #   links:
+                    #     self: 'https://au-api.basiq.io/events/types/job.created'
+                    # - type: eventType
+                    #   id: job.failed
+                    #   description: when a job is failed
+                    #   links:
+                    #     self: 'https://au-api.basiq.io/events/types/job.failed'
+                    # - type: eventType
+                    #   id: job.in-progress
+                    #   description: when a job is in-progress
+                    #   links:
+                    #     self: 'https://au-api.basiq.io/events/types/job.in-progress'
+                    # - type: eventType
+                    #   id: job.successful
+                    #   description: when a job is successful
+                    #   links:
+                    #     self: 'https://au-api.basiq.io/events/types/job.successful'
                     - type: eventType
                       id: payout.created
                       description: when a payout is created
