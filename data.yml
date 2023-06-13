@@ -1992,14 +1992,17 @@ components:
               type: string
               description: >- 
                 (optional) - Start date for the loan.
+              example: "2019-10-01"
             endDate:
               type: string
               description: >-
                 (optional) - Date that the loan is due to be repaid in full.
+              example: "2045-10-01"
             repaymentType:
               type: string
               description: >-
                 (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
+              example: "PRINCIPAL_AND_INTEREST"
               enum:
               - INTEREST_ONLY
               - PRINCIPAL_AND_INTEREST
@@ -2007,6 +2010,7 @@ components:
               type: string
               description: >- 
                 (optional) - Minimum amount of next instalment. 
+              example: "5500"
         creditCard:
           required: 
           - minPaymentAmount
@@ -2018,18 +2022,22 @@ components:
               type: string
               description: >- 
                 (mandatory) - The minimum payment amount due for the next card payment.
+              example: "117.00"
             paymentDueAmount:
               type: string
               description: >-
                 (mandatory) - The amount due for the next card payment. 
+              example: "5847.00"
             paymentCurrency:
               type: string
               description: >- 
                 (optional) - If absent assumes AUD. 
+              example: "AUD"
             paymentDueDate: 
               type: string
               description: >- 
                 (mandatory) - Date that the next payment for the card is due.
+              example: "2023-12-12"
     lendingRateAccountMetadata:
       required:
       - lendingRateType
@@ -2040,6 +2048,7 @@ components:
           type: string
           description: >-
             (mandatory) - The type of rate (fixed, variable, etc).
+          example: PURCHASE
           enum: 
           - BUNDLE_DISCOUNT_FIXED
           - BUNDLE_DISCOUNT_VARIABLE
@@ -2062,10 +2071,12 @@ components:
           type: string
           description: >- 
             (mandatory) - The rate to be applied. 
+          example: "0.2024"
         applicationFrequency: 
           type: string
           description: >- 
             (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account.
+          example: "P1M"
     depositRateAccountMetadata: 
       required:
       - depositRateType
@@ -2076,6 +2087,7 @@ components:
           type: string
           description: >-
             (mandatory) - The type of rate (base, bonus, etc).
+          example: "VARIABLE"
           enum:
           - BONUS
           - BUNDLE_BONUS
@@ -2087,11 +2099,13 @@ components:
         rate: 
           type: string
           description: >- 
-            (mandatory) - The rate to be applied. 
+            (mandatory) - The rate to be applied.
+          example: "0.0385"
         applicationFrequency: 
           type: string
           description: >- 
             (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
+          example: "P1M"
     feesAccountMetadata: 
       required:
       - name
@@ -2101,6 +2115,7 @@ components:
         name:
           type: string
           description: (mandatory) - Name of the fee.
+          example: Dishonour fee
         feeType:
           type: string
           description: (mandatory) - The type of fee.
@@ -2115,14 +2130,17 @@ components:
           - UPFRONT
           - VARIABLE
           - WITHDRAWAL
+          example: EVENT
         amount:
           type: string
           description: >-
             (conditional) - The amount charged for the fee.
+          example: "10.00"
         accrualFrequency:
           type: string
           description: >-
             (optional) - The indicative frequency with which the fee is calculated on the account.
+          example: "P1M"
     AccountTransactionInterval:
       required:
       - from
