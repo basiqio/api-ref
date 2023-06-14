@@ -68,6 +68,12 @@ jobs:
         with:
           rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
 
+      # Run GitHub Action to sync OpenAPI file at ./webhooks.yml
+      - name: Checking Webhooks
+        uses: readmeio/rdme@01ed07d63eeeda9be92b4907c59bdf1283a0b4ce # v8
+        with:
+          rdme: openapi ./webhooks.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.WEBHOOKS_API_DEFINITION_ID }}
+
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1 # Leverages SemVer as per https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
