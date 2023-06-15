@@ -100,6 +100,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -224,6 +233,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -274,21 +292,30 @@ paths:
             Returns error that server cannot or will not process the request due
             to something that is perceived to be a client error.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
             such as insufficient rights to a resource.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ForbiddenAccessError'
         '404':
           description: Returns error indicating that server can't find requested resource.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
         '500':
@@ -296,7 +323,7 @@ paths:
             Returns error response code indicates that the server encountered an
             unexpected condition that prevented it from fulfilling the request.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
         '503':
@@ -304,7 +331,7 @@ paths:
             Returns error response code indicates that the server is not ready
             to handle the request.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
@@ -409,8 +436,6 @@ paths:
                           description: >-
                             This allows access to transaction data for your
                             accounts. It includes all account transaction data.
-            
-
         '400':
           description: >-
             Returns error that server cannot or will not process the request due
@@ -481,21 +506,30 @@ paths:
             Returns error that server cannot or will not process the request due
             to something that is perceived to be a client error.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
             such as insufficient rights to a resource.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ForbiddenAccessError'
         '404':
           description: Returns error indicating that server can't find requested resource.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
         '500':
@@ -503,7 +537,7 @@ paths:
             Returns error response code indicates that the server encountered an
             unexpected condition that prevented it from fulfilling the request.
           content:
-            '*/*':
+           application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
         '503':
@@ -511,7 +545,7 @@ paths:
             Returns error response code indicates that the server is not ready
             to handle the request.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
@@ -555,6 +589,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
@@ -605,6 +648,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
@@ -668,27 +720,36 @@ paths:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         404:
           description: Returns error indicating that server can't find requested resource.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
         500:
           description: Returns error response code indicates that the server encountered
             an unexpected condition that prevented it from fulfilling the request.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
         503:
           description: Returns error response code indicates that the server is not
             ready to handle the request.
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
@@ -749,6 +810,15 @@ paths:
                             detail: The provided filter parameter is in invalid format or unsupported
                             source:
                               parameter: filter
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -936,7 +1006,10 @@ paths:
                     links:
                       self: 'https://au-api.basiq.io/events/types/'
         '401':
-          description: 'Unauthorized'
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
           content:
             application/json:
               schema:
@@ -1027,7 +1100,10 @@ paths:
                     links:
                       self: 'https://au-api.basiq.io/events/types/user.created'                      
         '400':
-          description: 'Bad Request'
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
           content:
             application/json:
               schema:
@@ -1045,7 +1121,10 @@ paths:
                       source:
                         parameter: 'eventTypeId'
         '401':
-          description: 'Unauthorized'
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
           content:
             application/json:
               schema:
@@ -1154,6 +1233,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -1393,6 +1481,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         '403':
           description: >-
             Error that access is forbidden and tied to the application logic,
@@ -1454,6 +1551,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequestError'
+        401:
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
