@@ -82,16 +82,16 @@ paths:
                             code: '411000'
                             title: Supermarket and Grocery Stores
                       location:
-                        routeNo: ''
-                        route: ''
-                        postalCode: ''
-                        suburb: ''
-                        state: ''
-                        country: ''
-                        formattedAddress: ''
+                        routeNo: '29'
+                        route: 'E Esplanade'
+                        postalCode: '2095'
+                        suburb: 'NSW'
+                        state: 'MANLY'
+                        country: 'Australia'
+                        formattedAddress: '1/39 E Esplanade, Manly NSW 2095'
                         geometry:
-                          lat: ''
-                          lng: ''
+                          lat: '-33.79988520000001'
+                          lng: '151.2858021'
                     links:
                       self: https://au-api.basiq.io/enrich?country=AU&institution=AU00000&q=WOOLWORTHS
                       logo-master: https://enrich-enrichmerchantslogobucket-6or17iuhdvs9.s3-ap-southeast-2.amazonaws.com/woolworths-master.svg
