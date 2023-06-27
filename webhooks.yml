@@ -36,7 +36,6 @@ paths:
                     description: 'Webhook that catches all my events'
                     url: https://piper.com/basiq-messages/
                     status: active
-                    secret: rfiuheo43934
                     subscribedEvents:
                       - payrequest.successful
                       - user.created
@@ -282,7 +281,6 @@ paths:
                     description: 'Webhook that catches all my events'
                     url: https://piper.com/basiq-messages/
                     status: active
-                    secret: rfiuheo43934
                     subscribedEvents:
                       - payrequest.successful
                       - user.created
@@ -1218,9 +1216,6 @@ components:
           enum: 
             - active
             - pending-approval
-        secret:
-          type: string
-          description: secret for signing the messages
         subscribedEvents:
           type: object
           description: one or more events that the webhook would send messages for.
