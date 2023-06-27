@@ -2075,7 +2075,7 @@ components:
         applicationFrequency: 
           type: string
           description: >- 
-            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account.Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax)
+            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax).
           example: "P1M"
     depositRateAccountMetadata: 
       required:
