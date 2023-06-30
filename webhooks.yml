@@ -1304,10 +1304,10 @@ components:
                 description: one or more events that the webhook would send messages for.
                 items:
                   type: string
-                  example: 'payrequest.successful'.
+                  example: 'payrequest.successful'
           example:
             name: 'My General Webhook'
-            description: 'Webhook to catch all events'.
+            description: 'Webhook to catch all events'
             url: https://piper.com/basiq-messages/
             subscribedEvents:
             - payrequest.successful
