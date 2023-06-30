@@ -36,6 +36,7 @@ paths:
                     description: 'Webhook that catches all my events'
                     url: https://piper.com/basiq-messages/
                     status: active
+                    secret: rfiuheo43934
                     subscribedEvents:
                       - payrequest.successful
                       - user.created
@@ -281,6 +282,7 @@ paths:
                     description: 'Webhook that catches all my events'
                     url: https://piper.com/basiq-messages/
                     status: active
+                    secret: rfiuheo43934
                     subscribedEvents:
                       - payrequest.successful
                       - user.created
@@ -1200,22 +1202,25 @@ components:
         id:
           type: string
           format: uuid
-          description: unique identifer in the form of uuid for the webhook
+          description: unique identifer in the form of uuid for the webhook.
         name: 
           type: string
-          description: name to describe the webhook
+          description: name to describe the webhook.
         description: 
           type: string
-          description: detailed description of the webhook
+          description: detailed description of the webhook.
         url: 
           type: string
-          description: url to send webhooks to
+          description: url to send webhooks to.
         status:
           type: string
-          description: status of the webhook
+          description: status of the webhook.
           enum: 
             - active
             - pending-approval
+        secret:
+          type: string
+          description: secret for signing the messages.
         subscribedEvents:
           type: object
           description: one or more events that the webhook would send messages for.
@@ -1224,7 +1229,7 @@ components:
           properties:
             subscribedEvents:
               type: array
-              description: name of the event to monitor in the form of `noun.verb`
+              description: name of the event to monitor in the form of `noun.verb`.
               items:
                 type: string
                 example: 'payrequest.successful'
@@ -1257,11 +1262,11 @@ components:
         id:
           type: string
           format: uuid
-          description: unique identifer in the form of uuid for the webhook message
+          description: unique identifer in the form of uuid for the webhook message.
         webhookId:
           type: string
           format: uuid
-          description: unique identifer in the form of uuid for the webhook
+          description: unique identifer in the form of uuid for the webhook.
         event:
           type: string
         eventType:
@@ -1287,27 +1292,27 @@ components:
             properties:
               name: 
                 type: string
-                description: name to describe the webhook
+                description: name to describe the webhook.
               description: 
                 type: string
-                description: detailed description of the webhook
+                description: detailed description of the webhook.
               url: 
                 type: string
-                description: url to send webhooks to
+                description: url to send webhooks to.
               subscribedEvents:
                 type: array
                 description: one or more events that the webhook would send messages for.
                 items:
                   type: string
-                  example: 'payrequest.successful'
+                  example: 'payrequest.successful'.
           example:
             name: 'My General Webhook'
-            description: 'Webhook to catch all events'
+            description: 'Webhook to catch all events'.
             url: https://piper.com/basiq-messages/
             subscribedEvents:
             - payrequest.successful
             - user.created
-      description: Webhook request object
+      description: Webhook request object.
       required: true
     TestMessage:
       content:
@@ -1320,11 +1325,11 @@ components:
             properties:
               eventTypeId: 
                 type: string
-                description: The event type Id to be triggered. refer to /events/types/ for full list
+                description: The event type Id to be triggered. refer to /events/types/ for full list.
                 example: 'user.created'
               Text:
                 type: string
-                description: Text field to be supplied and replayed back
+                description: Text field to be supplied and replayed back.
           example:
             eventTypeId: 'user.created'
             Text: 'My test message'
