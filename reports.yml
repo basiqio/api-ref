@@ -217,14 +217,6 @@ paths:
                     result:
                       value: '7228.00'
                       format: money
-                  - id: ME003
-                    title: Income has been stable for (months)
-                    description: Number of months within report over which income has been stable
-                    sections:
-                    - Income Sources
-                    result:
-                      value: '5'
-                      format: integer
                   - id: ME004
                     title: Other possible income
                     description: Mean monthly income from sources not covered within Salary and Benefits
@@ -487,14 +479,6 @@ paths:
                     result:
                       value: "-325.00"
                       format: money
-                  - id: ME035
-                    title: Total Income has been stable for (months)
-                    description: Number of months within report over which total income has been stable
-                    sections:
-                    - Income Sources
-                    result:
-                      value: "3"
-                      format: integer
                   - id: ME039
                     title: Average expenses excluding liabilities
                     description: Mean monthly total expenses excluding liability payments
