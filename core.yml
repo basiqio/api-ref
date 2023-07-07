@@ -1095,8 +1095,8 @@ paths:
               examples:
                 Success:
                   value:
-                    id: payrequest.completed
-                    description: when a payrequest is completed
+                    id: payrequest.successful
+                    description: when a payrequest is successful
                     links:
                       self: 'https://au-api.basiq.io/events/types/user.created'                      
         '400':
