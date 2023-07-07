@@ -1658,8 +1658,8 @@ components:
         data:
           type: array
           description: one or more events that the webhook would send messages for.
-          allOf:
-          - $ref: '#/components/schemas/EventType'
+          items:
+            $ref: '#/components/schemas/EventType'
         links:
           type: object
           properties:
