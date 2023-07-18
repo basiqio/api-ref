@@ -512,8 +512,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -540,8 +541,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -582,8 +584,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -610,8 +613,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -652,8 +656,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -680,8 +685,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'                     
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -722,8 +728,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'                   
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -750,8 +757,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -792,8 +800,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -820,8 +829,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -862,8 +872,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -890,8 +901,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -932,8 +944,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -960,8 +973,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -1002,8 +1016,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -1030,8 +1045,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -1072,8 +1088,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -1097,8 +1114,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -1139,8 +1157,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -1167,8 +1186,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -1209,8 +1229,9 @@ paths:
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: '100.00'
+                        display: 'Monthly'
                         next:
                           date: '2022-04-01'
                           amount: '100.00'
@@ -1237,8 +1258,9 @@ paths:
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: '100.00'
+                          display: 'Monthly'
                           next:
                             date: '2022-04-01'
                             amount: '100.00'
@@ -1279,8 +1301,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1307,8 +1330,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1349,8 +1373,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1377,8 +1402,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1419,8 +1445,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1447,8 +1474,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1489,8 +1517,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1517,8 +1546,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1559,8 +1589,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1587,8 +1618,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1629,8 +1661,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1657,8 +1690,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1700,8 +1734,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1728,8 +1763,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1770,8 +1806,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1798,8 +1835,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1840,8 +1878,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1868,8 +1907,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1910,8 +1950,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -1938,8 +1979,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -1980,8 +2022,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2008,8 +2051,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2050,8 +2094,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2078,8 +2123,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2120,8 +2166,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2148,8 +2195,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2190,8 +2238,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2218,8 +2267,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2260,8 +2310,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2288,8 +2339,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2330,8 +2382,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2358,8 +2411,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2400,8 +2454,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2428,8 +2483,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2470,8 +2526,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2498,8 +2555,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2540,8 +2598,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2568,8 +2627,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2610,8 +2670,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2638,8 +2699,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2680,8 +2742,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2708,8 +2771,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2750,8 +2814,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2778,8 +2843,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2820,8 +2886,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2848,8 +2915,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2890,8 +2958,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2918,8 +2987,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -2960,8 +3030,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -2988,8 +3059,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3030,8 +3102,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3058,8 +3131,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3101,8 +3175,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3129,8 +3204,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3172,8 +3248,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3200,8 +3277,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3242,8 +3320,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3270,8 +3349,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3312,8 +3392,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3340,8 +3421,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3382,8 +3464,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3410,8 +3493,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3453,8 +3537,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3481,8 +3566,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3524,8 +3610,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3552,8 +3639,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3595,8 +3683,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3620,8 +3709,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3662,8 +3752,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3690,8 +3781,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3732,8 +3824,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3760,8 +3853,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3802,8 +3896,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3830,8 +3925,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3872,8 +3968,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3900,8 +3997,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -3942,8 +4040,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -3970,8 +4069,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -4012,8 +4112,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -4040,8 +4141,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -4082,8 +4184,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -4110,8 +4213,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -4152,8 +4256,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -4180,8 +4285,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -4222,8 +4328,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -4250,8 +4357,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -4292,8 +4400,9 @@ paths:
                           medianTransaction: '-20.00'
                           medianMonth: '-20.00'
                       frequency:
-                        type: monthly
+                        type: P1M
                         amount: "-100.00"
+                        display: "Monthly"
                         next:
                           date: '2022-04-01'
                           amount: "-100.00"
@@ -4320,8 +4429,9 @@ paths:
                             medianTransaction: '-20.00'
                             medianMonth: '-20.00'
                         frequency:
-                          type: monthly
+                          type: P1M
                           amount: "-100.00"
+                          display: "Monthly"
                           next:
                             date: '2022-04-01'
                             amount: "-100.00"
@@ -5871,13 +5981,18 @@ components:
                         properties: 
                           type: 
                             type: string
-                            description: The frequency pattern found of the transactions e.g. how often do they occur.
-                            enum: [daily, weekly, fortnightly, monthly, yearly]
-                            example: monthly
+                            description: The frequency codes.
+                            enum: [P12M, P13W, P1D, P1M, P1W, P26W, P2M, P2W, P3M, P4M, P4W, P52W, P6M]
+                            example: P12M
                           amount: 
                             type: string
                             description: The average amount for each occuring transaction.
                             example: 100.00
+                          display:
+                            type: string
+                            description: The frequency pattern found of the transactions e.g. how often do they occur
+                            enum: [Yearly, Every 13 weeks, Daily, Monthly, Weekly, Every 26 weeks, Bimonthly, Fortnightly, Every 3 months, Every 4 months, Every 4 weeks, Every 52 weeks, Every 6 months]
+                            example: Yearly
                           next: 
                             type: object
                             description: Identifies the next transaction is likely to occur.
@@ -5973,13 +6088,18 @@ components:
                               properties: 
                                 type: 
                                   type: string
-                                  description: The frequency pattern found of the transactions e.g. how often do they occur.
-                                  enum: [daily, weekly, fortnightly, monthly, yearly]
-                                  example: monthly
+                                  description: The frequency codes.
+                                  enum: [P12M, P13W, P1D, P1M, P1W, P26W, P2M, P2W, P3M, P4M, P4W, P52W, P6M]
+                                  example: P12M
                                 amount: 
                                   type: string
                                   description: The average amount for each occuring transaction.
                                   example: 100.00
+                                display:
+                                  type: string
+                                  description: The frequency pattern found of the transactions e.g. how often do they occur
+                                  enum: [Yearly, Every 13 weeks, Daily, Monthly, Weekly, Every 26 weeks, Bimonthly, Fortnightly, Every 3 months, Every 4 months, Every 4 weeks, Every 52 weeks, Every 6 months]
+                                  example: Yearly
                                 next: 
                                   type: object
                                   description: Identifies the next transaction is likely to occur.
