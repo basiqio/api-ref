@@ -334,6 +334,15 @@ paths:
                       code: 'invalid-content'
                       title: 'Invalid request content'
                       detail: 'Posted subscribedEvents contains unsupported event types.'
+                Event already subscribed to:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'event-already-subscribed'
+                      title: 'Event already subscribed'
+                      detail: 'Posted subscribedEvents contains events that are already subscribed to for this application.'
         '401':
           description: 'Unauthorized'
           content:
