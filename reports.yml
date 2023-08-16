@@ -472,16 +472,16 @@ paths:
                       value: '125.00'
                       format: money
                   - id: ME034
-                    title: Average Expenses monthly
-                    description: Mean monthly total expenses
+                    title: Average Outgoings monthly
+                    description: Mean monthly total outgoings
                     sections:
                     - Expenses
                     result:
                       value: "-325.00"
                       format: money
                   - id: ME039
-                    title: Average expenses excluding liabilities
-                    description: Mean monthly total expenses excluding liability payments
+                    title: Average Outgoings Excluding Liabilities
+                    description: Mean monthly total outgoings excluding liability payments
                     sections:
                     - Expenses
                     result:
