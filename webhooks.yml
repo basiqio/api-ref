@@ -14,7 +14,6 @@ paths:
     post:
       tags:
         - Webhooks
-      description: > 
       summary: Create a webhook
       operationId: addWebhook
       requestBody:
@@ -161,7 +160,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
       summary: List all webhooks
       operationId: listAppWebhooks
       responses:
@@ -261,7 +259,6 @@ paths:
     post:
       tags:
         - Webhooks
-      description: > 
       summary: Update a webhook
       operationId: updateWebhook
       parameters: 
@@ -441,7 +438,6 @@ paths:
     delete:
       tags:
         - Webhooks
-      description: > 
       summary: Delete a webhook
       operationId: deleteWebhook
       parameters: 
@@ -555,7 +551,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
       summary: Retrieve a webhook
       operationId: getWebhook
       parameters: 
@@ -690,7 +685,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
       summary: List all messages
       operationId: listMessages
       parameters:
@@ -861,7 +855,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
       summary: Retrieve a message
       operationId: getWebhookMessage
       parameters:
@@ -1015,7 +1008,6 @@ paths:
     post:
       tags:
         - Webhooks
-      description: > 
       summary: Post a test message
       operationId: testMessage
       requestBody:
