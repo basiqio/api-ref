@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   description: Webhooks
-  version: "2.4.1"
+  version: "2.5.0"
   title: Webhooks
 servers:
   - description: Basiq Webhooks
@@ -259,8 +259,6 @@ paths:
     post:
       tags:
         - Webhooks
-      description: > 
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Update a webhook
       operationId: updateWebhook
       parameters: 
@@ -440,8 +438,6 @@ paths:
     delete:
       tags:
         - Webhooks
-      description: > 
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Delete a webhook
       operationId: deleteWebhook
       parameters: 
@@ -555,8 +551,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Retrieve a webhook
       operationId: getWebhook
       parameters: 
@@ -691,8 +685,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: List all messages
       operationId: listMessages
       parameters:
@@ -863,8 +855,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: > 
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Retrieve a message
       operationId: getWebhookMessage
       parameters:
@@ -1018,8 +1008,6 @@ paths:
     post:
       tags:
         - Webhooks
-      description: > 
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Post a test message
       operationId: testMessage
       requestBody:
