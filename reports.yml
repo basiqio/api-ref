@@ -511,6 +511,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -540,6 +542,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -583,6 +587,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -612,6 +618,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -655,6 +663,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -683,7 +693,9 @@ paths:
                             transaction: '100.00'
                             month: '100.00'
                             medianTransaction: '20.00'
-                            medianMonth: '20.00'                     
+                            medianMonth: '20.00'   
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -726,7 +738,9 @@ paths:
                           transaction: '100.00'
                           month: '100.00'
                           medianTransaction: '20.00'
-                          medianMonth: '20.00'                   
+                          medianMonth: '20.00'   
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -756,6 +770,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -799,6 +815,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -828,6 +846,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -871,6 +891,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -900,6 +922,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -943,6 +967,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -972,6 +998,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1015,6 +1043,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1044,6 +1074,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1087,6 +1119,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1113,6 +1147,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1156,6 +1192,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1185,6 +1223,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1228,6 +1268,8 @@ paths:
                           month: '100.00'
                           medianTransaction: '20.00'
                           medianMonth: '20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1257,6 +1299,8 @@ paths:
                             month: '100.00'
                             medianTransaction: '20.00'
                             medianMonth: '20.00'
+                            ongoingMonth: '0.00'
+                          stableMonths: 1
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -5975,6 +6019,13 @@ components:
                                 type: integer
                                 description: The median amount of the monthly sum of all transaction amounts.
                                 example: 20.00
+                              ongoingMonth:
+                                type: integer
+                                description: The current overall (ongoing) monthly income.
+                                example: 0.00
+                          stableMonths:
+                            type: integer
+                            description: Number of stable months
                       frequency: 
                         type: object
                         description: Identifies the occurance pattern of the transactions within the group.
@@ -6082,6 +6133,13 @@ components:
                                       type: integer
                                       description: The median amount of the monthly sum of all transaction amounts.
                                       example: 20.00
+                                    ongoingMonth:
+                                      type: integer
+                                      description: The current overall (ongoing) monthly income.
+                                      example: 0.00
+                                stableMonths:
+                                  type: integer
+                                  description: Number of stable months
                             frequency: 
                               type: object
                               description: Identifies the occurance pattern of the transactions within the subgroup.
