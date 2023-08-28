@@ -16,12 +16,12 @@ jobs:
       # Run GitHub Action to sync OpenAPI file at ./core.yml
       - name: Validating Core
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
-        uses: readmeio/rdme@01ed07d63eeeda9be92b4907c59bdf1283a0b4ce # v8
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
           rdme: openapi ./draft-release/core.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.CORE_DEV_API_DEFINITION_ID }}
       
       - name: Validating Webhooks
-        uses: readmeio/rdme@01ed07d63eeeda9be92b4907c59bdf1283a0b4ce # v8
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
           rdme: openapi ./draft-release/webhooks.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
 
