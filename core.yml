@@ -357,85 +357,172 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserConsentGetResponses'
-              example:
-                - type: consent
-                  id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
-                  created: '2022-11-01T05:07:00Z'
-                  updated: '2022-11-01T05:07:00Z'
-                  expiryDate: '2023-11-01T05:07:00Z'
-                  status: active
-                  purpose:
-                    primary:
-                      title: >-
-                        Services requiring full ongoing Personal, Account and
-                        Transaction details
-                      description: >-
-                        We need ongoing access to your Personal, Account and
-                        Transaction details in order to fully enable our services.
-                  data:
-                    retainData: true
-                    permissions:
-                      - scope: customer.person.detail
-                        required: true
-                        entity: connection
-                        information:
-                          name: Name, occupation, contact details
-                          description: >-
-                            This allows access to personally identifiable
-                            information. Specifically your name, occupation,
-                            address(es) and contact details.
-                          attributeList:
-                            - Name
-                            - Occupation
-                            - Phone
-                            - Email address
-                            - Mail address
-                            - Residential address
-                        purpose:
-                          title: Your Details
-                          description: We need to confirm your identity.
-                      - scope: account.detail
-                        required: true
-                        entity: account
-                        information:
-                          name: Account balance and details
-                          description: >-
-                            This allows access to detailed information of your
-                            accounts. It includes basic account information plus
-                            account identifiers and product information. It does not
-                            include transaction data.
-                          attributeList:
-                            - Name of account
-                            - Type of account
-                            - Account balance
-                            - Account number
-                            - Interest rates
-                            - Fees
-                            - Discounts
-                            - Account terms
-                            - Account mail address
-                        purpose:
-                          title: Account Details
-                          description: We need to capture your account details.
-                      - scope: transaction.detail
-                        required: true
-                        entity: transaction
-                        information:
-                          name: Transaction details
-                          description: >-
-                            This allows access to transaction data for your
-                            accounts. It includes all account transaction data.
-                          attributeList:
-                            - Incoming and outgoing transactions
-                            - Amounts
-                            - Dates
-                            - Descriptions of transactions
-                            - Who you have sent money to and received money from
-                        purpose:
-                          title: Transaction details
-                          description: >-
-                            This allows access to transaction data for your
-                            accounts. It includes all account transaction data.
+              examples:
+                active:
+                  value:  
+                    type: consent
+                    id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
+                    created: '2022-11-01T05:07:00Z'
+                    updated: '2022-11-01T05:07:00Z'
+                    expiryDate: '2023-11-01T05:07:00Z'
+                    status: active
+                    purpose:
+                      primary:
+                        title: >-
+                          Services requiring full ongoing Personal, Account and
+                          Transaction details
+                        description: >-
+                          We need ongoing access to your Personal, Account and
+                          Transaction details in order to fully enable our services.
+                    data:
+                      retainData: true
+                      permissions:
+                        - scope: customer.person.detail
+                          required: true
+                          entity: connection
+                          information:
+                            name: Name, occupation, contact details
+                            description: >-
+                              This allows access to personally identifiable
+                              information. Specifically your name, occupation,
+                              address(es) and contact details.
+                            attributeList:
+                              - Name
+                              - Occupation
+                              - Phone
+                              - Email address
+                              - Mail address
+                              - Residential address
+                          purpose:
+                            title: Your Details
+                            description: We need to confirm your identity.
+                        - scope: account.detail
+                          required: true
+                          entity: account
+                          information:
+                            name: Account balance and details
+                            description: >-
+                              This allows access to detailed information of your
+                              accounts. It includes basic account information plus
+                              account identifiers and product information. It does not
+                              include transaction data.
+                            attributeList:
+                              - Name of account
+                              - Type of account
+                              - Account balance
+                              - Account number
+                              - Interest rates
+                              - Fees
+                              - Discounts
+                              - Account terms
+                              - Account mail address
+                          purpose:
+                            title: Account Details
+                            description: We need to capture your account details.
+                        - scope: transaction.detail
+                          required: true
+                          entity: transaction
+                          information:
+                            name: Transaction details
+                            description: >-
+                              This allows access to transaction data for your
+                              accounts. It includes all account transaction data.
+                            attributeList:
+                              - Incoming and outgoing transactions
+                              - Amounts
+                              - Dates
+                              - Descriptions of transactions
+                              - Who you have sent money to and received money from
+                          purpose:
+                            title: Transaction details
+                            description: >-
+                              This allows access to transaction data for your
+                              accounts. It includes all account transaction data.
+                    links:
+                      self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
+                      
+                expired:
+                  value:  
+                    type: consent
+                    id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
+                    created: '2022-11-01T05:07:00Z'
+                    updated: '2022-11-01T05:07:00Z'
+                    expiryDate: '2023-11-01T05:07:00Z'
+                    status: expired
+                    purpose:
+                      primary:
+                        title: >-
+                          Services requiring full ongoing Personal, Account and
+                          Transaction details
+                        description: >-
+                          We need ongoing access to your Personal, Account and
+                          Transaction details in order to fully enable our services.
+                    data:
+                      retainData: true
+                      permissions:
+                        - scope: customer.person.detail
+                          required: true
+                          entity: connection
+                          information:
+                            name: Name, occupation, contact details
+                            description: >-
+                              This allows access to personally identifiable
+                              information. Specifically your name, occupation,
+                              address(es) and contact details.
+                            attributeList:
+                              - Name
+                              - Occupation
+                              - Phone
+                              - Email address
+                              - Mail address
+                              - Residential address
+                          purpose:
+                            title: Your Details
+                            description: We need to confirm your identity.
+                        - scope: account.detail
+                          required: true
+                          entity: account
+                          information:
+                            name: Account balance and details
+                            description: >-
+                              This allows access to detailed information of your
+                              accounts. It includes basic account information plus
+                              account identifiers and product information. It does not
+                              include transaction data.
+                            attributeList:
+                              - Name of account
+                              - Type of account
+                              - Account balance
+                              - Account number
+                              - Interest rates
+                              - Fees
+                              - Discounts
+                              - Account terms
+                              - Account mail address
+                          purpose:
+                            title: Account Details
+                            description: We need to capture your account details.
+                        - scope: transaction.detail
+                          required: true
+                          entity: transaction
+                          information:
+                            name: Transaction details
+                            description: >-
+                              This allows access to transaction data for your
+                              accounts. It includes all account transaction data.
+                            attributeList:
+                              - Incoming and outgoing transactions
+                              - Amounts
+                              - Dates
+                              - Descriptions of transactions
+                              - Who you have sent money to and received money from
+                          purpose:
+                            title: Transaction details
+                            description: >-
+                              This allows access to transaction data for your
+                              accounts. It includes all account transaction data.
+                    links:
+                      self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
         '400':
           description: >-
             Returns error that server cannot or will not process the request due
