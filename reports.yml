@@ -481,7 +481,7 @@ paths:
                       format: money
                   - id: ME035
                     title: Total Income has been stable for (months)
-                    description: Mean monthly total outgoings
+                    description: Number of months within report over which total income has been stable
                     sections:
                     - Expenses
                     result:
@@ -489,7 +489,7 @@ paths:
                       format: money
                   - id: ME036
                     title: Median monthly amount from Salary
-                    description: Number of months within report over which total income has been stable
+                    description: Median of the monthly sum of transaction amounts for all transactions in Group INC009
                     sections:
                     - Income Sources
                     result:
