@@ -479,6 +479,14 @@ paths:
                     result:
                       value: "-325.00"
                       format: money
+                  - id: ME035
+                    title: Total Income has been stable for (months)
+                    description: Number of months within report over which total income has been stable
+                    sections:
+                    - Expenses
+                    result:
+                      value: "-325.00"
+                      format: money
                   - id: ME036
                     title: Median monthly amount from Salary
                     description: Median of the monthly sum of transaction amounts for all transactions in Group INC009
@@ -486,7 +494,7 @@ paths:
                     - Income Sources
                     result:
                       value: "8000.00"
-                      format: money
+                      format: integer
                   - id: ME037
                     title: Median Income monthly
                     description: Sum of the individual group medians for all INC groups used in Metric ME033
@@ -503,6 +511,22 @@ paths:
                     result:
                       value: "-300"
                       format: integer
+                  - id: ME040
+                    title: Average Monthly Credits
+                    description: Mean monthly credits excluding internal transfers
+                    sections:
+                    - Expenses
+                    result:
+                      value: "0.01"
+                      format: money
+                  - id: ME041
+                    title: Average Monthly Debits
+                    description: Mean monthly debits excluding internal transfers
+                    sections:
+                    - Expenses
+                    result:
+                      value: "-300"
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
