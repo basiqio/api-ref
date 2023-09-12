@@ -1281,7 +1281,7 @@ components:
           description: unique identifer in the form of uuid for the webhook.
         event:
           type: string
-        eventType:
+        eventTypeId:
           type: string
         eventId:
           type: string
