@@ -201,7 +201,7 @@ paths:
                 data:
                   metrics:
                   - id: ME001
-                    title: "# of identified income sources"
+                    title: "# OF IDENTIFIED SALARY SOURCES"
                     description: Number of recent salary income sources
                     sections:
                     - Income Sources
