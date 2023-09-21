@@ -218,7 +218,7 @@ paths:
                       value: '7228.00'
                       format: money
                   - id: ME004
-                    title: Other possible income
+                    title: OTHER POSSIBLE INCOME MONTHLY
                     description: Mean monthly income from sources not covered within Salary and Benefits
                     sections:
                     - Income Sources
@@ -333,7 +333,7 @@ paths:
                       value: '3'
                       format: integer
                   - id: ME018
-                    title: "% of income withdrawn via ATM"
+                    title: "% OF SALARY INCOME WITHDRAWN VIA ATM"
                     description: Percentage of salary income withdrawn as cash at ATM's over the reporting
                       period
                     sections:
