@@ -218,7 +218,7 @@ paths:
                       value: '7228.00'
                       format: money
                   - id: ME004
-                    title: Other possible income
+                    title: OTHER POSSIBLE INCOME MONTHLY
                     description: Mean monthly income from sources not covered within Salary and Benefits
                     sections:
                     - Income Sources
