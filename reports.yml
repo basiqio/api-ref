@@ -527,6 +527,14 @@ paths:
                     result:
                       value: "-300"
                       format: money
+                  - id: ME042
+                    title: "# of recent income sources"
+                    description: Number of recent income sources across all income groups
+                    sections:
+                    - Income
+                    result:
+                      value: 0
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
