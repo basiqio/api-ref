@@ -1677,6 +1677,7 @@ components:
       title: ConnectionGetResponseResource
       required:
         - createdDate
+        - expiryDate
         - method
         - id
         - institution
@@ -1700,6 +1701,10 @@ components:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
           example: '2019-07-29T07:34:09Z'
+        expiryDate:
+          type: string
+          description: Expiry date of the connection. 
+          example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
           description: >-
@@ -1817,6 +1822,7 @@ components:
     ConnectionsData:
       required:
         - createdDate
+        - expiryDate
         - id
         - method
         - institution
@@ -1848,6 +1854,10 @@ components:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
           example: '2019-07-29T07:34:09Z'
+        expiryDate:
+          type: string
+          description: Expiry date of the connection. 
+          example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
           description: Connection last used date, available only for SERVER_SCOPE.
