@@ -535,6 +535,14 @@ paths:
                     result:
                       value: 0
                       format: money
+                  - id: ME043
+                    title: "# of ongoing regular income sources"
+                    description: Number of recent income sources across all income groups where an income frequency has been detected
+                    sections:
+                    - Income
+                    result:
+                      value: 0
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
