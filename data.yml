@@ -668,69 +668,47 @@ paths:
         - name: filter
           in: query
           description: >-
-            Filter parameter can be used to filter connector list by connector
-            property. This parameter should contain comma separated list of
-            filter statements.</br>
+              Filter parameter can be used to filter connector list by connector property. This parameter should contain a comma-separated list of filter statements.</br>
 
-            Filter statement is composed from entity name (in this case it is
-            always `institution`), property name (e.g. `stage`), filter operator
-            (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`).
-            </br>
-
-            The Following list of regular expressions descirbes acceptable
-            filter statements: </br>
-
-            • `(connector).(id).(eq)\(('[A-Z][A-Z][0-9]{5}')\)` </br>
-
-            • `(connector).(method).(eq)\(('web'||'open-banking'|'pdf'|'csv')\)`
-            </br>
-
-            •
-            `(connector).(status).(eq|ne)\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\)`
-            </br>
-
-            • `(connector).(status).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(stage).(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
-
-            • `(connector).(stage).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(scopes).(in|eq|ne)\(([\w\W]+)\)` </br>
-
-            • `(connector).(institution).(country).(eq|ne)\(('Australia'|'New
-            Zealand')\)` </br>
-
-            • `(connector).(institution).(country).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(institution).(tier).(eq|ne)\(('1'|'2'|'3'|'4')\)`
-            </br>
-
-            • `(connector).(institution).(tier).(in)\(([\W\d]+)\)` </br>
-
-            • `(connector).(institution).(type).(eq|ne)\(('Bank'|'Bank
-            \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial
-            Services'|'Superannuation')\)` </br>
-
-            •
-            `(connector).(authorization).(type).(eq|ne)\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\)`
-            </br>
-
-            • `(connector).(authorization).(type).(in)\(([\w\W]+)\)` </br>
-
-            • `(connector).(connectorCategory).(eq|ne)\(('chrome'|'node')\)`
-            </br>
-
-            Multiple filter definitions should be separated with comma (`,`).
-            </br>
-
-            For example, this is filter statement will keep only live tier 1 and
-            tier 2 institutions:
-            `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')`
-            </br>
+              A filter statement is composed of the entity name (in this case, it is always 'connector'), the property name (e.g., 'stage'), the filter operator (e.g., 'eq'), and the quoted string value in parentheses (e.g., "('live')").</br>
+              
+              The following list of regular expressions describes acceptable filter statements:</br>
+              
+              • (connector).(id).(eq)\(('[A-Z][A-Z][0-9]{5}')\)</br>
+              
+              • (connector).(method).(eq)\(('web'||'open-banking'|'pdf'|'csv')\)</br>
+              
+              • (connector).(status).(eq|ne)\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\)</br>
+              
+              • (connector).(status).(in)\(([\w\W]+)\)</br>
+              
+              • (connector).(stage).(eq|ne)\(('live'|'beta'|'alpha')\)</br>
+              
+              • (connector).(stage).(in)\(([\w\W]+)\)</br>
+              
+              • (connector).(scopes).(in|eq|ne)\(([\w\W]+)\)</br>
+              
+              • (connector).(institution).(country).(eq|ne)\(('Australia'|'New Zealand')\)</br>
+              
+              • (connector).(institution).(country).(in)\(([\w\W]+)\)</br>
+              
+              • (connector).(institution).(tier).(eq|ne)\(('1'|'2'|'3'|'4')\)</br>
+              
+              • (connector).(institution).(tier).(in)\(([\W\d]+)\)</br>
+              
+              • (connector).(institution).(type).(eq|ne)\(('Bank'|'Bank (Foreign)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)</br>
+              
+              • (connector).(authorization).(type).(eq|ne)\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\)</br>
+              
+              • (connector).(authorization).(type).(in)\(([\w\W]+)\)</br>
+              
+              • (connector).(connectorEngine).(eq|ne)\(('chrome'|'node')\)</br>
+              
+              Multiple filter definitions should be separated with a comma (,).</br>
+              
+              For example, this filter statement will keep only live tier 1 and tier 2 institutions: filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')</br>
           schema:
             type: string
-            x-go-name: Filter
-          x-go-name: Filter
       responses:
         '200':
           description: Returns data of single connector.
@@ -1011,7 +989,6 @@ components:
         primary:
           type: string
           description: Primary primary institution color
-          x-go-name: Primary
       description: Colors contains institution colors type
     LogoResourceLinks:
       required:
@@ -1023,12 +1000,10 @@ components:
           type: string
           description: URL to full size logo
           example: https://example.com/AU00000-full.svg
-          x-go-name: Full
         square:
           type: string
           description: Square formatted logo URL
           example: https://example.com/AU00000.svg
-          x-go-name: Square
       description: LogoResourceLinks contains institution logo resource links
     InstitutionLogoResource:
       required:
@@ -1048,8 +1023,6 @@ components:
           example: image
           enum:
             - image
-          x-go-enum-desc: image ImageResourceType
-          x-go-name: Type
       description: InstitutionLogoResource linstitution logo resource type
     ConnectionAccountLinks:
       required:
@@ -1127,7 +1100,6 @@ components:
           description: Data contains list of connectors
           items:
             $ref: '#/components/schemas/Connector'
-          x-go-name: Connectors
         links:
           $ref: '#/components/schemas/ResourceLinks'
         totalCount:
@@ -1135,7 +1107,6 @@ components:
           description: TotalCount contains total count of connectors
           format: int64
           example: 1
-          x-go-name: TotalCount
         type:
           $ref: '#/components/schemas/ResponseFormat'
       description: ConnectorsList contains list of connectors data.
@@ -1147,7 +1118,6 @@ components:
         self:
           type: string
           description: URL to resource itself
-          x-go-name: Self
       description: ResourceLinks contains resource links
     Connector:
       required:
@@ -1235,23 +1205,6 @@ components:
             - other
             - user-mfa
             - user-mfa-intermittent
-          x-go-enum-desc: >-
-            user AuthorizationUser  AuthorizationUser "User" authorization type
-            identifier
-
-            token AuthorizationToken AuthorizationToken "Token" authorization
-            type identifier
-
-            other AuthorizationOther  AuthorizationOther "Other" authorization
-            type identifier
-
-            user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa"
-            authorization type identifier
-
-            user-mfa-intermittent AuthorizationUserMfaIntermittent 
-            AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization
-            type identifier
-          x-go-name: Type
     FeatureCondition:
       type: string
       description: FeatureCondition type that describes an feature status for institution
@@ -1267,40 +1220,34 @@ components:
                 Connector average duration in milliseconds of <b>fetch
                 accounts</b> step for institution
               format: int64
-              x-go-name: RetrieveAccounts
             retrieveMeta:
               type: integer
               description: >-
                 Connector average duration in milliseconds of <b>fetch
                 metadata</b> step for institution
               format: int64
-              x-go-name: RetrieveMeta
             retrieveTransactions:
               type: integer
               description: >-
                 Connector average duration in milliseconds of <b>fetch
                 transactions</b> step for institution
               format: int64
-              x-go-name: RetrieveTransactions
             total:
               type: integer
               description: Total connector average duration in milliseconds
               format: int64
-              x-go-name: Total
             verifyCredentials:
               type: integer
               description: >-
                 Connector average duration in milliseconds of <b>verifiy
                 credentials</b> step for institution
               format: int64
-              x-go-name: VerifyCredentials
           description: >-
             AverageDurationMs average connector duration in milliseconds per
             segments.
 
             When durations are not known for institution this field will be
             `null`.
-          x-go-name: AverageDurationMs
       description: >-
         InstitutionPerformanceStats response type for institution performance
         stats
@@ -1311,27 +1258,22 @@ components:
           type: string
           description: URL to institution forgotten password page
           example: https://example.com/forgotten-password
-          x-go-name: ForgottenPasswordUrl
         login_id_caption:
           type: string
           description: Login ID field caption that should be shown on UI
           example: User name
-          x-go-name: LoginIdCaption
         password_caption:
           type: string
           description: Password field caption that should be shown on UI
           example: Password
-          x-go-name: PasswordCaption
         secondary_login_id_caption:
           type: string
           description: Secondary loginID caption that should be shown on UI
           example: Secondary login id
-          x-go-name: SecondaryLoginIdCaption
         security_code_caption:
           type: string
           description: Security code caption that should be shown on UI
           example: Security code
-          x-go-name: SecurityCodeCaption
     ConnectorInstitutionResource:
       required:
         - country
@@ -1346,19 +1288,16 @@ components:
           type: string
           description: Institution country name
           example: Australia
-          x-go-name: Country
         logo:
           $ref: '#/components/schemas/InstitutionLogoResource'
         name:
           type: string
           description: Institution name
           example: Hooli Bank
-          x-go-name: Name
         shortName:
           type: string
           description: Institution short name
           example: Hooli
-          x-go-name: ShortName
         tier:
           type: string
           description: |-
@@ -1373,12 +1312,6 @@ components:
             - '2'
             - '3'
             - '4'
-          x-go-enum-desc: |-
-            1 TierOne  TierOne tier identifier for tier1 institution
-            2 TierTwo  TierTwo tier identifier for tier2 institution
-            3 TierThree  TierThree tier identifier for tier3 institution
-            4 TierFour  TierFour tier identifier for tier4 institution
-          x-go-name: Tier
         type:
           type: string
           description: >-
@@ -1420,34 +1353,6 @@ components:
             - Superannuation
             - Building Society
             - Government
-          x-go-enum-desc: >-
-            Bank BankInstitutionType  BankInstitutionType institution type
-            identifier for Banks
-
-            Bank (Foreign) BankForeignInstitutionType 
-            BankForeignInstitutionType institution type identifier for Foreign
-            banks
-
-            Test Bank TestBankInstitutionType  TestBankInstitutionType
-            institution type identifier for Test banks
-
-            Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType
-            institution type identifier for Credit union institutions
-
-            Financial Services FinancialServicesInstitutionType 
-            FinancialServicesInstitutionType institution type identifier for
-            Financial service institutions
-
-            Superannuation SuperannuationInstitutionType 
-            SuperannuationInstitutionType institution type identifier for
-            Superannuation institutions
-
-            Building Society BuildingSociety  BuildingSociety institution type
-            identifier for Building Society institutions
-
-            Government Government  Government institution type identifier for
-            Government institutions
-          x-go-name: Type
       description: ConnectorInstitutionResource connector Institution  resource type
     JobData:
       title: JobData
@@ -1772,6 +1677,7 @@ components:
       title: ConnectionGetResponseResource
       required:
         - createdDate
+        - expiryDate
         - method
         - id
         - institution
@@ -1795,6 +1701,10 @@ components:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
           example: '2019-07-29T07:34:09Z'
+        expiryDate:
+          type: string
+          description: Expiry date of the connection. 
+          example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
           description: >-
@@ -1912,6 +1822,7 @@ components:
     ConnectionsData:
       required:
         - createdDate
+        - expiryDate
         - id
         - method
         - institution
@@ -1943,6 +1854,10 @@ components:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
           example: '2019-07-29T07:34:09Z'
+        expiryDate:
+          type: string
+          description: Expiry date of the connection. 
+          example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
           description: Connection last used date, available only for SERVER_SCOPE.
@@ -1957,6 +1872,7 @@ components:
       - type
       - id
       - accountNo
+      - accountOwnership
       - name
       - currency
       - balance
@@ -1969,11 +1885,6 @@ components:
       - accountHolder
       - connection
       - status
-      - fees
-      - depositRates
-      - lendingRates
-      - loan
-      - creditCard
       - links
       type: object
       properties:
@@ -1991,6 +1902,17 @@ components:
             No formatting is applied. Returns a string or null when not available.
           nullable: true
           example: GAVIN BELSON
+        accountOwnership: 
+          type: string
+          description: >-
+            Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers. 
+          example: ONE_PARTY
+          enum: 
+          - UNKNOWN
+          - ONE_PARTY
+          - TWO_PARTY
+          - MANY_PARTY
+          - OTHER
         accountNo:
           type: string
           description: Full account number.
@@ -2086,58 +2008,58 @@ components:
           items:
             $ref: "#/components/schemas/lendingRateAccountMetadata"
         loan:
-          type: array
-          items:
-            $ref: "#/components/schemas/loanAccountMetadata"
+          type: object
+          properties: 
+            startDate: 
+              type: string
+              description: >- 
+                (optional) - Start date for the loan.
+              example: "2019-10-01"
+            endDate:
+              type: string
+              description: >-
+                (optional) - Date that the loan is due to be repaid in full.
+              example: "2045-10-01"
+            repaymentType:
+              type: string
+              description: >-
+                (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
+              example: "PRINCIPAL_AND_INTEREST"
+              enum:
+              - INTEREST_ONLY
+              - PRINCIPAL_AND_INTEREST
+            minInstalmentAmount:
+              type: string
+              description: >- 
+                (optional) - Minimum amount of next instalment. 
+              example: "5500"
         creditCard:
-          type: array
-          items:
-            $ref: "#/components/schemas/creditCardAccountMetadata"
-    creditCardAccountMetadata: 
-      required: 
-       - minPaymentAmount
-       - paymentDueAmount
-       - paymentDueDate
-      type: object
-      properties: 
-        minPaymentAmount: 
-          type: string
-          description: >- 
-            (mandatory) - The minimum payment amount due for the next card payment.
-        paymentDueAmount:
-          type: string
-          description: >-
-            (mandatory) - The amount due for the next card payment. 
-        paymentCurrency:
-          type: string
-          description: >- 
-            (optional) - If absent assumes AUD. 
-        paymentDueDate: 
-          type: string
-          description: >- 
-            (mandatory) - Date that the next payment for the card is due. 
-    loanAccountMetadata: 
-      type: object
-      properties: 
-        startDate: 
-          type: string
-          description: >- 
-            (optional) - Start date for the loan.
-        endDate:
-          type: string
-          description: >-
-            (optional) - Date that the loan is due to be repaid in full.
-        repaymentType:
-          type: string
-          description: >-
-            (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
-          enum:
-          - INTEREST_ONLY
-          - PRINCIPAL_AND_INTEREST
-        minInstalmentAmount:
-          type: string
-          description: >- 
-            (optional) - Minimum amount of next instalment. 
+          required: 
+          - minPaymentAmount
+          - paymentDueAmount
+          - paymentDueDate
+          type: object
+          properties: 
+            minPaymentAmount: 
+              type: string
+              description: >- 
+                (mandatory) - The minimum payment amount due for the next card payment.
+              example: "117.00"
+            paymentDueAmount:
+              type: string
+              description: >-
+                (mandatory) - The amount due for the next card payment. 
+              example: "5847.00"
+            paymentCurrency:
+              type: string
+              description: >- 
+                (optional) - If absent assumes AUD. 
+              example: "AUD"
+            paymentDueDate: 
+              type: string
+              description: >- 
+                (mandatory) - Date that the next payment for the card is due.
+              example: "2023-12-12"
     lendingRateAccountMetadata:
       required:
       - lendingRateType
@@ -2148,6 +2070,7 @@ components:
           type: string
           description: >-
             (mandatory) - The type of rate (fixed, variable, etc).
+          example: PURCHASE
           enum: 
           - BUNDLE_DISCOUNT_FIXED
           - BUNDLE_DISCOUNT_VARIABLE
@@ -2170,10 +2093,12 @@ components:
           type: string
           description: >- 
             (mandatory) - The rate to be applied. 
+          example: "0.2024"
         applicationFrequency: 
           type: string
           description: >- 
-            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account.
+            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax).
+          example: "P1M"
     depositRateAccountMetadata: 
       required:
       - depositRateType
@@ -2184,6 +2109,7 @@ components:
           type: string
           description: >-
             (mandatory) - The type of rate (base, bonus, etc).
+          example: "VARIABLE"
           enum:
           - BONUS
           - BUNDLE_BONUS
@@ -2195,11 +2121,13 @@ components:
         rate: 
           type: string
           description: >- 
-            (mandatory) - The rate to be applied. 
+            (mandatory) - The rate to be applied.
+          example: "0.0385"
         applicationFrequency: 
           type: string
           description: >- 
             (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
+          example: "P1M"
     feesAccountMetadata: 
       required:
       - name
@@ -2209,6 +2137,7 @@ components:
         name:
           type: string
           description: (mandatory) - Name of the fee.
+          example: Dishonour fee
         feeType:
           type: string
           description: (mandatory) - The type of fee.
@@ -2223,14 +2152,17 @@ components:
           - UPFRONT
           - VARIABLE
           - WITHDRAWAL
+          example: EVENT
         amount:
           type: string
           description: >-
             (conditional) - The amount charged for the fee.
+          example: "10.00"
         accrualFrequency:
           type: string
           description: >-
             (optional) - The indicative frequency with which the fee is calculated on the account.
+          example: "P1M"
     AccountTransactionInterval:
       required:
       - from
