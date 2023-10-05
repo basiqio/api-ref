@@ -3,10 +3,116 @@ info:
   title: Reporting
   version: 3.0.0
   description: |-
-    <h2> Reports </h2>
-      <h3> Metrics and Groups: </h3>
+    <h2> Introduction </h2>
     Basiq provides a collection of APIs to help you build powerful financial solutions for a wide range of use cases. The most common use cases are:
+    <ul>
+    <li><b>Personal Financial Management.</b> Enable your customers to aggregate all of their financial data in one place, identify expenses and gain valuable insight of their spending.</li>
+    <li><b>Wealth Management.</b> Gain valuable insights and a clearer understanding of your customers’ financial positions to customize advice, recommendations, and product offerings. </li>
+    <li><b>Risk Insights.</b> Gain real-time and comprehensive visibility of your customers' assets, income, non-credit payment patterns, and transactional details.</li>
+    <li><b>Cashflow Analysis.</b> Provide tools that analyze cash flow and forecast future expenses and income.</li>
+    <li><b>Account Summary.</b> Display the big picture with financial account data listed alongside balance information.</li>
+    <li><b>Account Verification.</b> Instantly verify account ownership and balances in real time to improve the user experience and mitigate fraud and risk.</li>
+    <li><b>Data Enhancement.</b> Gain greater financial insights around consumer spending patterns and trends with categorised and enriched transaction data. </li>
+    </ul>
     Basiq APIs are currently only available in Australia and New Zealand. We are working to make them available in other countries - so check back soon. Use this link to see a complete list of <a href= 'http://docs.basiq.io/the-basiq-platform/supported-financial-institutions'>supported financial institutions.</a>
+    <hr/>
+    <h2> Basiq API Services </h2>
+
+    Basiq provides three core API services which you can use to develop innovative financial solutions:
+    <ul>
+    <li><b>Connect</b> provides the ability to easily acquire financial data such as account details and balances and related transactions from various financial institutions.</li>
+    <li><b>Enrich</b> classifies all banking, credit and debit card transactions into categories based on specific merchant, merchant type and geographical location data.</li>
+    <li><b>Affordability</b> provides a complete 360 degree view of your customers financial health - by breaking down their finances into assets, liabilities, income and expenses. You can use Income and Expenses endpoints separately or as part of the full Affordability API solution.</li>
+    </ul>
+
+    Base URL is → https://au-api.basiq.io - you can use our sandbox environment for free right now - just grab an API key!
+    Enrich URL is → https://au-api.basiq.io/enrich - contact us to have your API key activated to try out this API.
+    Affordability URL is → https://au-api.basiq.io/affordability - you can use our sandbox environment for free - contact us to have your API key activated.
+    <hr/>
+    <h2> Getting Started </h2>
+    <b>Start Developing </b>
+
+    Before you can start using any of the available Basiq APIs there are a few things you will need to do first.
+    <ol>
+    <li> <a href='https://dashboard.basiq.io/login'>Sign-up</a> to the Basiq API service </li>
+    <li> Grab your API key for your application (via the <a href= 'https://dashboard.basiq.io/'>Developer Dashboard</a>) </li>
+    </ol>
+    Once you have successfully obtained an API key, you can start using any of the available Basiq APIs.
+
+    This <a href='http://docs.basiq.io/getting-started/get-started-with-basiq'>user guide</a> gets you up and running with the Basiq API in the time it takes to make a cup of tea.
+    It includes a <a href='https://documenter.getpostman.com/view/9721346/SztEaSr2?version=latest'>Postman collection</a> to help you get a fast feel for the API.
+    Please note that all of the Basiq's Core API and Affordability APIs are accessible using the sandbox data (see testing for details). We encourage you to play with the sandbox data. Once you are ready you will need to supply payment details in order to use the full set of Basiq API services.
+    <hr/>
+    <h2> Authentication </h2>
+    When working with Basiq APIs your application will need to complete the authentication process first before you can access any of the available resources.
+
+    The authentication process is fairly straight forward, and simply requires you to exchange your API key for a token. Once you obtain the token, you can call any of the available API services by simply including the token in the Authorization header of each request.
+    Your API keys carry many privileges, so be sure to keep them secret! Do not share your API keys in publicly accessible areas such GitHub, client-side code, etc.
+    <h3> Prerequisites </h3>
+    Prior to authenticating your application you will need to complete the following steps:
+    <ol>
+    <li> <a href='https://dashboard.basiq.io/login'>Sign-up</a> to the Basiq API service </li>
+    <li> Grab your API key for your application (via the <a href= 'https://dashboard.basiq.io/'>Developer Dashboard</a>) </li>
+    </ol>
+
+    <h3> Steps to authenticate </h3>
+    <ol>
+    <li> Call /token passing in the API key in the Authorization header of the request and Basiq API version you intent to use </li>
+    <li> The server will validate the key and if everything is successful will issue an access token along with the following properties:</li>
+    </ol>
+    <table style="width: 50%">
+    <tr> <td><b>Property </b><td> <td><b>Description</b> <td><tr>
+    <tr> <td>access_token - <i>string, readonly</t><td> <td>The generated access token.<td><tr>
+    <tr> <td>expires_in - <i>number, readonly</i><td> <td>The number of seconds left before the token becomes invalid.<td><tr>
+    <tr> <td>token_type - <i>string, readonly</i><td> <td>This value will always be <b>Bearer</b>.<td><tr>
+    </table>
+    This access token is the key to making successful requests to the Basiq API. From here on you will need to include this access token in the header when requesting any of the secured resources as follows:
+
+    <b>Authorization: Bearer [access_token]</b>
+    Note that tokens have a short lifespan and as such should not be stored permanently. Once a token has expired your application will need to reauthenticate.
+    <hr/>
+    <h2> Testing </h2>
+    There’s nothing worse than developing against an API with crappy test data. We get that! This is why we have put a lot of effort into ensuring that our test data mimics real production data that your app will consume.
+    <h3> Connect API </h3>
+    The test data that we provide for the Connect API service (below) has been designed to mimic a real life user. This means that just a like a real user would spend and receive funds throughout the day - our test accounts have been designed to do the same thing. Therefore you should expect to see new transaction records being created throughout the day, and the account balances adjusted accordingly.
+
+    This should give you a good feel for the type of data that you should expect to see for your own customers. The transaction data is completely random, and even we are sometimes surprised by transactions that appear :-)
+    You can use our sandbox environment for free right now - just grab an API key to get started (via the <a href='https://dashboard.basiq.io/'>Developer Dashboard</a>).
+    Ensure that you pass the institution code AU00000 when using the test accounts.
+    <table style="width: 50%">
+    <tr> <td> <b>loginId</b> </td><td> <b>password</b> </td</tr>
+    <tr> <td> Wentworth-Smith </td><td> whislter </td</tr>
+    <tr> <td> gavinBelson </td><td> hooli2016 </td</tr>
+    <tr> <td> jared </td><td> django </td</tr>
+    <tr> <td> richard </td><td> tabsnotspaces </td</tr>
+    </table>
+    <h3> Enrich API </h3>
+    The Enrich API returns merchant metadata regarding name, location and category.
+
+    This service can be tested using bank transaction data that you provide. You can use real bank transaction data and the Enrich API will return enriched records for those transactions. Note that the same endpoint is utilised for both testing and production users, however a limit of 100 queries is set for testing users.
+    Contact us (via the "help" icon at the bottom of the page) to have your Enrich access enabled.
+
+    You will need to ensure that the search query is <b>url encoded</b> before calling the resource and must contain at least 3 characters.
+
+    Example queries:
+    q=garfish%20MANLY%20NS&country=AU&institution=AU06703&accountType=transaction&amount=-12.95
+    q=garfish%20MANLY%20NS&institution= AU13601
+
+    <table>
+    <tr> <td> Example Queries: </td> </tr>
+    <tr>
+    <td>
+    <ol>
+    <li> GARFISH MANLY NS </li>
+    <li> 12 VOLT DIRECT PTY L LONSDALE AU </li>
+    <li> HARVEY NORMAN AV/IT BALGOWLAH AU </li>
+    <li> CALTEX ALDINGA BEACH ALDINGA BEACHAU </li>
+    <li> KMART 1055 WARRIEWOOD AU </li>
+    <li> KAKADU LODGE & CARAV JABIRU AU </li>
+    <ol>
+    </td>
+    </tr>
+    </table>
 
 servers:
   - url: https://au-api.basiq.io
