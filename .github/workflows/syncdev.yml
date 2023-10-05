@@ -13,7 +13,6 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v3.5
         
-      # Run GitHub Action to sync OpenAPI file at ./core.yml    
       - name: Validating Reports
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
