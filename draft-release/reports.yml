@@ -2,6 +2,12 @@ openapi: 3.0.2
 info:
   title: Reporting
   version: 3.0.0
+  description: |-
+    <h2> Reports </h2>
+      <h3> Metrics and Groups: </h3>
+    Basiq provides a collection of APIs to help you build powerful financial solutions for a wide range of use cases. The most common use cases are:
+    Basiq APIs are currently only available in Australia and New Zealand. We are working to make them available in other countries - so check back soon. Use this link to see a complete list of <a href= 'http://docs.basiq.io/the-basiq-platform/supported-financial-institutions'>supported financial institutions.</a>
+
 servers:
   - url: https://au-api.basiq.io
     description: Production server
