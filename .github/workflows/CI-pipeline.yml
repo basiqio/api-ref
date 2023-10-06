@@ -1,12 +1,13 @@
 name: Deploy Prod
 
-# Run workflow for every push to the `main` branch
+# Run workflow for for an input.
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
+  workflow_dispatch:
+    inputs:
+      deploy_tag:
+        description: "Input tag version to deploy"
+        required: true
+        default: ""
 
 permissions:
   id-token: write
@@ -80,12 +81,12 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Create a GitHub release
-      #   uses: ncipollo/release-action@v1.12.0
-      #   with:
-      #     tag: ${{ steps.tag_version.outputs.new_tag }}
-      #     name: Release ${{ steps.tag_version.outputs.new_tag }}
-      #     body: ${{ steps.tag_version.outputs.changelog }}
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
 
       - name: Send custom JSON data to Slack workflow
         id: slack
