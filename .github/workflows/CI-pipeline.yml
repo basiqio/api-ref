@@ -1,6 +1,6 @@
 name: Deploy Prod
 
-# Run workflow for fpr an input.
+# Run workflow for for an input.
 on:
   workflow_dispatch:
     inputs:
