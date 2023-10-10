@@ -5496,12 +5496,22 @@ paths:
                     filters:
                       - name: fromDate
                         type: string
+                        required: true
                       - name: toDate
                         type: string
+                        required: true
                       - name: accounts
                         type: array
+                        required: true
                       - name: users
                         type: array
+                        required: true
+                      - name: includeGroups
+                        type: array
+                        required: false
+                      - name: includeMetrics
+                        type: array
+                        required: false
                   - type: reportType
                     id: BUS_AFFOR_01
                     name: Business Affordability Report
@@ -5509,12 +5519,22 @@ paths:
                     filters:
                       - name: fromDate
                         type: string
+                        required: true
                       - name: toDate
                         type: string
+                        required: true
                       - name: accounts
                         type: array
+                        required: true
                       - name: users
                         type: array
+                        required: true
+                      - name: includeGroups
+                        type: array
+                        required: false
+                      - name: includeMetrics
+                        type: array
+                        required: false
                   - type: reportType
                     id: ROUNDUP_OPP_01
                     name: Roundup Amount Report
@@ -5524,12 +5544,22 @@ paths:
                     filters:
                       - name: fromDate
                         type: string
+                        required: true
                       - name: toDate
                         type: string
+                        required: true
                       - name: accounts
                         type: array
+                        required: true
                       - name: users
                         type: array
+                        required: true
+                      - name: includeGroups
+                        type: array
+                        required: false
+                      - name: includeMetrics
+                        type: array
+                        required: false
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
@@ -5591,12 +5621,22 @@ paths:
                 filters:
                   - name: fromDate
                     type: string
+                    required: true
                   - name: toDate
                     type: string
+                    required: true
                   - name: accounts
                     type: array
+                    required: true
                   - name: users
                     type: array
+                    required: true
+                  - name: includeGroups
+                    type: array
+                    required: false
+                  - name: includeMetrics
+                    type: array
+                    required: false
                     
         400:
           description: Returns error that server cannot or will not process the request
