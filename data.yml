@@ -1915,8 +1915,8 @@ components:
           - OTHER
         accountNo:
           type: string
-          description: Full account number.
-          example: 600000-157441965
+          description: BSB + account number.
+          example: 600000157441965
         availableFunds:
           type: string
           description: Funds that are available to an account holder for withdrawal
