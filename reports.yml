@@ -5244,7 +5244,7 @@ paths:
                     - Liabilities
                     analysis:
                       summary:
-                        transactionCount: 3
+                        transactionCount: 2
                         overallPercentage: 
                             credit: 0
                             debit: 0
@@ -5306,10 +5306,6 @@ paths:
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
                         date: '2022-02-01'
-                        description: SAMPLE TRANSACTION 0000023
-                        amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   accounts:
