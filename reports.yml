@@ -557,8 +557,8 @@ paths:
                     sections:
                     - Risk Flags
                     result:
-                      value: 0.00
-                      format: money
+                      value: "true"
+                      format: "boolean"
                   - id: ME048
                     title: ONGOING MONTHLY MORTGAGE REPAYMENT
                     description: Projected ongoing monthly mortgage repayments
