@@ -551,6 +551,14 @@ paths:
                     result:
                       value: 0
                       format: money
+                  - id: ME047
+                    title: HAS UNSHARED MORTGAGE ACCOUNT
+                    description: Indicates if mortgage payments are detected without a mortgage account having been shared
+                    sections:
+                    - Risk Flags
+                    result:
+                      value: 0.00
+                      format: money
                   - id: ME048
                     title: ONGOING MONTHLY MORTGAGE REPAYMENT
                     description: Projected ongoing monthly mortgage repayments
