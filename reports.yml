@@ -551,6 +551,14 @@ paths:
                     result:
                       value: 0
                       format: money
+                  - id: ME048
+                    title: ONGOING MONTHLY MORTGAGE REPAYMENT
+                    description: Projected ongoing monthly mortgage repayments
+                    sections:
+                    - Financial Commitments
+                    result:
+                      value: 8344.00
+                      format: money
                   groups:
                   - id: INC-001
                     title: Benefits
