@@ -3780,8 +3780,7 @@ components:
           type: string
           description: Identifies if a transaction is pending or posted. A pending
             transaction is an approved debit or credit transaction that has not been
-            fully processed yet (i.e. has not been posted). Find out more about pending
-            transaction and how to deal with them within your app. Note that pending
+            fully processed yet (i.e. has not been posted). Note that pending
             transactions are not available for all institutions.
           example: posted
           enum:
@@ -4007,7 +4006,12 @@ components:
       properties:
         matchType: 
           type: string
-          description: represents source of returned data.
+          description: >
+            Indicates the method used to match a payment transaction with a merchant or business classification code. Description for each enum;
+            merchantFull: Indicates an exact match between the transaction and a known merchant in the database.
+            merchantPartial: Suggests a partial match with a merchant, usually based on substring or fuzzy logic.
+            mcc: Match is done using the Merchant Category Code associated with the transaction.
+            ml: Match is determined through machine learning algorithms for classification
           enum:  
             - merchantFull
             - merchantPartial
@@ -4016,7 +4020,7 @@ components:
           example: "merchantfull"
         matchScore: 
           type: string
-          description: represents confidence score of returned data. 
+          description: The confidence score for the matchType which is a float value between 0 and 1. The higher the number, the higher the confidence in the match. 
           example: "1.0"
         anzsic:
           $ref: '#/components/schemas/TransactionsAnzsic'
