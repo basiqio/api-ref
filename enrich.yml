@@ -65,6 +65,8 @@ paths:
                           local: (02) 4276 6018
                           international: +61 2 4276 6018
                       category:
+                        matchType: "merchantfull"
+                        matchScore: "1.0"
                         anzsic:
                           division:
                             code: G
@@ -191,6 +193,19 @@ components:
             category:
               type: object
               properties:
+                matchType: 
+                  type: string
+                  description: represents source of returned data.
+                  enum:  
+                    - merchantFull
+                    - merchantPartial
+                    - mcc
+                    - ml
+                  example: "merchantfull"
+                matchScore: 
+                  type: string
+                  description: represents confidence score of returned data. 
+                  example: "1.0"
                 anzsic:
                   type: object
                   properties:
