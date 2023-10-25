@@ -3747,20 +3747,20 @@ components:
       description: Payments Sub-Category
     TransactionData:
       required:
+      - id
+      - status
+      - description
       - account
       - amount
       - balance
       - class
       - subClass
       - connection
-      - description
       - direction
       - enrich
-      - id
       - institution
       - links
       - postDate
-      - status
       - transactionDate
       - type
       type: object
@@ -3776,19 +3776,40 @@ components:
             new id's, whilst posted transactions will receive the same id's as before
             the refresh.
           example: d3de1ca1
-        account:
+        status:
           type: string
-          description: The id of the account resource the transaction belongs to.
-          example: d3de1ca1
+          description: Identifies if a transaction is pending or posted. A pending
+            transaction is an approved debit or credit transaction that has not been
+            fully processed yet (i.e. has not been posted). Find out more about pending
+            transaction and how to deal with them within your app. Note that pending
+            transactions are not available for all institutions.
+          example: posted
+          enum:
+          - pending
+          - posted
+        description:
+          type: string
+          description: The transaction description as submitted by the institution..
         amount:
           type: string
           description: Transaction amount. Outgoing funds are expressed as negative
             values.
           example: "123.12"
+        account:
+          type: string
+          description: The id of the account resource the transaction belongs to.
+          example: d3de1ca1
         balance:
           type: string
           description: Value of the account balance at time the transaction was completed.
           example: "123.12"
+        direction:
+          type: string
+          description: Identifies if the transaction is of debit or credit type.
+          example: debit
+          enum:
+          - debit
+          - credit
         class:
           type: string
           description: Describes the class(type) of transaction.
@@ -3803,6 +3824,41 @@ components:
           - direct-credit
           - interest
           - loan-repayment
+        institution:
+          type: string
+          description: The id of the institution resource the transaction originated
+            from.
+          example: AU00000
+        connection:
+          type: string
+          description: The id of the connection resource that was used to retrieve
+            the transaction.
+          example: d3de1ca1
+        transactionDate:
+          type: string
+          description: Date that the user executed the transaction as provided by
+            the institution. Note that not all transactions provide this value (varies
+            by institution) e.g. "2017-11-10T00:00:00Z"
+          example: null
+        postDate:
+          type: string
+          description: Date the transaction was posted as provided by the institution
+            (this is the same date that appears on a bank statement). This value is
+            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+          example: "2018-11-02T00:00:00Z"
+        mcc:
+          type: object
+          description: >-
+            Merchant category codes returned from Data holders.
+          properties:
+            code: 
+              type: string
+              description: code
+              example: 3012
+            title: 
+              type: string
+              description: title
+              example: Qantas
         subClass:
           type: object
           description: >-
@@ -3816,51 +3872,8 @@ components:
               type: string
               description: SubClass title
               example: Cafes and Restaurants
-        connection:
-          type: string
-          description: The id of the connection resource that was used to retrieve
-            the transaction.
-          example: d3de1ca1
-        description:
-          type: string
-          description: The transaction description as submitted by the institution..
-        direction:
-          type: string
-          description: Identifies if the transaction is of debit or credit type.
-          example: debit
-          enum:
-          - debit
-          - credit
         enrich:
           $ref: '#/components/schemas/TransactionsEnrich'
-        institution:
-          type: string
-          description: The id of the institution resource the transaction originated
-            from.
-          example: AU00000
-        postDate:
-          type: string
-          description: Date the transaction was posted as provided by the institution
-            (this is the same date that appears on a bank statement). This value is
-            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
-          example: "2018-11-02T00:00:00Z"
-        status:
-          type: string
-          description: Identifies if a transaction is pending or posted. A pending
-            transaction is an approved debit or credit transaction that has not been
-            fully processed yet (i.e. has not been posted). Find out more about pending
-            transaction and how to deal with them within your app. Note that pending
-            transactions are not available for all institutions.
-          example: posted
-          enum:
-          - pending
-          - posted
-        transactionDate:
-          type: string
-          description: Date that the user executed the transaction as provided by
-            the institution. Note that not all transactions provide this value (varies
-            by institution) e.g. "2017-11-10T00:00:00Z"
-          example: null
         links:
           $ref: '#/components/schemas/TransactionLinks'
     TransactionDataAffordability:
@@ -3992,6 +4005,19 @@ components:
     TransactionsCategory:
       type: object
       properties:
+        matchType: 
+          type: string
+          description: represents source of returned data.
+          enum:  
+            - merchantFull
+            - merchantPartial
+            - mcc
+            - ml
+          example: "merchantfull"
+        matchScore: 
+          type: string
+          description: represents confidence score of returned data. 
+          example: "1.0"
         anzsic:
           $ref: '#/components/schemas/TransactionsAnzsic'
     TransactionsClass:
@@ -4011,7 +4037,7 @@ components:
         title:
           type: string
           description: Division Details
-          example: Accommodation and  Food Services
+          example: Accommodation and Food Services
         code:
           type: string
           description: Division Code
@@ -4025,16 +4051,16 @@ components:
       - merchant
       type: object
       properties:
+        location:
+          $ref: '#/components/schemas/TransactionsLocation'
         cleanDescription: 
           $ref: "#/components/schemas/TransactionscleanDescription"
         tags: 
           $ref: "#/components/schemas/Transactionstags"
-        category:
-          $ref: '#/components/schemas/TransactionsCategory'
-        location:
-          $ref: '#/components/schemas/TransactionsLocation'
         merchant:
           $ref: '#/components/schemas/TransactionsMerchant'
+        category:
+          $ref: '#/components/schemas/TransactionsCategory'
     Transactionstags: 
       type: object
     TransactionscleanDescription:
