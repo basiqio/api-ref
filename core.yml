@@ -3832,15 +3832,17 @@ components:
       properties:
         access_token:
           type: string
+          description: The generated access token.
           example: >-
             eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
         expires_in:
           type: integer
-          description: Expires in seconds
+          description: Expires in 3600 seconds
           format: int64
           example: 3600
         token_type:
           type: string
+          description: This value will always be `Bearer`.
           example: Bearer
     UserConsentGetResponses:
       type: object
