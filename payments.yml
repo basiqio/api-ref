@@ -22,6 +22,8 @@ paths:
     post:
       tags:
         - Payment Agreements
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Validate agreement
       operationId: validateAgreement
       requestBody:
@@ -48,6 +50,8 @@ paths:
         - Payment Agreements
       summary: Create agreement
       operationId: createAgreement
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       requestBody:
         $ref: '#/components/requestBodies/agreement-validation-creation'
       responses:
@@ -72,6 +76,8 @@ paths:
         - Payment Agreements
       summary: Amend agreement status
       operationId: amendAgreementStatus
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: id
           in: path
@@ -107,6 +113,8 @@ paths:
         - Payment Agreements
       summary: Amend agreement status
       operationId: amendAgreement
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow) 
       parameters:
         - name: id
           in: path
@@ -142,6 +150,8 @@ paths:
         - Payment Agreements
       summary: Recall a pending agreement instruction
       operationId: recallAgreementInstruction
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: id
           in: path
@@ -183,6 +193,8 @@ paths:
         - Payment Agreements
       summary: Get payment agreement instruction
       operationId: getPaymentAgreementInstruction
+      description: > 
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: instructionId
           in: path
@@ -537,6 +549,8 @@ paths:
         - Payment Agreements
       summary: Get payment agreement instructions
       operationId: getPaymentAgreementInstructions
+      description: > 
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: limit
           in: query
@@ -645,6 +659,8 @@ paths:
         - Payment Agreements
       summary: Get payment agreement
       operationId: getPaymentAgreement
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: id
           in: path
@@ -773,6 +789,8 @@ paths:
         - Payment Agreements
       summary: Get payment agreement 
       operationId: getPaymentAgreements
+      description: > 
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: limit
           in: query
