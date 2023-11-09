@@ -2041,7 +2041,7 @@ components:
           type: string
           enum:
             - batch
-    #            - fast
+    # fast
         status:
           type: string
         reason:
@@ -2247,6 +2247,12 @@ components:
                     - payer
                     - description
                   properties:
+                    method:
+                      description: payment method used being fast (NPP), batch (DE)
+                      type: string
+                      enum:
+                        - batch
+                        - fast
                     requestId:
                       description: Id as assigned by the by the partner application. This needs to be unique
                       type: string
@@ -2276,6 +2282,47 @@ components:
                       description: 'Amount of the payment.'
                       type: number
                       example: '173.45'
+                    agreementId:
+                      description: 'Id of the agreement to be used. If not specified the default agreement is used if one exists'
+                      type: string
+                    reference:
+                      description: 'Business reference to passed on unchanged'
+                      type: string
+                    payee:
+                      type: object
+                      required:
+                        - payeeType
+                        - ultimatePayeeName
+                      properties:
+                        payId:
+                          description: 'The Pay ID of the payee user'
+                          type: string
+                        payIdType:
+                          description: 'Type of the Pay ID being used'
+                          type: string
+                          enum:
+                            - phone-number
+                            - email
+                            - business-number
+                            - organisation-id
+                        bankBranchCode:
+                          description: 'Bank and branch code (e.g. bsb) of the account'
+                          type: string
+                          example: "730002"
+                        accountNumber:
+                          description: 'Payee account number'
+                          type: string
+                          example: "123456789"
+                        type:
+                          description: 'Identifies the type of the payee'
+                          type: string
+                          enum:
+                            - person
+                            - organisation
+                        ultimatePayeeName:
+                          description: 'Name of the ultimate payee'
+                          type: string                              
+                          
                     collectFundsToFloat:
                       description: 'When passed this value overrides the default setting'
                       type: boolean
@@ -2287,42 +2334,62 @@ components:
                       example: null
                       default: null
           examples:
-            Single:
+            Batch - Single:
               value:
                 payrequests:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: 'batch'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
                   description: Investment
                   amount: 173.45
-            Collect to Float:
+            Batch - Collect to Float:
               value:
                 payrequests:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: 'batch'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+#                    payerBankBranchCode: '730002'
+#                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
                   collectFundsToFloat: true
-            Check Account Balance:
+            Batch - Check Account Balance:
               value:
                 payrequests:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  method: 'batch'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+#                    payerBankBranchCode: '730002'
+#                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
                   checkAccountBalance: true
-            Single with account:
+            Fast - Single with Payee:
               value:
-                payrequests:
+                paymentInstructions:
                 - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  payer:
-                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                    payerBankBranchCode: '730002'
-                    payerAccountNumber: '123456789'
+                  method: 'fast'
+                  agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                  reference: 'INV-001'
                   description: Investment
-                  amount: 173.45                  
+                  amount: 173.45
+                  payee:
+                    type: person
+                    payId: gavin@gmails.com
+                    payIdType: email
+                    ultimatePayeeName: 'Gavin'
+            Fast - Single without Payee:
+              value:
+                paymentInstructions:
+                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  type: 'fast'
+                  agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                  reference: 'INV-001'
+                  description: Investment
+                  amount: 173.45
     payouts:
       content:
         application/json:
