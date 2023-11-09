@@ -74,7 +74,7 @@ paths:
     post:
       tags:
         - Payment Agreements
-      summary: Amend agreement status
+      summary: Amend agreement
       operationId: amendAgreementStatus
       description: >
         ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
@@ -547,8 +547,8 @@ paths:
     get:
       tags:
         - Payment Agreements
-      summary: Get payment agreement instructions
-      operationId: getPaymentAgreementInstructions
+      summary: List payment agreement instructions
+      operationId: listPaymentAgreementInstructions
       description: > 
         ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
@@ -657,8 +657,8 @@ paths:
     get:
       tags:
         - Payment Agreements
-      summary: Get payment agreement
-      operationId: getPaymentAgreement
+      summary: List payment agreements
+      operationId: listPaymentAgreements
       description: >
         ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
