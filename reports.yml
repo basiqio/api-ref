@@ -5453,6 +5453,31 @@ paths:
           type: string
         required: true
         description: The ID of the generated report
+      - in: query
+        name: filter
+        description: >-
+          - account.id.eq('15a28893-e8c9-4441-a076-470195218738')
+          
+          - transaction.postDate.bt('2022-10-01,2022-10-10')
+          
+          - transaction.postDate.(eq|gt|lt|gteq|lteq)('2022-12-03T00:00:00Z')
+          
+          - institution.id.eq('AU00001')
+          
+          - connection.id.eq('12857a4c-931d-4a5a-ab74-399dafb03bfe')
+          
+          - transaction.id.eq('14198297-b3b5-415c-b6ad-8a14476ef61c')
+          
+          - transaction.direction.eq('credit')
+          
+          - transaction.class.eq('transfer')
+          
+          - transaction.status.eq('posted')
+          
+          
+          Transactions can be filtered based on date & datetime.
+        schema:
+          type: string
       responses:
         200:
           description: 'Returns a list with a data property that contains
