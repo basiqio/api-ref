@@ -8,12 +8,12 @@
 
 -   Core
 -   Data
--   Identity
--   Payments
--   Reports
--   Services
--   Enrich
 -   Webhooks
+-   Payments
+-   Reporting
+-   Affordability
+-   Enrich
+-   Identity
 
 ### Changelog
 Please check the [changelog](https://api.basiq.io/changelog) for more details on API changes. 
