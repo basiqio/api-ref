@@ -3852,19 +3852,6 @@ components:
             (this is the same date that appears on a bank statement). This value is
             null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
           example: "2018-11-02T00:00:00Z"
-        mcc:
-          type: object
-          description: >-
-            Merchant category codes returned from Data holders.
-          properties:
-            code: 
-              type: string
-              description: code
-              example: 3012
-            title: 
-              type: string
-              description: title
-              example: Qantas
         subClass:
           type: object
           description: >-
@@ -4029,6 +4016,19 @@ components:
           type: string
           description: The confidence score for the matchType which is a float value between 0 and 1. The higher the number, the higher the confidence in the match. 
           example: "1.0"
+        mcc:
+          type: object
+          description: >-
+            Merchant category codes returned from Data holders.
+          properties:
+            code: 
+              type: string
+              description: code
+              example: 3012
+            title: 
+              type: string
+              description: title
+              example: Qantas
         anzsic:
           $ref: '#/components/schemas/TransactionsAnzsic'
     TransactionsClass:
