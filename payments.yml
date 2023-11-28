@@ -17,7 +17,6 @@ tags:
   - name: Float accounts
     description: APIs for querying float accounts
 paths:
-# agreements
   /payments/agreements/instructions/validation:
     post:
       tags:
