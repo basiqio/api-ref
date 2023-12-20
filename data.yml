@@ -663,7 +663,7 @@ paths:
         - Connections
       summary: Purge connection data
       description: >-
-        Use this to remove all user data for specific institution.
+        Use this to remove all user data for a specific institution.
         This endpoint should be used only for active user connections.
       operationId: purgeConnectionData
       parameters:
