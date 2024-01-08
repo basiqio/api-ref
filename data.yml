@@ -3823,6 +3823,7 @@ components:
       - id
       - status
       - description
+      - reference
       - account
       - amount
       - balance
@@ -3861,7 +3862,10 @@ components:
           - posted
         description:
           type: string
-          description: The transaction description as submitted by the institution..
+          description: The transaction description as submitted by the institution.
+        reference:
+          type: string
+          description: The reference for the transaction provided by the originating institution.
         amount:
           type: string
           description: Transaction amount. Outgoing funds are expressed as negative
