@@ -1989,7 +1989,7 @@ components:
         accountNo:
           type: string
           description: BSB + account number.
-          example: 600000157441965
+          example: "600000157441965"
         availableFunds:
           type: string
           description: Funds that are available to an account holder for withdrawal
