@@ -24,3 +24,20 @@ jobs:
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
           max_length: 500 # Max length of the branch name
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18' # Use the Node.js version compatible with Redocly CLI
+
+    - name: Install Redocly CLI
+      run: npm install -g @redocly/openapi-cli
+      
+    - name: Lint YAML Files
+      run: redocly lint
+        
