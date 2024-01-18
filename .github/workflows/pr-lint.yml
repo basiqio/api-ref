@@ -37,6 +37,9 @@ jobs:
 
     - name: Install Redocly CLI
       run: npm install -g @redocly/openapi-cli
+    
+    - name: Print Redocly CLI Version (Debug)
+      run: redocly --version
       
     - name: Lint YAML Files
       run: redocly lint
