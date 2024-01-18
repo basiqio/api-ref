@@ -5,8 +5,11 @@ info:
     All endpoints related to Basiq's payments offering
   version: '3.0'
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
-  - url: https://au-api.basiq.io/
+  - url: https://au-api.basiq.io
 tags:
   - name: Payment Agreements
     description: API for Payment agreements
