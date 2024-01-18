@@ -1085,7 +1085,7 @@ components:
           example: image
           enum:
             - image
-      description: InstitutionLogoResource linstitution logo resource type
+      description: Institution logo resource type
     ConnectionAccountLinks:
       required:
         - self
