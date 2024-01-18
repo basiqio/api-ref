@@ -39,9 +39,46 @@ jobs:
       run: npm install -g @redocly/openapi-cli
     
     - name: Verify Redocly CLI Installation
-      run: npx redocly --version
+      run: npx @redocly/openapi-cli --version
       
     - name: Lint YAML Files
-      run: npx redocly lint
-
+      run: npx @redocly/openapi-cli lint
+    
+    - name: Send custom JSON data to Slack workflow
+      if: failure() # This step will run only if the previous step fails
+      uses: slackapi/slack-github-action@e28cf165c92ffef168d23c5c9000cffc8a25e117 # v1.24.0
+      with:
+        payload: |
+          {
+            "text": "Linting Failed in GitHub Actions",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Linting Failure Notification",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Linting Failed* in GitHub Actions :x:\n*Repository:* <${{ github.repository_url }}|${{ github.repository }}>\n*Actor:* ${{ github.actor }}\n*Pull Request:* <${{ github.event.pull_request.html_url }}|PR Link>"
+                }
+              },
+              {
+                "type": "context",
+                "elements": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "Please review the PR and make necessary changes."
+                  }
+                ]
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
         
