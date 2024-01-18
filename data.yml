@@ -1350,9 +1350,9 @@ components:
           type: string
           description: Institution country name
           example: Australia
-        cdrPolicy:
+        cdrFAQ:
           type: string
-          description: A link for each Data Holder (where available) to a page explaining CDR data sharing process.
+          description: A link for Data Holder (where available) to a page explaining CDR data sharing process.
         logo:
           $ref: '#/components/schemas/InstitutionLogoResource'
         name:
