@@ -3,8 +3,11 @@ info:
   title: Enrich
   description: All included utility endpoints for Basiq partners
   version: 3.0.0
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
-  - url: https://au-api.basiq.io/
+  - url: https://au-api.basiq.io
 paths:
   /enrich:
     get:
