@@ -36,13 +36,13 @@ jobs:
         node-version: '18' # Use the Node.js version compatible with Redocly CLI
 
     - name: Install Redocly CLI
-      run: npm install -g @redocly/openapi-cli
+      run: npm install -g @redocly/cli
     
     - name: Verify Redocly CLI Installation
-      run: npx @redocly/openapi-cli --version
+      run: npx @redocly/cli --version
       
     - name: Lint YAML Files
-      run: npx @redocly/openapi-cli lint
+      run: npx @redocly/cli lint data.yml
     
     - name: Send custom JSON data to Slack workflow
       if: failure() # This step will run only if the previous step fails
