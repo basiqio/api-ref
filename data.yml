@@ -2518,7 +2518,10 @@ components:
         category:
           $ref: '#/components/schemas/TransactionsCategory'
     Transactionstags: 
-      type: object
+      type: array
+      items:
+       type: string
+       example: card:4615
     TransactionscleanDescription:
       type: string
       description: ""
