@@ -1066,7 +1066,7 @@ components:
           type: string
           description: Square formatted logo URL
           example: https://example.com/AU00000.svg
-      description: LogoResourceLinks contains institution logo resource links
+      description: institution logo resource links
     InstitutionLogoResource:
       required:
         - links
