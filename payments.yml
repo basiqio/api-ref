@@ -5,8 +5,11 @@ info:
     All endpoints related to Basiq's payments offering
   version: '3.0'
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
-  - url: https://au-api.basiq.io/
+  - url: https://au-api.basiq.io
 tags:
   - name: Payment Agreements
     description: API for Payment agreements
@@ -143,7 +146,7 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/ 
                       agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
-  /payments/agreements/instructions/{id}/recall/:
+  /payments/agreements/instructions/{id}/recall:
     post:
       tags:
         - Payment Agreements
@@ -542,7 +545,7 @@ paths:
                       job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
                       related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
-  /payments/agreements/instructions/:
+  /payments/agreements/instructions:
     get:
       tags:
         - Payment Agreements
@@ -782,7 +785,7 @@ paths:
                       payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"                        
       security:
            - payment_apiKey: []      
-  /payments/agreements/:
+  /payments/agreements:
     get:
       tags:
         - Payment Agreements
@@ -1268,170 +1271,6 @@ paths:
         '404':
           description: Payment request not found
   /payments/payouts:
-    post:
-      tags:
-        - Send 
-      summary: Submit payouts
-      operationId: submitPayouts
-      requestBody:
-        $ref: '#/components/requestBodies/payouts'
-      responses:
-        '201':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jobs'
-              examples:
-                Single Payout:
-                  value:
-                    jobs:
-                      - type: job
-                        id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        links:
-                          self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-                Multiple Payouts:
-                  value:
-                    jobs:
-                    - type: job
-                      id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      links:
-                        self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-                    - type: job
-                      id: c29824ad0-73f1-0138-3700-0a58a9feac10
-                      requestId: 12824ad0-73f1-0138-3700-0a58a9feac09
-                      links:
-                        self: https://au-api.basiq.io/jobs/c29824ad0-73f1-0138-3700-0a58a9feac10
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              examples:
-                Invalid amount:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Amount value is not valid.
-                      source:
-                        pointer: '/payouts[0]/amount'
-                Multiple invalid:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Amount value is not valid.
-                      source:
-                        pointer: '/payouts[0]/amount'
-                    - id: '12824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      title: Parameter not valid.
-                      code: parameter-not-valid
-                      detail: Amount value is not valid.
-                      source:
-                        pointer: '/payouts[1]/amount'
-                Invalid payeeBankBranchCode:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: parameter-not-valid
-                      title: Parameter not valid.
-                      detail: payeeBankBranchCode is not valid.
-                      source:
-                        pointer: '/payouts[0]/payeeBankBranchCode'
-                Invalid payeeAccountNumber:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: parameter-not-valid
-                      title: Parameter not valid.
-                      detail: payeeAccountNumber is not valid.
-                      source:
-                        pointer: '/payouts[0]/payeeAccountNumber'
-                Invalid payout method:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: parameter-not-valid
-                      title: Parameter not valid.
-                      detail: method is not valid.
-                      source:
-                        pointer: '/payouts[0]/method'
-                Duplicate request:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: resource-already-exists
-                      title: Resource already exists.
-                      detail: A resource with the same Request ID already exists.
-                      source:
-                        pointer: '/payouts[0]/requestId'
-                Duplicate request within the same message:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: resource-already-exists
-                      title: Resource already exists.
-                      detail: A resource with the same Request ID already exists in this request.
-                      source:
-                        pointer: '/payouts[0]/requestId'
-                Bulk limit exceeded:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: maximum-count-exceeded
-                      title: Maximum count exceeded.
-                      detail: The request has exceeded the maximum count.
-                Payments not enabled:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: payments-not-enabled
-                      title: Payments not enabled.
-                      detail: Payments not enabled for this application.
-                Invalid content:
-                  value:
-                    type: list
-                    correlationId: ac5ah5i
-                    data:
-                    - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      type: error
-                      code: invalid-content
-                      title: Invalid request content.
-                      detail: Posted requests data is not in valid format.
-                      source: null                      
-  /payments/payouts/:
     get:
       tags:
         - Send 
@@ -1706,7 +1545,7 @@ paths:
                     status: 'active'
                     links:
                       self: /payments/float-accounts/b1824ad0-73f1-0138-3700-0a58a9feac09
-  /payments/float-accounts/:
+  /payments/float-accounts:
     get:
       tags:
         - Float accounts
