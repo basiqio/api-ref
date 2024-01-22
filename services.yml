@@ -9,7 +9,7 @@ paths:
     get:
       tags:
       - Accounts
-      summary: List all accounts 
+      summary: List all accounts
       description: List all accounts belonging to a user
       operationId: getAccounts
       parameters:
@@ -116,7 +116,7 @@ paths:
       tags:
       - Affordability
       summary: List affordability summaries
-      description: Returns a list of affordability summaries that have been generated for a specific user. 
+      description: Returns a list of affordability summaries that have been generated for a specific user.
       operationId: getAffordabilityList
       parameters:
       - name: userId
@@ -311,7 +311,7 @@ paths:
       tags:
       - Affordability
       summary: List affordability summary transactions
-      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary. 
+      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary.
       operationId: getAffordabilitySnapshotTransactions
       parameters:
       - name: userId
@@ -660,7 +660,7 @@ paths:
       tags:
       - Transactions
       summary: List all transactions
-      description: List all transactions belonging to a specified user 
+      description: List all transactions belonging to a specified user
       operationId: getTransactions
       parameters:
       - name: userId
@@ -2956,7 +2956,7 @@ x-readme:
   explorer-enabled: true
   proxy-enabled: true
   samples-enabled: true
-  samples-languages: 
+  samples-languages:
   - curl
   - node
   - ruby

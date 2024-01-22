@@ -12,7 +12,7 @@ paths:
       tags:
         - Reports
       description: >
-        
+
         Use this endpoint to create a new report. Report creation is an
         asynchronous task, meaning a job will be returned to let you know the
         progress of the report generation.
@@ -24,7 +24,7 @@ paths:
 
         All created reports, will store a copy of the data as a snapshot - this
         ensures that you have access to the raw data that was used to create the
-        report. 
+        report.
       requestBody:
         description: >-
           Include the details of the report you would like to create along with
@@ -47,7 +47,7 @@ paths:
                     - ag829sj
                     - aj82gka
                 - name: users
-                  value: 
+                  value:
                     - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
       responses:
         '202':
@@ -96,7 +96,7 @@ paths:
         - Reports
       description: >
 
-        Use this endpoint to retrieve a list of created reports. 
+        Use this endpoint to retrieve a list of created reports.
         Every created report is saved as a snapshot and can be retrieved up to 24 hours after
         creation.You can call the reports/types endpoint to see the list of supported reports.
         reports.
@@ -189,7 +189,7 @@ paths:
                   - ag829sj
                   - aj82gka
                 - name: users
-                  value: 
+                  value:
                   - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
                 data:
                   metrics:
@@ -568,7 +568,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                           credit: 0
                           debit: 0
                       range:
@@ -599,7 +599,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -644,7 +644,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -675,7 +675,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -720,7 +720,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -751,7 +751,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -766,7 +766,7 @@ paths:
                             transaction: '100.00'
                             month: '100.00'
                             medianTransaction: '20.00'
-                            medianMonth: '20.00'   
+                            medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
                         frequency:
@@ -796,7 +796,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -811,7 +811,7 @@ paths:
                           transaction: '100.00'
                           month: '100.00'
                           medianTransaction: '20.00'
-                          medianMonth: '20.00'   
+                          medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
                       frequency:
@@ -827,7 +827,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -872,7 +872,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -903,7 +903,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -948,7 +948,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -979,7 +979,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1024,7 +1024,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1055,7 +1055,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1100,7 +1100,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1131,7 +1131,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1176,7 +1176,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1249,7 +1249,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1280,7 +1280,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                               credit: 0
                               debit: 0
                         range:
@@ -1325,7 +1325,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1356,7 +1356,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1401,7 +1401,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1432,7 +1432,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1477,7 +1477,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1508,7 +1508,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1553,7 +1553,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1584,7 +1584,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1629,7 +1629,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1660,7 +1660,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1705,7 +1705,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1736,7 +1736,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1781,7 +1781,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1812,7 +1812,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1857,7 +1857,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1888,7 +1888,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -1933,7 +1933,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -1964,7 +1964,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2009,7 +2009,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2038,7 +2038,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2081,7 +2081,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2110,7 +2110,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2153,7 +2153,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2182,7 +2182,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2225,7 +2225,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2254,7 +2254,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2297,7 +2297,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2326,7 +2326,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2369,7 +2369,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2398,7 +2398,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2442,7 +2442,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2471,7 +2471,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2514,7 +2514,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2543,7 +2543,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2586,7 +2586,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2615,7 +2615,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2658,7 +2658,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2687,7 +2687,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2730,7 +2730,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2759,7 +2759,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2802,7 +2802,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2831,7 +2831,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2874,7 +2874,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2903,7 +2903,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -2946,7 +2946,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -2975,7 +2975,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3018,7 +3018,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3047,7 +3047,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3090,7 +3090,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3119,7 +3119,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3162,7 +3162,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3191,7 +3191,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3234,7 +3234,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3263,7 +3263,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3306,7 +3306,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3335,7 +3335,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3378,7 +3378,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3407,7 +3407,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3450,7 +3450,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3479,7 +3479,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3522,7 +3522,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3551,7 +3551,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3594,7 +3594,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3623,7 +3623,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3666,7 +3666,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3695,7 +3695,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3738,7 +3738,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3767,7 +3767,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3810,7 +3810,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3839,7 +3839,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3883,7 +3883,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3912,7 +3912,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -3956,7 +3956,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -3985,7 +3985,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4028,7 +4028,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4057,7 +4057,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4100,7 +4100,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4129,7 +4129,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4172,7 +4172,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4201,7 +4201,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4245,7 +4245,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4274,7 +4274,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4318,7 +4318,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4347,7 +4347,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4391,7 +4391,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4419,7 +4419,7 @@ paths:
                       name: SAMPLE TRANSACTION
                       analysis:
                         summary:
-                          
+
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -4460,7 +4460,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4489,7 +4489,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4532,7 +4532,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4561,7 +4561,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4604,7 +4604,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4633,7 +4633,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4676,7 +4676,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4705,7 +4705,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4748,7 +4748,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4777,7 +4777,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4820,7 +4820,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4849,7 +4849,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4892,7 +4892,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4921,7 +4921,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -4964,7 +4964,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -4993,7 +4993,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -5036,7 +5036,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -5065,7 +5065,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -5108,7 +5108,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -5137,7 +5137,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -5180,7 +5180,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 3
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -5211,7 +5211,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -5254,7 +5254,7 @@ paths:
                     analysis:
                       summary:
                         transactionCount: 2
-                        overallPercentage: 
+                        overallPercentage:
                             credit: 0
                             debit: 0
                       range:
@@ -5285,7 +5285,7 @@ paths:
                       analysis:
                         summary:
                           transactionCount: 3
-                          overallPercentage: 
+                          overallPercentage:
                             credit: 0
                             debit: 0
                         range:
@@ -5444,7 +5444,7 @@ paths:
       - Reports
       summary: Retrieve report transactions
       description: >
-        List all transactions belong to that particular report. 
+        List all transactions belong to that particular report.
       operationId: getTransactions
       parameters:
       - in: path
@@ -5457,24 +5457,24 @@ paths:
         name: filter
         description: >-
           - account.id.eq('15a28893-e8c9-4441-a076-470195218738')
-          
+
           - transaction.postDate.bt('2022-10-01,2022-10-10')
-          
+
           - transaction.postDate.(eq|gt|lt|gteq|lteq)('2022-12-03T00:00:00Z')
-          
+
           - institution.id.eq('AU00001')
-          
+
           - connection.id.eq('12857a4c-931d-4a5a-ab74-399dafb03bfe')
-          
+
           - transaction.id.eq('14198297-b3b5-415c-b6ad-8a14476ef61c')
-          
+
           - transaction.direction.eq('credit')
-          
+
           - transaction.class.eq('transfer')
-          
+
           - transaction.status.eq('posted')
-          
-          
+
+
           Transactions can be filtered based on date & datetime.
         schema:
           type: string
@@ -5662,7 +5662,7 @@ paths:
                   - name: includeMetrics
                     type: array
                     required: false
-                    
+
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
@@ -5759,12 +5759,12 @@ components:
             No formatting is applied. Returns a string or null when not available.
           nullable: true
           example: GAVIN BELSON
-        accountOwnership: 
+        accountOwnership:
           type: string
           description: >-
-            Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers. 
+            Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers.
           example: UNKNOWN
-          enum: 
+          enum:
           - UNKNOWN
           - ONE_PARTY
           - TWO_PARTY
@@ -5789,7 +5789,7 @@ components:
             spent.
           nullable: true
           example: "356.50"
-        creditLimit: 
+        creditLimit:
           type: string
           description: Eligible account types are credit-card, loan and mortgage.
           nullable: true
@@ -5840,14 +5840,14 @@ components:
       description: Container object with account details
     accountLinks:
       type: object
-      properties: 
-        self: 
+      properties:
+        self:
           type: string
           description: "/users/6a52015e/accounts/31eb30a0"
-        transactions: 
+        transactions:
           type: string
           description: "/users/6a52015e/transactions?filter=account.id.eq('31eb30a0')"
-        institution: 
+        institution:
           type: string
           description: "/institutions/AU00000"
     AccountTransactionInterval:
@@ -6266,9 +6266,9 @@ components:
       - merchant
       type: object
       properties:
-        cleanDescription: 
+        cleanDescription:
           $ref: "#/components/schemas/TransactionscleanDescription"
-        tags: 
+        tags:
           $ref: "#/components/schemas/Transactionstags"
         category:
           $ref: '#/components/schemas/TransactionsCategory'
@@ -6276,7 +6276,7 @@ components:
           $ref: '#/components/schemas/TransactionsLocation'
         merchant:
           $ref: '#/components/schemas/TransactionsMerchant'
-    Transactionstags: 
+    Transactionstags:
       type: object
     TransactionscleanDescription:
       type: string
@@ -6323,7 +6323,7 @@ components:
           description: Count of the transactions in the response.
           format: int64
           example: 500
-        size: 
+        size:
           type: integer
           description: Size of the transactions in the response.
           format: int64
@@ -6737,158 +6737,158 @@ components:
               example: https://au-api.basiq.io/jobs/a3dgf4567a89
     report:
       properties:
-        type: 
+        type:
           type: string
           description: Always "report".
           example: report
-        id: 
+        id:
           type: string
           description: Uniquely identifies the report.
           example: b1824ad0-73f1-0138-3700-0a58a9feac09
-        title: 
+        title:
           type: string
           description: User defined title for the report.
           example: John Smith Affordability Report 2022-03-26
-        reportType: 
+        reportType:
           type: string
           description: Identifies the report type, see list of reportTypes.
           example: CON_AFFOR_01
-        createdDate: 
+        createdDate:
           type: string
           description: The date and time of when the report was created.
           example: 2022-03-26T06:56:44
-        createdBy: 
+        createdBy:
           type: string
           description: Identifies who created the report.
           example: David Smith
-        filters: 
+        filters:
           type: array
           description: |
             List of filters that were supplied to generate the report. See /reports/reportType for a list of supported filters.
-          items: 
+          items:
             type: object
-            properties: 
-              name: 
+            properties:
+              name:
                 type: string
                 example: fromDate
-              value: 
+              value:
                 type: string
                 format: date
                 example: 2022-01-01
-        data: 
+        data:
           type: object
           description: Includes the primary data generated for the requested report.
-          properties: 
-            metrics: 
+          properties:
+            metrics:
               type: array
               description: Metrics are calculated single value answers.
-              items: 
+              items:
                 type: object
-                properties: 
-                  id: 
+                properties:
+                  id:
                     type: string
                     description: A unique code that identifies the metric.
                     example: ME001
-                  title: 
+                  title:
                     type: string
                     description: Name of the metric.
                     example: # of identified income sources
-                  description: 
+                  description:
                     type: string
                     description: Described the metric in greater detail.
                     example: Number of recent salary income sources
-                  sections: 
+                  sections:
                     type: array
                     description: A header for the metric. This helps organise metrics into sections.
-                    items: 
+                    items:
                       type: string
                       example: Risk Metrics
-                  result: 
+                  result:
                     type: object
                     description: Contains the result / output for the metric.
-                    properties: 
-                      value: 
+                    properties:
+                      value:
                         type: string
                         description: The calculated value.
                         example: 4
-                      format: 
+                      format:
                         type: string
                         description: Identifies the value type.
                         enum: [boolean, money, percent, integer , date , string , double]
                         example: integer
-            groups: 
+            groups:
               type: array
               description: Contains a list of analysed transaction groups e.g. Income, Expenses
-              items: 
+              items:
                 type: object
-                properties: 
-                  id: 
+                properties:
+                  id:
                     type: string
                     description: Unique code that identifies the anlysis group.
                     example: INC-001
-                  title: 
+                  title:
                     type: string
                     description: Name of the group being analysed.
                     example: Benefits
-                  sections: 
+                  sections:
                     type: array
                     description: A list of sections that the group belongs to. This helps organise groups into sections. e.g. The group "Gambling" may belong to "Non-Discretionary Expenses" and "High Risk Activities".
-                    items: 
+                    items:
                       type: string
                       example: Income
-                  analysis: 
+                  analysis:
                     type: object
                     description: Included statistical values for the analysed group.
-                    properties: 
-                      summary: 
+                    properties:
+                      summary:
                         type: object
-                        properties: 
-                          transactionCount: 
+                        properties:
+                          transactionCount:
                             type: number
                             description: The total number of transactions that belong to the group.
                             example: 3
-                      range: 
+                      range:
                         type: object
-                        properties: 
-                          startDate: 
+                        properties:
+                          startDate:
                             type: string
                             description: The date of the earliest transaction found in the group.
                             format: date
                             example: 2022-01-01
-                          endDate: 
+                          endDate:
                             type: string
                             description: The date of the most recent transaction found in the group.
                             format: date
                             example: 2022-03-01
-                          duration: 
+                          duration:
                             type: number
                             description: The duration between the start date and end date. Expressed in days.
                             example: 59
-                      amount: 
+                      amount:
                         type: object
-                        properties: 
-                          total: 
+                        properties:
+                          total:
                             type: string
                             description: The total sum of all transactions belonging to the group.
                             example: 300.00
-                          min: 
+                          min:
                             type: string
                             description: The smallest transaction value in the group.
                             example: 100.00
-                          max: 
+                          max:
                             type: string
                             description: The largest transaction value in the group.
                             example: 100.00
-                          average: 
+                          average:
                             type: object
-                            properties: 
-                              transaction: 
+                            properties:
+                              transaction:
                                 type: string
                                 description: The average unique transaction value.
                                 example: 100.00
-                              month: 
+                              month:
                                 type: string
-                                description: The average monthly value. 
+                                description: The average monthly value.
                                 example: 100.00
                               medianTransaction:
                                 type: integer
@@ -6905,16 +6905,16 @@ components:
                           stableMonths:
                             type: integer
                             description: Number of stable months
-                      frequency: 
+                      frequency:
                         type: object
                         description: Identifies the occurance pattern of the transactions within the group.
-                        properties: 
-                          type: 
+                        properties:
+                          type:
                             type: string
                             description: The frequency codes.
                             enum: [P12M, P13W, P1D, P1M, P1W, P26W, P2M, P2W, P3M, P4M, P4W, P52W, P6M]
                             example: P12M
-                          amount: 
+                          amount:
                             type: string
                             description: The average amount for each occuring transaction.
                             example: 100.00
@@ -6923,86 +6923,86 @@ components:
                             description: The frequency pattern found of the transactions e.g. how often do they occur
                             enum: [Yearly, Every 13 weeks, Daily, Monthly, Weekly, Every 26 weeks, Bimonthly, Fortnightly, Every 3 months, Every 4 months, Every 4 weeks, Every 52 weeks, Every 6 months]
                             example: Yearly
-                          next: 
+                          next:
                             type: object
                             description: Identifies the next transaction is likely to occur.
-                            properties: 
-                              date: 
+                            properties:
+                              date:
                                 type: string
                                 description: The predicted date of when the next transaction will likely occur.
                                 format: date
                                 example: 2022-04-01
-                              amount: 
+                              amount:
                                 type: string
                                 description: The predicted value of the next transaction.
                                 example: 100.00
-                  subgroup: 
+                  subgroup:
                     type: array
                     description: The unqiue transaction clusters that belong to a group.
-                    items: 
+                    items:
                       type: object
-                      properties: 
-                        id: 
+                      properties:
+                        id:
                           type: string
                           description: The unique id of the subgroup.
                           example: 6d97ec2e37e4d1d24a105bdaea33b427
-                        name: 
+                        name:
                           type: string
                           description: The name of the subgroup.
                           example: SAMPLE TRANSACTION
-                        analysis: 
+                        analysis:
                           type: object
                           description: Included statistical values for the analysed subgroup.
-                          properties: 
-                            summary: 
+                          properties:
+                            summary:
                               type: object
-                              properties: 
-                                transactionCount: 
+                              properties:
+                                transactionCount:
                                   type: number
                                   description: The total number of transactions that belong to the subgroup.
                                   example: 3
-                            range: 
+                            range:
                               type: object
-                              properties: 
-                                startDate: 
+                              properties:
+                                startDate:
                                   type: string
                                   description: The date of the earliest transaction found in the subgroup.
                                   format: date
                                   example: 2022-01-01
-                                endDate: 
+                                endDate:
                                   type: string
                                   description: The date of the most recent transaction found in the subgroup.
                                   format: date
                                   example: 2022-03-01
-                                duration: 
+                                duration:
                                   type: number
                                   description: The duration between the start date and end date. Expressed in days.
                                   example: 59
-                            amount: 
+                            amount:
                               type: object
-                              properties: 
-                                total: 
+                              properties:
+                                total:
                                   type: string
                                   description: The total sum of all transactions belonging to the subgroup.
                                   example: 300.00
-                                min: 
+                                min:
                                   type: string
                                   description: The smallest transaction value in the subgroup.
                                   example: 100.00
-                                max: 
+                                max:
                                   type: string
                                   description: The largest transaction value in the subgroup.
                                   example: 100.00
-                                average: 
+                                average:
                                   type: object
-                                  properties: 
-                                    transaction: 
+                                  properties:
+                                    transaction:
                                       type: string
                                       description: The average unique transaction value.
                                       example: 100.00
-                                    month: 
+                                    month:
                                       type: string
-                                      description: The average monthly value. 
+                                      description: The average monthly value.
                                       example: 100.00
                                     medianTransaction:
                                       type: integer
@@ -7019,16 +7019,16 @@ components:
                                 stableMonths:
                                   type: integer
                                   description: Number of stable months
-                            frequency: 
+                            frequency:
                               type: object
                               description: Identifies the occurance pattern of the transactions within the subgroup.
-                              properties: 
-                                type: 
+                              properties:
+                                type:
                                   type: string
                                   description: The frequency codes.
                                   enum: [P12M, P13W, P1D, P1M, P1W, P26W, P2M, P2W, P3M, P4M, P4W, P52W, P6M]
                                   example: P12M
-                                amount: 
+                                amount:
                                   type: string
                                   description: The average amount for each occuring transaction.
                                   example: 100.00
@@ -7037,39 +7037,39 @@ components:
                                   description: The frequency pattern found of the transactions e.g. how often do they occur
                                   enum: [Yearly, Every 13 weeks, Daily, Monthly, Weekly, Every 26 weeks, Bimonthly, Fortnightly, Every 3 months, Every 4 months, Every 4 weeks, Every 52 weeks, Every 6 months]
                                   example: Yearly
-                                next: 
+                                next:
                                   type: object
                                   description: Identifies the next transaction is likely to occur.
-                                  properties: 
-                                    date: 
+                                  properties:
+                                    date:
                                       type: string
                                       description: The predicted date of when the next transaction will likely occur.
                                       format: date
                                       example: 2022-04-01
-                                    amount: 
+                                    amount:
                                       type: string
                                       description: The predicted value of the next transaction.
                                       example: 100.00
-                        transactions: 
+                        transactions:
                           type: array
                           description: Includes the list of transactions that belong to the subgroup.
-                          items: 
+                          items:
                             type: object
-                            properties: 
-                              id: 
+                            properties:
+                              id:
                                 type: string
                                 description: Unique id of the transaction record.
                                 example: 59018149cab77cd2ab7df477f6760cc9
-                              date: 
+                              date:
                                 type: string
                                 description: The date of when the transaction occured.
                                 format: date
                                 example: 2022-01-01
-                              description: 
+                              description:
                                 type: string
                                 description: The description of the transaction.
                                 example: SAMPLE TRANSACTION 0000023
-                              amount: 
+                              amount:
                                 type: string
                                 description: The value (amount) of the transaction.
                                 example: 100.00
@@ -7082,18 +7082,18 @@ components:
               type: string
               description: Retrieve report transactions EP
               example: https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
-        links: 
+        links:
           type: object
-          properties: 
-            self: 
+          properties:
+            self:
               type: string
               description: Url of the current report.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            data-accounts: 
+            data-accounts:
               type: string
               description: Snapshot of the raw data used to generate the report. See accounts object for schema.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/accounts
-            data-transactions: 
+            data-transactions:
               type: string
               description: Snapshot of the raw data used to generate the report. See transactions object for schema.
               example: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions

@@ -29,7 +29,7 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-      
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -37,13 +37,13 @@ jobs:
 
     - name: Install Redocly CLI
       run: npm install -g @redocly/cli
-    
+
     - name: Verify Redocly CLI Installation
       run: npx @redocly/cli --version
-      
+
     - name: Lint YAML Files
       run: npx @redocly/cli lint data.yml
-    
+
     - name: Send custom JSON data to Slack workflow
       if: failure() # This step will run only if the previous step fails
       uses: slackapi/slack-github-action@e28cf165c92ffef168d23c5c9000cffc8a25e117 # v1.24.0
@@ -81,4 +81,3 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-        

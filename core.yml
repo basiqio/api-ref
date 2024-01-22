@@ -359,7 +359,7 @@ paths:
                 $ref: '#/components/schemas/UserConsentGetResponses'
               examples:
                 active:
-                  value:  
+                  value:
                     type: consent
                     id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
                     created: '2022-11-01T05:07:00Z'
@@ -440,9 +440,9 @@ paths:
                               accounts. It includes all account transaction data.
                     links:
                       self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
-                      
+
                 expired:
-                  value:  
+                  value:
                     type: consent
                     id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
                     created: '2022-11-01T05:07:00Z'
@@ -643,8 +643,8 @@ paths:
       - AuthLinks
       summary: Create an auth_link
       description: |-
-        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth_link for that user, rendering the previous URL(s) invalid. 
-        
+        Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth_link for that user, rendering the previous URL(s) invalid.
+
         The 'mobile' attribute is used for 2FA SMS verification and is conditionally required. If it is not specified, we will look up the mobile on the user object; if that is not specified either, you will get an error.  If both are specified, the mobile number on the auth_link will take precedence.
       operationId: postAuthLink
       parameters:
@@ -944,11 +944,11 @@ paths:
         - Events
       summary: List event types
       description: >-
-          
+
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-          
-          
-          Returns a list of event types. 
+
+
+          Returns a list of event types.
       operationId: listEventTypes
       responses:
         '200':
@@ -1134,7 +1134,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'Query limit reached.'              
+                      detail: 'Query limit reached.'
         '500':
           description: >-
             Returns error response code indicates that the server encountered an
@@ -1159,16 +1159,16 @@ paths:
         - Events
       summary: Retrieve an event type
       description: >-
-          
+
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-          
-          
-          Returns a single event type based on the parameter input. 
+
+
+          Returns a single event type based on the parameter input.
       operationId: getEventTypeById
-      parameters: 
+      parameters:
         - name: id
           required: true
-          schema: 
+          schema:
             type: string
           in: path
           example: 'user.created'
@@ -1185,7 +1185,7 @@ paths:
                     id: payrequest.successful
                     description: when a payrequest is successful
                     links:
-                      self: 'https://au-api.basiq.io/events/types/user.created'                      
+                      self: 'https://au-api.basiq.io/events/types/user.created'
         '400':
           description: >-
             Error status response code indicates that the request has not been
@@ -1752,7 +1752,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     Error:
       properties:
@@ -1792,7 +1792,7 @@ components:
         links:
           type: object
           properties:
-            self:  
+            self:
               type: string
     AccountsData:
       required:
@@ -3719,7 +3719,7 @@ components:
           type: string
           description: Name, or empty.
           example: ""
-        firstName: 
+        firstName:
           type: string
           description: firstName, or empty
           example: Gavin
@@ -3727,7 +3727,7 @@ components:
           type: string
           description: middleName, or empty
           example: middleName
-        lastName: 
+        lastName:
           type: string
           description: lastName, or empty
           example: lastName
@@ -3764,7 +3764,7 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
-        middleName: 
+        middleName:
           type: string
           description: The end-users middle name as an optional additional parameter.
           example: middle name
@@ -3792,7 +3792,7 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
-        middleName: 
+        middleName:
           type: string
           description: The end-users middle name as an optional additional parameter.
           example: middle name
@@ -3815,7 +3815,7 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Malcolm
-        middleName: 
+        middleName:
           type: string
           description: The end-users middle name as an optional additional parameter.
           example: Malcom middle name

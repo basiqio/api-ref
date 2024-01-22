@@ -74,7 +74,7 @@ paths:
                       code: 'event-already-subscribed'
                       title: 'Event already subscribed'
                       detail: 'Posted subscribedEvents contains events that are already subscribed to for this application.'
-                
+
         '401':
           description: 'Unauthorized'
           content:
@@ -236,7 +236,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'You have exceeded the rate limit for this API.'              
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
         '503':
@@ -261,10 +261,10 @@ paths:
         - Webhooks
       summary: Update a webhook
       operationId: updateWebhook
-      parameters: 
+      parameters:
         - name: webhookId
           required: true
-          schema: 
+          schema:
             type: string
           in: path
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -416,7 +416,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'You have exceeded the rate limit for this API.'              
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
         '503':
@@ -440,10 +440,10 @@ paths:
         - Webhooks
       summary: Delete a webhook
       operationId: deleteWebhook
-      parameters: 
+      parameters:
         - name: webhookId
           required: true
-          schema: 
+          schema:
             type: string
           in: path
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -553,10 +553,10 @@ paths:
         - Webhooks
       summary: Retrieve a webhook
       operationId: getWebhook
-      parameters: 
+      parameters:
         - name: webhookId
           required: true
-          schema: 
+          schema:
             type: string
           in: path
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -662,7 +662,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'You have exceeded the rate limit for this API.'              
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
         '503':
@@ -710,7 +710,7 @@ paths:
           explode: false
           schema:
             type: string
-          example: ''      
+          example: ''
       responses:
         '200':
           description: Success
@@ -726,7 +726,7 @@ paths:
                     count: 2
                     data:
                     - id: 11a85f64-5717-4562-b3fc-2c963f66af11
-                      payload: 
+                      payload:
                        eventTypeId: payrequest.successful
                        eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
                        links:
@@ -745,7 +745,7 @@ paths:
 #                      attempts:
 #                        - timestamp: '2019-08-24T14:15:22Z'
 #                          status: 'Success'
-                      links:        
+                      links:
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
                     links:
@@ -832,7 +832,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'You have exceeded the rate limit for this API.'              
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
         '503':
@@ -882,7 +882,7 @@ paths:
                 Success:
                   value:
                     id: 11a85f64-5717-4562-b3fc-2c963f66af11
-                    payload: 
+                    payload:
                      eventTypeId: payrequest.successful
                      eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
                      links:
@@ -985,7 +985,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'You have exceeded the rate limit for this API.'              
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
         '503':
@@ -1096,7 +1096,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'You have exceeded the rate limit for this API.'              
+                      detail: 'You have exceeded the rate limit for this API.'
         '500':
           description: 'Internal server error.'
         '503':
@@ -1168,7 +1168,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     EventType:
       type: object
@@ -1184,7 +1184,7 @@ components:
         links:
           type: object
           properties:
-            self:  
+            self:
               type: string
     Webhooks:
       properties:
@@ -1202,11 +1202,11 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     Webhook:
       type: object
-      required: 
+      required:
         - url
         - status
         - subscribedEvents
@@ -1215,19 +1215,19 @@ components:
           type: string
           format: uuid
           description: unique identifer in the form of uuid for the webhook.
-        name: 
+        name:
           type: string
           description: name to describe the webhook.
-        description: 
+        description:
           type: string
           description: detailed description of the webhook.
-        url: 
+        url:
           type: string
           description: url to send webhooks to.
         status:
           type: string
           description: status of the webhook.
-          enum: 
+          enum:
             - active
             - pending-approval
         secret:
@@ -1266,7 +1266,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     Message:
       type: object
@@ -1298,17 +1298,17 @@ components:
         application/json:
           schema:
             type: object
-            required: 
+            required:
               - url
               - subscribedEvents
             properties:
-              name: 
+              name:
                 type: string
                 description: name to describe the webhook.
-              description: 
+              description:
                 type: string
                 description: detailed description of the webhook.
-              url: 
+              url:
                 type: string
                 description: url to send webhooks to.
               subscribedEvents:
@@ -1331,11 +1331,11 @@ components:
         application/json:
           schema:
             type: object
-            required: 
+            required:
               - eventTypeId
               - subscribedEvents
             properties:
-              eventTypeId: 
+              eventTypeId:
                 type: string
                 description: The event type Id to be triggered. refer to /events/types/ for full list.
                 example: 'user.created'
@@ -1356,7 +1356,7 @@ x-readme:
   explorer-enabled: true
   proxy-enabled: true
   samples-enabled: true
-  samples-languages: 
+  samples-languages:
   - curl
   - node
   - ruby

@@ -2,9 +2,9 @@ openapi: 3.0.1
 info:
   title: Affordability
   version: 3.0.0
-  license: 
+  license:
     name: "commercial"
-    url: https://basiq.io 
+    url: https://basiq.io
 servers:
 - url: https://au-api.basiq.io
 paths:
@@ -13,7 +13,7 @@ paths:
       tags:
       - Affordability
       summary: List affordability summaries
-      description: Returns a list of affordability summaries that have been generated for a specific user. 
+      description: Returns a list of affordability summaries that have been generated for a specific user.
       operationId: getAffordabilityList
       parameters:
       - name: userId
@@ -209,7 +209,7 @@ paths:
       tags:
       - Affordability
       summary: List affordability summary transactions
-      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary. 
+      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary.
       operationId: getAffordabilitySnapshotTransactions
       parameters:
       - name: userId
@@ -845,7 +845,7 @@ components:
           type: integer
           description: The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) ( [affordability only] - HEC classification class is returned by default or custom class is returned if configured - ask us about custom category mapping)
           example: 0801050199
-   
+
     AffordabilityTransactionLinks:
       required:
       - account
