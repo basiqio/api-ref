@@ -12,7 +12,7 @@ paths:
     get:
       tags:
       - Accounts
-      summary: List all accounts 
+      summary: List all accounts
       description: List all accounts belonging to a user
       operationId: getAccounts
       parameters:
@@ -152,7 +152,7 @@ paths:
       tags:
       - Transactions
       summary: List all transactions
-      description: List all transactions belonging to a specified user 
+      description: List all transactions belonging to a specified user
       operationId: getTransactions
       parameters:
       - name: userId
@@ -726,7 +726,7 @@ paths:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
         - services_token: []
-  /connectors: 
+  /connectors:
     get:
       tags:
         - Connectors
@@ -740,41 +740,41 @@ paths:
               Filter parameter can be used to filter connector list by connector property. This parameter should contain a comma-separated list of filter statements.</br>
 
               A filter statement is composed of the entity name (in this case, it is always 'connector'), the property name (e.g., 'stage'), the filter operator (e.g., 'eq'), and the quoted string value in parentheses (e.g., "('live')").</br>
-              
+
               The following list of regular expressions describes acceptable filter statements:</br>
-              
+
               • (connector).(id).(eq)\(('[A-Z][A-Z][0-9]{5}')\)</br>
-              
+
               • (connector).(method).(eq)\(('web'||'open-banking'|'pdf'|'csv')\)</br>
-              
+
               • (connector).(status).(eq|ne)\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance')\)</br>
-              
+
               • (connector).(status).(in)\(([\w\W]+)\)</br>
-              
+
               • (connector).(stage).(eq|ne)\(('live'|'beta'|'alpha')\)</br>
-              
+
               • (connector).(stage).(in)\(([\w\W]+)\)</br>
-              
+
               • (connector).(scopes).(in|eq|ne)\(([\w\W]+)\)</br>
-              
+
               • (connector).(institution).(country).(eq|ne)\(('Australia'|'New Zealand')\)</br>
-              
+
               • (connector).(institution).(country).(in)\(([\w\W]+)\)</br>
-              
+
               • (connector).(institution).(tier).(eq|ne)\(('1'|'2'|'3'|'4')\)</br>
-              
+
               • (connector).(institution).(tier).(in)\(([\W\d]+)\)</br>
-              
+
               • (connector).(institution).(type).(eq|ne)\(('Bank'|'Bank (Foreign)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)</br>
-              
+
               • (connector).(authorization).(type).(eq|ne)\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\)</br>
-              
+
               • (connector).(authorization).(type).(in)\(([\w\W]+)\)</br>
-              
+
               • (connector).(connectorEngine).(eq|ne)\(('chrome'|'node')\)</br>
-              
+
               Multiple filter definitions should be separated with a comma (,).</br>
-              
+
               For example, this filter statement will keep only live tier 1 and tier 2 institutions: filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')</br>
           schema:
             type: string
@@ -1257,7 +1257,7 @@ components:
             user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa"
             authorization type identifier
 
-            user-mfa-intermittent AuthorizationUserMfaIntermittent 
+            user-mfa-intermittent AuthorizationUserMfaIntermittent
             AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization
             type identifier
           example: user
@@ -1385,7 +1385,7 @@ components:
             Bank BankInstitutionType  BankInstitutionType institution type
             identifier for Banks
 
-            Bank (Foreign) BankForeignInstitutionType 
+            Bank (Foreign) BankForeignInstitutionType
             BankForeignInstitutionType institution type identifier for Foreign
             banks
 
@@ -1395,11 +1395,11 @@ components:
             Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType
             institution type identifier for Credit union institutions
 
-            Financial Services FinancialServicesInstitutionType 
+            Financial Services FinancialServicesInstitutionType
             FinancialServicesInstitutionType institution type identifier for
             Financial service institutions
 
-            Superannuation SuperannuationInstitutionType 
+            Superannuation SuperannuationInstitutionType
             SuperannuationInstitutionType institution type identifier for
             Superannuation institutions
 
@@ -1539,7 +1539,7 @@ components:
           example: '2019-07-29T07:34:09Z'
         expiryDate:
           type: string
-          description: Expiry date of the connection. 
+          description: Expiry date of the connection.
           example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
@@ -1692,7 +1692,7 @@ components:
           example: '2019-07-29T07:34:09Z'
         expiryDate:
           type: string
-          description: Expiry date of the connection. 
+          description: Expiry date of the connection.
           example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
@@ -1738,12 +1738,12 @@ components:
             No formatting is applied. Returns a string or null when not available.
           nullable: true
           example: GAVIN BELSON
-        accountOwnership: 
+        accountOwnership:
           type: string
           description: >-
-            Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers. 
+            Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers.
           example: ONE_PARTY
-          enum: 
+          enum:
           - UNKNOWN
           - ONE_PARTY
           - TWO_PARTY
@@ -1768,7 +1768,7 @@ components:
             spent.
           nullable: true
           example: "356.50"
-        creditLimit: 
+        creditLimit:
           type: string
           description: Eligible account types are credit-card, loan and mortgage.
           nullable: true
@@ -1776,16 +1776,16 @@ components:
         class:
           $ref: '#/components/schemas/AccountClass'
           description: Describes the class(type) of accounts.
-          enum: 
-          - transaction 
-          - savings 
-          - credit-card 
-          - mortgage 
-          - loan 
-          - investment 
-          - term-deposit 
-          - insurance 
-          - foreign 
+          enum:
+          - transaction
+          - savings
+          - credit-card
+          - mortgage
+          - loan
+          - investment
+          - term-deposit
+          - insurance
+          - foreign
           - unknown
         connection:
           type: string
@@ -1845,10 +1845,10 @@ components:
             $ref: "#/components/schemas/lendingRateAccountMetadata"
         loan:
           type: object
-          properties: 
-            startDate: 
+          properties:
+            startDate:
               type: string
-              description: >- 
+              description: >-
                 (optional) - Start date for the loan.
               example: "2019-10-01"
             endDate:
@@ -1866,34 +1866,34 @@ components:
               - PRINCIPAL_AND_INTEREST
             minInstalmentAmount:
               type: string
-              description: >- 
-                (optional) - Minimum amount of next instalment. 
+              description: >-
+                (optional) - Minimum amount of next instalment.
               example: "5500"
         creditCard:
-          required: 
+          required:
           - minPaymentAmount
           - paymentDueAmount
           - paymentDueDate
           type: object
-          properties: 
-            minPaymentAmount: 
+          properties:
+            minPaymentAmount:
               type: string
-              description: >- 
+              description: >-
                 (mandatory) - The minimum payment amount due for the next card payment.
               example: "117.00"
             paymentDueAmount:
               type: string
               description: >-
-                (mandatory) - The amount due for the next card payment. 
+                (mandatory) - The amount due for the next card payment.
               example: "5847.00"
             paymentCurrency:
               type: string
-              description: >- 
-                (optional) - If absent assumes AUD. 
+              description: >-
+                (optional) - If absent assumes AUD.
               example: "AUD"
-            paymentDueDate: 
+            paymentDueDate:
               type: string
-              description: >- 
+              description: >-
                 (mandatory) - Date that the next payment for the card is due.
               example: "2023-12-12"
     lendingRateAccountMetadata:
@@ -1901,13 +1901,13 @@ components:
       - lendingRateType
       - rate
       type: object
-      properties: 
+      properties:
         lendingRateType:
           type: string
           description: >-
             (mandatory) - The type of rate (fixed, variable, etc).
           example: PURCHASE
-          enum: 
+          enum:
           - BUNDLE_DISCOUNT_FIXED
           - BUNDLE_DISCOUNT_VARIABLE
           - CASH_ADVANCE
@@ -1925,22 +1925,22 @@ components:
           - PRINCIPAL_AND_INTEREST
           - INVESTMENT
           - OWNER_OCCUPIED
-        rate: 
+        rate:
           type: string
-          description: >- 
-            (mandatory) - The rate to be applied. 
+          description: >-
+            (mandatory) - The rate to be applied.
           example: "0.2024"
-        applicationFrequency: 
+        applicationFrequency:
           type: string
-          description: >- 
+          description: >-
             (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax).
           example: "P1M"
-    depositRateAccountMetadata: 
+    depositRateAccountMetadata:
       required:
       - depositRateType
       - rate
       type: object
-      properties: 
+      properties:
         depositRateType:
           type: string
           description: >-
@@ -1954,17 +1954,17 @@ components:
           - INTRODUCTORY
           - MARKET_LINKED
           - VARIABLE
-        rate: 
+        rate:
           type: string
-          description: >- 
+          description: >-
             (mandatory) - The rate to be applied.
           example: "0.0385"
-        applicationFrequency: 
+        applicationFrequency:
           type: string
-          description: >- 
+          description: >-
             (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
           example: "P1M"
-    feesAccountMetadata: 
+    feesAccountMetadata:
       required:
       - name
       - feeType
@@ -2395,11 +2395,11 @@ components:
           description: >-
             The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) plus [new] bank fee transactions for those relating to account conduct such as account overdrawn and direct debit dishonours.
           properties:
-            code: 
+            code:
               type: string
               description: code
               example: 722
-            title: 
+            title:
               type: string
               description: SubClass title
               example: Cafes and Restaurants
@@ -2438,12 +2438,12 @@ components:
           $ref: '#/components/schemas/TransactionsGroup'
         class:
           $ref: '#/components/schemas/TransactionsClass'
-        subclass: 
+        subclass:
           $ref: '#/components/schemas/TransactionsSubClass'
     TransactionsCategory:
       type: object
       properties:
-        matchType: 
+        matchType:
           type: string
           description: >
             Indicates the method used to match a payment transaction with a merchant or business classification code. Description for each enum;
@@ -2451,26 +2451,26 @@ components:
             merchantPartial: Suggests a partial match with a merchant, usually based on substring or fuzzy logic.
             mcc: Match is done using the Merchant Category Code associated with the transaction.
             ml: Match is determined through machine learning algorithms for classification
-          enum:  
+          enum:
             - merchantFull
             - merchantPartial
             - mcc
             - ml
           example: "merchantfull"
-        matchScore: 
+        matchScore:
           type: string
-          description: The confidence score for the matchType which is a float value between 0 and 1. The higher the number, the higher the confidence in the match. 
+          description: The confidence score for the matchType which is a float value between 0 and 1. The higher the number, the higher the confidence in the match.
           example: "1.0"
         mcc:
           type: object
           description: >-
             Merchant category codes returned from Data holders.
           properties:
-            code: 
+            code:
               type: string
               description: code
               example: 3012
-            title: 
+            title:
               type: string
               description: title
               example: Qantas
@@ -2509,15 +2509,15 @@ components:
       properties:
         location:
           $ref: '#/components/schemas/TransactionsLocation'
-        cleanDescription: 
+        cleanDescription:
           $ref: "#/components/schemas/TransactionscleanDescription"
-        tags: 
+        tags:
           $ref: "#/components/schemas/Transactionstags"
         merchant:
           $ref: '#/components/schemas/TransactionsMerchant'
         category:
           $ref: '#/components/schemas/TransactionsCategory'
-    Transactionstags: 
+    Transactionstags:
       type: array
       items:
        type: string

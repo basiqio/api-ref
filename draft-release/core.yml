@@ -409,7 +409,7 @@ paths:
                           description: >-
                             This allows access to transaction data for your
                             accounts. It includes all account transaction data.
-            
+
 
         '400':
           description: >-
@@ -787,11 +787,11 @@ paths:
         - Events
       summary: List event types
       description: >-
-          
+
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-          
-          
-          Returns a list of event types. 
+
+
+          Returns a list of event types.
       operationId: listEventTypes
       responses:
         '200':
@@ -973,7 +973,7 @@ paths:
                     - type: 'error'
                       code: 'too-many-requests'
                       title: 'Too many requests'
-                      detail: 'Query limit reached.'              
+                      detail: 'Query limit reached.'
         '500':
           description: >-
             Returns error response code indicates that the server encountered an
@@ -998,16 +998,16 @@ paths:
         - Events
       summary: Retrieve an event type
       description: >-
-          
+
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-          
-          
-          Returns a single event type based on the parameter input. 
+
+
+          Returns a single event type based on the parameter input.
       operationId: getEventTypeById
-      parameters: 
+      parameters:
         - name: id
           required: true
-          schema: 
+          schema:
             type: string
           in: path
           example: 'user.created'
@@ -1024,7 +1024,7 @@ paths:
                     id: payrequest.completed
                     description: when a payrequest is completed
                     links:
-                      self: 'https://au-api.basiq.io/events/types/user.created'                      
+                      self: 'https://au-api.basiq.io/events/types/user.created'
         '400':
           description: 'Bad Request'
           content:
@@ -1438,9 +1438,9 @@ components:
           description: date and time in ISO format of when the job request was updated
           type: string
           format: date-time
-        partnerId: 
+        partnerId:
           type: string
-        applicationId: 
+        applicationId:
           type: string
         status:
           type: string
@@ -1534,7 +1534,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     Error:
       properties:
@@ -1574,7 +1574,7 @@ components:
         links:
           type: object
           properties:
-            self:  
+            self:
               type: string
     AuthLinksResponseResource:
       required:
@@ -2422,7 +2422,7 @@ components:
           type: string
           description: Name, or empty.
           example: ""
-        firstName: 
+        firstName:
           type: string
           description: firstName, or empty
           example: Gavin
@@ -2430,7 +2430,7 @@ components:
           type: string
           description: middleName, or empty
           example: middleName
-        lastName: 
+        lastName:
           type: string
           description: lastName, or empty
           example: lastName
@@ -2467,7 +2467,7 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
-        middleName: 
+        middleName:
           type: string
           description: The end-users middle name as an optional additional parameter.
           example: middle name
@@ -2495,7 +2495,7 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Gavin
-        middleName: 
+        middleName:
           type: string
           description: The end-users middle name as an optional additional parameter.
           example: middle name
@@ -2518,7 +2518,7 @@ components:
           type: string
           description: The end-users first name as an optional additional parameter.
           example: Malcolm
-        middleName: 
+        middleName:
           type: string
           description: The end-users middle name as an optional additional parameter.
           example: Malcom middle name

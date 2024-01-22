@@ -2,15 +2,18 @@ openapi: 3.0.1
 info:
   title: Affordability
   version: 3.0.0
+  license:
+    name: "commercial"
+    url: https://basiq.io
 servers:
-- url: https://au-api.basiq.io/
+- url: https://au-api.basiq.io
 paths:
   /users/{userId}/affordability:
     get:
       tags:
       - Affordability
       summary: List affordability summaries
-      description: Returns a list of affordability summaries that have been generated for a specific user. 
+      description: Returns a list of affordability summaries that have been generated for a specific user.
       operationId: getAffordabilityList
       parameters:
       - name: userId
@@ -48,8 +51,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
     post:
       tags:
@@ -129,8 +130,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
       x-codegen-request-body-name: AffordabilityPostRequest
   /users/{userId}/affordability/{snapshotId}:
@@ -204,15 +203,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/affordability/{snapshotId}/transactions:
     get:
       tags:
       - Affordability
       summary: List affordability summary transactions
-      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary. 
+      description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary.
       operationId: getAffordabilitySnapshotTransactions
       parameters:
       - name: userId
@@ -285,8 +282,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/expenses:
     post:
@@ -347,10 +342,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
-      x-codegen-request-body-name: ExpensesPostRequest
   /users/{userId}/expenses/{snapshotId}:
     get:
       tags:
@@ -421,8 +413,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
   /users/{userId}/income:
     post:
@@ -483,10 +473,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
-      x-codegen-request-body-name: IncomePostRequest
   /users/{userId}/income/{snapshotId}:
     get:
       tags:
@@ -542,25 +529,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
       security:
-      - application:
-        - SERVER_ACCESS
       - services_token: []
 components:
   schemas:
-    AccountClass:
-      required:
-      - type
-      - product
-      type: object
-      properties:
-        type:
-          type: string
-          description: Account type
-          example: savings
-        product:
-          type: string
-          description: Product name.
-          example: saver
     AccountType:
       required:
       - product
@@ -575,140 +546,6 @@ components:
           type: string
           description: Identifies the Account type defined by institution
           example: transaction
-    AccountLinks:
-      required:
-      - connection
-      - institution
-      - self
-      - transactions
-      type: object
-      properties:
-        institution:
-          type: string
-          description: institution link to the institution associated with this account
-          example: https://au-api.basiq.io/institutions/AU00000
-        transactions:
-          type: string
-          description: transactions link to the transactions associated with this
-            account
-          example: "https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')"
-        self:
-          type: string
-          description: self link to the requested account
-          example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
-    AccountResponseResource:
-      title: AccountResponseResource
-      required:
-      - id
-      - accountHolder
-      - accountNo
-      - availableFunds
-      - balance
-      - class
-      - connection
-      - currency
-      - institution
-      - lastUpdated
-      - links
-      - name
-      - status
-      - transactionIntervals
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-          description: Always "account".
-          example: account
-        id:
-          type: string
-          description: Uniquely identifies the account.
-          example: s55bf3
-        accountHolder:
-          type: string
-          description: The name of the account holder as returned by the institution.
-            No formatting is applied. Returns a string or null when not available.
-          nullable: true
-          example: GAVIN BELSON
-        accountNo:
-          type: string
-          description: Full account number.
-          example: 600000-157441965
-        availableFunds:
-          type: string
-          description: Funds that are available to an account holder for withdrawal
-            or other use. This may include funds from an overdraft facility or line
-            of credit. As well as funds classified as the available balance, such
-            as from cleared and existing deposits.
-          nullable: true
-          example: "420.28"
-        balance:
-          type: string
-          description: Amount of funds in the account right now - excluding any pending
-            transactions. For a credit card this would be zero or the minus amount
-            spent.
-          nullable: true
-          example: "356.50"
-        class:
-          type: array
-          description: |-
-            Describes the class(type) of accounts.
-            transaction, savings, credit-card, mortgage, loan, investment, term-deposit, insurance, foreign, unknown.
-          items:
-            $ref: '#/components/schemas/AccountClass'
-        connection:
-          type: string
-          description: The id of the connection resource that was used to retrieve
-            the account.
-          example: 8fce3b
-        currency:
-          type: string
-          description: The currency the funds are stored in, using ISO 4217 standard.
-          example: AUD
-        institution:
-          type: string
-          description: The id of the institution resource the account originated from.
-          example: AU00000
-        lastUpdated:
-          type: string
-          description: Timestamp of last update, UTC, RFC 3339 format e.g. "2017-09-28T13:39:33Z"
-          example: "2019-09-28T13:39:33Z"
-        name:
-          type: string
-          description: Account name as defined by institution or user.
-          example: Master Savings
-        status:
-          type: string
-          description: Account status
-          example: available
-          enum:
-          - available
-          - unavailable
-        transactionIntervals:
-          type: array
-          description: |-
-            An array of date intervals indicating the coverage of the transaction data relating to the account.
-            Will return a single element for accounts sourced from a single bank connection.
-            Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
-          items:
-            $ref: '#/components/schemas/AccountTransactionInterval'
-        links:
-          $ref: '#/components/schemas/AccountLinks'
-      description: Container object with account details
-    AccountTransactionInterval:
-      required:
-      - from
-      - to
-      type: object
-      properties:
-        from:
-          type: string
-          description: Date of first transaction on this account
-          example: "2018-07-01"
-        to:
-          type: string
-          description: Date of last transaction on this account
-          example: "2018-12-30"
     AffordabilityAssetsData:
       required:
       - account
@@ -1008,7 +845,7 @@ components:
           type: integer
           description: The subClass attribute will only return values for payment transactions (i.e. will be empty for all others) ( [affordability only] - HEC classification class is returned by default or custom class is returned if configured - ask us about custom category mapping)
           example: 0801050199
-   
+
     AffordabilityTransactionLinks:
       required:
       - account
@@ -2202,48 +2039,6 @@ components:
             to.
           example: users/userId
       description: An object containing references to the source of the error.
-    StatusServiceUnavailableError:
-      required:
-      - correlationId
-      - data
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-          description: Always "list".
-          example: list
-        correlationId:
-          type: string
-          description: Unique identifier for this particular occurrence of the problem.
-          example: ac5ah5i
-        data:
-          type: array
-          description: Error data.
-          items:
-            required:
-            - code
-            - type
-            type: object
-            properties:
-              type:
-                type: string
-                description: Type of the response, always "error"
-                example: error
-              title:
-                type: string
-                description: Title of the error
-                example: Service Unavailable
-              code:
-                type: object
-                description: Application-specific error code, expressed as a string
-                  value.
-                example: service-unavailable
-              detail:
-                type: string
-                description: Human-readable explanation specific to this occurrence
-                  of the problem.
-                example: Service Unavailable. Try again later.
     SubCategoryExpenses:
       required:
       - category
@@ -2262,110 +2057,6 @@ components:
           description: Summary period "monthly".
           example: monthly
       description: Payments Sub-Category
-    TransactionData:
-      required:
-      - account
-      - amount
-      - balance
-      - class
-      - connection
-      - description
-      - direction
-      - enrich
-      - id
-      - institution
-      - links
-      - postDate
-      - status
-      - transactionDate
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-          description: Value is "transaction".
-          example: transaction
-        id:
-          type: string
-          description: Uniquely identifies the transaction for this connection. Note
-            that when a connection is refreshed pending transactions will receive
-            new id's, whilst posted transactions will receive the same id's as before
-            the refresh.
-          example: d3de1ca1
-        account:
-          type: string
-          description: The id of the account resource the transaction belongs to.
-          example: d3de1ca1
-        amount:
-          type: string
-          description: Transaction amount. Outgoing funds are expressed as negative
-            values.
-          example: "123.12"
-        balance:
-          type: string
-          description: Value of the account balance at time the transaction was completed.
-          example: "123.12"
-        class:
-          type: string
-          description: Describes the class(type) of transaction.
-          example: payment
-          enum:
-          - bank-fee
-          - payment
-          - cash-withdrawal
-          - transfer
-          - loan-interest
-          - refund
-          - direct-credit
-          - interest
-          - loan-repayment
-        connection:
-          type: string
-          description: The id of the connection resource that was used to retrieve
-            the transaction.
-          example: d3de1ca1
-        description:
-          type: string
-          description: The transaction description as submitted by the institution..
-        direction:
-          type: string
-          description: Identifies if the transaction is of debit or credit type.
-          example: debit
-          enum:
-          - debit
-          - credit
-        enrich:
-          $ref: '#/components/schemas/TransactionsEnrich'
-        institution:
-          type: string
-          description: The id of the institution resource the transaction originated
-            from.
-          example: AU00000
-        postDate:
-          type: string
-          description: Date the transaction was posted as provided by the institution
-            (this is the same date that appears on a bank statement). This value is
-            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
-          example: "2018-11-02T00:00:00Z"
-        status:
-          type: string
-          description: Identifies if a transaction is pending or posted. A pending
-            transaction is an approved debit or credit transaction that has not been
-            fully processed yet (i.e. has not been posted). Find out more about pending
-            transaction and how to deal with them within your app. Note that pending
-            transactions are not available for all institutions.
-          example: pending
-          enum:
-          - pending
-          - posted
-        transactionDate:
-          type: string
-          description: Date that the user executed the transaction as provided by
-            the istitution. Note that not all transactions provide this value (varies
-            by institution) e.g. "2017-11-10T00:00:00Z"
-          example: 2018-11-02T00:00:00Z
-        links:
-          $ref: '#/components/schemas/TransactionLinks'
     TransactionDataAffordability:
       required:
       - account
@@ -2461,232 +2152,6 @@ components:
           example: "2018-11-02T00:00:00Z"
         links:
           $ref: '#/components/schemas/AffordabilityTransactionLinks'
-    TransactionLinks:
-      required:
-      - account
-      - connection
-      - institution
-      - self
-      type: object
-      properties:
-        account:
-          type: string
-          description: Url of the account.
-          example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
-        institution:
-          type: string
-          description: Url of the institution.
-          example: https://au-api.basiq.io/institutions/AU00000
-        self:
-          type: string
-          description: Transaction self reference.
-          example: https://au-api.basiq.io/users/6a52015e/transactions/2082c765
-    TransactionsAnzsic:
-      type: object
-      properties:
-        class:
-          $ref: '#/components/schemas/TransactionsClass'
-        division:
-          $ref: '#/components/schemas/TransactionsDivision'
-        group:
-          $ref: '#/components/schemas/TransactionsGroup'
-        subdivision:
-          $ref: '#/components/schemas/TransactionsSubdivision'
-    TransactionsCategory:
-      type: object
-      properties:
-        anzsic:
-          $ref: '#/components/schemas/TransactionsAnzsic'
-    TransactionsClass:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Class Details
-          example: Cafes and Restaurants
-        code:
-          type: string
-          description: Class Code
-          example: "4511"
-    TransactionsDivision:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Division Details
-          example: Accommodation and  Food Services
-        code:
-          type: string
-          description: Division Code
-          example: H
-    TransactionsEnrich:
-      required:
-      - category
-      - location
-      - merchant
-      type: object
-      properties:
-        category:
-          $ref: '#/components/schemas/TransactionsCategory'
-        location:
-          $ref: '#/components/schemas/TransactionsLocation'
-        merchant:
-          $ref: '#/components/schemas/TransactionsMerchant'
-    TransactionsGeometry:
-      type: object
-      properties:
-        lat:
-          type: string
-          description: Latitude
-          example: "-33.79988520000001"
-        lng:
-          type: string
-          description: Longitude
-          example: "151.2858021"
-    TransactionsGetLinks:
-      required:
-      - self
-      type: object
-      properties:
-        self:
-          type: string
-          description: Self reference url.
-          example: https://au-api.basiq.io/users/ea3a81/transactions
-        next:
-          type: string
-          description: Url to next result.
-          example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
-    TransactionsGetResource:
-      title: Transactions container object.
-      required:
-      - count
-      - data
-      - size
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-          description: Value is "list".
-          example: list
-        count:
-          type: integer
-          description: Count of the transactions in the response.
-          format: int64
-          example: 100
-        size:
-          type: integer
-          format: int64
-          example: 500
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionData'
-        links:
-          $ref: '#/components/schemas/TransactionsGetLinks'
-      description: A transaction object is created whenever money is debited or credited from a particular account.
-    TransactionsGroup:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Group Code
-          example: "451"
-        title:
-          type: string
-          description: Group Details
-          example: Cafes, Restaurants and Takeaway Food Services
-    TransactionsLocation:
-      type: object
-      properties:
-        country:
-          type: string
-          description: Country
-          example: Australia
-        formattedAddress:
-          type: string
-          description: Address
-          example: "1/39 E Esplanade, Manly NSW 2095"
-        geometry:
-          $ref: '#/components/schemas/TransactionsGeometry'
-        postalCode:
-          type: string
-          description: Postal Code
-          example: "2095"
-        route:
-          type: string
-          description: Route Name
-          example: E Esplanade
-        routeNo:
-          type: string
-          description: Route Number
-          example: "29"
-        state:
-          type: string
-          description: State
-          example: NSW
-        suburb:
-          type: string
-          description: Suburb
-          example: Manly
-    TransactionsMerchant:
-      required:
-      - id
-      - businessName
-      - ABN
-      - website
-      - logoMaster
-      - logoThumb
-      type: object
-      properties:
-        id:
-          type: string
-          description: id
-          example: "ae4a051c-4791-11e8-8750-0a87c0279fe8"
-        businessName:
-          type: string
-          description: Merchant name
-          example: Garfish Manly
-        ABN:
-          type: string
-          description: ABN
-          example: 90065628864
-        logoMaster:
-          type: string
-          description: full merchant logo
-          example: 'https://enrich-enrichmerchantslogobucket-x62p53eh5ld9.s3-ap-southeast-2.amazonaws.com/officeworks-master.png'
-        logoThumb:
-          type: string
-          description: thumbnail merchant logo
-          example: 'https://enrich-enrichmerchantslogobucket-x62p53eh5ld9.s3-ap-southeast-2.amazonaws.com/officeworks-thumb.png'
-        phoneNumber:
-          $ref: '#/components/schemas/TransactionsPhoneNumber'
-        website:
-          type: string
-          description: Merchant Website
-          example: "http://garfish.com.au/garfish-manly/"
-    TransactionsPhoneNumber:
-      type: object
-      properties:
-        international:
-          type: string
-          description: International Phone Number
-          example: "+61 2 9977 0707"
-        local:
-          type: string
-          description: Local Phone Number
-          example: "(02) 9977 0707"
-    TransactionsSubdivision:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Subdivision Code
-          example: "45"
-        title:
-          type: string
-          description: Subdivision Details
-          example: Food and Beverage Services
   securitySchemes:
     services_token:
       type: http

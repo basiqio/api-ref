@@ -15,7 +15,7 @@ tags:
     description: API for Payment agreements
   - name: Collect
     description: APIs for collecting funds
-  - name: Send 
+  - name: Send
     description: APIs for sending funds
   - name: Float accounts
     description: APIs for querying float accounts
@@ -90,7 +90,7 @@ paths:
           schema:
             type: string
             default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'      
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
       requestBody:
         $ref: '#/components/requestBodies/agreement-status'
       responses:
@@ -107,7 +107,7 @@ paths:
                     id: b1824ad0-73f1-0138-3700-0a58a9feac09
                     requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                     links:
-                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/ 
+                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/
                       agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
   /payments/agreements/{id}/instructions/amendment:
     post:
@@ -116,7 +116,7 @@ paths:
       summary: Amend agreement status
       operationId: amendAgreement
       description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow) 
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: id
           in: path
@@ -127,7 +127,7 @@ paths:
           schema:
             type: string
             default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'      
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
       requestBody:
         $ref: '#/components/requestBodies/agreement-validation-creation'
       responses:
@@ -144,7 +144,7 @@ paths:
                     id: b1824ad0-73f1-0138-3700-0a58a9feac09
                     requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                     links:
-                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/ 
+                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/
                       agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
   /payments/agreements/instructions/{id}/recall:
     post:
@@ -164,7 +164,7 @@ paths:
           schema:
             type: string
             default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'      
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
         - name: requestId
           in: query
           description: Request Id
@@ -172,7 +172,7 @@ paths:
           schema:
             type: string
             default: '01824ad0-73f1-0138-3700-0a58a9feac09'
-          example: '01824ad0-73f1-0138-3700-0a58a9feac09'      
+          example: '01824ad0-73f1-0138-3700-0a58a9feac09'
       responses:
         '201':
           description: OK
@@ -195,7 +195,7 @@ paths:
         - Payment Agreements
       summary: Get payment agreement instruction
       operationId: getPaymentAgreementInstruction
-      description: > 
+      description: >
         ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: instructionId
@@ -249,7 +249,7 @@ paths:
                       purpose: 'mortgage-payments'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09" 
+                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       payment-agreement: null
                 Validation-Failed:
                   value:
@@ -261,10 +261,10 @@ paths:
                       created: '2022-03-21T20:28:22.378Z'
                       updated: '2022-03-21T20:28:22.378Z'
                       status: 'failed'
-                      reason: 
+                      reason:
                         code: 'payer-account-not-enabled'
                         title: 'Payer account is not enabled.'
-                        detail: 'The payer account is not enabled/reachable for this type of agreement.'                        
+                        detail: 'The payer account is not enabled/reachable for this type of agreement.'
                       payer:
                         userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
                         accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
@@ -286,7 +286,7 @@ paths:
                       purpose: 'mortgage-payments'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"    
+                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       payment-agreement: null
                 Validated-InProgress:
                   value:
@@ -319,8 +319,8 @@ paths:
                       purpose: 'mortgage-payments'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09" 
-                      payment-agreement: null                      
+                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement: null
                 Creation-inprogress:
                   value:
                     agreement-instruction:
@@ -397,7 +397,7 @@ paths:
                       created: '2022-03-21T20:28:22.378Z'
                       updated: '2022-03-21T20:28:22.378Z'
                       status: 'failed'
-                      reason: 
+                      reason:
                         code: 'payer-account-not-enabled'
                         title: 'Payer account is not enabled.'
                         detail: 'The payer account is not enabled/reachable for this type of agreement.'
@@ -436,11 +436,11 @@ paths:
                       status: 'in-progress'
                       changeStatusTo: 'suspend'
                       changeStatusReason: 'narrative'
-                      changeStatusDescription: 'Customer has paused their subscription' 
+                      changeStatusDescription: 'Customer has paused their subscription'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'                      
+                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
                 Status Suspend successful:
                   value:
                     agreement-instruction:
@@ -453,7 +453,7 @@ paths:
                       status: 'successful'
                       changeStatusTo: 'suspend'
                       changeStatusReason: 'narrative'
-                      changeStatusDescription: 'Customer has paused their subscription' 
+                      changeStatusDescription: 'Customer has paused their subscription'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
@@ -468,13 +468,13 @@ paths:
                       created: '2022-03-21T20:28:22.378Z'
                       updated: '2022-03-21T20:28:22.378Z'
                       status: 'failed'
-                      reason: 
+                      reason:
                         code: 'payment-agreement-status-conflict'
                         title: 'Payment agreement status conflict.'
                         detail: 'The payment agreement cannot be updated to Suspended because it is in the status Suspended.'
                       changeStatusTo: 'suspend'
                       changeStatusReason: 'narrative'
-                      changeStatusDescription: 'Customer has paused their subscription' 
+                      changeStatusDescription: 'Customer has paused their subscription'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
@@ -490,7 +490,7 @@ paths:
                       created: '2022-03-21T20:28:22.378Z'
                       updated: '2022-03-21T20:28:22.378Z'
                       status: 'in-progress'
-                      description: 'Mortgage payments agreement for propery 1 Somewhere St, Manly' 
+                      description: 'Mortgage payments agreement for propery 1 Somewhere St, Manly'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
@@ -507,7 +507,7 @@ paths:
                       created: '2022-03-21T20:28:22.378Z'
                       updated: '2022-03-21T20:28:22.378Z'
                       status: 'successful'
-                      description: 'Mortgage payments agreement for propery 1 Somewhere St, Manly' 
+                      description: 'Mortgage payments agreement for propery 1 Somewhere St, Manly'
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
                       job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
@@ -551,7 +551,7 @@ paths:
         - Payment Agreements
       summary: List payment agreement instructions
       operationId: listPaymentAgreementInstructions
-      description: > 
+      description: >
         ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: limit
@@ -614,7 +614,7 @@ paths:
                           maximumAmount: 2010.50
                         links:
                           self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09" 
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                           payment-agreement: null
                       - type: 'payment-agreement-validation'
                         id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -623,10 +623,10 @@ paths:
                         created: '2022-03-21T20:28:22.378Z'
                         updated: '2022-03-21T20:28:22.378Z'
                         status: 'failed'
-                        reason: 
+                        reason:
                           code: 'payer-account-not-enabled'
                           title: 'Payer account is not enabled.'
-                          detail: 'The payer account is not enabled/reachable for this type of agreement.'                        
+                          detail: 'The payer account is not enabled/reachable for this type of agreement.'
                         payer:
                           userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
                           accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
@@ -650,7 +650,7 @@ paths:
                           maximumAmount: 2010.50
                         links:
                           self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"    
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
                           payment-agreement: null
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/instructions"
@@ -716,7 +716,7 @@ paths:
                         maximumAmount: 2010.50
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"                  
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
                 Suspended:
                   value:
                     agreement:
@@ -749,7 +749,7 @@ paths:
                         maximumAmount: 2010.50
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"  
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
                 Cancelled:
                   value:
                     agreement:
@@ -782,16 +782,16 @@ paths:
                         maximumAmount: 2010.50
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"                        
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
       security:
-           - payment_apiKey: []      
+           - payment_apiKey: []
   /payments/agreements:
     get:
       tags:
         - Payment Agreements
-      summary: Get payment agreement 
+      summary: Get payment agreement
       operationId: getPaymentAgreements
-      description: > 
+      description: >
         ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: limit
@@ -853,7 +853,7 @@ paths:
                           maximumAmount: 2010.50
                         links:
                           self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"                  
+                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
                       - type: 'payment-agreement'
                         id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                         requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
@@ -883,7 +883,7 @@ paths:
                           maximumAmount: 2010.50
                         links:
                           self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"  
+                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
                     links:
                       self: "https://au-api.basiq.io/payments/agreements/"
                       next: "https://au-api.basiq.io/payments/agreements?next=049fde"
@@ -1026,7 +1026,7 @@ paths:
           - payment_apiKey: []
     get:
       tags:
-        - Collect 
+        - Collect
       summary: List payrequests
       operationId: listPayrequests
       parameters:
@@ -1106,7 +1106,7 @@ paths:
   /payments/payrequests/{id}:
     get:
       tags:
-        - Collect 
+        - Collect
       summary: Retrieve Payrequest
       operationId: getPayrequest
       parameters:
@@ -1157,7 +1157,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: 'batch'
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'invalid-user-name'
                       title: 'Invalid user name.'
                       detail: 'The user name must exist and have a valid first name with more than 2 letters and last name with more than 2 letters. Please update the user name details.'
@@ -1181,7 +1181,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: 'batch'
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'missing-payer-account-details'
                       title: 'Missing Payer account details.'
                       detail: 'Please specify payer account details.'
@@ -1195,7 +1195,7 @@ paths:
                     currency: AUD
                     links:
                       self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
-                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09                      
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
                 Failed - External provider unreachable:
                   value:
                     type: 'payrequest'
@@ -1205,7 +1205,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: 'batch'
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'external-provider-unreachable'
                       title: 'External provider unreachable.'
                       detail: 'Unable to reach downstream provider.'
@@ -1229,7 +1229,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: 'batch'
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'transaction-limit-reached'
                       title: 'Transaction limit reached.'
                       detail: 'The transaction amount exceeds the allowed limit. Please contact support.'
@@ -1253,7 +1253,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: 'batch'
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'daily-limit-reached'
                       title: 'Daily limit reached.'
                       detail: 'The transaction amount exceeds the daily processing allowed limit. Please contact support.'
@@ -1267,13 +1267,13 @@ paths:
                     currency: AUD
                     links:
                       self: /payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09
-                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09                      
+                      job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         '404':
           description: Payment request not found
   /payments/payouts:
     get:
       tags:
-        - Send 
+        - Send
       summary: List payouts
       operationId: listPayouts
       parameters:
@@ -1349,7 +1349,7 @@ paths:
   /payments/payouts/{id}:
     get:
       tags:
-        - Send 
+        - Send
       summary: Retrieve Payout
       operationId: getPayout
       parameters:
@@ -1400,7 +1400,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: batch
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'invalid-user-name'
                       title: 'Invalid user name.'
                       detail: 'The user name must exist and have a valid first name with more than 2 letters and last name with more than 2 letters. Please update the user name details.'
@@ -1423,7 +1423,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: batch
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'missing-payer-account-details'
                       title: 'Missing Payer account details.'
                       detail: 'Please specify payer account details.'
@@ -1446,7 +1446,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: batch
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'external-provider-unreachable'
                       title: 'External provider unreachable.'
                       detail: 'Unable to reach downstream provider.'
@@ -1469,7 +1469,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: batch
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'transaction-limit-reached'
                       title: 'Transaction limit reached.'
                       detail: 'The transaction amount exceeds the allowed limit. Please contact support.'
@@ -1492,7 +1492,7 @@ paths:
                     updated: '2022-03-21T20:28:22.378Z'
                     method: batch
                     status: 'failed'
-                    reason: 
+                    reason:
                       code: 'daily-limit-reached'
                       title: 'Daily limit reached.'
                       detail: 'The transaction amount exceeds the daily processing allowed limit. Please contact support.'
@@ -1507,7 +1507,7 @@ paths:
                       self: /payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09
                       job: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         '404':
-          description: Payout not found    
+          description: Payout not found
   /payments/float-accounts/{id}:
     get:
       tags:
@@ -1614,18 +1614,18 @@ components:
           type: string
           example: '34924ad0-73f1-0138-3700-0a58a9feac34'
         created:
-          description: date and time in ISO format of when the instruction was created 
+          description: date and time in ISO format of when the instruction was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the instruction was updated 
+          description: date and time in ISO format of when the instruction was updated
           type: string
           format: date-time
         status:
           type: string
         reason:
           type: object
-          description: 'Details for the reason for failure' 
+          description: 'Details for the reason for failure'
           properties:
             code:
               type: string
@@ -1704,7 +1704,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     agreements:
       properties:
@@ -1722,7 +1722,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     agreement:
       type: object
@@ -1806,21 +1806,21 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     job:
       type: object
       properties:
-        type: 
+        type:
           type: string
         id:
           type: string
         created:
-          description: date and time in ISO format of when the job request was created 
+          description: date and time in ISO format of when the job request was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the job request was updated 
+          description: date and time in ISO format of when the job request was updated
           type: string
           format: date-time
         steps:
@@ -1858,7 +1858,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     payrequest:
       type: object
@@ -1885,11 +1885,11 @@ components:
           description: Id as assigned by the by the partner application. This needs to be unique
           type: string
         created:
-          description: date and time in ISO format of when the payment request was created 
+          description: date and time in ISO format of when the payment request was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the payment request was updated 
+          description: date and time in ISO format of when the payment request was updated
           type: string
           format: date-time
         method:
@@ -1902,7 +1902,7 @@ components:
           type: string
         reason:
           type: object
-          description: 'Details for the reason for failure' 
+          description: 'Details for the reason for failure'
           properties:
             code:
               type: string
@@ -1915,7 +1915,7 @@ components:
               description: 'Further details/description for the failed/rejected/returned payment'
         payer:
           type: object
-          required: 
+          required:
             - payerUserId
           properties:
             payerUserId:
@@ -1940,7 +1940,7 @@ components:
         links:
           type: object
           properties:
-            self: 
+            self:
               type: string
     payouts:
       properties:
@@ -1958,7 +1958,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     payout:
       type: object
@@ -1985,11 +1985,11 @@ components:
           description: Id as assigned by the by the partner application. This needs to be unique
           type: string
         created:
-          description: date and time in ISO format of when the payment request was created 
+          description: date and time in ISO format of when the payment request was created
           type: string
           format: date-time
         updated:
-          description: date and time in ISO format of when the payment request was updated 
+          description: date and time in ISO format of when the payment request was updated
           type: string
           format: date-time
         method:
@@ -2002,7 +2002,7 @@ components:
           type: string
         reason:
           type: object
-          description: 'Details for the reason for failure' 
+          description: 'Details for the reason for failure'
           properties:
             code:
               type: string
@@ -2036,7 +2036,7 @@ components:
         links:
           type: object
           properties:
-            self: 
+            self:
               type: string
     floataccounts:
       properties:
@@ -2054,7 +2054,7 @@ components:
           properties:
             self:
               type: string
-            next: 
+            next:
               type: string
     floataccount:
       type: object
@@ -2084,7 +2084,7 @@ components:
         links:
           type: object
           properties:
-            self: 
+            self:
               type: string
   requestBodies:
     payrequests:
@@ -2177,8 +2177,8 @@ components:
                             - organisation
                         ultimatePayeeName:
                           description: 'Name of the ultimate payee'
-                          type: string                              
-                          
+                          type: string
+
                     collectFundsToFloat:
                       description: 'When passed this value overrides the default setting'
                       type: boolean
@@ -2370,7 +2370,7 @@ components:
               changeStatusReason:
                 type: string
                 description: the reason for changing the status
-                enum: 
+                enum:
                   - invalid-debtor-account-number
                   - closed-account-number
                   - closed-debtor-account-number
@@ -2405,7 +2405,7 @@ components:
               changeStatusDescription:
                 type: string
                 description: narrative text for the reason of changing the status
-                  
+
 
           examples:
 
@@ -2427,7 +2427,7 @@ components:
               value:
                 requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                 status: 'release'
-                  
+
   securitySchemes:
     payment_apiKey:
       type: http
