@@ -3,14 +3,18 @@ info:
   title: Enrich
   description: All included utility endpoints for Basiq partners
   version: 3.0.0
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
-  - url: https://au-api.basiq.io/
+  - url: https://au-api.basiq.io
 paths:
   /enrich:
     get:
       tags:
       - Enrich
       summary: Enrich
+      operationId: Enrich
       description: >-
         The Enrich resource enables you to retrieve details by passing in a search query containing a bank transaction description. The service enriches transaction data with multiple attributes, returning a transaction classification and three metadata components.
         The transaction classification will first determine if the transaction is of type payment, transfer, cash-withdrawal, bank-fee etc. The engine then derives merchant information, purchase location and prescribes an industry standard categorisation for each payment transaction.
@@ -65,7 +69,7 @@ paths:
                           local: (02) 4276 6018
                           international: +61 2 4276 6018
                       category:
-                        matchType: "merchantfull"
+                        matchType: "merchantFull"
                         matchScore: "1.0"
                         anzsic:
                           division:
