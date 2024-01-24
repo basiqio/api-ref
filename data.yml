@@ -1981,8 +1981,7 @@ components:
       properties:
         depositRateType:
           type: string
-          description: >-
-            (mandatory) - The type of rate (base, bonus, etc).
+          description: The type of rate (base, bonus, etc). 
           example: "VARIABLE"
           enum:
           - BONUS
@@ -1995,13 +1994,67 @@ components:
         rate:
           type: string
           description: >-
-            (mandatory) - The rate to be applied.
+            The rate to be applied.
           example: "0.0385"
+        calculationFrequency:
+          type: string
+          description: The period after which the rate is applied to the balance to calculate the amount due for the period. Calculation of the amount is often daily (as balances may change) but accumulated until the total amount is 'applied' to the account (see applicationFrequency). Formatted according to ISO 8601 Durations (excludes recurrence syntax). 
         applicationFrequency:
           type: string
           description: >-
-            (optional) - The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
+            The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
           example: "P1M"
+        tiers:
+          type: object
+          $ref: "#/components/schemas/feesAccountMetadepositratestiers"
+          description: Rate tiers applicable for this rate. 
+    feesAccountMetadepositratestiers:
+      required: 
+        - name
+        - unitOfMeasure
+        - minimumValue
+      properties: 
+        name: 
+          type: string
+          description: A display name for the tier. 
+        unitOfMeasure:
+          type: string
+          description: The unit of measure that applies to the minimumValue and maximumValue values e.g. a DOLLAR amount. PERCENT (in the case of loan-to-value ratio or LVR). Tier term period representing a discrete number of MONTH's or DAY's (in the case of term deposit tiers).
+          enum: 
+            - DAY
+            - DOLLAR
+            - MONTH
+            - PERCENT
+        minimumValue:
+          type: integer
+          description: The number of unitOfMeasure units that form the lower bound of the tier. The tier should be inclusive of this value. 
+        maximumValue: 
+          type: integer
+          description: >- 
+            The number of unitOfMeasure units that form the upper bound of the tier or band. For a tier with a discrete value (as opposed to a range of values e.g. 1 month) this must be the same as minimumValue. Where this is the same as the minimumValue value of the next-higher tier the referenced tier should be exclusive of this value. For example a term deposit of 2 months falls into the upper tier of the following tiers: (1 - 2 months, 2 - 3 months). If absent the tier's range has no upper bound.. 
+        rateApplicationMethod:
+          type: string
+          description: The method used to calculate the amount to be applied using one or more tiers. A single rate may be applied to the entire balance or each applicable tier rate is applied to the portion of the balance that falls into that tier (referred to as 'bands' or 'steps').
+          enum: 
+            - PER_TIER
+            - WHOLE_BALANCE
+        applicabilityConditions: 
+          $ref: "#/components/schemas/feesAccountMetadepositratestiersRateCondition"
+          description: Defines a condition for the applicability of a tiered rate. 
+        additionalInfo:
+          type: string
+          description: Display text providing more information on the rate tier.
+        additionalInfoUri:
+          type: string
+          description: Link to a web page with more information on this rate tier. 
+    feesAccountMetadepositratestiersRateCondition:
+      properties: 
+        additionalInfo: 
+          type: string
+          description: Display text providing more information on the condition.
+        additionalInfoUri:
+          type: string
+          description: Link to a web page with more information on this condition.       
     feesAccountMetadata:
       required:
       - name
@@ -2078,7 +2131,57 @@ components:
         balanceRate:
           type: string
           description: A discount rate calculated based on a proportion of the balance. Note that the currency of the fee discount is expected to be the same as the currency of the fee itself. One of amount, balanceRate, transactionRate, accruedRate and feeRate is mandatory. Unless noted in additionalInfo, assumes the application and calculation frequency are the same as the corresponding fee.
-        
+        transactionRate:
+          type: string
+          description: A discount rate calculated based on a proportion of a transaction. Note that the currency of the fee discount is expected to be the same as the currency of the fee itself. One of amount, balanceRate, transactionRate, accruedRate and feeRate is mandatory.
+        accruedRate: 
+          type: string
+          description: A discount rate calculated based on a proportion of the calculated interest accrued on the account. Note that the currency of the fee discount is expected to be the same as the currency of the fee itself. One of amount, balanceRate, transactionRate, accruedRate and feeRate is mandatory. Unless noted in additionalInfo, assumes the application and calculation frequency are the same as the corresponding fee.
+        feeRate: 
+          type: string
+          description: A discount rate calculated based on a proportion of the fee to which this discount is attached. Note that the currency of the fee discount is expected to be the same as the currency of the fee itself. One of amount, balanceRate, transactionRate, accruedRate and feeRate is mandatory. Unless noted in additionalInfo, assumes the application and calculation frequency are the same as the corresponding fee.
+        additionalValue:
+          type: string
+          description: Generic field containing additional information relevant to the discountType specified. Whether mandatory or not is dependent on the value of discountType. 
+        additionalInfo: 
+          type: string
+          description: Display text providing more information on the discount. 
+        additionalInfoUri:
+          type: string
+          description: Link to a web page with more information on this discount. 
+        eligibility: 
+          $ref: "#/components/schemas/feesdiscounteligibilityMetadata"
+          description: Eligibility constraints that apply to this discount. Mandatory if discountType is ELIGIBILITY_ONLY.
+    feesdiscounteligibilityMetadata:
+      required: 
+        -  discountEligibilityType
+      properties: 
+        discountEligibilityType: 
+          type: string
+          description: The type of the specific eligibility constraint for a discountType.
+          enum: 
+            - BUSINESS
+            - EMPLOYMENT_STATUS
+            - INTRODUCTORY
+            - MAX_AGE
+            - MIN_AGE
+            - MIN_INCOME
+            - MIN_TURNOVER
+            - NATURAL_PERSON
+            - OTHER
+            - PENSION_RECIPIENT
+            - RESIDENCY_STATUS
+            - STAFF
+            - STUDENT
+        additionalValue:
+          type: string
+          description: Generic field containing additional information relevant to the discountEligibilityType specified. Whether mandatory or not is dependent on the value of discountEligibilityType.
+        additionalInfo: 
+          type: string
+          description: Display text providing more information on this eligibility constraint. Whether mandatory or not is dependent on the value of discountEligibilityType. 
+        additionalInfoUri: 
+          type: string
+          description: Link to a web page with more information on this eligibility constraint. 
     AccountTransactionInterval:
       required:
       - from
