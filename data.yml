@@ -1943,7 +1943,7 @@ components:
         lendingRateType:
           type: string
           description: >-
-            (mandatory) - The type of rate (fixed, variable, etc).
+             The type of rate (fixed, variable, etc).
           example: PURCHASE
           enum:
           - BUNDLE_DISCOUNT_FIXED
@@ -1957,21 +1957,18 @@ components:
           - PENALTY
           - PURCHASE
           - VARIABLE
-          - IN_ADVANCE
-          - IN_ARREARS
-          - INTEREST_ONLY
-          - PRINCIPAL_AND_INTEREST
-          - INVESTMENT
-          - OWNER_OCCUPIED
         rate:
           type: string
           description: >-
-            (mandatory) - The rate to be applied.
+            The rate to be applied.
           example: "0.2024"
+        comparisonRate: 
+          type: string
+          description: A comparison rate equivalent for this rate.
         applicationFrequency:
           type: string
           description: >-
-            (optional) - The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax).
+            The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax).
           example: "P1M"
     depositRateAccountMetadata:
       required:
