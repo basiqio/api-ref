@@ -984,17 +984,17 @@ components:
             $ref: '#/components/schemas/AccountsData'
     AccountsData:
       required:
+        - type
+        - id
+        - lastUpdated
         - accountNo
         - availableFunds
         - balance
         - class
         - currency
-        - id
-        - lastUpdated
         - links
         - name
-        - status
-        - type
+        - status      
       type: object
       properties:
         type:
@@ -1707,20 +1707,30 @@ components:
       required:
       - type
       - id
-      - accountNo
-      - accountOwnership
+      - creationDate
+      - lastUpdated
+      - status
       - name
-      - currency
+      - bsb
+      - unmaskedAccNum
+      - maskedNumber
+      - accountNo
+      - accountHolder
+      - isOwned
+      - accountOwnership
+      - bundleName
       - balance
       - availableFunds
-      - lastUpdated
-      - institution
       - creditLimit
+      - amortisedLimit
+      - currency
+      - depositRate
+      - lendingRate
       - class
-      - transactionIntervals
-      - accountHolder
       - connection
-      - status
+      - institution
+      - transactionIntervals
+      - meta
       - links
       type: object
       properties:
@@ -1732,12 +1742,30 @@ components:
           type: string
           description: Uniquely identifies the account.
           example: s55bf3
+        depositRate:
+          type: string
+          description: current rate to calculate interest earned being applied to deposit balances as it stands at the time of the API call. 
+        lendingRate:
+          type: string
+          description: The current rate to calculate interest payable being applied to lending balances as it stands at the time of the API call. 
+        bsb:
+          type: string
+          description: The unmasked BSB for the account. Is expected to be formatted as digits only with leading zeros included and no punctuation or spaces.
+        unmaskedAccNum:
+          type: string
+          description: The unmasked account number for the account. Should not be supplied if the account number is a PAN requiring PCI compliance. Is expected to be formatted as digits only with leading zeros included and no punctuation or spaces.
+        creationDate:
+          type: string
+          description: Date that the account was created (if known).
         accountHolder:
           type: string
           description: The name of the account holder as returned by the institution.
             No formatting is applied. Returns a string or null when not available.
           nullable: true
           example: GAVIN BELSON
+        maskedNumber:
+          type: string
+          description: A masked version of the account. Whether BSB/Account Number, Credit Card PAN or another number.
         accountOwnership:
           type: string
           description: >-
@@ -1749,6 +1777,16 @@ components:
           - TWO_PARTY
           - MANY_PARTY
           - OTHER
+        isOwned:
+          type: boolean
+          description: Flag indicating that the customer associated with the authorisation is an owner of the account. Does not indicate sole ownership, however. If not present then 'true' is assumed.
+          example: 'true'
+        amortisedLimit:
+          type: string
+          description: Object representing the available limit amortised according to payment schedule. Assumed to be zero if absent.
+        bundleName:
+          type: string
+          description: Optional field to indicate if this account is part of a bundle that is providing additional benefit to the customer.
         accountNo:
           type: string
           description: BSB + account number.
@@ -1994,11 +2032,53 @@ components:
           description: >-
             (conditional) - The amount charged for the fee.
           example: "10.00"
+        balanceRate:
+          type: string
+          description: A fee rate calculated based on a proportion of the balance. One of amount, balanceRate, transactionRate and accruedRate is mandatory unless the feeType "VARIABLE" is supplied.
+        transactionRate:
+          type: string
+          description: A fee rate calculated based on a proportion of a transaction. One of amount, balanceRate, transactionRate and accruedRate is mandatory unless the feeType "VARIABLE" is supplied.
+        accruedRate:
+          type: string
+          description: A fee rate calculated based on a proportion of the calculated interest accrued on the account. One of amount, balanceRate, transactionRate and accruedRate is mandatory unless the feeType "VARIABLE" is supplied.
         accrualFrequency:
           type: string
           description: >-
             (optional) - The indicative frequency with which the fee is calculated on the account.
           example: "P1M"
+        currency:
+          type: string
+          description: The currency the fee will be charged in. Assumes AUD if absent.
+        additionalValue:
+          type: string
+          description: Display text providing more information on the fee.
+        additionalInfo:
+          type: string
+          description: Display text providing more information on the fee.
+        additionalInfoUri:
+          type: string
+          description: Link to a web page with more information on this fee.
+        discounts:
+          $ref: "#/components/schemas/feesdiscountMetadata"
+          description: An optional list of discounts to this fee that may be available.
+    feesdiscountMetadata:
+      required: 
+        - discountType
+        - description  
+      properties: 
+        description: 
+          type: string
+          description: Description of the discount. 
+        discountType:
+          type: string
+          description: The type of discount. See the next section for an overview of valid values and their meaning.
+        amount:
+          type: string
+          description: Dollar value of the discount. One of amount, balanceRate, transactionRate, accruedRate and feeRate is mandatory.
+        balanceRate:
+          type: string
+          description: A discount rate calculated based on a proportion of the balance. Note that the currency of the fee discount is expected to be the same as the currency of the fee itself. One of amount, balanceRate, transactionRate, accruedRate and feeRate is mandatory. Unless noted in additionalInfo, assumes the application and calculation frequency are the same as the corresponding fee.
+        
     AccountTransactionInterval:
       required:
       - from
