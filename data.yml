@@ -912,27 +912,6 @@ components:
           type: string
           description: Product name.
           example: Hooli Home Loan
-    AccountLinks:
-      required:
-      - connection
-      - institution
-      - self
-      - transactions
-      type: object
-      properties:
-        institution:
-          type: string
-          description: institution link to the institution associated with this account
-          example: https://au-api.basiq.io/institutions/AU00000
-        transactions:
-          type: string
-          description: transactions link to the transactions associated with this
-            account
-          example: "https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')"
-        self:
-          type: string
-          description: self link to the requested account
-          example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
@@ -1731,7 +1710,6 @@ components:
       - institution
       - transactionIntervals
       - meta
-      - links
       type: object
       properties:
         type:
@@ -1863,8 +1841,6 @@ components:
             Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
           items:
             $ref: '#/components/schemas/AccountTransactionInterval'
-        links:
-          $ref: '#/components/schemas/AccountLinks'
       description: Container object with account details
     Metadata:
       properties:
@@ -2314,7 +2290,7 @@ components:
           items:
             $ref: '#/components/schemas/AccountResponseResource'
         links:
-          $ref: '#/components/schemas/ResourceLink'
+          $ref: '#/components/schemas/ResourceaccountLink'
     BadRequestError:
       required:
       - correlationId
@@ -2514,6 +2490,33 @@ components:
           description: URL of the resource.
           example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
       description: Link object containing a link to the resource, self reference.
+    ResourceaccountLink:
+      title: ResourceaccountLink
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL of the resource.
+          example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
+        transactions:
+          type: string
+          description: transactions link to the transactions associated with this account.
+          example: "https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')"
+        connection:
+          type: string
+          description: connection associated to User. 
+          example: "https://au-api.basiq.io/users/cd6fbd92/connections/321312asa"
+        institution:
+          type: string
+          description: institution link to the institution associated with this account.
+          example: "https://au-api.basiq.io/institutions/AU00000"
+        statements:
+          type: string
+          example: []
+      description: Link object containing a link to the resource, self reference.
+    
     Source:
       title: Source
       type: object
