@@ -1855,7 +1855,6 @@ components:
           - unavailable
         meta:
           $ref: "#/components/schemas/Metadata"
-
         transactionIntervals:
           type: array
           description: |-
@@ -1881,23 +1880,50 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/lendingRateAccountMetadata"
+        termDeposit:
+          type: array
+          required: 
+            - lodgementDate
+            - maturityDate
+            - maturityInstructions
+          properties: 
+            lodgementDate:
+              type: string
+              description: The lodgement date of the original deposit. 
+            maturityDate:
+              type: string
+              description: Maturity date for the term deposit. 
+            maturityAmount: 
+              type: string
+              description: Amount to be paid upon maturity. If absent it implies the amount to paid is variable and cannot currently be calculated. 
+            maturityCurrency: 
+              type: string
+              description: If absent assumes AUD. 
+            maturityInstructions: 
+              type: string
+              description: Current instructions on action to be taken at maturity. This includes default actions that may be specified in the terms and conditions for the product e.g. roll-over to the same term and frequency of interest payments. 
+              enum:  
+               - HOLD_ON_MATURITY
+               - PAID_OUT_AT_MATURITY
+               - ROLLED_OVER
+              example: PAID_OUT_AT_MATURITY
         loan:
           type: object
           properties:
             startDate:
               type: string
               description: >-
-                (optional) - Start date for the loan.
+                Start date for the loan.
               example: "2019-10-01"
             endDate:
               type: string
               description: >-
-                (optional) - Date that the loan is due to be repaid in full.
+                Date that the loan is due to be repaid in full.
               example: "2045-10-01"
             repaymentType:
               type: string
               description: >-
-                (optional) - Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
+                Options in place for repayments. If absent defaults to PRINCIPAL_AND_INTEREST.
               example: "PRINCIPAL_AND_INTEREST"
               enum:
               - INTEREST_ONLY
@@ -1905,7 +1931,7 @@ components:
             minInstalmentAmount:
               type: string
               description: >-
-                (optional) - Minimum amount of next instalment.
+                Minimum amount of next instalment.
               example: "5500"
         creditCard:
           required:
@@ -1917,22 +1943,22 @@ components:
             minPaymentAmount:
               type: string
               description: >-
-                (mandatory) - The minimum payment amount due for the next card payment.
+                The minimum payment amount due for the next card payment.
               example: "117.00"
             paymentDueAmount:
               type: string
               description: >-
-                (mandatory) - The amount due for the next card payment.
+                The amount due for the next card payment.
               example: "5847.00"
             paymentCurrency:
               type: string
               description: >-
-                (optional) - If absent assumes AUD.
+                If absent assumes AUD.
               example: "AUD"
             paymentDueDate:
               type: string
               description: >-
-                (mandatory) - Date that the next payment for the card is due.
+                Date that the next payment for the card is due.
               example: "2023-12-12"
     lendingRateAccountMetadata:
       required:
@@ -1962,14 +1988,49 @@ components:
           description: >-
             The rate to be applied.
           example: "0.2024"
-        comparisonRate: 
+        comparisonRate:   
           type: string
           description: A comparison rate equivalent for this rate.
+        calculationFrequency:
+          type: string
+          description: The period after which the rate is applied to the balance to calculate the amount due for the period. Calculation of the amount is often daily (as balances may change) but accumulated until the total amount is 'applied' to the account (see applicationFrequency). Formatted according to ISO 8601 Durations (excludes recurrence syntax).
         applicationFrequency:
           type: string
-          description: >-
-            The period after which the calculated amount(s) are applied (i.e. debited or credited) to the account. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax).
-          example: "P1M"
+          description: The period after which the calculated amount(s) (see calculationFrequency) are 'applied' (i.e. debited or credited) to the account. Formatted according to ISO 8601 Durations (excludes recurrence syntax).
+        interestPaymentDue:
+          type: string
+          description: When loan payments are due to be paid within each period. The investment benefit of earlier payments affect the rate that can be offered.
+          enum: 
+            - IN_ADVANCE
+            - IN_ARREARS
+          example: IN_ADVANCE
+        repaymentType:
+          type: string
+          description: Options in place for repayments. If absent, the lending rate is applicable to all repayment types.
+          enum: 
+            - INTEREST_ONLY
+            - PRINCIPAL_AND_INTEREST
+          example: INTEREST_ONLY
+        loanPurpose:
+          type: string
+          description: The reason for taking out the loan. If absent, the lending rate is applicable to all loan purposes.
+          enum: 
+            - INVESTMENT
+            - OWNER_OCCUPIED
+          example: INVESTMENT
+        tiers:
+          type: object
+          $ref: "#/components/schemas/feesAccountMetadepositratestiers"
+          description: Rate tiers applicable for this rate.
+        additionalValue:
+          type: string
+          description: Generic field containing additional information relevant to the depositRateType specified. Whether mandatory or not is dependent on the value of depositRateType.
+        additionalInfo:
+          type: string
+          description: Display text providing more information on the rate. 
+        additionalInfoUri:
+          type: string
+          description: Link to a web page with more information on this rate. 
     depositRateAccountMetadata:
       required:
       - depositRateType
@@ -2005,6 +2066,15 @@ components:
           type: object
           $ref: "#/components/schemas/feesAccountMetadepositratestiers"
           description: Rate tiers applicable for this rate. 
+        additionalValue:
+          type: string 
+          description: Generic field containing additional information relevant to the lendingRateType specified. Whether mandatory or not is dependent on the value of lendingRateType. 
+        additionalInfo:
+          type: string
+          description: Display text providing more information on the rate.
+        additionalInfoUri: 
+          type: string
+          description: Link to a web page with more information on this rate. 
     feesAccountMetadepositratestiers:
       required: 
         - name
