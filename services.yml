@@ -2,8 +2,11 @@ openapi: 3.0.1
 info:
   title: Services
   version: 3.0.0
+  license: 
+    name: Commercial
+    url: https://basiq.io    
 servers:
-- url: https://au-api.basiq.io/
+- url: https://au-api.basiq.io
 paths:
   /users/{userId}/accounts:
     get:
