@@ -1709,7 +1709,6 @@ components:
       - connection
       - institution
       - transactionIntervals
-      - meta
       type: object
       properties:
         type:
@@ -1970,6 +1969,125 @@ components:
               description: >-
                 Date that the next payment for the card is due.
               example: "2023-12-12"
+        addresses:
+          type: array
+          description: The addresses for the account to be used for correspondence.
+          items: 
+           type: object
+           properties: 
+            addressType:
+              type: string
+              description: The type of address object present.
+              enum: 
+                - paf
+                - simple
+              example: paf
+            simple:
+              required: 
+                - addressLine1
+                - city
+                - state
+              type: object
+              properties:
+                mailingName: 
+                  type: string
+                  description: Name of the individual or business formatted for inclusion in an address used for physical mail. 
+                addressLine1: 
+                  type: string
+                  description: First line of the standard address object. 
+                addressLine2: 
+                  type: string
+                  description: Second line of the standard address object.
+                addressLine3: 
+                  type: string
+                  description: Third line of the standard address object.
+                postcode: 
+                  type: string
+                  description: Mandatory for Australian addresses. 
+                city: 
+                  type: string
+                  description: Name of the city or locality.
+                state: 
+                  type: string
+                  description: Free text if the country is not Australia. If country is Australia then must be one of the values defined by the State Type Abbreviation in the PAF file format. NSW, QLD, VIC, NT, WA, SA, TAS, ACT. 
+                country: 
+                  type: string
+                  description: A valid ISO 3166 Alpha-3 country code. Australia (AUS) is assumed if country is not present.
+                paf:
+                  required: 
+                    - localityName
+                    - postcode
+                    - state
+                  type: object
+                  description: Australian address formatted according to the file format defined by the PAF file format.
+                  properties:
+                    dpid: 
+                      type: string 
+                      description: Unique identifier for an address as defined by Australia Post. Also known as Delivery Point Identifier.
+                    thoroughfareNumber1: 
+                      type: integer
+                      description: Thoroughfare number for a property (first number in a property ranged address).
+                    thoroughfareNumber1Suffix: 
+                      type: string
+                      description: Suffix for the thoroughfare number. Only relevant is thoroughfareNumber1 is populated. 
+                    thoroughfareNumber2: 
+                      type: integer
+                      description: Second thoroughfare number (only used if the property has a ranged address eg 23-25). 
+                    thoroughfareNumber2Suffix: 
+                      type: string
+                      description: Suffix for the second thoroughfare number. Only relevant is thoroughfareNumber2 is populated.
+                    flatUnitType: 
+                      type: string
+                      description: Type of flat or unit for the address. 
+                    flatUnitNumber: 
+                      type: string
+                      description: Unit number (including suffix, if applicable).
+                    floorLevelType: 
+                      type: string
+                      description: Type of floor or level for the address. 
+                    floorLevelNumber: 
+                      type: string
+                      description: Floor or level number (including alpha characters). 
+                    lotNumber: 
+                      type: string
+                      description: Allotment number for the address. 
+                    buildingName1: 
+                      type: string
+                      description: Building/Property name 1. 
+                    buildingName2: 
+                      type: string
+                      description: Building/Property name 2.
+                    streetName: 
+                      type: string
+                      description: The name of the street.
+                    streetType: 
+                      type: string
+                      description: The street type. Valid enumeration defined by Australia Post PAF code file. 
+                    streetSuffix: 
+                      type: string
+                      description: The street type suffix. Valid enumeration defined by Australia Post PAF code file. 
+                    postalDeliveryType: 
+                      type: string
+                      description: Postal delivery type. (eg. PO BOX). Valid enumeration defined by Australia Post PAF code file. 
+                    postalDeliveryNumber: 
+                      type: integer
+                      description: Postal delivery number if the address is a postal delivery type. 
+                    postalDeliveryNumberPrefix: 
+                      type: string
+                      description: Postal delivery number prefix related to the postal delivery number. 
+                    postalDeliveryNumberSuffix: 
+                      type: string
+                      description: Postal delivery number suffix related to the postal delivery number.
+                    localityName: 
+                      type: string
+                      description: Full name of locality. 
+                    postcode: 
+                      type: string
+                      description: Postcode for the locality.
+                    state: 
+                      type: string
+                      description: State in which the address belongs. Valid enumeration defined by Australia Post PAF code file State Type Abbreviation. NSW, QLD, VIC, NT, WA, SA, TAS, ACT, AAT. 
+            
     lendingRateAccountMetadata:
       required:
       - lendingRateType
