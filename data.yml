@@ -1870,7 +1870,7 @@ components:
               description: Maturity date for the term deposit. 
             maturityAmount: 
               type: string
-              description: Amount to be paid upon maturity. If absent it implies the amount to paid is variable and cannot currently be calculated. 
+              description: Amount to be paid upon maturity. If absent, it implies the amount to paid is variable and cannot currently be calculated. 
             maturityCurrency: 
               type: string
               description: If absent assumes AUD. 
@@ -1920,7 +1920,7 @@ components:
               description: If absent assumes AUD. 
             maxRedraw: 
               type: string
-              description: Maximum amount of funds that can be redrawn. If not present redraw is not available even if the feature exists for the account. 
+              description: Maximum amount of funds that can be redrawn. If not present, redraw is not available even if the feature exists for the account. 
             maxRedrawCurrency: 
               type: string
               description: If absent assumes AUD. 
