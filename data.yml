@@ -2408,7 +2408,7 @@ components:
           items:
             $ref: '#/components/schemas/AccountResponseResource'
         links:
-          $ref: '#/components/schemas/ResourceaccountLink'
+          $ref: '#/components/schemas/ResourceAccountLink'
     BadRequestError:
       required:
       - correlationId
@@ -2608,8 +2608,8 @@ components:
           description: URL of the resource.
           example: "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
       description: Link object containing a link to the resource, self reference.
-    ResourceaccountLink:
-      title: ResourceaccountLink
+    ResourceAccountLink:
+      title: ResourceAccountLink
       required:
       - self
       type: object
