@@ -20,42 +20,15 @@ tags:
   - name: Float accounts
     description: APIs for querying float accounts
 paths:
-  /payments/agreements/instructions/validation:
-    post:
-      tags:
-        - Payment Agreements
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      summary: Validate agreement
-      operationId: validateAgreement
-      requestBody:
-        $ref: '#/components/requestBodies/agreement-validation-creation'
-      responses:
-        '201':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jobs'
-              examples:
-                Agreement Validation Request:
-                  value:
-                    type: job
-                    id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                    links:
-                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
-                      agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
   /payments/agreements/instructions/creation:
     post:
       tags:
         - Payment Agreements
       summary: Create agreement
       operationId: createAgreement
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       requestBody:
-        $ref: '#/components/requestBodies/agreement-validation-creation'
+        required: true
+        $ref: '#/components/requestBodies/agreement-creation'
       responses:
         '201':
           description: OK
@@ -64,7 +37,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/jobs'
               examples:
-                Agreement Request:
+                Agreement Creation:
                   value:
                     type: job
                     id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -72,14 +45,35 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
                       agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid content in request body:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        code: invalid-content
+                        title: Invalid request content
+                        detail: Posted request data is not in valid format.
+                Missing reason details: # TODO check if we should leave this here
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        code: 'missing-reason-details'
+                        title: 'Missing reason details.'
+                        detail: 'Please specify reason and description for cancellation/suspension.'
   /payments/agreements/{id}/instructions/status:
     post:
       tags:
         - Payment Agreements
-      summary: Amend agreement
+      summary: Amend agreement status
       operationId: amendAgreementStatus
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: id
           in: path
@@ -89,9 +83,9 @@ paths:
           explode: false
           schema:
             type: string
-            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
           example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
       requestBody:
+        required: true
         $ref: '#/components/requestBodies/agreement-status'
       responses:
         '201':
@@ -101,7 +95,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/jobs'
               examples:
-                Agreement Validation Request:
+                Agreement Status Change:
                   value:
                     type: job
                     id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -109,43 +103,20 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/
                       agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
-  /payments/agreements/{id}/instructions/amendment:
-    post:
-      tags:
-        - Payment Agreements
-      summary: Amend agreement status
-      operationId: amendAgreement
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      parameters:
-        - name: id
-          in: path
-          description: Agreement Id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-      requestBody:
-        $ref: '#/components/requestBodies/agreement-validation-creation'
-      responses:
-        '201':
-          description: OK
+        '400':
+          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/jobs'
               examples:
-                Agreement Validation Request:
+                Invalid content in request body:
                   value:
-                    type: job
-                    id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                    links:
-                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/
-                      agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Invalid request content
+                        code: invalid-content
+                        detail: Posted request data is not in valid format.
   /payments/agreements/instructions/{id}/recall:
     post:
       tags:
@@ -2087,6 +2058,218 @@ components:
             self:
               type: string
   requestBodies:
+    agreement-creation:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - requestId
+              - payer
+              - purpose
+            properties:
+              requestId:
+                description: Id as assigned by the by the partner application. This needs to be unique and is used to check duplicates
+                type: string
+                example: '01824ad0-73f1-0138-3700-0a58a9feac09'
+              payer:
+                type: object
+                required:
+                  - userId
+                  - type
+                  - ultimatePayerName
+                properties:
+                  userId:
+                    description: 'User Id of the payer'
+                    type: string
+                    example: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                  accountId:
+                    description: 'ID of the account as stored within Basiq'
+                    type: string
+                    example: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                  payId:
+                    description: 'The Pay ID of the payer user'
+                    type: string
+                  payIdType:
+                    description: 'Type of the Pay ID being used'
+                    type: string
+                    enum:
+                      - phone-number
+                      - email
+                      - business-number
+                      - organisation-id
+                  bankBranchCode:
+                    description: 'Bank and branch code (e.g. bsb) of the account'
+                    type: string
+                    example: "730002"
+                  accountNumber:
+                    description: 'Payer account number'
+                    type: string
+                    example: "123456789"
+                  type:
+                    description: 'Identifies the type of the payer'
+                    type: string
+                    enum:
+                      - person
+                      - organisation
+                  ultimatePayerName:
+                    description: 'Name of the ultimate payer'
+                    type: string
+              payee:
+                type: object
+                required:
+                  - type
+                  - ultimatePayeeName
+                properties:
+                  payId:
+                    description: 'The Pay ID of the payee user'
+                    type: string
+                  payIdType:
+                    description: 'Type of the Pay ID being used'
+                    type: string
+                    enum:
+                      - phone-number
+                      - email
+                      - business-number
+                      - organisation-id
+                  bankBranchCode:
+                    description: 'Bank and branch code (e.g. bsb) of the account'
+                    type: string
+                    example: "730002"
+                  accountNumber:
+                    description: 'Payee account number'
+                    type: string
+                    example: "123456789"
+                  type:
+                    description: 'Identifies the type of the payee'
+                    type: string
+                    enum:
+                      - person
+                      - organisation
+                  ultimatePayeeName:
+                    description: 'Name of the ultimate payee'
+                    type: string
+              shortDescription:
+                description: short description of the agreement e.g. ABC Energy Bill
+                type: string
+              description:
+                description: detailed description of the agreement e.g. ABC Energy Bill for Unit 1 at somewhere st
+                type: string
+              purpose:
+                description: Purpose of the agreement being establishment for which types of payments
+                type: string
+                enum:
+                  - mortgage-payments
+                  - utility-payments
+                  - loan-payments
+                  - dependant-support-payments
+                  - gambling-payments
+                  - retail-payments
+                  - salary-payments
+                  - personal-payment
+                  - government-payments
+                  - pension-payments
+                  - tax-payments
+                  - other-service-payments
+              respondByDateTime:
+                description: 'date and time in ISO format of when the payer should respond to the agreement request. By default if not supplied this will be 5 days'
+                type: string
+                format: date-time
+              paymentTerms:
+                description: Set of fields to dictate the payment terms of the agreement
+                type: object
+                properties:
+                  maximumAmount:
+                    description: the maximum amount to be specified in each payment instruction relating to this agreement
+                    type: number
+                    maximum: 10000
+                    minimum: 1
+          examples:
+            Payment Agreement | Payer with Pay ID:
+              value:
+                agreement:
+                  requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                    payId: jon@gmail.com
+                    payIdType: email
+                    type: 'person'
+                    ultimatePayerName: 'John'
+                  payee:
+                    payId: gavin@gmail.com
+                    payIdType: email
+                    name: "Gavin"
+                    type: 'person'
+                    ultimatePayeeName: 'Gavin'
+                  shortDescription: 'Manly investment property'
+                  description: 'Mortgage repayments for Manly investment property'
+                  purpose: 'mortgage-payments'
+                  respondByDateTime: '2022-03-25T20:28:22.378Z'
+                  paymentTerms:
+                    maximumAmount: 2010.50
+            Payment Agreement | Payer with Bank Account:
+              value:
+                agreement:
+                  requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                    bankBranchCode: "013001"
+                    accountNumber: "987654321"
+                    type: 'person'
+                    ultimatePayerName: 'John'
+                  payee:
+                    payId: gavin@gmail.com
+                    payIdType: email
+                    name: "Gavin"
+                    type: 'person'
+                    ultimatePayeeName: 'Gavin'
+                  shortDescription: 'Manly investment property'
+                  description: 'Mortgage repayments for Manly investment property'
+                  purpose: 'mortgage-payments'
+                  respondByDateTime: '2022-03-25T20:28:22.378Z'
+                  paymentTerms:
+                    maximumAmount: 2010.50
+            Payment Agreement | Payer with Basiq Account ID:
+              value:
+                agreement:
+                  requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  payer:
+                    userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                    accountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                    type: 'person'
+                    ultimatePayerName: 'John'
+                  payee:
+                    bankBranchCode: "730002"
+                    accountNumber: "123456789"
+                    name: "Gavin"
+                    type: 'person'
+                    ultimatePayeeName: 'Gavin'
+                  shortDescription: 'Manly investment property'
+                  description: 'Mortgage repayments for Manly investment property'
+                  purpose: 'mortgage-payments'
+                  respondByDateTime: '2022-03-25T20:28:22.378Z'
+                  paymentTerms:
+                    maximumAmount: 2010.50
+            Payment Agreement | Without Payee:
+              value:
+                agreement:
+                  type: 'payment-agreement'
+                  id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                  requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                  created: '2022-03-21T20:28:22.378Z'
+                  updated: '2022-03-21T20:28:22.378Z'
+                  status: 'valid'
+                  payer:
+                    userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                    accountId: '31824ad0-73f1-0138-3700-0a58a9feac09'
+                    type: 'person'
+                    ultimatePayerName: 'John'
+                  shortDescription: 'Manly investment property'
+                  description: 'Mortgage repayments for Manly investment property'
+                  purpose: 'mortgage-payments'
+                  respondByDateTime: '2022-03-25T20:28:22.378Z'
+                  paymentTerms:
+                    maximumAmount: 2010.50
     payrequests:
       content:
         application/json:
@@ -2206,8 +2389,8 @@ components:
                   method: 'batch'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-#                    payerBankBranchCode: '730002'
-#                    payerAccountNumber: '123456789'
+  #                    payerBankBranchCode: '730002'
+  #                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
                   collectFundsToFloat: true
@@ -2218,8 +2401,8 @@ components:
                   method: 'batch'
                   payer:
                     payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-#                    payerBankBranchCode: '730002'
-#                    payerAccountNumber: '123456789'
+  #                    payerBankBranchCode: '730002'
+  #                    payerAccountNumber: '123456789'
                   description: Investment
                   amount: 173.45
                   checkAccountBalance: true
