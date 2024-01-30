@@ -20,14 +20,1744 @@ tags:
   - name: Float accounts
     description: APIs for querying float accounts
 paths:
+  /payments/agreements:
+    get: 
+      tags:
+        - Payment Agreements
+      summary: Get payment agreements
+      operationId: getPaymentAgreements
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+      parameters:
+        - name: limit
+          in: query
+          description: 'Maximum number of items included in the response. Max value = 500 and is the default value if this field is not provided'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: '2'
+        - name: filter
+          in: query
+          description: 'Filter field that allows filtering agreements by payer user ID, status and date'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: "payer.user.id.eq('21824ad0-73f1-0138-3700-0a58a9feac09')"
+        - name: next
+          in: query
+          description: 'Represents a pagination key that indicates the starting point of the next set of agreement instructions'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: 'RmllbGQxXlZhbHVlMX5GaWVsZDJeVmFsdWUy'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agreements'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 2
+                    size: 2
+                    data:
+                      - type: 'payment-agreement'
+                        id: 'fcbbfed9-e476-4b91-89d2-053b5f9c567c'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:29:22.378Z'
+                        updated: '2022-03-21T20:29:22.378Z'
+                        status: 'active'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          bankBranchCode: "730002"
+                          accountNumber: "123456789"
+                          name: "Gavin"
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/fcbbfed9-e476-4b91-89d2-053b5f9c567c"
+                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/fcbbfed9-e476-4b91-89d2-053b5f9c567c/instructions"
+                      - type: 'payment-agreement'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'suspended'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          bankBranchCode: "730002"
+                          accountNumber: "123456789"
+                          name: "Gavin"
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements?limit=2&filter=payer.user.id.eq('21824ad0-73f1-0138-3700-0a58a9feac09')&next=RmllbGQxXlZhbHVlMX5GaWVsZDJeVmFsdWUy"
+                      next: "https://au-api.basiq.io/payments/agreements?limit=2&filter=payer.user.id.eq('21824ad0-73f1-0138-3700-0a58a9feac09')&next=U29tZXRoaW5nM15PdGhlcjN-U29tZXRoaW5nNF5PdGhlcjQ="
+  /payments/agreements/{id}:
+    get:
+      tags:
+        - Payment Agreements
+      summary: Get payment agreement
+      operationId: getPaymentAgreement
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+      parameters:
+        - name: id
+          in: path
+          description: Agreement Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agreement'
+              examples:
+                Active | Payee details included:
+                  value:
+                    agreement:
+                      type: 'payment-agreement'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'active'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: "730002"
+                        accountNumber: "123456789"
+                        name: "Gavin"
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 2010.50
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+                Active | No payee details:
+                  value:
+                    agreement:
+                      type: 'payment-agreement'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'active'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 2010.50
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+                Suspended | Payee details included:
+                  value:
+                    agreement:
+                      type: 'payment-agreement'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'suspended'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: "730002"
+                        accountNumber: "123456789"
+                        name: "Gavin"
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 2010.50
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+                Suspended | No payee details:
+                  value:
+                    agreement:
+                      type: 'payment-agreement'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'suspended'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 2010.50
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+                Cancelled | Payee details included:
+                  value:
+                    agreement:
+                      type: 'payment-agreement'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'cancelled'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: "730002"
+                        accountNumber: "123456789"
+                        name: "Gavin"
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 2010.50
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+                Cancelled | No payee details:
+                  value:
+                    agreement:
+                      type: 'payment-agreement'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'cancelled'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 2010.50
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid agreement id:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Invalid request content
+                        code: invalid-content
+                        detail: Agreement ID value is not valid.
+                        source: null
+                Invalid filter:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Parameter value is not valid
+                        code: parameter-not-valid
+                        detail: The provided filter parameter is in invalid format or unsupported
+                        source:
+                          parameter: 'filter'
+                Invalid next:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Parameter value is not valid
+                        code: parameter-not-valid
+                        detail: Invalid query parameter value
+                        source:
+                          parameter: 'next'
+                Invalid limit:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Parameter value is not valid
+                        code: parameter-not-valid
+                        detail: Limit value is not valid
+                        source:
+                          parameter: 'limit'
+        '404':
+          description: not found
+  /payments/agreements/{id}/instructions:
+    get:
+      tags:
+        - Payment Agreements
+      summary: Get agreement instructions
+      operationId: getPaymentAgreementInstructions
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+      parameters:
+        - name: id
+          in: path
+          description: 'Agreement id'
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+        - name: limit
+          in: query
+          description: 'Maximum number of payment agreement instructions to be included in the response.'
+          style: deepObject
+          explode: false
+          schema:
+            type: integer
+          example: 24
+        - name: filter
+          in: query
+          description: 'Allows filtering by instruction type, status or date'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: "instruction.date.eq('2022-03-21')"
+        - name: next
+          in: query
+          description: 'Represents a pagination key that indicates the starting point of the next set of agreement instructions'
+          style: deepObject
+          explode: false
+          schema:
+            type: string
+          example: 'RmllbGQxXlZhbHVlMX5GaWVsZDJeVmFsdWUy'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agreement-instructions'
+              examples:
+                response:
+                  value:
+                    type: 'list'
+                    count: 24
+                    size: 24
+                    data:
+                      - type: 'payment-agreement-creation'
+                        id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:29:22.378Z'
+                        updated: '2022-03-21T20:29:22.378Z'
+                        status: 'successful'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          bankBranchCode: '730002'
+                          accountNumber: '123456789'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 100.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                          job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:29:22.378Z'
+                        updated: '2022-03-21T20:32:22.378Z'
+                        status: 'failed'
+                        reason: 
+                          title: 'Payer PayID type and value mismatch'
+                          code: 'payer-payid-type-value-mismatch'
+                          detail: 'Payer PayID value does not match the type specified.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          payIdType: 'phone-number'
+                          payId: 'abc@basiq.io'
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          payIdType: 'email'
+                          payId: 'john.smith@somewhere.io'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                          job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: '148d47d1-11cd-40ef-bff1-5249a6ba0ee9'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:29:22.378Z'
+                        status: 'failed'
+                        reason:
+                          title: 'Payee PayID type and value mismatch'
+                          code: 'payee-payid-type-value-mismatch'
+                          detail: 'Payee PayID value does not match the type specified.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          payIdType: 'phone-number'
+                          payId: 'abc@basiq.io'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          job: "https://au-api.basiq.io/jobs/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: '148d47d1-11cd-40ef-bff1-5249a6ba0ee9'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:27:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          title: 'Invalid bank account details'
+                          code: 'invalid-bank-account'
+                          detail: 'The payee bank account details are incorrect.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          payIdType: 'email'
+                          payId: 'abc@basiq.io'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          job: "https://au-api.basiq.io/jobs/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: '148d47d1-11cd-40ef-bff1-5249a6ba0ee9'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:27:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          title: 'Fraud check rejection'
+                          code: 'fraud-check-rejection'
+                          detail: 'Request rejected due to fraud check.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          payIdType: 'email'
+                          payId: 'abc@basiq.io'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          job: "https://au-api.basiq.io/jobs/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: '148d47d1-11cd-40ef-bff1-5249a6ba0ee9'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:26:22.378Z'
+                        updated: '2022-03-21T20:27:22.378Z'
+                        status: 'failed'
+                        reason:
+                          title: 'Payer bank cannot process fast payments'
+                          code: 'payer-bank-cannot-process-fast-payments'
+                          detail: 'The payer account cannot process fast payments.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          bankBranchCode: '802950'
+                          accountNumber: '11213322'
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          payIdType: 'email'
+                          payId: 'abc@basiq.io'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          job: "https://au-api.basiq.io/jobs/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: '148d47d1-11cd-40ef-bff1-5249a6ba0ee9'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:26:22.378Z'
+                        updated: '2022-03-21T20:27:22.378Z'
+                        status: 'failed'
+                        reason:
+                          title: 'Payee bank cannot process fast payments'
+                          code: 'payee-bank-cannot-process-fast-payments'
+                          detail: 'The payee bank cannot process fast payments.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: '9bb8eae0-4215-4f2a-a79a-cc25f797679e'
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          bankBranchCode: '802950'
+                          accountNumber: '11213322'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          job: "https://au-api.basiq.io/jobs/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-creation'
+                        id: '148d47d1-11cd-40ef-bff1-5249a6ba0ee9'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2022-03-21T20:26:22.378Z'
+                        updated: '2022-03-21T20:27:22.378Z'
+                        status: 'failed'
+                        reason:
+                          title: 'Payee account cannot receive fast payments'
+                          code: 'payee-account-cannot-receive-fast-payments'
+                          detail: 'The payee account cannot receive fast payments.'
+                        payer:
+                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                          accountId: '9bb8eae0-4215-4f2a-a79a-cc25f797679e'
+                          type: 'person'
+                          ultimatePayerName: 'John'
+                        payee:
+                          bankBranchCode: '802950'
+                          accountNumber: '11213322'
+                          name: 'Gavin'
+                          type: 'person'
+                          ultimatePayeeName: 'Gavin'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        paymentTerms:
+                          maximumAmount: 2010.50
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          job: "https://au-api.basiq.io/jobs/148d47d1-11cd-40ef-bff1-5249a6ba0ee9"
+                          payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      - type: 'payment-agreement-amendment'
+                        id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2000-01-01T12:00:00Z'
+                        updated: '2000-01-01T12:00:00Z'
+                        status: 'successful'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        payer:
+                          name: 'Gavin Belson'
+                          type: 'person'
+                          ultimatePayerName: 'Gavin Belson'
+                          userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                          payId: 'abc@test.com'
+                          payIdType: 'email'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        links:
+                          self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                          job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-amendment'
+                        id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2000-01-01T12:00:00Z'
+                        updated: '2000-01-01T12:00:00Z'
+                        status: 'failed'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        reason:
+                          title: 'Payee account cannot receive fast payments'
+                          code: 'payee-account-cannot-receive-fast-payments'
+                          detail: 'The payee account cannot receive fast payments.'
+                        payer:
+                          name: 'Gavin Belson'
+                          type: 'person'
+                          ultimatePayerName: 'Gavin Belson'
+                          userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                          payId: 'abc@test.com'
+                          payIdType: 'email'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        links:
+                          self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                          job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-amendment'
+                        id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2000-01-01T12:00:00Z'
+                        updated: '2000-01-01T12:00:00Z'
+                        status: 'failed'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        reason:
+                          title: 'Invalid bank account details'
+                          code: 'invalid-bank-account'
+                          detail: 'The account provided does not belong to the specified bank.'
+                        payer:
+                          name: 'Gavin Belson'
+                          type: 'person'
+                          ultimatePayerName: 'Gavin Belson'
+                          userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                          payId: 'abc@test.com'
+                          payIdType: 'email'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        links:
+                          self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                          job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-amendment'
+                        id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2000-01-01T12:00:00Z'
+                        updated: '2000-01-01T12:00:00Z'
+                        status: 'failed'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        reason:
+                          title: 'Payee bank cannot process fast payments'
+                          code: 'payee-bank-cannot-process-fast-payments'
+                          detail: 'The payee bank cannot process fast payments.'
+                        payer:
+                          name: 'Gavin Belson'
+                          type: 'person'
+                          ultimatePayerName: 'Gavin Belson'
+                          userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                          payId: 'abc@test.com'
+                          payIdType: 'email'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        links:
+                          self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                          job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-amendment'
+                        id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        created: '2000-01-01T12:00:00Z'
+                        updated: '2000-01-01T12:00:00Z'
+                        status: 'failed'
+                        agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        reason:
+                          title: 'Fraud check rejection'
+                          code: 'fraud-check-rejection'
+                          detail: 'Request rejected due to fraud check.'
+                        payer:
+                          name: 'Gavin Belson'
+                          type: 'person'
+                          ultimatePayerName: 'Gavin Belson'
+                          userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                          payId: 'abc@test.com'
+                          payIdType: 'email'
+                        shortDescription: 'Manly investment property'
+                        description: 'Mortgage repayments for Manly investment property'
+                        purpose: 'mortgage-payments'
+                        links:
+                          self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                          job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-status'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'successful'
+                        changeStatusTo: 'suspend'
+                        changeStatusReason: 'narrative'
+                        changeStatusDescription: 'Customer has paused their subscription'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-status'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'invalid-agreement-status-transition'
+                          title: 'Invalid agreement status transition.'
+                          detail: 'The agreement status can not be updated from suspended to suspended.'
+                        changeStatusTo: 'suspend'
+                        changeStatusReason: 'narrative'
+                        changeStatusDescription: 'Customer has paused their subscription'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-status'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'invalid-agreement-status-transition'
+                          title: 'Invalid agreement status transition.'
+                          detail: 'The agreement status can not be updated from cancelled to suspended.'
+                        changeStatusTo: 'suspend'
+                        changeStatusReason: 'narrative'
+                        changeStatusDescription: 'Customer has paused their subscription'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'successful'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'agreement-business-validate-error'
+                          title: 'Agreement business validate error'
+                          detail: 'The instruction is complete and cannot be recalled.'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'agreement-business-validate-error'
+                          title: 'Agreement business validate error'
+                          detail: 'Instruction not found'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'agreement-business-validate-error'
+                          title: 'Agreement business validate error'
+                          detail: 'Internal server error'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'agreement-business-validate-error'
+                          title: 'Agreement business validate error'
+                          detail: 'Payments not enabled for this application.'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'failed'
+                        reason:
+                          code: 'agreement-business-validate-error'
+                          title: 'Agreement business validate error'
+                          detail: 'Application is not enabled for payments with required provider.'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                      - type: 'payment-agreement-recall'
+                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                        relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                        created: '2022-03-21T20:28:22.378Z'
+                        updated: '2022-03-21T20:28:22.378Z'
+                        status: 'in-progress'
+                        reason:
+                          code: 'external-provider-error'
+                          title: 'External provider error'
+                          detail: 'The external provider has returned a failed status. Please contact support.'
+                        links:
+                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                          payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                          related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"                                    
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/instructions?limit=24&filter=instruction.date.eq('2022-03-21')&next=RmllbGQxXlZhbHVlMX5GaWVsZDJeVmFsdWUy"
+                      next: "https://au-api.basiq.io/payments/agreements/instructions?limit=24&filter=instruction.date.eq('2022-03-21')&next=U29tZXRoaW5nM15PdGhlcjN-U29tZXRoaW5nNF5PdGhlcjQ="
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid agreement id:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Invalid request content
+                        code: invalid-content
+                        detail: Agreement ID value is not valid.
+                        source: null
+                Invalid filter:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Parameter value is not valid
+                        code: parameter-not-valid
+                        detail: The provided filter parameter is in invalid format or unsupported
+                        source:
+                          parameter: 'filter'
+                Invalid next:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Parameter value is not valid
+                        code: parameter-not-valid
+                        detail: Invalid query parameter value
+                        source:
+                          parameter: 'next'
+                Invalid limit:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Parameter value is not valid
+                        code: parameter-not-valid
+                        detail: Limit value is not valid
+                        source:
+                          parameter: 'limit'
+        '404':
+          description: not found
+  /payments/agreements/instructions/{instructionId}:
+    get:
+      tags:
+        - Payment Agreements
+      summary: Get payment agreement instruction
+      operationId: getPaymentAgreementInstruction
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+      parameters:
+        - name: instructionId
+          in: path
+          description: Instruction Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agreement-instruction'
+              examples:
+                Agreement Creation | in-progress:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'in-progress'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"                     
+                Agreement Creation | successful:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'successful'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Payer PayID type and value mismatch:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason: 
+                          title: 'Payer PayID type and value mismatch'
+                          code: 'payer-payid-type-value-mismatch'
+                          detail: 'Payer PayID value does not match the type specified.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        payId: 'abc@test.com'
+                        payIdType: 'phone-number'
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Payee PayID type and value mismatch:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason:
+                          title: 'Payee PayID type and value mismatch'
+                          code: 'payee-payid-type-value-mismatch'
+                          detail: 'Payee PayID value does not match the type specified.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        payId: 'abc@test.com'
+                        payIdType: 'phone-number'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Payee account cannot receive fast payments:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason:
+                          title: 'Payee account cannot receive fast payments'
+                          code: 'payee-account-cannot-receive-fast-payments'
+                          detail: 'The payee account cannot receive fast payments.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Invalid bank account details:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason:
+                          title: 'Invalid bank account details'
+                          code: 'invalid-bank-account'
+                          detail: 'The payee bank account details are incorrect.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Fraud check rejection:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason:
+                          title: 'Fraud check rejection'
+                          code: 'fraud-check-rejection'
+                          detail: 'Request rejected due to fraud check.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Payer bank cannot process fast payments:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason:
+                          title: 'Payer bank cannot process fast payments'
+                          code: 'payer-bank-cannot-process-fast-payments'
+                          detail: 'The payer account cannot process fast payments.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Creation | failed | Payee bank cannot process fast payments:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-creation'
+                      id: 'aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2022-03-21T20:29:22.378Z'
+                      updated: '2022-03-21T20:29:22.378Z'
+                      status: 'failed'
+                      reason:
+                          title: 'Payee bank cannot process fast payments'
+                          code: 'payee-bank-cannot-process-fast-payments'
+                          detail: 'The payee bank cannot process fast payments.'
+                      payer:
+                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
+                        type: 'person'
+                        ultimatePayerName: 'John'
+                      payee:
+                        bankBranchCode: '730002'
+                        accountNumber: '123456789'
+                        name: 'Gavin'
+                        type: 'person'
+                        ultimatePayeeName: 'Gavin'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      paymentTerms:
+                        maximumAmount: 100.50
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        job: "https://au-api.basiq.io/jobs/aa1e2cd3-c6a7-4106-af2c-1e34c0047e8c"
+                        payment-agreement: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                Agreement Status Change | Suspend | in-progress:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-status'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'in-progress'
+                      changeStatusTo: 'suspend'
+                      changeStatusReason: 'narrative'
+                      changeStatusDescription: 'Customer has paused their subscription'
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Status Change | Suspend | successful:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-status'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'successful'
+                      changeStatusTo: 'suspend'
+                      changeStatusReason: 'narrative'
+                      changeStatusDescription: 'Customer has paused their subscription'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Status Change | Suspend | failed | invalid transition - current status same as target status:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-status'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'invalid-agreement-status-transition'
+                        title: 'Invalid agreement status transition.'
+                        detail: 'The agreement status can not be updated from suspended to suspended.'
+                      changeStatusTo: 'suspend'
+                      changeStatusReason: 'narrative'
+                      changeStatusDescription: 'Customer has paused their subscription'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Status Change | Suspend | failed | invalid transition - any transition is forbidden for cancelled instructions:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-status'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'invalid-agreement-status-transition'
+                        title: 'Invalid agreement status transition.'
+                        detail: 'The agreement status can not be updated from cancelled to suspended.'
+                      changeStatusTo: 'suspend'
+                      changeStatusReason: 'narrative'
+                      changeStatusDescription: 'Customer has paused their subscription'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Amendment | in-progress:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-amendment'
+                      id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2000-01-01T12:00:00Z'
+                      updated: '2000-01-01T12:00:00Z'
+                      status: 'in-progress'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      payer:
+                        name: 'Gavin Belson'
+                        type: 'person'
+                        ultimatePayerName: 'Gavin Belson'
+                        userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                        payId: 'abc@test.com'
+                        payIdType: 'email'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      links:
+                        self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                        job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Amendment | successful:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-amendment'
+                      id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2000-01-01T12:00:00Z'
+                      updated: '2000-01-01T12:00:00Z'
+                      status: 'successful'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      payer:
+                        name: 'Gavin Belson'
+                        type: 'person'
+                        ultimatePayerName: 'Gavin Belson'
+                        userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                        payId: 'abc@test.com'
+                        payIdType: 'email'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      links:
+                        self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                        job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Amendment | failed | Payee account cannot receive fast payments:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-amendment'
+                      id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2000-01-01T12:00:00Z'
+                      updated: '2000-01-01T12:00:00Z'
+                      status: 'failed'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      reason:
+                        title: 'Payee account cannot receive fast payments'
+                        code: 'payee-account-cannot-receive-fast-payments'
+                        detail: 'The payee account cannot receive fast payments.'
+                      payer:
+                        name: 'Gavin Belson'
+                        type: 'person'
+                        ultimatePayerName: 'Gavin Belson'
+                        userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                        payId: 'gavin.belson@test.com'
+                        payIdType: 'email'
+                      payee:
+                        name: 'John Johnson'
+                        type: 'person'
+                        ultimatePayeeName: 'John Johnson'
+                        userId: 'cec19de2-f0b1-4234-b867-df9acaff4782'
+                        payId: 'john.johnson@test.com'
+                        payIdType: 'email'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      links:
+                        self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                        job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Amendment | failed | Invalid bank account details:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-amendment'
+                      id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2000-01-01T12:00:00Z'
+                      updated: '2000-01-01T12:00:00Z'
+                      status: 'failed'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      reason:
+                        title: 'Invalid bank account details'
+                        code: 'invalid-bank-account'
+                        detail: 'The account provided does not belong to the specified bank.'
+                      payer:
+                        name: 'Gavin Belson'
+                        type: 'person'
+                        ultimatePayerName: 'Gavin Belson'
+                        userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                        payId: 'abc@test.com'
+                        payIdType: 'email'
+                      payee:
+                        name: 'John Johnson'
+                        type: 'person'
+                        ultimatePayeeName: 'John Johnson'
+                        userId: '7392457b-e307-4e7c-ba39-55d6d30c82f3'
+                        payId: 'john.johnson@test.com'
+                        payIdType: 'email'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      links:
+                        self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                        job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Amendment | failed | Payee bank cannot process fast payments:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-amendment'
+                      id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2000-01-01T12:00:00Z'
+                      updated: '2000-01-01T12:00:00Z'
+                      status: 'failed'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      reason:
+                        title: 'Payee bank cannot process fast payments'
+                        code: 'payee-bank-cannot-process-fast-payments'
+                        detail: 'The payee bank cannot process fast payments.'
+                      payer:
+                        name: 'Gavin Belson'
+                        type: 'person'
+                        ultimatePayerName: 'Gavin Belson'
+                        userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                        payId: 'abc@test.com'
+                        payIdType: 'email'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      links:
+                        self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                        job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Amendment | failed | Fraud check rejection:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-amendment'
+                      id: '48777765-231b-4cb8-9430-98881b1b6a55'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      created: '2000-01-01T12:00:00Z'
+                      updated: '2000-01-01T12:00:00Z'
+                      status: 'failed'
+                      agreementId: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      reason:
+                        title: 'Fraud check rejection'
+                        code: 'fraud-check-rejection'
+                        detail: 'Request rejected due to fraud check.'
+                      payer:
+                        name: 'Gavin Belson'
+                        type: 'person'
+                        ultimatePayerName: 'Gavin Belson'
+                        userId: '01734b96-23f1-40d8-b2d8-b340b200d499'
+                        payId: 'gavin.belson@test.com'
+                        payIdType: 'email'
+                      payee:
+                        name: 'John Johnson'
+                        type: 'person'
+                        ultimatePayeeName: 'John Johnson'
+                        userId: 'cec19de2-f0b1-4234-b867-df9acaff4782'
+                        payId: 'john.johnson@test.com'
+                        payIdType: 'email'
+                      shortDescription: 'Manly investment property'
+                      description: 'Mortgage repayments for Manly investment property'
+                      purpose: 'mortgage-payments'
+                      links:
+                        self: 'https://au-api.basiq.io/payments/agreements/instructions/48777765-231b-4cb8-9430-98881b1b6a55'
+                        job: 'https://au-api.basiq.io/jobs/48777765-231b-4cb8-9430-98881b1b6a55'
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                Agreement Instruction Recall | successful:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'successful'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | in-progress:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'in-progress'
+                    links:
+                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | failed | Instruction is complete - impossible to recall:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'agreement-business-validate-error'
+                        title: 'Agreement business validate error'
+                        detail: 'The instruction is complete and cannot be recalled.'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | failed | Instruction not found:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'agreement-business-validate-error'
+                        title: 'Agreement business validate error'
+                        detail: 'Instruction not found'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | failed | Internal server error:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'agreement-business-validate-error'
+                        title: 'Agreement business validate error'
+                        detail: 'Internal server error'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | failed | Payments not enabled for application:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'agreement-business-validate-error'
+                        title: 'Agreement business validate error'
+                        detail: 'Payments not enabled for this application.'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | failed | Application is not enabled for payments with required provider:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'failed'
+                      reason:
+                        code: 'agreement-business-validate-error'
+                        title: 'Agreement business validate error'
+                        detail: 'Application is not enabled for payments with required provider.'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+                Agreement Instruction Recall | failed | External provider error:
+                  value:
+                    agreement-instruction:
+                      type: 'payment-agreement-recall'
+                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
+                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
+                      created: '2022-03-21T20:28:22.378Z'
+                      updated: '2022-03-21T20:28:22.378Z'
+                      status: 'in-progress'
+                      reason:
+                        code: 'external-provider-error'
+                        title: 'External provider error'
+                        detail: 'The external provider has returned a failed status. Please contact support.'
+                      links:
+                        self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                        payment-agreement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                        related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid content in request body:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Invalid request content
+                        code: invalid-content
+                        detail: Posted request data is not in valid format.
+                Invalid agreement instruction id:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        type: error
+                        code: parameter-not-valid
+                        title: Parameter not valid.
+                        detail: Instruction ID is not valid.
+                        source:
+                          parameter: 'instructionId'
+        '404':
+          description: not found
   /payments/agreements/instructions/creation:
     post:
       tags:
         - Payment Agreements
       summary: Create agreement
       operationId: createAgreement
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       requestBody:
-        required: true
         $ref: '#/components/requestBodies/agreement-creation'
       responses:
         '201':
@@ -68,12 +1798,78 @@ paths:
                         code: 'missing-reason-details'
                         title: 'Missing reason details.'
                         detail: 'Please specify reason and description for cancellation/suspension.'
+  /payments/agreements/instructions/{id}/recall:
+    post:
+      tags:
+        - Payment Agreements
+      summary: Recall a pending agreement instruction
+      operationId: recallAgreementInstruction
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+      parameters:
+        - name: id
+          in: path
+          description: Instruction Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+      requestBody:
+        $ref: '#/components/requestBodies/agreement-instructon-recall'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jobs'
+              examples:
+                Instruction Recall:
+                  value:
+                    type: job
+                    id: '23decadc-30d1-46a8-93d9-fe6b2234f196'
+                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    links:
+                      self: 'https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09'
+                      agreement-instruction: 'https://au-api.basiq.io/payments/agreements/instructions/23decadc-30d1-46a8-93d9-fe6b2234f196'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Invalid content in request body:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - type: error
+                        title: Invalid request content
+                        code: invalid-content
+                        detail: Posted request data is not in valid format.
+                Invalid agreement instruction id:
+                  value:
+                    type: list
+                    correlationId: 752b5a1b-ea70-4f8c-805c-e2de5c267653
+                    data:
+                      - id: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                        type: error
+                        code: parameter-not-valid
+                        title: Parameter not valid.
+                        detail: Instruction ID is not valid.
+                        source:
+                          parameter: 'instructionId'
+        '404':
+          description: not found
   /payments/agreements/{id}/instructions/status:
     post:
       tags:
         - Payment Agreements
       summary: Amend agreement status
       operationId: amendAgreementStatus
+      description: >
+        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       parameters:
         - name: id
           in: path
@@ -85,7 +1881,6 @@ paths:
             type: string
           example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
       requestBody:
-        required: true
         $ref: '#/components/requestBodies/agreement-status'
       responses:
         '201':
@@ -117,747 +1912,8 @@ paths:
                         title: Invalid request content
                         code: invalid-content
                         detail: Posted request data is not in valid format.
-  /payments/agreements/instructions/{id}/recall:
-    post:
-      tags:
-        - Payment Agreements
-      summary: Recall a pending agreement instruction
-      operationId: recallAgreementInstruction
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      parameters:
-        - name: id
-          in: path
-          description: Instruction Id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-        - name: requestId
-          in: query
-          description: Request Id
-          required: true
-          schema:
-            type: string
-            default: '01824ad0-73f1-0138-3700-0a58a9feac09'
-          example: '01824ad0-73f1-0138-3700-0a58a9feac09'
-      responses:
-        '201':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jobs'
-              examples:
-                Agreement Validation Request:
-                  value:
-                    type: job
-                    id: b1824ad0-73f1-0138-3700-0a58a9feac09
-                    requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                    links:
-                      self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09/
-                      agreement-instruction: https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09
-  /payments/agreements/instructions/{instructionId}:
-    get:
-      tags:
-        - Payment Agreements
-      summary: Get payment agreement instruction
-      operationId: getPaymentAgreementInstruction
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      parameters:
-        - name: instructionId
-          in: path
-          description: Instruction Id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-      responses:
         '404':
           description: not found
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/agreement-instruction'
-              examples:
-                Validated-successful:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-validation'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: null
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'successful'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement: null
-                Validation-Failed:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-validation'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: null
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'failed'
-                      reason:
-                        code: 'payer-account-not-enabled'
-                        title: 'Payer account is not enabled.'
-                        detail: 'The payer account is not enabled/reachable for this type of agreement.'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement: null
-                Validated-InProgress:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-validation'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: null
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'in-progress'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement: null
-                Creation-inprogress:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-creation'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: null
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'in-progress'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement: null
-                Creation-successful:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-creation'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: null
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'successful'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement: null
-                Creation Failed:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-creation'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: null
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'failed'
-                      reason:
-                        code: 'payer-account-not-enabled'
-                        title: 'Payer account is not enabled.'
-                        detail: 'The payer account is not enabled/reachable for this type of agreement.'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: null
-                Status Suspend inprogress:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-status'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'in-progress'
-                      changeStatusTo: 'suspend'
-                      changeStatusReason: 'narrative'
-                      changeStatusDescription: 'Customer has paused their subscription'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                Status Suspend successful:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-status'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'successful'
-                      changeStatusTo: 'suspend'
-                      changeStatusReason: 'narrative'
-                      changeStatusDescription: 'Customer has paused their subscription'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                Status Suspend Failed:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-status'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'failed'
-                      reason:
-                        code: 'payment-agreement-status-conflict'
-                        title: 'Payment agreement status conflict.'
-                        detail: 'The payment agreement cannot be updated to Suspended because it is in the status Suspended.'
-                      changeStatusTo: 'suspend'
-                      changeStatusReason: 'narrative'
-                      changeStatusDescription: 'Customer has paused their subscription'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                Amendment-inprogress:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-amendment'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'in-progress'
-                      description: 'Mortgage payments agreement for propery 1 Somewhere St, Manly'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
-                Amendment-successful:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-amendment'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'successful'
-                      description: 'Mortgage payments agreement for propery 1 Somewhere St, Manly'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
-                Recall-successful:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-recall'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'successful'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
-                Recall-inprogress:
-                  value:
-                    agreement-instruction:
-                      type: 'payment-agreement-recall'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      agreementId: 'abc24ad0-73f1-0138-3700-0a58a9feacab'
-                      relatedInstructionId: 'def24ad0-73f1-0138-3700-0a58a9feadef'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'in-progress'
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agrrement: 'https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      related-instruction: "https://au-api.basiq.io/payments/agreements/instructions/def24ad0-73f1-0138-3700-0a58a9feadef"
-  /payments/agreements/instructions:
-    get:
-      tags:
-        - Payment Agreements
-      summary: List payment agreement instructions
-      operationId: listPaymentAgreementInstructions
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      parameters:
-        - name: limit
-          in: query
-          description: 'Maximum number of items included in the response. Max value = 500 and is the default value if this field is not provided'
-          style: deepObject
-          explode: false
-          schema:
-            type: integer
-          example: '10'
-        - name: filter
-          in: query
-          description: 'Filter field that allows filtering by '
-          style: deepObject
-          explode: false
-          schema:
-            type: string
-          example: ''
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/agreement-instructions'
-              examples:
-                response:
-                  value:
-                    type: 'list'
-                    count: 2
-                    size: 2
-                    data:
-                      - type: 'payment-agreement-validation'
-                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        agreementId: null
-                        created: '2022-03-21T20:28:22.378Z'
-                        updated: '2022-03-21T20:28:22.378Z'
-                        status: 'successful'
-                        payer:
-                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                          payId: null
-                          payIdType: null
-                          payIdName: null
-                          type: 'person'
-                          ultimatePayerName: 'John'
-                        payee:
-                          payId: null
-                          payIdType: null
-                          bankBranchCode: "730002"
-                          accountNumber: "123456789"
-                          name: "Gavin"
-                          type: 'person'
-                          ultimatePayeeName: 'Gavin'
-                        shortDescription: 'Manly investment property'
-                        description: 'Mortgage repayments for Manly investment property'
-                        purpose: 'mortgage-payments'
-                        paymentTerms:
-                          maximumAmount: 2010.50
-                        links:
-                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          payment-agreement: null
-                      - type: 'payment-agreement-validation'
-                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        agreementId: null
-                        created: '2022-03-21T20:28:22.378Z'
-                        updated: '2022-03-21T20:28:22.378Z'
-                        status: 'failed'
-                        reason:
-                          code: 'payer-account-not-enabled'
-                          title: 'Payer account is not enabled.'
-                          detail: 'The payer account is not enabled/reachable for this type of agreement.'
-                        payer:
-                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                          payId: null
-                          payIdType: null
-                          payIdName: null
-                          type: 'person'
-                          ultimatePayerName: 'John'
-                        payee:
-                          payId: null
-                          payIdType: null
-                          bankBranchCode: "730002"
-                          accountNumber: "123456789"
-                          name: "Gavin"
-                          type: 'person'
-                          ultimatePayeeName: 'Gavin'
-                        shortDescription: 'Manly investment property'
-                        description: 'Mortgage repayments for Manly investment property'
-                        purpose: 'mortgage-payments'
-                        paymentTerms:
-                          maximumAmount: 2010.50
-                        links:
-                          self: "https://au-api.basiq.io/payments/agreements/instructions/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          job: "https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          payment-agreement: null
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/instructions"
-                      next: "https://au-api.basiq.io/payments/agreements/instructions?next=049fde"
-  /payments/agreements/{id}:
-    get:
-      tags:
-        - Payment Agreements
-      summary: List payment agreements
-      operationId: listPaymentAgreements
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      parameters:
-        - name: id
-          in: path
-          description: Agreement Id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            default: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-          example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-      responses:
-        '404':
-          description: not found
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/agreement'
-              examples:
-                Active:
-                  value:
-                    agreement:
-                      type: 'payment-agreement'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'active'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                      paymentTerms:
-                        maximumAmount: 2010.50
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
-                Suspended:
-                  value:
-                    agreement:
-                      type: 'payment-agreement'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'suspended'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                      paymentTerms:
-                        maximumAmount: 2010.50
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
-                Cancelled:
-                  value:
-                    agreement:
-                      type: 'payment-agreement'
-                      id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                      requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                      created: '2022-03-21T20:28:22.378Z'
-                      updated: '2022-03-21T20:28:22.378Z'
-                      status: 'cancelled'
-                      payer:
-                        userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                        payId: null
-                        payIdType: null
-                        payIdName: null
-                        type: 'person'
-                        ultimatePayerName: 'John'
-                      payee:
-                        payId: null
-                        payIdType: null
-                        bankBranchCode: "730002"
-                        accountNumber: "123456789"
-                        name: "Gavin"
-                        type: 'person'
-                        ultimatePayeeName: 'Gavin'
-                      shortDescription: 'Manly investment property'
-                      description: 'Mortgage repayments for Manly investment property'
-                      purpose: 'mortgage-payments'
-                      paymentTerms:
-                        maximumAmount: 2010.50
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
-      security:
-           - payment_apiKey: []
-  /payments/agreements:
-    get:
-      tags:
-        - Payment Agreements
-      summary: Get payment agreement
-      operationId: getPaymentAgreements
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-      parameters:
-        - name: limit
-          in: query
-          description: 'Maximum number of items included in the response. Max value = 500 and is the default value if this field is not provided'
-          style: deepObject
-          explode: false
-          schema:
-            type: integer
-          example: '10'
-        - name: filter
-          in: query
-          description: 'Filter field that allows filtering by user.id'
-          style: deepObject
-          explode: false
-          schema:
-            type: string
-          example: ''
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/agreements'
-              examples:
-                response:
-                  value:
-                    type: 'list'
-                    count: 2
-                    size: 2
-                    data:
-                      - type: 'payment-agreement'
-                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        created: '2022-03-21T20:28:22.378Z'
-                        updated: '2022-03-21T20:28:22.378Z'
-                        status: 'active'
-                        payer:
-                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                          payId: null
-                          payIdType: null
-                          payIdName: null
-                          type: 'person'
-                          ultimatePayerName: 'John'
-                        payee:
-                          payId: null
-                          payIdType: null
-                          bankBranchCode: "730002"
-                          accountNumber: "123456789"
-                          name: "Gavin"
-                          type: 'person'
-                          ultimatePayeeName: 'Gavin'
-                        shortDescription: 'Manly investment property'
-                        description: 'Mortgage repayments for Manly investment property'
-                        purpose: 'mortgage-payments'
-                        paymentTerms:
-                          maximumAmount: 2010.50
-                        links:
-                          self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
-                      - type: 'payment-agreement'
-                        id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                        requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                        created: '2022-03-21T20:28:22.378Z'
-                        updated: '2022-03-21T20:28:22.378Z'
-                        status: 'suspended'
-                        payer:
-                          userId: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                          accountId: "31824ad0-73f1-0138-3700-0a58a9feac09"
-                          payId: null
-                          payIdType: null
-                          payIdName: null
-                          type: 'person'
-                          ultimatePayerName: 'John'
-                        payee:
-                          payId: null
-                          payIdType: null
-                          bankBranchCode: "730002"
-                          accountNumber: "123456789"
-                          name: "Gavin"
-                          type: 'person'
-                          ultimatePayeeName: 'Gavin'
-                        shortDescription: 'Manly investment property'
-                        description: 'Mortgage repayments for Manly investment property'
-                        purpose: 'mortgage-payments'
-                        paymentTerms:
-                          maximumAmount: 2010.50
-                        links:
-                          self: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                          payment-agreement-instructions: "https://au-api.basiq.io/payments/agreements/b1824ad0-73f1-0138-3700-0a58a9feac09/instructions"
-                    links:
-                      self: "https://au-api.basiq.io/payments/agreements/"
-                      next: "https://au-api.basiq.io/payments/agreements?next=049fde"
   /payments/payrequests:
     post:
       tags:
@@ -1547,19 +2603,6 @@ paths:
                     links:
                       self: /payments/float-accounts/
 components:
-  parameters:
-    method:
-      name: paymentTypeMethod
-      in: query
-      description: 'The method the payment will be/was carried out with.'
-      required: false
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-          - batch
-          - fast
   schemas:
     agreement-instruction:
       type: object
@@ -2270,266 +3313,6 @@ components:
                   respondByDateTime: '2022-03-25T20:28:22.378Z'
                   paymentTerms:
                     maximumAmount: 2010.50
-    payrequests:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              payrequests:
-                type: array
-                items:
-                  type: object
-                  required:
-                    - requestId
-                    - amount
-                    - payer
-                    - description
-                  properties:
-                    method:
-                      description: payment method used being fast (NPP), batch (DE)
-                      type: string
-                      enum:
-                        - batch
-                        - fast
-                    requestId:
-                      description: Id as assigned by the by the partner application. This needs to be unique
-                      type: string
-                      example: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                    payer:
-                      type: object
-                      required:
-                        - payerUserId
-                      properties:
-                        payerUserId:
-                          description: 'User Id of the payer'
-                          type: string
-                          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
-                        payerBankBranchCode:
-                          description: 'Bank and branch code (e.g. bsb) of the account'
-                          type: string
-                          example: "730002"
-                        payerAccountNumber:
-                          description: 'Payer account number'
-                          type: string
-                          example: "123456789"
-                    description:
-                      description: "Description to appear on the payer's and payee's account."
-                      type: string
-                      example: 'Investment'
-                    amount:
-                      description: 'Amount of the payment.'
-                      type: number
-                      example: '173.45'
-                    agreementId:
-                      description: 'Id of the agreement to be used. If not specified the default agreement is used if one exists'
-                      type: string
-                    reference:
-                      description: 'Business reference to passed on unchanged'
-                      type: string
-                    payee:
-                      type: object
-                      required:
-                        - payeeType
-                        - ultimatePayeeName
-                      properties:
-                        payId:
-                          description: 'The Pay ID of the payee user'
-                          type: string
-                        payIdType:
-                          description: 'Type of the Pay ID being used'
-                          type: string
-                          enum:
-                            - phone-number
-                            - email
-                            - business-number
-                            - organisation-id
-                        bankBranchCode:
-                          description: 'Bank and branch code (e.g. bsb) of the account'
-                          type: string
-                          example: "730002"
-                        accountNumber:
-                          description: 'Payee account number'
-                          type: string
-                          example: "123456789"
-                        type:
-                          description: 'Identifies the type of the payee'
-                          type: string
-                          enum:
-                            - person
-                            - organisation
-                        ultimatePayeeName:
-                          description: 'Name of the ultimate payee'
-                          type: string
-
-                    collectFundsToFloat:
-                      description: 'When passed this value overrides the default setting'
-                      type: boolean
-                      example: null
-                      default: null
-                    checkAccountBalance:
-                      description: 'When set to true then as part of validating the payrequest the account balance will be checked. If the balance < payrequest amount then it will be rejected'
-                      type: boolean
-                      example: null
-                      default: null
-          examples:
-            Batch - Single:
-              value:
-                payrequests:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: 'batch'
-                  payer:
-                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-                  description: Investment
-                  amount: 173.45
-            Batch - Collect to Float:
-              value:
-                payrequests:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: 'batch'
-                  payer:
-                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-  #                    payerBankBranchCode: '730002'
-  #                    payerAccountNumber: '123456789'
-                  description: Investment
-                  amount: 173.45
-                  collectFundsToFloat: true
-            Batch - Check Account Balance:
-              value:
-                payrequests:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: 'batch'
-                  payer:
-                    payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
-  #                    payerBankBranchCode: '730002'
-  #                    payerAccountNumber: '123456789'
-                  description: Investment
-                  amount: 173.45
-                  checkAccountBalance: true
-            Fast - Single with Payee:
-              value:
-                paymentInstructions:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: 'fast'
-                  agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
-                  reference: 'INV-001'
-                  description: Investment
-                  amount: 173.45
-                  payee:
-                    type: person
-                    payId: gavin@gmails.com
-                    payIdType: email
-                    ultimatePayeeName: 'Gavin'
-            Fast - Single without Payee:
-              value:
-                paymentInstructions:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  type: 'fast'
-                  agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
-                  reference: 'INV-001'
-                  description: Investment
-                  amount: 173.45
-    payouts:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              payouts:
-                type: array
-                items:
-                  type: object
-                  required:
-                    - requestId
-                    - amount
-                    - payee
-                    - description
-                  properties:
-                    requestId:
-                      description: Id as assigned by the partner application. This needs to be unique
-                      type: string
-                      example: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                    method:
-                      description: "method (payment instrument) used associated with the type of payment. This field is optional and when provided overrides the default method specified in configuration"
-                      type: string
-                      enum:
-                        - batch
-                        - fast
-                        - fast/batch
-                    payee:
-                      type: object
-                      required:
-                        - payeeUserId
-                        - payeeBankBranchCode
-                        - payeeAccountNumber
-                      properties:
-                        payeeUserId:
-                          description: 'Unique identifer of the payee User Id'
-                          type: string
-                          example: "1d45b7f9-98e9-4f01-a1da-4620c8599ab6"
-                        payeeBankBranchCode:
-                          description: 'Bank and branch code (e.g. bsb) of the payee account'
-                          type: string
-                          example: "730002"
-                        payeeAccountNumber:
-                          description: 'Payee account number'
-                          type: string
-                          example: "123456789"
-                    description:
-                      description: "Description to appear on the payer's and payee's account."
-                      type: string
-                      example: 'Dividends'
-                    amount:
-                      description: 'Amount of the payment.'
-                      type: number
-                      example: '173.45'
-          examples:
-            Batch Payout:
-              value:
-                payouts:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: batch
-                  payee:
-                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
-                  description: Dividends
-                  amount: 173.45
-            Fast Payout:
-              value:
-                payouts:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: fast
-                  payee:
-                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
-                  description: Dividends
-                  amount: 173.45
-            Fast/Batch Payout:
-              value:
-                payouts:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: fast/batch
-                  payee:
-                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
-                  description: Dividends
-                  amount: 173.45
-            Batch Payout with account details:
-              value:
-                payouts:
-                - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
-                  method: batch
-                  payee:
-                    payeeUserId: 1d45b7f9-98e9-4f01-a1da-4620c8599ab6
-                    payeeBankBranchCode: '730002'
-                    payeeAccountNumber: '123456789'
-                  description: Dividends
-                  amount: 173.45
-    agreement-validation-creation:
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - requestId
-              - payer
     agreement-status:
       content:
         application/json:
@@ -2543,14 +3326,14 @@ components:
                 description: Id as assigned by the by the partner application for this instruction. This needs to be unique and is used to check duplicates
                 type: string
                 example: '01824ad0-73f1-0138-3700-0a58a9feac09'
-              changeStatusTo:
+              status:
                 type: string
                 description: the new status to be used. Suspend an angreement, release a suspended agreement or cancel the agreement
                 enum:
                   - cancel
                   - release
                   - suspend
-              changeStatusReason:
+              reason:
                 type: string
                 description: the reason for changing the status
                 enum:
@@ -2585,32 +3368,263 @@ components:
                   - specific-service-offered-by-debtor-agent
                   - creditor-not-on-whitelist-of-debtor
                   - creditor-on-blacklist-of-debtor
-              changeStatusDescription:
+              description:
                 type: string
                 description: narrative text for the reason of changing the status
 
 
           examples:
-
-            cancel:
+            Cancel Agreement:
               value:
                 requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                 status: 'cancel'
-                reason: 'EndCustomerDeceased'
+                reason: 'end-customer-deceased'
                 description: 'Customer deceased'
-
-            suspend:
+            Suspend Agreement:
               value:
                 requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                 status: 'suspend'
-                reason: 'RequestedByCustomer'
+                reason: 'requested-by-customer'
                 description: 'Termination of service by customer'
 
-            release:
+            Release Agreement:
               value:
                 requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
                 status: 'release'
-
+    agreement-instructon-recall:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - requestId
+            properties:
+              requestId:
+                description: Id as assigned by the by the partner application for this instruction. This needs to be unique and is used to check duplicates
+                type: string
+                example: '01824ad0-73f1-0138-3700-0a58a9feac09'
+          examples:
+            Recall Agreement Instruction:
+              value:
+                requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+    payrequests:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              payrequests:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - requestId
+                    - amount
+                    - description
+                  properties:
+                    method:
+                      description: Payment method fast (NPP), batch (DE) - defaults to batch if not provided
+                      type: string
+                      enum:
+                        - batch
+                        - fast
+                      default: batch
+                    requestId:
+                      description: Id as assigned by the by the partner application. This needs to be unique
+                      type: string
+                      example: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    payer:
+                      type: object
+                      required:
+                        - payerUserId
+                      properties:
+                        payerUserId:
+                          description: 'User Id of the payer'
+                          type: string
+                          example: '21824ad0-73f1-0138-3700-0a58a9feac09'
+                        payerBankBranchCode:
+                          description: 'Bank and branch code (e.g. bsb) of the account'
+                          type: string
+                          example: "730002"
+                        payerAccountNumber:
+                          description: 'Payer account number'
+                          type: string
+                          example: "123456789"
+                    description:
+                      description: "Description to appear on the payer's and payee's account."
+                      type: string
+                      example: 'Investment'
+                    amount:
+                      description: 'Amount of the payment.'
+                      type: number
+                      example: '173.45'
+                    agreementId:
+                      description: 'Id of the agreement to be used. Required only for fast payments.'
+                      type: string
+                    reference:
+                      description: 'Business reference'
+                      type: string
+                    payee:
+                      type: object
+                      required:
+                        - payeeType
+                        - ultimatePayeeName                   
+                      properties:
+                        payId:
+                          description: 'The Pay ID of the payee user'
+                          type: string
+                        payIdType:
+                          description: 'Type of the Pay ID being used'
+                          type: string
+                          enum:
+                            - phone-number
+                            - email
+                            - business-number
+                            - organisation-id
+                        bankBranchCode:
+                          description: 'Bank and branch code (e.g. bsb) of the account'
+                          type: string
+                          example: "730002"
+                        accountNumber:
+                          description: 'Payee account number'
+                          type: string
+                          example: "123456789"
+                        type:
+                          description: 'Identifies the type of the payee'
+                          type: string
+                          enum:
+                            - person
+                            - organization
+                        ultimatePayeeName:
+                          description: 'Name of the ultimate payee'
+                          type: string
+                    collectFundsToFloat:
+                      description: 'When passed this value overrides the default setting'
+                      type: boolean
+                      example: false
+                    checkAccountBalance:
+                      description: 'When set to true then as part of validating the payrequest the account balance will be checked. If the balance < payrequest amount then it will be rejected'
+                      type: boolean
+                      example: false
+          examples:
+            Single | Batch | Method not provided (implicitly defaults to batch):
+              description: 'If no method is provided, defaults to batch'
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    description: Investment
+                    amount: 173.45           
+            Single | Batch | Only required fields included:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'batch'
+                    description: Investment
+                    amount: 173.45           
+            Single | Batch | Payer required details included:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'batch'
+                    payer:
+                      payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    description: Investment
+                    amount: 173.45
+            Single | Batch with collect to float set to true | Payer details included:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'batch'
+                    payer:
+                      payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09 # TODO why is this required
+                      payerBankBranchCode: '730002'
+                      payerAccountNumber: '123456789'
+                    description: Investment
+                    amount: 173.45
+                    collectFundsToFloat: true
+            Single | Batch | Check account balance set to true:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'batch'
+                    payer:
+                      payerUserId: 21824ad0-73f1-0138-3700-0a58a9feac09
+                    description: Investment
+                    amount: 173.45
+                    checkAccountBalance: true
+            Single | Fast | Payee not provided:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    type: 'fast'
+                    agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                    reference: 'INV-001'
+                    description: Investment
+                    amount: 173.45
+            Single | Fast | Payee provided:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    type: 'fast'
+                    agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                    reference: 'INV-001'
+                    description: Investment
+                    amount: 173.45
+                    payee:
+                      type: 'person'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                      ultimatePayeeName: 'Gavin Belson'
+            Multiple | Batch and Fast:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'batch'
+                    description: 'Investment no. 1'
+                    amount: 173.45
+                  - requestId: '5967307c-51f7-49df-8d63-2d2a765b6265'
+                    method: 'fast'
+                    description: 'Investment no. 2'
+                    agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                    amount: 34.56
+                    reference: 'INV-001'
+            Multiple | Batch:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'batch'
+                    reference: 'INV-001'
+                    description: 'Investment'
+                    amount: 173.45
+                    payee:
+                      type: 'person'
+                      payId: 'gavin@gmails.com'
+                      payIdType: 'email'
+                      ultimatePayeeName: 'Gavin'
+                  - requestId: '7583ec11-4261-4761-a3f9-9d68eff9cc90'
+                    reference: 'INV-002'
+                    description: 'Investment'
+                    amount: 173.45
+            Multiple | Fast:
+              value:
+                payrequests:
+                  - requestId: '01824ad0-73f1-0138-3700-0a58a9feac09'
+                    method: 'fast'
+                    agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                    reference: 'INV-001'
+                    description: 'Investment'
+                    amount: 173.45
+                  - requestId: '7583ec11-4261-4761-a3f9-9d68eff9cc90'
+                    method: 'fast'
+                    agreementId: '44824ad0-73f1-0138-3700-0a58a9feac44'
+                    reference: 'INV-002'
+                    description: 'Investment'
+                    amount: 173.45
+                    payee:
+                      type: 'person'
+                      payeeBankBranchCode: '730002'
+                      payeeAccountNumber: '123456789'
+                      ultimatePayeeName: 'Gavin Belson'
   securitySchemes:
     payment_apiKey:
       type: http
