@@ -50,6 +50,9 @@ jobs:
     - name: Lint affordability 
       run: npx @redocly/cli lint affordability.yml
 
+    - name: Lint Identity 
+      run: npx @redocly/cli lint identity.yml
+
     - name: Send custom JSON data to Slack workflow
       if: failure() # This step will run only if the previous step fails
       uses: slackapi/slack-github-action@6c661ce58804a1a20f6dc5fbee7f0381b469e001 # v1.25.0
