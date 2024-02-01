@@ -3,14 +3,18 @@ info:
   description: Webhooks
   version: "2.4.1"
   title: Webhooks
+  termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
   - description: Basiq Webhooks
-    url: 'https://au-api.basiq.io/'
+    url: https://au-api.basiq.io
 tags:
   - name: Webhooks
-    description: BASIQ Webhooks
+    description: Basiq Webhooks
 paths:
-  '/notifications/webhooks':
+  /notifications/webhooks:
     post:
       tags:
         - Webhooks
@@ -36,8 +40,8 @@ paths:
                     status: active
                     secret: rfiuheo43934
                     subscribedEvents:
-                      - payrequest.successful
-                      - user.created
+                       - payrequest.successful
+                       - user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
         '400':
@@ -176,7 +180,7 @@ paths:
                     size: 1
                     count: 1
                     data:
-                    - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       name: 'My General Webhook'
                       description: 'Webhook that catches all my events'
                       url: https://piper.com/basiq-messages/
@@ -188,7 +192,6 @@ paths:
                         self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks'
-                      next:
         '401':
           description: 'Unauthorized'
           content:
@@ -255,7 +258,7 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/webhooks/{webhookId}':
+  /notifications/webhooks/{webhookId}:
     post:
       tags:
         - Webhooks
@@ -280,7 +283,7 @@ paths:
               examples:
                 Success:
                   value:
-                    type: 'webhook'
+                    type: Webhook
                     id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                     name: 'My General Webhook'
                     description: 'Webhook that catches all my events'
@@ -681,7 +684,7 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/webhooks/{webhookId}/messages':
+  /notifications/webhooks/{webhookId}/messages:
     get:
       tags:
         - Webhooks
@@ -742,15 +745,11 @@ paths:
                         links:
                          event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
                          eventEntity: https://au-api.basiq.io/users/12a85f64-5717-4562-b3fc-2c963f66af12
-#                      attempts:
-#                        - timestamp: '2019-08-24T14:15:22Z'
-#                          status: 'Success'
                       links:
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
                     links:
                       self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/
-                      next:
         '400':
           description: 'Bad Request'
           content:
@@ -851,7 +850,7 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/webhooks/{webhookId}/messages/{messageId}':
+  /notifications/webhooks/{webhookId}/messages/{messageId}:
     get:
       tags:
         - Webhooks
@@ -1004,7 +1003,7 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/messages/test':
+  /notifications/messages/test:
     post:
       tags:
         - Webhooks
@@ -1150,42 +1149,6 @@ components:
                   parameter:
                     type: string
                     description: String indicating which URI query parameter caused the error.
-    EventTypes:
-      properties:
-        type:
-          type: string
-        count:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          description: one or more events that the webhook would send messages for.
-          allOf:
-          - $ref: '#/components/schemas/EventType'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-            next:
-              type: string
-    EventType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Identifer of the event type
-          example: user.created
-        description:
-          type: string
-          description: a brief description of the event type
-          example: when a user is created
-        links:
-          type: object
-          properties:
-            self:
-              type: string
     Webhooks:
       properties:
         type:
@@ -1215,6 +1178,9 @@ components:
           type: string
           format: uuid
           description: unique identifer in the form of uuid for the webhook.
+        type:
+          type: string
+          example: Webhook
         name:
           type: string
           description: name to describe the webhook.
@@ -1234,10 +1200,8 @@ components:
           type: string
           description: secret for signing the messages.
         subscribedEvents:
-          type: object
+          type: array
           description: one or more events that the webhook would send messages for.
-          required:
-           - subscribedEvents
           properties:
             subscribedEvents:
               type: array
@@ -1250,6 +1214,8 @@ components:
           properties:
             self:
               type: string
+            next: 
+              type: string
     Messages:
       properties:
         type:
@@ -1259,8 +1225,9 @@ components:
         size:
           type: integer
         data:
-          allOf:
-          - $ref: '#/components/schemas/Message'
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
         links:
           type: object
           properties:
@@ -1285,12 +1252,38 @@ components:
           type: string
         eventId:
           type: string
+        payload:
+          type: object
+          properties: 
+            eventTypeId: 
+              type: string
+            eventId:
+              type: string
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                eventEntity:
+                  type: string
+                event:
+                  type: string
+                webhook:
+                  type: string
+                next: 
+                  type: string
+        attempts: 
+          type: array
         links:
           type: object
           properties:
             self:
               type: string
             event:
+              type: string
+            webhook:
+              type: string
+            next: 
               type: string
   requestBodies:
     Webhook:
@@ -1300,7 +1293,6 @@ components:
             type: object
             required:
               - url
-              - subscribedEvents
             properties:
               name:
                 type: string
@@ -1325,7 +1317,6 @@ components:
             - payrequest.successful
             - user.created
       description: Webhook request object.
-      required: true
     TestMessage:
       content:
         application/json:
@@ -1333,7 +1324,6 @@ components:
             type: object
             required:
               - eventTypeId
-              - subscribedEvents
             properties:
               eventTypeId:
                 type: string
