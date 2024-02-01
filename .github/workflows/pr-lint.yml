@@ -41,6 +41,9 @@ jobs:
     - name: Verify Redocly CLI Installation
       run: npx @redocly/cli --version
 
+    - name: Lint Core
+      run: npx @redocly/cli lint core.yml
+
     - name: Lint data
       run: npx @redocly/cli lint data.yml
     
@@ -55,7 +58,7 @@ jobs:
     
     - name: Lint Webhooks 
       run: npx @redocly/cli lint webhooks.yml
-
+    
     - name: Send custom JSON data to Slack workflow
       if: failure() # This step will run only if the previous step fails
       uses: slackapi/slack-github-action@6c661ce58804a1a20f6dc5fbee7f0381b469e001 # v1.25.0
