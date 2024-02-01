@@ -52,6 +52,9 @@ jobs:
 
     - name: Lint Identity 
       run: npx @redocly/cli lint identity.yml
+    
+    - name: Lint Webhooks 
+      run: npx @redocly/cli lint webhooks.yml
 
     - name: Send custom JSON data to Slack workflow
       if: failure() # This step will run only if the previous step fails
