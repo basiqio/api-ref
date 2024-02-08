@@ -1014,27 +1014,6 @@ paths:
                       description: time for a consent warning
                       links:
                         self: 'https://au-api.basiq.io/events/types/consent.warning'
-                    # The Below events are not supported
-                    # - type: eventType
-                    #   id: job.created
-                    #   description: when a job is created
-                    #   links:
-                    #     self: 'https://au-api.basiq.io/events/types/job.created'
-                    # - type: eventType
-                    #   id: job.failed
-                    #   description: when a job is failed
-                    #   links:
-                    #     self: 'https://au-api.basiq.io/events/types/job.failed'
-                    # - type: eventType
-                    #   id: job.in-progress
-                    #   description: when a job is in-progress
-                    #   links:
-                    #     self: 'https://au-api.basiq.io/events/types/job.in-progress'
-                    # - type: eventType
-                    #   id: job.successful
-                    #   description: when a job is successful
-                    #   links:
-                    #     self: 'https://au-api.basiq.io/events/types/job.successful'
                     - type: eventType
                       id: payout.created
                       description: when a payout is created
@@ -1159,10 +1138,7 @@ paths:
         - Events
       summary: Retrieve an event type
       description: >-
-
           ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
-
-
           Returns a single event type based on the parameter input.
       operationId: getEventTypeById
       parameters:
@@ -1391,10 +1367,10 @@ paths:
                         url: "/users/ea3a81/connections/8fce3b"
                     - title: retrieve-accounts
                       status: in-progress
-                      result:
+                      result: null
                     - title: retrieve-transactions
                       status: pending
-                      result:
+                      result: null
                     links:
                       self: https://au-api.basiq.io/jobs/61723
                       source: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
@@ -1678,6 +1654,14 @@ components:
           type: string
         id:
           type: string
+        partnerId:
+          type: string
+        status:
+          type: string
+        jobType:
+          type: string
+        applicationId:
+          type: string
         created:
           description: date and time in ISO format of when the job request was created
           type: string
@@ -1692,18 +1676,31 @@ components:
             type: object
             properties:
               title:
-                type: object
+                type: string
               status:
-                type: object
+                type: string
               result:
                 type: object
+                nullable: true
                 properties:
                   type:
                     type: string
+                  url: 
+                    type: string  
+                  code: 
+                    type: string
+                  title: 
+                    type: string
+                  detail: 
+                    type: string         
         links:
           type: object
           properties:
             link:
+              type: string
+            self:
+              type: string
+            source: 
               type: string
     EventTypes:
       properties:
@@ -1752,6 +1749,8 @@ components:
     EventType:
       type: object
       properties:
+        type: 
+          type: string
         id:
           type: string
           description: Identifer of the event type
