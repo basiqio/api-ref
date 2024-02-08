@@ -53,6 +53,9 @@ jobs:
     - name: Lint affordability 
       run: npx @redocly/cli lint affordability.yml
 
+    - name: Lint Enrich
+      run: npx @redocly/cli lint enrich.yml
+
     - name: Lint Identity 
       run: npx @redocly/cli lint identity.yml
     
