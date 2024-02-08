@@ -938,6 +938,62 @@ components:
           type: string
           description: Product name.
           example: Hooli Home Loan
+    featureClass:
+      required:
+      - featureType
+      properties:
+        featureType: 
+          type: string
+          enum: 
+          - ADDITIONAL_CARDS
+          - BALANCE_TRANSFERS
+          - BILL_PAYMENT
+          - BONUS_REWARDS
+          - CARD_ACCESS
+          - CASHBACK_OFFER
+          - COMPLEMENTARY_PRODUCT_DISCOUNTS
+          - DIGITAL_BANKING
+          - DIGITAL_WALLET
+          - DONATE_INTEREST
+          - EXTRA_REPAYMENTS
+          - FRAUD_PROTECTION
+          - FREE_TXNS
+          - FREE_TXNS_ALLOWANCE
+          - GUARANTOR
+          - INSURANCE
+          - INSTALMENT_PLAN
+          - INTEREST_FREE
+          - INTEREST_FREE_TRANSFERS
+          - LOYALTY_PROGRAM
+          - NOTIFICATIONS
+          - NPP_ENABLED
+          - NPP_PAYID
+          - OFFSET
+          - OTHER
+          - OVERDRAFT
+          - REDRAW
+          - RELATIONSHIP_MANAGEMENT
+          - UNLIMITED_TXNS
+          description: The type of feature described.
+        additionalValue:
+          type: string
+          description: Generic field containing additional information relevant to the featureType specified. Whether mandatory or not is dependent on the value of the featureType.
+        additionalInfo:
+          type: string
+          description: Display text providing more information on the feature. Mandatory if the feature type is set to OTHER.
+        additionalInfoUri:
+          type: string
+          description: Link to a web page with more information on this feature.
+    pursesClass:
+      required:
+      - amount
+      properties:
+        amount:
+          type: string
+          description: The balance available for this additional currency purse.
+        currency:
+          type: string
+          description: The currency for the purse.
     ConnectionsGetResponseResource:
       title: ConnectionsGetResponseResource
       required:
@@ -1790,6 +1846,11 @@ components:
         bundleName:
           type: string
           description: Optional field to indicate if this account is part of a bundle that is providing additional benefit to the customer.
+        purses:
+          type: array
+          description: Optional array of balances for the account in other currencies. Included to support accounts that support multi-currency purses such as Travel Cards.
+          items:
+            $ref: "#/components/schemas/pursesClass"
         accountNo:
           type: string
           description: BSB + account number.
@@ -1972,6 +2033,11 @@ components:
               description: >-
                 Date that the next payment for the card is due.
               example: "2023-12-12"
+        features:
+          type: array
+          description: Array of features available for the product.
+          items: 
+            $ref: '#/components/schemas/featureClass'
         addresses:
           type: array
           description: The addresses for the account to be used for correspondence.
