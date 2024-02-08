@@ -44,6 +44,9 @@ jobs:
     - name: Lint YAML Files
       run: npx @redocly/cli lint data.yml
 
+    - name: Lint Enrich
+      run: npx @redocly/cli lint enrich.yml
+
     - name: Send custom JSON data to Slack workflow
       if: failure() # This step will run only if the previous step fails
       uses: slackapi/slack-github-action@e28cf165c92ffef168d23c5c9000cffc8a25e117 # v1.24.0
