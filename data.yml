@@ -2916,6 +2916,7 @@ components:
           $ref: '#/components/schemas/TransactionsSubClass'
     TransactionsCategory:
       type: object
+      nullable: true
       properties:
         matchType:
           type: string
@@ -3065,6 +3066,7 @@ components:
           example: Cafes, Restaurants and Takeaway Food Services
     TransactionsLocation:
       type: object
+      nullable: true
       properties:
         country:
           type: string
@@ -3105,6 +3107,7 @@ components:
       - logoMaster
       - logoThumb
       type: object
+      nullable: true
       properties:
         id:
           type: string
