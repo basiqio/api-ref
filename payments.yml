@@ -32,24 +32,18 @@ paths:
         - name: limit
           in: query
           description: 'Maximum number of items included in the response. Max value = 500 and is the default value if this field is not provided'
-          style: deepObject
-          explode: false
           schema:
             type: integer
           example: '2'
         - name: filter
           in: query
           description: 'Filter field that allows filtering agreements by payer user ID, status and date'
-          style: deepObject
-          explode: false
           schema:
             type: string
           example: "payer.user.id.eq('21824ad0-73f1-0138-3700-0a58a9feac09')"
         - name: next
           in: query
           description: 'Represents a pagination key that indicates the starting point of the next set of agreement instructions'
-          style: deepObject
-          explode: false
           schema:
             type: string
           example: 'RmllbGQxXlZhbHVlMX5GaWVsZDJeVmFsdWUy'
@@ -120,6 +114,8 @@ paths:
                     links:
                       self: "https://au-api.basiq.io/payments/agreements?limit=2&filter=payer.user.id.eq('21824ad0-73f1-0138-3700-0a58a9feac09')&next=RmllbGQxXlZhbHVlMX5GaWVsZDJeVmFsdWUy"
                       next: "https://au-api.basiq.io/payments/agreements?limit=2&filter=payer.user.id.eq('21824ad0-73f1-0138-3700-0a58a9feac09')&next=U29tZXRoaW5nM15PdGhlcjN-U29tZXRoaW5nNF5PdGhlcjQ="
+        '404':
+          description: Resource Not Found.
   /payments/agreements/{id}:
     get:
       tags:
@@ -1000,8 +996,6 @@ paths:
           in: path
           description: Instruction Id
           required: true
-          style: simple
-          explode: false
           schema:
             type: string
           example: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -2359,7 +2353,7 @@ paths:
                         updated: '2022-03-21T20:28:22.378Z'
                         method: batch
                         status: 'in-progress'
-                        payer:
+                        payee:
                           payeeUserId: '21824ad0-73f1-0138-3700-0a58a9feac09'
                           payeeBankBranchCode: '730002'
                           payeeAccountNumber: '123456789'
@@ -2373,6 +2367,8 @@ paths:
                     links:
                       self: "https://au-api.basiq.io/payments/payouts"
                       next: "https://au-api.basiq.io/payments/payouts?next=049fde"
+                    '404':
+                      description: Resource Not Found.
   /payments/payouts/{id}:
     get:
       tags:
@@ -2592,7 +2588,7 @@ paths:
                     count: 1
                     size: 1
                     data:
-                      - type: 'floataccount'
+                        type: 'floataccount'
                         id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
                         bankBranchCode: '802919'
                         accountNumber: '1748212'
@@ -2602,6 +2598,8 @@ paths:
                           self: /payments/float-accounts/b1824ad0-73f1-0138-3700-0a58a9feac09
                     links:
                       self: /payments/float-accounts/
+        '404':
+          description: Resource not found.
 components:
   schemas:
     agreement-instruction:
@@ -2650,7 +2648,6 @@ components:
             detail:
               type: string
               description: 'Further details/description for the failed/rejected/returned payment'
-
         payer:
           type: object
           required:
@@ -2702,6 +2699,24 @@ components:
           required:
             - type
             - ultimatePayeeName
+          properties:
+            bankBranchCode:
+              type: string
+            accountNumber:
+              type: string
+            name:
+              type: string
+            type:
+              type: string
+            ultimatePayerName:
+              type: string
+        shortDescription:
+          type: string
+        paymentTerms:
+          type: object
+          properties:
+            maximumAmount: 
+              type: string
     agreement-instructions:
       properties:
         type:
@@ -2729,8 +2744,9 @@ components:
         size:
           type: integer
         data:
-          allOf:
-          - $ref: '#/components/schemas/agreement'
+          type: array
+          items:
+           $ref: '#/components/schemas/agreement'
         links:
           type: object
           properties:
@@ -2804,6 +2820,10 @@ components:
           required:
             - type
             - ultimatePayeeName
+        shortDescription:
+          type: string
+        description:
+          type: string
     jobs:
       properties:
         type:
@@ -2947,7 +2967,7 @@ components:
           type: string
         amount:
           description: 'Amount of the payment. This amount must always be a float value.'
-          type: integer
+          type: number
         currency:
           description: 'Currency of the payment.'
           type: string
@@ -2956,7 +2976,10 @@ components:
           properties:
             self:
               type: string
+            job:
+              type: string
     payouts:
+      type: object
       properties:
         type:
           type: string
@@ -2965,8 +2988,9 @@ components:
         size:
           type: integer
         data:
-          allOf:
-          - $ref: '#/components/schemas/payout'
+          type: array
+          items:
+            $ref: '#/components/schemas/payout'
         links:
           type: object
           properties:
@@ -3043,7 +3067,7 @@ components:
           type: string
         amount:
           description: 'Amount of the payment.'
-          type: integer
+          type: number
         currency:
           description: 'Currency of the payment.'
           type: string
@@ -3051,6 +3075,8 @@ components:
           type: object
           properties:
             self:
+              type: string
+            job: 
               type: string
     floataccounts:
       properties:
@@ -3088,7 +3114,7 @@ components:
           type: string
         status:
           type: string
-        BankBranchCode:
+        bankBranchCode:
           type: string
         accountNumber:
           type: string
