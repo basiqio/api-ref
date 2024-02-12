@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
       with:
-        title-regex: '^(DX|DSO).+' # Supports either DEVX prefixed PRs
+        title-regex: '^(DX|DSO|PAY).+' # Supports either DEVX prefixed PRs
         title-regex-flags: 'g' # optional
         error-message: 'Add Jira ID to your title in the correct format'
   branch-naming-rules:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@e0f8db53a8e289f1ae6f6c3e8dc70a3d366fd876 #v1.0.0
         with:
-          regex: '^(DX|DSO).+' # Supports either DEVX prefixed Branches
+          regex: '^(DX|DSO|PAY).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
           max_length: 500 # Max length of the branch name
