@@ -1,10 +1,15 @@
 openapi: 3.0.2
 info:
-  title: Reporting
+  title: Payments
+  description: |
+    All endpoints related to Basiq's payments offering
   version: 3.0.0
+  termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
   - url: https://au-api.basiq.io
-    description: Production server
 paths:
   /reports:
     post:
