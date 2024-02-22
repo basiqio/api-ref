@@ -2691,6 +2691,48 @@ components:
           type: string
           description: The end-users last name as an optional additional parameter.
           example: Belson
+        businessName:
+          type: string
+          description: The name of the business. 
+          example: Manly Accounting PTY LTD
+        businessIdNo:
+          type: string
+          description: The Business ID. 
+          example: 16 7645 892
+        businessIdNoType:
+          type: string
+          description: Type of business could be ABN Or ACN. 
+          enum: 
+            - ABN 
+            - ACN 
+          example: ABN
+        businessAddress:
+          type: object
+          properties: 
+            addressLine1:
+              type: string
+              example: 21 Sydney Rd
+            addressLine2:
+              type: string
+              example: ""
+            suburb:
+              type: string
+              example: Manly
+            state:
+              type: string
+              example: NSW 
+            postcode:
+              type: string
+              example: 2095 
+            countryCode:
+              type: string
+              example: AUS 
+        verificationStatus:
+          type: boolean
+        verificationDate:
+          type: string
+          example: 12/01/2024
+
     updateUser:
       type: object
       properties:
