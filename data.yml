@@ -2768,7 +2768,6 @@ components:
       - reference
       - account
       - amount
-      - balance
       - class
       - subClass
       - connection
