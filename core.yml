@@ -2624,11 +2624,11 @@ components:
           example: Manly Accounting PTY LTD
         businessIdNo:
           type: string
-          description: The Business ID. 
+          description: The number is used to identify a business when they’re dealing with the government, other businesses, and the public.
           example: 16 7645 892
         businessIdNoType:
           type: string
-          description: Type of business could be ABN Or ACN. 
+          description: Type of business ID could be ABN Or ACN.
           enum: 
             - ABN 
             - ACN 
