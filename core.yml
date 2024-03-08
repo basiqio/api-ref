@@ -2666,7 +2666,7 @@ components:
         verificationDate:
           type: string
           example: 12/01/2024
-          description: when the verification was done (only supply if the verificationStatus is True). 
+          description: when the verification was done. 
         connections:
           $ref: '#/components/schemas/GetUserConnection'
         accounts:
@@ -2712,6 +2712,55 @@ components:
           type: string
           description: The end-users last name as an optional additional parameter.
           example: Belson
+        businessName:
+          type: string
+          description: The official name of the business.
+          example: Manly Accounting PTY LTD
+        businessIdNo:
+          type: string
+          description: This number is used to identify a business when they’re dealing with the government, other businesses, and the public.
+          example: 16 7645 892
+        businessIdNoType:
+          type: string
+          description: Type of business ID could be ABN Or ACN.
+          enum: 
+            - ABN 
+            - ACN 
+          example: ABN
+        businessAddress:
+          type: object
+          properties: 
+            addressLine1:
+              type: string
+              example: 21 Sydney Rd
+              description: The first line of the business address.
+            addressLine2:
+              type: string
+              example: ""
+              description: Additional information about the business address (optional).
+            suburb:
+              type: string
+              example: Manly
+              description: The suburb or locality where the business is located.
+            state:
+              type: string
+              example: NSW 
+              description: The state or territory where the business is located.
+            postcode:
+              type: string
+              example: 2095 
+              description: The postal code of the business location.
+            countryCode:
+              type: string
+              example: AUS
+              description: The country code of the business location.
+        verificationStatus:
+          type: boolean
+          description: Indicates if the business information provided is verified against the Australian Business Register.
+        verificationDate:
+          type: string
+          example: 12/01/2024
+          description: when the verification was done. 
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: User object with details if the creation succeeded.
