@@ -2654,7 +2654,7 @@ components:
               description: The state or territory where the business is located.
             postcode:
               type: string
-              example: 2095 
+              example: "2095"
               description: The postal code of the business location.
             countryCode:
               type: string
@@ -2748,7 +2748,7 @@ components:
               description: The state or territory where the business is located.
             postcode:
               type: string
-              example: 2095 
+              example: "2095"
               description: The postal code of the business location.
             countryCode:
               type: string
@@ -2825,7 +2825,7 @@ components:
               description: The state or territory where the business is located.
             postcode:
               type: string
-              example: 2095 
+              example: "2095" 
               description: The postal code of the business location.
             countryCode:
               type: string
