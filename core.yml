@@ -2620,7 +2620,7 @@ components:
           example: lastName
         businessName:
           type: string
-          description: The name of the business. 
+          description: The official name of the business.
           example: Manly Accounting PTY LTD
         businessIdNo:
           type: string
@@ -2639,26 +2639,34 @@ components:
             addressLine1:
               type: string
               example: 21 Sydney Rd
+              description: The first line of the business address.
             addressLine2:
               type: string
               example: ""
+              description: Additional information about the business address (optional).
             suburb:
               type: string
               example: Manly
+              description: The suburb or locality where the business is located.
             state:
               type: string
               example: NSW 
+              description: The state or territory where the business is located.
             postcode:
               type: string
               example: 2095 
+              description: The postal code of the business location.
             countryCode:
               type: string
-              example: AUS 
+              example: AUS
+              description: The country code of the business location.
         verificationStatus:
           type: boolean
+          description: Indicates if the business information provided is verified against the Australian Business Register.
         verificationDate:
           type: string
           example: 12/01/2024
+          description: when the verification was done (only supply if the verificationStatus is True). 
         connections:
           $ref: '#/components/schemas/GetUserConnection'
         accounts:
