@@ -88,6 +88,35 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/createUser'
+            examples:
+                user:
+                  summary: For All Users
+                  value:
+                    email: gavin@hooli.com
+                    mobile: "+61410888666"
+                    firstName: Gavin
+                    middleName: ""
+                    lastName: Belson
+                Bcc:
+                  summary: For Business Users
+                  value: 
+                    email: gavin@hooli.com
+                    mobile: "+61410888999"
+                    firstName: Gavin
+                    middleName: middle name
+                    lastName: Belson
+                    businessName: Manly Accounting PTY LTD
+                    businessIdNo: 16 7645 892
+                    businessIdNoType: ABN
+                    businessAddress:
+                      addressLine1: 21 Sydney Rd
+                      addressLine2: ''
+                      suburb: Manly
+                      state: NSW
+                      postcode: '2095'
+                      countryCode: AUS
+                    verificationStatus: true
+                    verificationDate: 12/01/2024
         required: true
       responses:
         '201':
@@ -2796,7 +2825,7 @@ components:
         businessIdNo:
           type: string
           description: This number is used to identify a business when they’re dealing with the government, other businesses, and the public.
-          example: 16 7645 892
+          example: "16 7645 892"
         businessIdNoType:
           type: string
           description: Type of business ID could be ABN Or ACN.
