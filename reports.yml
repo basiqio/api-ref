@@ -34,21 +34,38 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/reportRequest'
-            example:
-              reportType: CON_AFFOR_01
-              title: John Smith Affordability Report 2022-03-26
-              filters:
-                - name: fromDate
-                  value: '2022-01-01'
-                - name: toDate
-                  value: '2023-01-01'
-                - name: accounts
-                  value:
-                    - ag829sj
-                    - aj82gka
-                - name: users
-                  value:
-                    - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
+            examples:
+              Report:
+                summary: For Report type
+                value:
+                  reportType: CON_AFFOR_01
+                  title: John Smith Affordability Report 2022-03-26
+                  filters:
+                    - name: fromDate
+                      value: '2022-01-01'
+                    - name: toDate
+                      value: '2023-01-01'
+                    - name: accounts
+                      value:
+                        - ag829sj
+                        - aj82gka
+                    - name: users
+                      value:
+                        - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
+              Statement:
+                summary: For Statement type
+                value:
+                  reportType: STATEMENT_01
+                  title: Bank Statement 2024-03-20
+                  filters:
+                    - name: fromDate
+                      value: '2022-01-01'
+                    - name: toDate
+                      value: '2023-01-01'
+                    - name: account
+                      value: ag829sj
+                    - name: user
+                      value: 272af9fa-0f4a-44dc-bf88-a63bec2d0662   
       responses:
         '202':
           description: >
