@@ -52,7 +52,7 @@ paths:
                     - name: users
                       value:
                         - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
-              Statement:
+              STATEMENT:
                 summary: For Statement type
                 value:
                   reportType: STATEMENT_01
@@ -213,7 +213,7 @@ paths:
           content:
             application/pdf:
               schema:
-                $ref: '#/components/schemas/Statement'
+                $ref: '#/components/schemas/STATEMENT'
               examples:
                 pdfReport:
                   summary: PDF Statment
@@ -222,7 +222,7 @@ paths:
               schema:
                 oneOf:
                 - $ref: '#/components/schemas/CONN_AFFOR'
-                - $ref: '#/components/schemas/Statement'
+                - $ref: '#/components/schemas/STATEMENT'
               example:
                 type: report
                 id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -5774,7 +5774,7 @@ components:
           schema:
             $ref: '#/components/schemas/error'
   schemas:
-    Statement:
+    STATEMENT:
       type: object
       properties:
         type:
