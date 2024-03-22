@@ -34,21 +34,38 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/reportRequest'
-            example:
-              reportType: CON_AFFOR_01
-              title: John Smith Affordability Report 2022-03-26
-              filters:
-                - name: fromDate
-                  value: '2022-01-01'
-                - name: toDate
-                  value: '2023-01-01'
-                - name: accounts
-                  value:
-                    - ag829sj
-                    - aj82gka
-                - name: users
-                  value:
-                    - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
+            examples:
+              CONN_AFFOR_REPORT:
+                summary: For Report type
+                value:
+                  reportType: CON_AFFOR_01
+                  title: John Smith Affordability Report 2022-03-26
+                  filters:
+                    - name: fromDate
+                      value: '2022-01-01'
+                    - name: toDate
+                      value: '2023-01-01'
+                    - name: accounts
+                      value:
+                        - ag829sj
+                        - aj82gka
+                    - name: users
+                      value:
+                        - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
+              STATEMENT:
+                summary: For Statement type
+                value:
+                  reportType: STATEMENT_01
+                  title: Bank Statement 2024-03-20
+                  filters:
+                    - name: fromDate
+                      value: '2022-01-01'
+                    - name: toDate
+                      value: '2023-01-01'
+                    - name: account
+                      value: ag829sj
+                    - name: user
+                      value: 272af9fa-0f4a-44dc-bf88-a63bec2d0662   
       responses:
         '202':
           description: >
@@ -109,8 +126,8 @@ paths:
                 $ref: '#/components/schemas/collection'
               example:
                 type: list
-                count: 1
-                size: 0
+                count: 2
+                size: 2
                 data:
                   - type: report
                     id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -133,7 +150,25 @@ paths:
                           - sj29sjd
                     links:
                       self: >-
-                        https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+                        https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09
+                  - type: report
+                    id: a2a17e84-460c-43f4-9c94-1398a5b4c148
+                    title: Statements
+                    reportType: STATEMENT_01
+                    createdDate: '2024-03-21T23:51:37Z'
+                    expiresAt: '2024-04-04T23:51:37Z'
+                    createdBy: Basiq
+                    filters:
+                    - name: fromDate
+                      value: '2023-03-01'
+                    - name: toDate
+                      value: '2024-03-21'
+                    - name: account
+                      value: ag829sj
+                    - name: user
+                      value: sj29sjd
+                    links:
+                      self: https://au-api.basiq.io/reports/a2a17e84-460c-43f4-9c94-1398a5b4c148
                 links:
                   self: >-
                     https://au-api.basiq.io/reports
@@ -154,10 +189,17 @@ paths:
       summary: Retrieve a report
       tags:
         - Reports
-      description: >
-
+      description: |
         Use this endpoint to retrieve a specific report. Ensure you check the
         documentation for the schema of each report type.
+    
+        | Request Header | Description                                                             | 
+        |----------------|-----------------------------------------------------------------------------|
+        | Accept         | Specifies the format of the response. Use `application/json` or `application/pdf` | 
+    
+        If you want to generate the PDF, make sure to change `content-type`
+        in the CURL request to `application/pdf` for PDF generation.
+        
       parameters:
         - in: path
           name: id
@@ -169,9 +211,18 @@ paths:
         '200':
           description: Success
           content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/STATEMENT'
+              examples:
+                pdfReport:
+                  summary: PDF Statment
+                  value: <base64 encoded binary data>
             application/json:
               schema:
-                $ref: '#/components/schemas/report'
+                oneOf:
+                - $ref: '#/components/schemas/CONN_AFFOR'
+                - $ref: '#/components/schemas/STATEMENT'
               example:
                 type: report
                 id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -5723,6 +5774,259 @@ components:
           schema:
             $ref: '#/components/schemas/error'
   schemas:
+    STATEMENT:
+      type: object
+      properties:
+        type:
+          type: string
+          example: report
+        id:
+          type: string
+          format: uuid
+          example: a2a17e84-460c-43f4-9c94-1398a5b4c148
+        title:
+          type: string
+          example: Statements
+        reportType:
+          type: string
+          example: STATEMENT_01
+        createdDate:
+          type: string
+          format: date-time
+          example: "2024-03-21T23:51:37Z"
+        createdBy:
+          type: string
+          example: Basiq
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        data:
+          type: object
+          properties:
+            institution:
+              type: object
+              properties:
+                logo:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+                abn:
+                  type: string
+                acn:
+                  type: string
+              required:
+                - logo
+                - name
+            identity:
+              type: object
+              properties:
+                customerType:
+                  type: string
+                fullName:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                title:
+                  type: string
+                DOB:
+                  type: string
+                  format: date
+                occupationCode:
+                  type: string
+                occupationCodeVersion:
+                  type: string
+                phoneNumbers:
+                  type: array
+                  items:
+                    type: string
+                    format: phone
+                emails:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                agentName:
+                  type: string
+                agentFirstName:
+                  type: string
+                agentLastName:
+                  type: string
+                agentRole:
+                  type: string
+                businessName:
+                  type: string
+                legalName:
+                  type: string
+                shortName:
+                  type: string
+                abn:
+                  type: string
+                acn:
+                  type: string
+                physicalAddresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      addressLine1:
+                        type: string
+                      addressLine2:
+                        type: string
+                      addressLine3:
+                        type: string
+                      postCode:
+                        type: string
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      country:
+                        type: string
+              required:
+                - customerType
+                - fullName
+                - phoneNumbers
+                - emails
+                - physicalAddresses
+            accreditation:
+              type: object
+              properties:
+                cdrAccessModel:
+                  type: string
+                entityName:
+                  type: string
+                title:
+                  type: string
+                licenceNo:
+                  type: string
+                description:
+                  type: string
+              required:
+                - cdrAccessModel
+                - entityName
+                - title
+                - licenceNo
+                - description
+            account:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  id:
+                    type: string
+                    format: uuid
+                  creationDate:
+                    type: string
+                    format: date-time
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                  status:
+                    type: string
+                  name:
+                    type: string
+                  maskedNumber:
+                    type: string
+                  accountNo:
+                    type: string
+                  accountHolder:
+                    type: string
+                  isOwned:
+                    type: boolean
+                  accountOwnership:
+                    type: string
+                  balance:
+                    type: string
+                  availableFunds:
+                    type: string
+                  currency:
+                    type: string
+                  class:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      product:
+                        type: string
+                  connection:
+                    type: string
+                  institution:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      fees:
+                        type: object
+                      depositRates:
+                        type: object
+                      lendingRates:
+                        type: object
+                      features:
+                        type: object
+                      termDeposit:
+                        type: object
+                      loan:
+                        type: object
+                      creditCard:
+                        type: object
+                      addresses:
+                        type: object
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                      transactions:
+                        type: string
+                      institution:
+                        type: string
+              required:
+                - type
+                - id
+                - lastUpdated
+                - status
+                - name
+                - maskedNumber
+                - accountNo
+                - accountHolder
+                - isOwned
+                - accountOwnership
+                - balance
+                - availableFunds
+                - currency
+                - class
+                - connection
+                - institution
+                - meta
+                - links
+            openingBalance:
+              type: string
+            closingBalance:
+              type: string
+            transactions:
+              type: string
+              format: uri
+      required:
+        - type
+        - id
+        - title
+        - reportType
+        - createdDate
+        - createdBy
+        - filters
+        - data
+        - links
     AccountResponseResource:
       title: AccountResponseResource
       required:
@@ -6735,7 +7039,7 @@ components:
             self:
               type: string
               example: https://au-api.basiq.io/jobs/a3dgf4567a89
-    report:
+    CONN_AFFOR:
       properties:
         type:
           type: string
