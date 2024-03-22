@@ -126,8 +126,8 @@ paths:
                 $ref: '#/components/schemas/collection'
               example:
                 type: list
-                count: 1
-                size: 0
+                count: 2
+                size: 2
                 data:
                   - type: report
                     id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -150,7 +150,25 @@ paths:
                           - sj29sjd
                     links:
                       self: >-
-                        https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
+                        https://au-api.basiq.io/reports/b1824ad0-73f1-0138-3700-0a58a9feac09
+                  - type: report
+                    id: a2a17e84-460c-43f4-9c94-1398a5b4c148
+                    title: Statements
+                    reportType: STATEMENT_01
+                    createdDate: '2024-03-21T23:51:37Z'
+                    expiresAt: '2024-04-04T23:51:37Z'
+                    createdBy: Basiq
+                    filters:
+                    - name: fromDate
+                      value: '2023-03-01'
+                    - name: toDate
+                      value: '2024-03-21'
+                    - name: account
+                      value: ag829sj
+                    - name: user
+                      value: sj29sjd
+                    links:
+                      self: https://au-api.basiq.io/reports/a2a17e84-460c-43f4-9c94-1398a5b4c148
                 links:
                   self: >-
                     https://au-api.basiq.io/reports
