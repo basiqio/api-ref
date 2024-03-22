@@ -2917,7 +2917,7 @@ components:
       type: object
       nullable: true
       properties:
-        matchType:
+        match_type:
           type: string
           description: >
             Indicates the method used to match a payment transaction with a merchant or business classification code. Description for each enum;
@@ -2931,7 +2931,7 @@ components:
             - mcc
             - ml
           example: "merchantfull"
-        matchScore:
+        match_score:
           type: string
           description: The confidence score for the matchType which is a float value between 0 and 1. The higher the number, the higher the confidence in the match.
           example: "1.0"
@@ -2943,11 +2943,11 @@ components:
             code:
               type: string
               description: code
-              example: 3012
+              example: txMccCode-25028
             title:
               type: string
               description: title
-              example: Qantas
+              example: ""
         anzsic:
           $ref: '#/components/schemas/TransactionsAnzsic'
     TransactionsClass:
