@@ -5566,79 +5566,98 @@ paths:
                 $ref: '#/components/schemas/reportType'
               example:
                 type: list
-                count: 3
+                count: 5
                 data:
-                  - type: reportType
-                    id: CON_AFFOR_01
-                    name: Consumer Affordability Report
-                    description: In depth consumer affordability assessment.
-                    filters:
-                      - name: fromDate
-                        type: string
-                        required: true
-                      - name: toDate
-                        type: string
-                        required: true
-                      - name: accounts
-                        type: array
-                        required: true
-                      - name: users
-                        type: array
-                        required: true
-                      - name: includeGroups
-                        type: array
-                        required: false
-                      - name: includeMetrics
-                        type: array
-                        required: false
-                  - type: reportType
-                    id: BUS_AFFOR_01
-                    name: Business Affordability Report
-                    description: In depth business affordability assessment.
-                    filters:
-                      - name: fromDate
-                        type: string
-                        required: true
-                      - name: toDate
-                        type: string
-                        required: true
-                      - name: accounts
-                        type: array
-                        required: true
-                      - name: users
-                        type: array
-                        required: true
-                      - name: includeGroups
-                        type: array
-                        required: false
-                      - name: includeMetrics
-                        type: array
-                        required: false
-                  - type: reportType
-                    id: ROUNDUP_OPP_01
-                    name: Roundup Amount Report
-                    description: >-
-                      Identifies the roundup amount to be processed for each
-                      day.
-                    filters:
-                      - name: fromDate
-                        type: string
-                        required: true
-                      - name: toDate
-                        type: string
-                        required: true
-                      - name: accounts
-                        type: array
-                        required: true
-                      - name: users
-                        type: array
-                        required: true
-                      - name: includeGroups
-                        type: array
-                        required: false
-                      - name: includeMetrics
-                        type: array
-                        required: false
+                - type: report
+                  id: BUS_AFFOR_01
+                  name: Business Affordability Report
+                  description: In depth business affordability assessment.
+                  filters:
+                  - name: fromDate
+                    type: string
+                    required: true
+                  - name: toDate
+                    type: string
+                    required: true
+                  - name: accounts
+                    type: array
+                    required: true
+                  - name: users
+                    type: array
+                    required: true
+                - type: report
+                  id: CON_AFFOR_01
+                  name: Consumer Affordability Report
+                  description: In depth consumer affordability assessment.
+                  filters:
+                  - name: fromDate
+                    type: string
+                    required: true
+                  - name: toDate
+                    type: string
+                    required: true
+                  - name: accounts
+                    type: array
+                    required: true
+                  - name: users
+                    type: array
+                    required: true
+                  - name: includeGroups
+                    type: array
+                    required: false
+                  - name: includeMetrics
+                    type: array
+                    required: false
+                - type: report
+                  id: ROUNDUP_OPP_01
+                  name: Roundup Amount Report
+                  description: Identifies the roundup amount to be processed for each day.
+                  filters:
+                  - name: fromDate
+                    type: string
+                    required: true
+                  - name: toDate
+                    type: string
+                    required: true
+                  - name: accounts
+                    type: array
+                    required: true
+                  - name: user
+                    type: string
+                    required: true
+                - type: report
+                  id: STATEMENT_01
+                  name: Bank Statement
+                  description: Generates a bank statement for a specified account and date range,
+                    providing transaction details, balances, and more in a standard format.
+                  filters:
+                  - name: fromDate
+                    type: string
+                    required: true
+                  - name: account
+                    type: string
+                    required: true
+                  - name: user
+                    type: string
+                    required: true
+                - type: report
+                  id: creditReport
+                  name: Consumer Affordability Report
+                  description: In depth consumer affordability assessment.
+                  filters:
+                  - name: fromDate
+                    type: string
+                    required: true
+                  - name: toDate
+                    type: string
+                    required: true
+                  - name: accounts
+                    type: array
+                    required: true
+                  - name: users
+                    type: array
+                    required: true
+
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
