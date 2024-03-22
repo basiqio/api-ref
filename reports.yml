@@ -188,7 +188,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/report'
+                oneOf:
+                - $ref: '#/components/schemas/report'
+                - $ref: '#/components/schemas/Statement'
               example:
                 type: report
                 id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -5740,6 +5742,259 @@ components:
           schema:
             $ref: '#/components/schemas/error'
   schemas:
+    Statement:
+      type: object
+      properties:
+        type:
+          type: string
+          example: report
+        id:
+          type: string
+          format: uuid
+          example: a2a17e84-460c-43f4-9c94-1398a5b4c148
+        title:
+          type: string
+          example: Statements
+        reportType:
+          type: string
+          example: STATEMENT_01
+        createdDate:
+          type: string
+          format: date-time
+          example: "2024-03-21T23:51:37Z"
+        createdBy:
+          type: string
+          example: Basiq
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        data:
+          type: object
+          properties:
+            institution:
+              type: object
+              properties:
+                logo:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+                abn:
+                  type: string
+                acn:
+                  type: string
+              required:
+                - logo
+                - name
+            identity:
+              type: object
+              properties:
+                customerType:
+                  type: string
+                fullName:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                title:
+                  type: string
+                DOB:
+                  type: string
+                  format: date
+                occupationCode:
+                  type: string
+                occupationCodeVersion:
+                  type: string
+                phoneNumbers:
+                  type: array
+                  items:
+                    type: string
+                    format: phone
+                emails:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                agentName:
+                  type: string
+                agentFirstName:
+                  type: string
+                agentLastName:
+                  type: string
+                agentRole:
+                  type: string
+                businessName:
+                  type: string
+                legalName:
+                  type: string
+                shortName:
+                  type: string
+                abn:
+                  type: string
+                acn:
+                  type: string
+                physicalAddresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      addressLine1:
+                        type: string
+                      addressLine2:
+                        type: string
+                      addressLine3:
+                        type: string
+                      postCode:
+                        type: string
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      country:
+                        type: string
+              required:
+                - customerType
+                - fullName
+                - phoneNumbers
+                - emails
+                - physicalAddresses
+            accreditation:
+              type: object
+              properties:
+                cdrAccessModel:
+                  type: string
+                entityName:
+                  type: string
+                title:
+                  type: string
+                licenceNo:
+                  type: string
+                description:
+                  type: string
+              required:
+                - cdrAccessModel
+                - entityName
+                - title
+                - licenceNo
+                - description
+            account:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  id:
+                    type: string
+                    format: uuid
+                  creationDate:
+                    type: string
+                    format: date-time
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                  status:
+                    type: string
+                  name:
+                    type: string
+                  maskedNumber:
+                    type: string
+                  accountNo:
+                    type: string
+                  accountHolder:
+                    type: string
+                  isOwned:
+                    type: boolean
+                  accountOwnership:
+                    type: string
+                  balance:
+                    type: string
+                  availableFunds:
+                    type: string
+                  currency:
+                    type: string
+                  class:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      product:
+                        type: string
+                  connection:
+                    type: string
+                  institution:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      fees:
+                        type: object
+                      depositRates:
+                        type: object
+                      lendingRates:
+                        type: object
+                      features:
+                        type: object
+                      termDeposit:
+                        type: object
+                      loan:
+                        type: object
+                      creditCard:
+                        type: object
+                      addresses:
+                        type: object
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                      transactions:
+                        type: string
+                      institution:
+                        type: string
+              required:
+                - type
+                - id
+                - lastUpdated
+                - status
+                - name
+                - maskedNumber
+                - accountNo
+                - accountHolder
+                - isOwned
+                - accountOwnership
+                - balance
+                - availableFunds
+                - currency
+                - class
+                - connection
+                - institution
+                - meta
+                - links
+            openingBalance:
+              type: string
+            closingBalance:
+              type: string
+            transactions:
+              type: string
+              format: uri
+      required:
+        - type
+        - id
+        - title
+        - reportType
+        - createdDate
+        - createdBy
+        - filters
+        - data
+        - links
     AccountResponseResource:
       title: AccountResponseResource
       required:
