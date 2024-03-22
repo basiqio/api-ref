@@ -35,7 +35,7 @@ paths:
             schema:
               $ref: '#/components/schemas/reportRequest'
             examples:
-              Report:
+              CONN_AFFOR_REPORT:
                 summary: For Report type
                 value:
                   reportType: CON_AFFOR_01
@@ -189,10 +189,17 @@ paths:
       summary: Retrieve a report
       tags:
         - Reports
-      description: >
-
+      description: |
         Use this endpoint to retrieve a specific report. Ensure you check the
         documentation for the schema of each report type.
+    
+        | Request Header | Description                                                             | 
+        |----------------|-----------------------------------------------------------------------------|
+        | Accept         | Specifies the format of the response. Use `application/json` or `application/pdf` | 
+    
+        If you want to generate the PDF, make sure to change `content-type`
+        in the CURL request to `application/pdf` for PDF generation.
+        
       parameters:
         - in: path
           name: id
@@ -204,10 +211,17 @@ paths:
         '200':
           description: Success
           content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/Statement'
+              examples:
+                pdfReport:
+                  summary: PDF Statment
+                  value: <base64 encoded binary data>
             application/json:
               schema:
                 oneOf:
-                - $ref: '#/components/schemas/report'
+                - $ref: '#/components/schemas/CONN_AFFOR'
                 - $ref: '#/components/schemas/Statement'
               example:
                 type: report
@@ -7025,7 +7039,7 @@ components:
             self:
               type: string
               example: https://au-api.basiq.io/jobs/a3dgf4567a89
-    report:
+    CONN_AFFOR:
       properties:
         type:
           type: string
