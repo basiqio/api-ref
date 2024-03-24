@@ -2943,11 +2943,11 @@ components:
             code:
               type: string
               description: code
-              example: 3012
+              example: txMccCode-25028
             title:
               type: string
               description: title
-              example: Qantas
+              example: ""
         anzsic:
           $ref: '#/components/schemas/TransactionsAnzsic'
     TransactionsClass:
