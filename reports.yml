@@ -2,6 +2,10 @@ openapi: 3.0.2
 info:
   title: Reporting
   version: 3.0.0
+  termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
   - url: https://au-api.basiq.io
     description: Production server
@@ -81,12 +85,17 @@ paths:
                 links:
                   self: https://au-api.basiq.io/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
         400:
-          description: Returns error that server cannot or will not process the request
-            due to something that is perceived to be a client error
+          description: >
+            Returns an error indicating that the server cannot or will not process the request
+            due to something that is perceived to be a client error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BadRequestError'
+                oneOf:
+                  - $ref: '#/components/schemas/BadRequestError'
+                  - $ref: '#/components/schemas/forbidden-access'
+                  - $ref: '#/components/schemas/invalid-content'
+                  
         403:
           description: Error that access is forbidden and tied to the application
             logic, such as insufficient rights to a resource.
@@ -109,6 +118,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
     get:
       summary: List all reports
+      operationId: listallreports
       tags:
         - Reports
       description: >
@@ -6415,133 +6425,6 @@ components:
             the institution. Note that not all transactions provide this value (varies
             by institution) e.g. "2017-11-10T00:00:00Z"
           example: null
-    TransactionDataAffordability:
-      required:
-      - account
-      - amount
-      - balance
-      - class
-      - description
-      - direction
-      - id
-      - institution
-      - links
-      - postDate
-      - status
-      - transactionDate
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-          description: Value is "transaction".
-          example: transaction
-        id:
-          type: string
-          description: Uniquely identifies the transaction.
-          example: d3de1ca1
-        account:
-          type: string
-          description: The id of the account resource the transaction belongs to.
-          example: d3de1ca1
-        amount:
-          type: string
-          description: Transaction amount. Outgoing funds are expressed as negative
-            values.
-          example: "123.12"
-        balance:
-          type: string
-          description: Value of the account balance at time the transaction was completed.
-          example: "123.12"
-        class:
-          type: string
-          description: Describes the class(type) of transaction.
-          example: payment
-          enum:
-          - bank-fee
-          - payment
-          - cash-withdrawal
-          - transfer
-          - loan-interest
-          - refund
-          - direct-cedit
-          - interest
-          - loan-repayment
-        description:
-          type: string
-          description: The transaction description as submitted by the institution..
-          example: DEBIT Only About Children Seaforth
-        direction:
-          type: string
-          description: Identifies if the transaction is of debit or credit type.
-          example: credit
-          enum:
-          - debit
-          - credit
-        institution:
-          type: string
-          description: The id of the institution resource the transaction originated
-            from.
-          example: AU00000
-        postDate:
-          type: string
-          description: Date the transaction was posted as provided by the institution
-            (this is the same date that appears on a bank statement). This value is
-            null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
-          example: "2018-11-02T00:00:00Z"
-        status:
-          type: string
-          description: Identifies if a transaction is pending or posted. A pending
-            transaction is an approved debit or credit transaction that has not been
-            fully processed yet (i.e. has not been posted). Find out more about pending
-            transaction and how to deal with them within your app. Note that pending
-            transactions are not available for all institutions.
-          example: pending
-          enum:
-          - pending
-          - posted
-        transactionDate:
-          type: string
-          description: Date that the user executed the transaction as provided by
-            the institution. Note that not all transactions provide this value (varies
-            by institution) e.g. "2017-11-10T00:00:00Z"
-          example: "2018-11-02T00:00:00Z"
-        links:
-          $ref: '#/components/schemas/AffordabilityTransactionLinks'
-    AffordabilityTransactionLinks:
-      required:
-      - account
-      - institution
-      type: object
-      properties:
-        account:
-          type: string
-          description: Url of the account.
-          example: "https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0"
-        institution:
-          type: string
-          description: Url of the institution.
-          example: "https://au-api.basiq.io/institutions/AU00000"
-    TransactionLinks:
-      required:
-      - account
-      - connection
-      - institution
-      - self
-      type: object
-      properties:
-        account:
-          type: string
-          description: Url of the account.
-          example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
-        institution:
-          type: string
-          description: Url of the institution.
-          example: https://au-api.basiq.io/institutions/AU00000
-        self:
-          type: string
-          description: Transaction self reference.
-          example: https://au-api.basiq.io/users/6a52015e/transactions/2082c765
     TransactionsAnzsic:
       type: object
       properties:
@@ -6615,19 +6498,6 @@ components:
           type: string
           description: Longitude
           example: "151.2858021"
-    TransactionsGetLinks:
-      required:
-      - self
-      type: object
-      properties:
-        self:
-          type: string
-          description: Self reference url.
-          example: https://au-api.basiq.io/users/6a52015e/transactions
-        next:
-          type: string
-          description: Url to next result.
-          example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
     TransactionsGetResource:
       title: Transactions container object.
       required:
@@ -6854,63 +6724,90 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-    reports:
-      title: ''
+    forbidden-access:
+      required:
+      - correlationId
+      - data
+      - type
       type: object
       properties:
         type:
           type: string
-          example: report
-        id:
+          description: Always "list".
+          example: list
+        correlationId:
           type: string
-          example: b1824ad0-73f1-0138-3700-0a58a9feac09
-        title:
-          type: string
-          example: John Smith Affordability Report 2022-03-26
-        reportType:
-          type: string
-          example: affordability-consumer
-        createdDate:
-          type: string
-          example: 2022-03-26T06:56:44.000Z
-        createdBy:
-          type: string
-          example: David Smith
-        filters:
-          type: object
-          properties:
-            fromDate:
-              type: string
-              format: date
-              example: 2022-01-01
-            toDate:
-              type: string
-              format: date
-              example: 2022-04-01
-            accounts:
-              type: array
-              items:
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
                 type: string
-                example: s55bf5
-            users:
-              type: array
-              items:
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: forbidden-access
+              title:
                 type: string
-                example: 25c8d1ed77
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
-            transactions:
-              type: string
-              example: >-
-                https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions
-            reportType:
-              type: string
-              example: https://au-api.basiq.io/reports/types/2847gf
+                description: Title of the error
+                example: Connection source not supported.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              detail:
+                type: string
+                example: Connection source has to be web or open banking.
+    invalid-content:
+      required:
+      - correlationId
+      - data
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        correlationId:
+          type: string
+          description: Unique identifier for this particular occurrence of the problem.
+          example: ac5ah5i
+        data:
+          type: array
+          description: Error data.
+          items:
+            required:
+            - code
+            - type
+            type: object
+            properties:
+              code:
+                type: string
+                description: Application-specific error code, expressed as a string
+                  value.
+                example: invalid-content
+              title:
+                type: string
+                description: Title of the error
+                example: Invalid request content.
+              type:
+                type: string
+                description: Type of the response, always "error"
+                example: error
+              detail:
+                type: string
+                example: Invalid report filter.
+                enum:
+                - Mandatory field user/account/dateFrom is missing.
+                - Invalid accounts.
+                - fromDate cannot be ahead of account’s updated date.
     collection:
       properties:
         type:
@@ -7214,19 +7111,19 @@ components:
                                 description: The average monthly value.
                                 example: 100.00
                               medianTransaction:
-                                type: integer
+                                type: string
                                 description: The median amount of all transactions.
                                 example: 20.00
                               medianMonth:
-                                type: integer
+                                type: string
                                 description: The median amount of the monthly sum of all transaction amounts.
                                 example: 20.00
                               ongoingMonth:
-                                type: integer
+                                type: string
                                 description: The current overall (ongoing) monthly income.
                                 example: 0.00
                           stableMonths:
-                            type: integer
+                            type: string
                             description: Number of stable months
                       frequency:
                         type: object
@@ -7328,19 +7225,19 @@ components:
                                       description: The average monthly value.
                                       example: 100.00
                                     medianTransaction:
-                                      type: integer
+                                      type: string
                                       description: The median amount of all transactions.
                                       example: 20.00
                                     medianMonth:
-                                      type: integer
+                                      type: string
                                       description: The median amount of the monthly sum of all transaction amounts.
                                       example: 20.00
                                     ongoingMonth:
-                                      type: integer
+                                      type: string
                                       description: The current overall (ongoing) monthly income.
                                       example: 0.00
                                 stableMonths:
-                                  type: integer
+                                  type: string
                                   description: Number of stable months
                             frequency:
                               type: object
