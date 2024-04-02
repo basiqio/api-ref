@@ -6840,6 +6840,10 @@ components:
           type: string
           description: Always "list".
           example: list
+        count: 
+          type: integer
+          description: Total count of report. 
+          example: 5 
         data:
           type: array
           items:
@@ -6868,6 +6872,9 @@ components:
                     type:
                       type: string
                       example: string
+                    required:
+                      type: boolean
+                      example: true 
     reportRequest:
       required:
         - reportType
