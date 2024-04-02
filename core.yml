@@ -88,6 +88,35 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/createUser'
+            examples:
+                user:
+                  summary: For All Users
+                  value:
+                    email: gavin@hooli.com
+                    mobile: "+61410888666"
+                    firstName: Gavin
+                    middleName: ""
+                    lastName: Belson
+                Bcc:
+                  summary: For Business Users
+                  value: 
+                    email: gavin@hooli.com
+                    mobile: "+61410888999"
+                    firstName: Gavin
+                    middleName: middle name
+                    lastName: Belson
+                    businessName: Manly Accounting PTY LTD
+                    businessIdNo: 16 7645 892
+                    businessIdNoType: ABN
+                    businessAddress:
+                      addressLine1: 21 Sydney Rd
+                      addressLine2: ''
+                      suburb: Manly
+                      state: NSW
+                      postcode: '2095'
+                      countryCode: AUS
+                    verificationStatus: true
+                    verificationDate: 12/01/2024
         required: true
       responses:
         '201':
@@ -961,114 +990,130 @@ paths:
                 Success:
                   value:
                     type: list
-                    size: 21
-                    count: 21
-                    data:
-                    - type: eventType
-                      id: action.completed
-                      description: when an action is completed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/action.completed'
-                    - type: eventType
-                      id: action.failed
-                      description: when an action is failed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/action.failed'
-                    - type: eventType
-                      id: connection.created
-                      description: when a connection is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/connection.created'
-                    - type: eventType
-                      id: connection.deleted
-                      description: when a connection is deleted
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/connection.deleted'
-                    - type: eventType
-                      id: connection.updated
-                      description: when a connection is updated
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/connection.updated'
-                    - type: eventType
-                      id: consent.created
-                      description: when a consent is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.created'
-                    - type: eventType
-                      id: consent.reminder
-                      description: time for a consent reminder
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.reminder'
-                    - type: eventType
-                      id: consent.revoked
-                      description: when a consent is revoked
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.revoked'
-                    - type: eventType
-                      id: consent.updated
-                      description: when a consent is updated
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.updated'
-                    - type: eventType
-                      id: consent.warning
-                      description: time for a consent warning
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/consent.warning'
-                    - type: eventType
-                      id: payout.created
-                      description: when a payout is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payout.created'
-                    - type: eventType
-                      id: payout.failed
-                      description: when a payout is failed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payout.failed'
-                    - type: eventType
-                      id: payout.in-progress
-                      description: when a payout is in-progress
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payout.in-progress'
-                    - type: eventType
-                      id: payout.successful
-                      description: when a payout is successful
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payout.successful'
-                    - type: eventType
-                      id: payrequest.created
-                      description: when a payrequest is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payrequest.created'
-                    - type: eventType
-                      id: payrequest.failed
-                      description: when a payrequest is failed
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payrequest.failed'
-                    - type: eventType
-                      id: payrequest.in-progress
-                      description: when a payrequest is in-progress
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payrequest.in-progress'
-                    - type: eventType
-                      id: payrequest.successful
-                      description: when a payrequest is successful
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/payrequest.successful'
-                    - type: eventType
-                      id: user.created
-                      description: when an user is created
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/user.created'
-                    - type: eventType
-                      id: user.deleted
-                      description: when an user is deleted
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/user.deleted'
-                    - type: eventType
-                      id: user.updated
-                      description: when an user is updated
-                      links:
-                        self: 'https://au-api.basiq.io/events/types/user.updated'
+                    size: 24
+                    count: 24
+                    data: 
+                      - type: eventType
+                        id: connection.created
+                        description: when a connection is created
+                        links:
+                          self: https://au-api.basiq.io/events/types/connection.created
+                      - type: eventType
+                        id: connection.deleted
+                        description: when a connection is deleted
+                        links:
+                          self: https://au-api.basiq.io/events/types/connection.deleted
+                      - type: eventType
+                        id: consent.created
+                        description: when a consent is created
+                        links:
+                          self: https://au-api.basiq.io/events/types/consent.created
+                      - type: eventType
+                        id: consent.expired
+                        description: when a consent is expired
+                        links:
+                          self: https://au-api.basiq.io/events/types/consent.expired
+                      - type: eventType
+                        id: consent.reminder
+                        description: when a consent has been active for 90 days since the last update
+                        links:
+                          self: https://au-api.basiq.io/events/types/consent.reminder
+                      - type: eventType
+                        id: consent.revoked
+                        description: when a consent is revoked
+                        links:
+                          self: https://au-api.basiq.io/events/types/consent.revoked
+                      - type: eventType
+                        id: consent.updated
+                        description: when a consent is updated
+                        links:
+                          self: https://au-api.basiq.io/events/types/consent.updated
+                      - type: eventType
+                        id: consent.warning
+                        description: when a consent is about to expire
+                        links:
+                          self: https://au-api.basiq.io/events/types/consent.warning
+                      - type: eventType
+                        id: payment-agreement-instruction.failed
+                        description: when an agreement instruction is failed
+                        links:
+                          self: https://au-api.basiq.io/events/types/payment-agreement-instruction.failed
+                      - type: eventType
+                        id: payment-agreement-instruction.successful
+                        description: when an agreement instruction is successful
+                        links:
+                          self: https://au-api.basiq.io/events/types/payment-agreement-instruction.successful
+                      - type: eventType
+                        id: payment-agreement.active
+                        description: when an agreement is active
+                        links:
+                          self: https://au-api.basiq.io/events/types/payment-agreement.active
+                      - type: eventType
+                        id: payment-agreement.cancelled
+                        description: when an agreement is cancelled
+                        links:
+                          self: https://au-api.basiq.io/events/types/payment-agreement.cancelled
+                      - type: eventType
+                        id: payment-agreement.suspended
+                        description: when an agreement is suspended
+                        links:
+                          self: https://au-api.basiq.io/events/types/payment-agreement.suspended
+                      - type: eventType
+                        id: payout.created
+                        description: when a payout is created
+                        links:
+                          self: https://au-api.basiq.io/events/types/payout.created
+                      - type: eventType
+                        id: payout.failed
+                        description: when a payout is failed
+                        links:
+                          self: https://au-api.basiq.io/events/types/payout.failed
+                      - type: eventType
+                        id: payout.in-progress
+                        description: when a payout is in-progress
+                        links:
+                          self: https://au-api.basiq.io/events/types/payout.in-progress
+                      - type: eventType
+                        id: payout.successful
+                        description: when a payout is successful
+                        links:
+                          self: https://au-api.basiq.io/events/types/payout.successful
+                      - type: eventType
+                        id: payrequest.created
+                        description: when a payrequest is created
+                        links:
+                          self: https://au-api.basiq.io/events/types/payrequest.created
+                      - type: eventType
+                        id: payrequest.failed
+                        description: when a payrequest is failed
+                        links:
+                          self: https://au-api.basiq.io/events/types/payrequest.failed
+                      - type: eventType
+                        id: payrequest.in-progress
+                        description: when a payrequest is in-progress
+                        links:
+                          self: https://au-api.basiq.io/events/types/payrequest.in-progress
+                      - type: eventType
+                        id: payrequest.successful
+                        description: when a payrequest is successful
+                        links:
+                          self: https://au-api.basiq.io/events/types/payrequest.successful
+                      - type: eventType
+                        id: user.created
+                        description: when an user is created
+                        links:
+                          self: https://au-api.basiq.io/events/types/user.created
+                      - type: eventType
+                        id: user.deleted
+                        description: when an user is deleted
+                        links:
+                          self: https://au-api.basiq.io/events/types/user.deleted
+                      - type: eventType
+                        id: user.updated
+                        description: when an user is updated
+                        links:
+                          self: https://au-api.basiq.io/events/types/user.updated
+
                     links:
                       self: 'https://au-api.basiq.io/events/types/'
         '401':
@@ -1351,7 +1396,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/job'
+                oneOf:
+                - $ref: '#/components/schemas/job'
+                - $ref: "#/components/schemas/StatementJobs"
               examples:
                 Data - in progress:
                   value:
@@ -1374,6 +1421,23 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/61723
                       source: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
+                statement-success:
+                  value:
+                    type: job
+                    id: a2a17e84-460c-43f4-9c94-1398a5b4c148
+                    createdDate: '2024-03-21T23:51:37Z'
+                    updatedDate: '2024-03-21T23:51:48Z'
+                    jobType: report
+                    sourceId: a2a17e84-460c-43f4-9c94-1398a5b4c148
+                    steps:
+                    - title: create-report
+                      status: success
+                      result:
+                        type: report
+                        url: "/reports/a2a17e84-460c-43f4-9c94-1398a5b4c148"
+                    links:
+                      self: https://au-api.basiq.io/jobs/a2a17e84-460c-43f4-9c94-1398a5b4c148
+                      source: https://au-api.basiq.io/reports/a2a17e84-460c-43f4-9c94-1398a5b4c148
                 Mygov - in progress:
                   value:
                     type: job
@@ -1702,6 +1766,51 @@ components:
               type: string
             source: 
               type: string
+    StatementJobs:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        createdDate:
+          description: date and time in ISO format of when the job request was created
+          type: string
+          format: date-time
+        updatedDate:
+          description: date and time in ISO format of when the job request was updated
+          type: string
+          format: date-time
+        jobType:
+          type: string
+        sourceId:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              status:
+                type: string
+              result:
+                type: object
+                nullable: true
+                properties:
+                  type:
+                    type: string
+                  url: 
+                    type: string  
+        links:
+          type: object
+          properties:
+            link:
+              type: string
+            self:
+              type: string
+            source: 
+              type: string    
     EventTypes:
       properties:
         type:
@@ -2593,10 +2702,6 @@ components:
           type: string
           description: User identification.
           example: ea3a81
-        accounts:
-          $ref: '#/components/schemas/GetUserAccount'
-        connections:
-          $ref: '#/components/schemas/GetUserConnection'
         email:
           type: string
           description: User email or empty.
@@ -2622,6 +2727,59 @@ components:
           type: string
           description: lastName, or empty
           example: lastName
+        businessName:
+          type: string
+          description: The official name of the business.
+          example: Manly Accounting PTY LTD
+        businessIdNo:
+          type: string
+          description: This number is used to identify a business when they’re dealing with the government, other businesses, and the public.
+          example: 16 7645 892
+        businessIdNoType:
+          type: string
+          description: Type of business ID could be ABN Or ACN.
+          enum: 
+            - ABN 
+            - ACN 
+          example: ABN
+        businessAddress:
+          type: object
+          properties: 
+            addressLine1:
+              type: string
+              example: 21 Sydney Rd
+              description: The first line of the business address.
+            addressLine2:
+              type: string
+              example: ""
+              description: Additional information about the business address (optional).
+            suburb:
+              type: string
+              example: Manly
+              description: The suburb or locality where the business is located.
+            state:
+              type: string
+              example: NSW 
+              description: The state or territory where the business is located.
+            postcode:
+              type: string
+              example: "2095"
+              description: The postal code of the business location.
+            countryCode:
+              type: string
+              example: AUS
+              description: The country code of the business location.
+        verificationStatus:
+          type: boolean
+          description: Indicates if the business information provided is verified against the Australian Business Register.
+        verificationDate:
+          type: string
+          example: 12/01/2024
+          description: when the verification was done. 
+        connections:
+          $ref: '#/components/schemas/GetUserConnection'
+        accounts:
+          $ref: '#/components/schemas/GetUserAccount'
         links:
           $ref: '#/components/schemas/GetUserLinks'
       description: User object with details if the creation succeeded.
@@ -2663,6 +2821,55 @@ components:
           type: string
           description: The end-users last name as an optional additional parameter.
           example: Belson
+        businessName:
+          type: string
+          description: The official name of the business.
+          example: Manly Accounting PTY LTD
+        businessIdNo:
+          type: string
+          description: This number is used to identify a business when they’re dealing with the government, other businesses, and the public.
+          example: 16 7645 892
+        businessIdNoType:
+          type: string
+          description: Type of business ID could be ABN Or ACN.
+          enum: 
+            - ABN 
+            - ACN 
+          example: ABN
+        businessAddress:
+          type: object
+          properties: 
+            addressLine1:
+              type: string
+              example: 21 Sydney Rd
+              description: The first line of the business address.
+            addressLine2:
+              type: string
+              example: ""
+              description: Additional information about the business address (optional).
+            suburb:
+              type: string
+              example: Manly
+              description: The suburb or locality where the business is located.
+            state:
+              type: string
+              example: NSW 
+              description: The state or territory where the business is located.
+            postcode:
+              type: string
+              example: "2095"
+              description: The postal code of the business location.
+            countryCode:
+              type: string
+              example: AUS
+              description: The country code of the business location.
+        verificationStatus:
+          type: boolean
+          description: Indicates if the business information provided is verified against the Australian Business Register.
+        verificationDate:
+          type: string
+          example: 12/01/2024
+          description: when the verification was done. 
         links:
           $ref: '#/components/schemas/ResourceLink'
       description: User object with details if the creation succeeded.
@@ -2691,6 +2898,55 @@ components:
           type: string
           description: The end-users last name as an optional additional parameter.
           example: Belson
+        businessName:
+          type: string
+          description: The official name of the business.
+          example: Manly Accounting PTY LTD
+        businessIdNo:
+          type: string
+          description: This number is used to identify a business when they’re dealing with the government, other businesses, and the public.
+          example: "16 7645 892"
+        businessIdNoType:
+          type: string
+          description: Type of business ID could be ABN Or ACN.
+          enum: 
+            - ABN 
+            - ACN 
+          example: ABN
+        businessAddress:
+          type: object
+          properties: 
+            addressLine1:
+              type: string
+              example: 21 Sydney Rd
+              description: The first line of the business address.
+            addressLine2:
+              type: string
+              example: ""
+              description: Additional information about the business address (optional).
+            suburb:
+              type: string
+              example: Manly
+              description: The suburb or locality where the business is located.
+            state:
+              type: string
+              example: NSW 
+              description: The state or territory where the business is located.
+            postcode:
+              type: string
+              example: "2095" 
+              description: The postal code of the business location.
+            countryCode:
+              type: string
+              example: AUS
+              description: The country code of the business location.
+        verificationStatus:
+          type: boolean
+          description: Indicates if the business information provided is verified against the Australian Business Register.
+        verificationDate:
+          type: string
+          example: 12/01/2024
+          description: when the verification was done.
     updateUser:
       type: object
       properties:
