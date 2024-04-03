@@ -5695,7 +5695,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
   /reports/types/{reportTypeId}:
     get:
-      summary: Retrieve a specific report type
+      summary: Retrieve a report type
       operationId: retrieveSpecificReportType
       description: Retrieve information about a specific report type identified by {reportId}.
       tags:
