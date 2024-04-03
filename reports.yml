@@ -5501,7 +5501,7 @@ paths:
     get:
       tags:
         - Reports
-      summary: Retrieve transactions for a specific report
+      summary: Retrieve Report transactions
       operationId: retrieveReportTransactions
       description: Retrieve transactions belonging to the report identified by {reportId}.
       parameters:
@@ -5693,7 +5693,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
-  /reports/types/{reportId}:
+  /reports/types/{reportTypeId}:
     get:
       summary: Retrieve a specific report type
       operationId: retrieveSpecificReportType
@@ -5702,43 +5702,18 @@ paths:
         - Reports
       parameters:
         - in: path
-          name: reportId
+          name: reportTypeId
           schema:
             type: string
           required: true
-          description: The ID of the report type
+          description: The type of the report
       responses:
-        '200':
+        200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/reportType'
-              example:
-                type: reportType
-                id: CON_AFFOR_01
-                name: Consumer Affordability Report
-                description: In depth consumer affordability assessment.
-                filters:
-                  - name: fromDate
-                    type: string
-                    required: true
-                  - name: toDate
-                    type: string
-                    required: true
-                  - name: accounts
-                    type: array
-                    required: true
-                  - name: users
-                    type: array
-                    required: true
-                  - name: includeGroups
-                    type: array
-                    required: false
-                  - name: includeMetrics
-                    type: array
-                    required: false
-
+                $ref: '#/components/schemas/reportTypeID'
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error
@@ -6735,6 +6710,61 @@ components:
                     required:
                       type: boolean
                       example: true 
+    reportTypeID:
+      properties:
+        id: 
+          type: string
+          description: Report ID. 
+        name: 
+          type: string
+          description: Name of the report. 
+          example: Consumer Affordability Report. 
+        type:
+          type: string
+          description: Always "list".
+          example: list
+        description:
+          type: string
+          description: In depth consumer affordability assessment.
+        count: 
+          type: integer
+          description: Total count of report. 
+          example: 5 
+        filters:
+          type: array
+          description: filters for reports.
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: reportType
+              id:
+                type: string
+                example: CON_AFFOR_01
+              name:
+                type: string
+                example: Consumer Affordability Report
+              description:
+                type: string
+                example: In depth consumer affordability assessment.
+              filters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: fromDate
+                    type:
+                      type: string
+                      example: string
+                    required:
+                      type: boolean
+                      example: true 
+                      
     reportRequest:
       required:
         - reportType

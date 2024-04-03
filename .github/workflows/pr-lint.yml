@@ -49,6 +49,9 @@ jobs:
     
     - name: Lint Services 
       run: npx @redocly/cli lint services.yml
+
+    - name: Lint Reports 
+      run: npx @redocly/cli lint reports.yml
     
     - name: Lint affordability 
       run: npx @redocly/cli lint affordability.yml
