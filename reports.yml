@@ -224,15 +224,9 @@ paths:
             application/pdf:
               schema:
                 $ref: '#/components/schemas/STATEMENT'
-              examples:
-                pdfReport:
-                  summary: PDF Statment
-                  externalValue: 'https://example.com/path/to/pdfFile.pdf'
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/Conn_Affor_Report'
-                - $ref: '#/components/schemas/STATEMENT'
+                 $ref: '#/components/schemas/Conn_Affor_Report'
               example:
                 type: report
                 id: b1824ad0-73f1-0138-3700-0a58a9feac09
@@ -247,11 +241,11 @@ paths:
                   value: '2022-12-01'
                 - name: accounts
                   value:
-                  - ag829sj
-                  - aj82gka
+                  - 'ag829sj'
+                  - 'aj82gka'
                 - name: users
                   value:
-                  - 272af9fa-0f4a-44dc-bf88-a63bec2d0662
+                  - '272af9fa-0f4a-44dc-bf88-a63bec2d0662'
                 data:
                   metrics:
                   - id: ME001
@@ -4480,7 +4474,10 @@ paths:
                       name: SAMPLE TRANSACTION
                       analysis:
                         summary:
-
+                          transactionCount: 3
+                          overallPercentage:
+                              credit: 0
+                              debit: 0
                         range:
                           startDate: '2022-01-01'
                           endDate: '2022-03-01'
@@ -5500,46 +5497,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
-  /reports/{id}/transactions:
+  /reports/{reportId}/transactions:
     get:
       tags:
-      - Reports
-      summary: Retrieve report transactions
-      description: >
-        List all transactions belong to that particular report.
-      operationId: getTransactions
+        - Reports
+      summary: Retrieve transactions for a specific report
+      operationId: retrieveReportTransactions
+      description: Retrieve transactions belonging to the report identified by {reportId}.
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The ID of the generated report
-      - in: query
-        name: filter
-        description: >-
-          - account.id.eq('15a28893-e8c9-4441-a076-470195218738')
-
-          - transaction.postDate.bt('2022-10-01,2022-10-10')
-
-          - transaction.postDate.(eq|gt|lt|gteq|lteq)('2022-12-03T00:00:00Z')
-
-          - institution.id.eq('AU00001')
-
-          - connection.id.eq('12857a4c-931d-4a5a-ab74-399dafb03bfe')
-
-          - transaction.id.eq('14198297-b3b5-415c-b6ad-8a14476ef61c')
-
-          - transaction.direction.eq('credit')
-
-          - transaction.class.eq('transfer')
-
-          - transaction.status.eq('posted')
-
-
-          Transactions can be filtered based on date & datetime.
-        schema:
-          type: string
+        - in: path
+          name: reportId
+          schema:
+            type: string
+          required: true
+          description: The ID of the generated report
+        - in: query
+          name: filter
+          description: >-
+            - account.id.eq('15a28893-e8c9-4441-a076-470195218738')
+  
+            - transaction.postDate.bt('2022-10-01,2022-10-10')
+  
+            - transaction.postDate.(eq|gt|lt|gteq|lteq)('2022-12-03T00:00:00Z')
+  
+            - institution.id.eq('AU00001')
+  
+            - connection.id.eq('12857a4c-931d-4a5a-ab74-399dafb03bfe')
+  
+            - transaction.id.eq('14198297-b3b5-415c-b6ad-8a14476ef61c')
+  
+            - transaction.direction.eq('credit')
+  
+            - transaction.class.eq('transfer')
+  
+            - transaction.status.eq('posted')
+  
+  
+            Transactions can be filtered based on date & datetime.
+          schema:
+            type: string
       responses:
         200:
           description: 'Returns a list with a data property that contains
@@ -5549,16 +5545,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsGetResource'
-        '400':
+        400:
           $ref: '#/components/responses/400BadRequest'
-        '403':
+        403:
           $ref: '#/components/responses/403Forbidden'
-        '404':
+        404:
           $ref: '#/components/responses/404NotFound'
-        '500':
+        500:
           $ref: '#/components/responses/500Server'
       security:
-      - services_token: []
+        - services_token: []
   /reports/types:
     get:
       summary: List report types
@@ -5697,19 +5693,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
-  /reports/types/{id}:
+  /reports/types/{reportId}:
     get:
-      summary: Retrieve a report type
-      operationId: retrieveReportType
+      summary: Retrieve a specific report type
+      operationId: retrieveSpecificReportType
+      description: Retrieve information about a specific report type identified by {reportId}.
       tags:
         - Reports
-      description: >
-        Use this endpoint to retrieve a report type. This
-        identifies the specific report, which can be used to
-        create reports on.
       parameters:
         - in: path
-          name: id
+          name: reportId
           schema:
             type: string
           required: true
@@ -6789,70 +6782,379 @@ components:
               example: https://au-api.basiq.io/jobs/a3dgf4567a89
     Conn_Affor_Report:
       type: object
-      required:
-        - reportDetails
-        - financialData
-        - links
       properties:
-        reportDetails:
+        type:
+          type: string
+          description: Type of the report
+        id:
+          type: string
+          description: Unique identifier for the report
+        title:
+          type: string
+          description: Title of the report
+        reportType:
+          type: string
+          description: Type of the report
+        createdDate:
+          type: string
+          format: date-time
+          description: Date and time when the report was created
+        createdBy:
+          type: string
+          description: Creator of the report
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the filter
+              value:
+                oneOf: 
+                  -  type: array
+                  - type: string
+                    description: Value of the filter
+        data: 
           type: object
-          required:
-            - type
-            - id
-            - title
-            - reportType
-            - createdDate
-            - createdBy
           properties:
-            type:
-              type: string
-              description: "Always 'report'."
-            id:
-              type: string
-              description: "Uniquely identifies the report."
-            title:
-              type: string
-              description: "User defined title for the report."
-            reportType:
-              type: string
-              description: "Identifies the report type."
-            createdDate:
-              type: string
-              description: "The date and time of when the report was created."
-            createdBy:
-              type: string
-              description: "Identifies who created the report."
-        financialData:
-          type: object
-          required:
-            - accounts
-            - transactions
-          properties:
+            metrics:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Identifier for the metric
+                  title:
+                    type: string
+                    description: Title of the metric
+                  description:
+                    type: string
+                    description: Description of the metric
+                  sections:
+                    type: array
+                    items:
+                      type: string
+                      description: Sections related to the metric
+                  result:
+                    type: object
+                    properties:
+                      value:
+                        oneOf: 
+                          -  type: string
+                          -  type: integer
+                             description: Value of the metric
+                      format:
+                        type: string
+                        description: Format of the metric value
+            groups:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Identifier for the group
+                  title:
+                    type: string
+                    description: Title of the group
+                  sections:
+                    type: array
+                    items:
+                      type: string
+                      description: Sections related to the group
+                  analysis:
+                    type: object
+                    properties:
+                      summary:
+                        type: object
+                        properties:
+                          transactionCount:
+                            type: integer
+                            description: Total number of transactions in the group
+                          overallPercentage:
+                            type: object
+                            properties:
+                              credit:
+                                type: number
+                                description: Percentage of credit transactions
+                              debit:
+                                type: number
+                                description: Percentage of debit transactions
+                      range:
+                        type: object
+                        properties:
+                          startDate:
+                            type: string
+                            format: date
+                            description: Start date of the analysis range
+                          endDate:
+                            type: string
+                            format: date
+                            description: End date of the analysis range
+                          duration:
+                            type: integer
+                            description: Duration of the analysis range in days
+                      amount:
+                        type: object
+                        properties:
+                          total:
+                            type: string
+                            description: Total amount for the group
+                          min:
+                            type: string
+                            description: Minimum amount for the group
+                          max:
+                            type: string
+                            description: Maximum amount for the group
+                          average:
+                            type: object
+                            properties:
+                              transaction:
+                                type: string
+                                description: Average transaction amount
+                              month:
+                                type: string
+                                description: Average monthly amount
+                              medianTransaction:
+                                type: string
+                                description: Median transaction amount
+                              medianMonth:
+                                type: string
+                                description: Median monthly amount
+                              ongoingMonth:
+                                type: string
+                                description: Ongoing month's average amount
+                          stableMonths:
+                            type: integer
+                            description: Number of stable months
+                      frequency:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: Frequency type
+                          amount:
+                            type: string
+                            description: Frequency amount
+                          display:
+                            type: string
+                            description: Display name of the frequency
+                          next:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                format: date
+                                description: Next frequency date
+                              amount:
+                                type: string
+                                description: Next frequency amount
+                  subgroup:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Identifier for the subgroup
+                        name:
+                          type: string
+                          description: Name of the subgroup
+                        analysis:
+                          type: object
+                          properties:
+                            summary:
+                              type: object
+                              properties:
+                                transactionCount:
+                                  type: integer
+                                  description: Total number of transactions in the subgroup
+                                overallPercentage:
+                                  type: object
+                                  properties:
+                                    credit:
+                                      type: number
+                                      description: Percentage of credit transactions
+                                    debit:
+                                      type: number
+                                      description: Percentage of debit transactions
+                            range:
+                              type: object
+                              properties:
+                                startDate:
+                                  type: string
+                                  format: date
+                                  description: Start date of the analysis range
+                                endDate:
+                                  type: string
+                                  format: date
+                                  description: End date of the analysis range
+                                duration:
+                                  type: integer
+                                  description: Duration of the analysis range in days
+                            amount:
+                              type: object
+                              properties:
+                                total:
+                                  type: string
+                                  description: Total amount for the subgroup
+                                min:
+                                  type: string
+                                  description: Minimum amount for the subgroup
+                                max:
+                                  type: string
+                                  description: Maximum amount for the subgroup
+                                average:
+                                  type: object
+                                  properties:
+                                    transaction:
+                                      type: string
+                                      description: Average transaction amount
+                                    month:
+                                      type: string
+                                      description: Average monthly amount
+                                    medianTransaction:
+                                      type: string
+                                      description: Median transaction amount
+                                    medianMonth:
+                                      type: string
+                                      description: Median monthly amount
+                                    ongoingMonth:
+                                      type: string
+                                      description: Ongoing month's average amount
+                                stableMonths:
+                                  type: integer
+                                  description: Number of stable months
+                            frequency:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  description: Frequency type
+                                amount:
+                                  type: string
+                                  description: Frequency amount
+                                display:
+                                  type: string
+                                  description: Display name of the frequency
+                                next:
+                                  type: object
+                                  properties:
+                                    date:
+                                      type: string
+                                      format: date
+                                      description: Next frequency date
+                                    amount:
+                                      type: string
+                                      description: Next frequency amount
+                        transactions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Identifier for the transaction
+                              date:
+                                type: string
+                                format: date
+                                description: Date of the transaction
+                              description:
+                                type: string
+                                description: Description of the transaction
+                              amount:
+                                type: string
+                                description: Amount of the transaction
             accounts:
               type: array
               items:
-                $ref: '#/components/schemas/Account'
-              description: "Container object, containing account details."
-            transactions:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Identifier for the account
+                  accountNo:
+                    type: string
+                    description: Account number
+                  name:
+                    type: string
+                    description: Name of the account
+                  currency:
+                    type: string
+                    description: Currency of the account
+                  balance:
+                    type: string
+                    description: Current balance of the account
+                  availableFunds:
+                    type: string
+                    description: Available funds in the account
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    description: Date and time when the account was last updated
+                  institution:
+                    type: string
+                    description: Institution of the account
+                  class:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: Type of the account class
+                      product:
+                        type: string
+                        description: Product of the account class
+                  transactionIntervals:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        from:
+                          type: string
+                          format: date
+                          description: Start date of the transaction interval
+                        to:
+                          type: string
+                          format: date
+                          description: End date of the transaction interval
+                  accountHolder:
+                    type: string
+                    description: Holder of the account
+                  accountOwnership:
+                    type: string
+                    description: Ownership status of the account
+                  connection:
+                    type: string
+                    description: connectionID of that account
+                  status:
+                    type: string
+                    description: Status of the account
+                  creditLimit:
+                    type: string
+                    description: Credit limit of the account
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        description: Link to retrieve the account details
+                      transactions:
+                        type: string
+                        description: Link to retrieve the transactions for the account
+                      institution:
+                        type: string
+                        description: Link to retrieve the institution details
+        transactions:
               type: string
-              $ref: "#/components/schemas/Transaction"
-              description: "Retrieve report transactions endpoint."
+              description: Link to retrieve the transactions for the account
         links:
           type: object
-          required:
-            - self
-            - dataAccounts
-            - dataTransactions
           properties:
             self:
               type: string
-              description: "URL of the current report."
-            dataAccounts:
-              type: string
-              description: "Snapshot of the raw data used to generate the report (accounts)."
-            dataTransactions:
-              type: string
-              description: "Snapshot of the raw data used to generate the report (transactions)."              
+              description: link of report
     InternalServerError:
       required:
       - correlationId
@@ -6893,49 +7195,6 @@ components:
                 type: string
                 description: Type of the response, always "error"
                 example: error
-    Account:
-      type: object
-      required:
-        - accountId
-        - institution
-        - accountType
-      properties:
-        accountId:
-          type: string
-          description: "Unique identifier for the account."
-        institution:
-          type: string
-          description: "The institution id related to the account."
-        accountType:
-          type: string
-          description: "Type of account (e.g., savings, checking)."
-        availableFunds:
-          type: string
-          description: "The available funds in the account."
-        creditLimit:
-          type: string
-          description: "The credit limit of the account, if applicable."
-    Transaction:
-      type: object
-      required:
-        - transactionId
-        - date
-        - description
-        - amount
-      properties:
-        transactionId:
-          type: string
-          description: "Unique identifier for the transaction."
-        date:
-          type: string
-          format: date
-          description: "The date when the transaction occurred."
-        description:
-          type: string
-          description: "The description of the transaction."
-        amount:
-          type: string
-          description: "The value (amount) of the transaction."
   securitySchemes:
     services_token:
       type: http
