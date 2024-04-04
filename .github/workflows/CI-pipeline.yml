@@ -75,19 +75,6 @@ jobs:
         with:
           rdme: openapi ./webhooks.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.WEBHOOKS_API_DEFINITION_ID }}
 
-      # - name: Bump version and push tag
-      #   id: tag_version
-      #   uses: mathieudutour/github-tag-action@v6.1 # Leverages SemVer as per https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Create a GitHub release
-      #   uses: ncipollo/release-action@v1.13.0
-      #   with:
-      #     tag: ${{ steps.tag_version.outputs.new_tag }}
-      #     name: Release ${{ steps.tag_version.outputs.new_tag }}
-      #     body: ${{ steps.tag_version.outputs.changelog }}
-
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@6c661ce58804a1a20f6dc5fbee7f0381b469e001 # v1.25.0

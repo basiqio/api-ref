@@ -244,37 +244,47 @@ components:
         fullName:
           type: string
           description: FullName of the identity owner.
+          example: John Doe
         firstName:
           type: string
           description: FirstName of the identity owner.
+          example: John
         lastName:
           type: string
           description: LastName of the identity owner.
+          example: Doe
         middleName:
           type: string
           description: MiddleName of the identity owner.
+          example: James
         title:
           type: string
           description: Title is the prefix to the name of the identity owner.
+          example: Mr.
         DOB:
           type: string
           description: Date of birth of the identity owner.
+          example: "1985-05-25"
         occupationCode:
           type: string
           description: Code relating to the occupation held by the identity owner.
+          example: "12345"
         occupationCodeVersion:
           type: string
           description: Occupation Code Version.
+          example: "v1"
         phoneNumbers:
           type: array
           description: List of phone numbers of the identity owner.
           items:
             type: string
+            example: "+6411222333"
         emails:
           type: array
           description: List of email addresses of the identity owner.
           items:
             type: string
+            example: "john.doe@example.com"
         physicalAddresses:
           type: array
           description: List of physical addresses of the identity owner.
@@ -286,42 +296,55 @@ components:
             agentFirstName:
               type: string
               description: Agent first name.
+              example: "Jane"
             agentLastName:
               type: string
               description: Agent last name.
+              example: "Smith"
             agentRole:
               type: string
               description: Agent role.
+              example: "Manager"
             businessName:
               type: string
               description: Business name.
+              example: "ABC Corp"
             legalName:
               type: string
               description: Legal name.
+              example: "ABC Corporation"
             shortName:
               type: string
               description: Short name.
+              example: "ABC"
             abn:
               type: string
               description: Australian Business Number.
+              example: "123456789"
             acn:
               type: string
               description: Australian Company Number.
+              example: "987654321"
             isACNCRegistered:
               type: boolean
               description: Indicates whether is Australian Company Number registered.
+              example: true
             industryCode:
               type: string
               description: Industry Code.
+              example: "67890"
             industryCodeVersion:
               type: string
               description: Industry Code Version.
+              example: "v2"
             organisationType:
               type: string
               description: Organisation Type.
+              example: "Corporation"
             registeredCountry:
               type: string
               description: Registered Country.
+              example: "Australia"
           description: Organisation data.
     PhysicalAddressData:
       type: object
@@ -329,33 +352,43 @@ components:
         type:
           type: string
           description: Physical Address Type.
+          example: home
         addressLine1:
           type: string
           description: AddressLine1.
+          example: 123 Main St
         addressLine2:
           type: string
           description: AddressLine2.
+          example: Apt 101
         addressLine3:
           type: string
           description: AddressLine3.
+          example: ""
         postcode:
           type: string
           description: Postcode.
+          example: "3000"
         city:
           type: string
           description: City.
+          example: "Melbourne"
         state:
           type: string
           description: State.
+          example: "VIC"
         country:
           type: string
           description: Country.
+          example: "Australia"
         countryCode:
           type: string
           description: Country Code.
+          example: "AU"
         formattedAddress:
           type: string
           description: Formatted Address.
+          example: "123 Main St, Apt 101, Melbourne, VIC, 3000, Australia"
     IdentityLinks:
       required:
       - job
