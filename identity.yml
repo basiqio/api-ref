@@ -244,23 +244,23 @@ components:
         fullName:
           type: string
           description: FullName of the identity owner.
-          example: John Doe
+          example: "John Doe"
         firstName:
           type: string
           description: FirstName of the identity owner.
-          example: John
+          example: "John"
         lastName:
           type: string
           description: LastName of the identity owner.
-          example: Doe
+          example: "Doe"
         middleName:
           type: string
           description: MiddleName of the identity owner.
-          example: James
+          example: "James"
         title:
           type: string
           description: Title is the prefix to the name of the identity owner.
-          example: Mr.
+          example: "Mr."
         DOB:
           type: string
           description: Date of birth of the identity owner.
