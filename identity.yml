@@ -402,7 +402,7 @@ components:
         job:
           type: string
           description: Link to the job associated with this identity
-          example: https://au-api.basiq.io/users/ea3a81/connection/s55bf3
+          example: https://au-api.basiq.io/users/ea3a81/connections/s55bf3
     ForbiddenAccessError:
       required:
         - correlationId
