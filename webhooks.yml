@@ -1158,8 +1158,8 @@ components:
         size:
           type: integer
         data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
+          items: 
+            $ref: '#/components/schemas/Webhook'
         links:
           type: object
           properties:
