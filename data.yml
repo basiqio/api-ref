@@ -2924,12 +2924,14 @@ components:
             merchantFull: Indicates an exact match between the transaction and a known merchant in the database.
             merchantPartial: Suggests a partial match with a merchant, usually based on substring or fuzzy logic.
             mcc: Match is done using the Merchant Category Code associated with the transaction.
-            ml: Match is determined through machine learning algorithms for classification
+            ml: Match is determined through machine learning algorithms for classification.
+            none: Match is not found. 
           enum:
             - merchantFull
             - merchantPartial
             - mcc
             - ml
+            - none
           example: "merchantfull"
         matchScore:
           type: string
