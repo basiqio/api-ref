@@ -235,8 +235,14 @@ components:
           type: string
           description: Created date of the identity.
           example: 2019-07-29T07:34:09Z
-        links:
-          $ref: '#/components/schemas/IdentityLinks'
+        connectionID:
+          type: string
+          description: ID of that connection. 
+          example: 8d02bc04-a067-4d34-9fe4-14926683fa03
+        institutionID:
+          type: string
+          description: ID of that institution. 
+          example: AU04301
         source:
           type: string
           description: Data source.
@@ -346,6 +352,8 @@ components:
               description: Registered Country.
               example: "Australia"
           description: Organisation data.
+        links:
+          $ref: '#/components/schemas/IdentityLinks'
     PhysicalAddressData:
       type: object
       properties:
