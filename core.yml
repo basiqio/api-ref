@@ -970,6 +970,161 @@ paths:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
         - services_token: []
+  /events/{id}:
+    get:
+      tags:
+        - Events
+      summary: Retrieve an event
+      description: >-
+          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
+          Returns a single event type based on the parameter input.
+      operationId: getTypeById
+      parameters:
+        - name: id
+          required: true
+          schema:
+            type: string
+          in: path
+          example: 'a0fa1d01e0c9a1032e29ac74ade5f786e880ae04f4e3788144c6d13b53e5d29b'
+      responses:
+        '200':
+          description: Returns the ID of an event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrieveEvent'
+              examples:
+                Success:
+                  value:
+                    type: event
+                    id: 5a47115a7eed80a3b68761b725b78c75892e94cef06810ecc0e2e7b856738371
+                    createdDate: '2024-04-17T23:57:17Z'
+                    entity: connection
+                    eventType: updated
+                    userId: 84e33255-f65f-4f05-953b-1b12e1e4d90b
+                    dataRef: >-
+                      https://au-api.basiq.io/users/84e33255-f65f-4f05-953b-1b12e1e4d90b/connections/8bd4f752-c218-4e41-af28-0c42ae982d35
+                    data:
+                      createdDate: '2024-04-17T23:57:16Z'
+                      id: 8bd4f752-c218-4e41-af28-0c42ae982d35
+                      institution:
+                        id: AU00000
+                        links:
+                          self: https://au-api.basiq.io/institutions/AU00000
+                        type: institution
+                      lastUsed: '2024-04-17T23:57:17Z'
+                      links:
+                        accounts: >-
+                          https://au-api.basiq.io/users/84e33255-f65f-4f05-953b-1b12e1e4d90b/accounts?filter=institution.id.eq('AU00000')
+                        self: >-
+                          https://au-api.basiq.io/users/84e33255-f65f-4f05-953b-1b12e1e4d90b/connections/8bd4f752-c218-4e41-af28-0c42ae982d35
+                        transactions: >-
+                          https://au-api.basiq.io/users/84e33255-f65f-4f05-953b-1b12e1e4d90b/transactions?filter=institution.id.eq('AU00000')
+                      mfaEnabled: false
+                      status: active
+                      type: connection
+                    links:
+                      self: >-
+                        https://au-api.basiq.io/events/5a47115a7eed80a3b68761b725b78c75892e94cef06810ecc0e2e7b856738371
+
+        '400':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Parameter not valid:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'path-parameter-not-valid'
+                      title: 'Parameter value is not valid'
+                      detail: 'Event Type ID parameter is not valid'
+                      source:
+                        parameter: 'eventTypeId'
+        '401':
+          description: >-
+            Error status response code indicates that the request has not been
+            applied because it lacks valid authentication credentials for the
+            target resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Unauthorized:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'unauthorized-access'
+                      title: 'Unauthorized Access'
+                      detail: 'You are not authorized to access this resource'
+        '403':
+          description: >-
+            Error that access is forbidden and tied to the application logic,
+            such as insufficient rights to a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: 'Not Found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Error:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'resource-not-found'
+                      title: 'Requested resource is not found'
+                      detail: 'Requested event type does not exist.'
+        '429':
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Too many requests:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'too-many-requests'
+                      title: 'Too many requests'
+                      detail: 'Query limit reached.'
+        '500':
+          description: >-
+            Returns error response code indicates that the server encountered an
+            unexpected condition that prevented it from fulfilling the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        '503':
+          description: >-
+            Returns error response code indicates that the server is not ready
+            to handle the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+      security:
+        - services_token: []
   /events/types:
     get:
       tags:
@@ -1873,6 +2028,66 @@ components:
           properties:
             self:
               type: string
+    RetrieveEvent:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        createdDate:
+          type: string
+        entity:
+          type: string
+        eventType:
+          type: string
+        userId:
+          type: string
+        dataRef:
+          type: string
+        data:
+          type: object
+          properties:
+            createdDate:
+              type: string
+            id:
+              type: string
+            institution:
+              type: object
+              properties:
+                id:
+                  type: string
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                type:
+                  type: string
+            lastUsed:
+              type: string
+            links:
+              type: object
+              properties:
+                accounts:
+                  type: string
+                self:
+                  type: string
+                transactions:
+                  type: string
+            mfaEnabled:
+              type: boolean
+            status:
+              type: string
+            type:
+              type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+
+      
     AuthLinksResponseResource:
       required:
       - expiresAt
