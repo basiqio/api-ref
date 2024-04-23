@@ -1255,36 +1255,6 @@ components:
         - type
       type: object
       properties:
-        authorization:
-          $ref: '#/components/schemas/ConnectorAuthorization'
-        id:
-          maxLength: 7
-          minLength: 7
-          pattern: ^[A-Z]{2}[0-9]{5}$
-          type: string
-          description: Institution ID
-          example: AU00000
-        institution:
-          $ref: '#/components/schemas/ConnectorInstitutionResource'
-        links:
-          $ref: '#/components/schemas/ResourceLinks'
-        method:
-          type: string
-          description: Current Connector method
-          example: web
-        scopes:
-          type: array
-          description: Connector scopes array
-          items:
-            type: string
-        stage:
-          type: string
-          description: Current Connector stage
-          example: beta
-        stats:
-          $ref: '#/components/schemas/InstitutionPerformanceStats'
-        status:
-          $ref: '#/components/schemas/FeatureCondition'
         type:
           type: string
           description: |-
@@ -1293,6 +1263,36 @@ components:
           example: connector
           enum:
             - connector
+        id:
+          maxLength: 7
+          minLength: 7
+          pattern: ^[A-Z]{2}[0-9]{5}$
+          type: string
+          description: Institution ID
+          example: AU00000
+        method:
+          type: string
+          description: Current Connector method
+          example: web
+        stage:
+          type: string
+          description: Current Connector stage
+          example: beta
+        status:
+          $ref: '#/components/schemas/FeatureCondition'
+        institution:
+          $ref: '#/components/schemas/ConnectorInstitutionResource'
+        scopes:
+          type: array
+          description: Connector scopes array
+          items:
+            type: string
+        authorization:
+          $ref: '#/components/schemas/ConnectorAuthorization'
+        stats:
+          $ref: '#/components/schemas/InstitutionPerformanceStats'
+        links:
+          $ref: '#/components/schemas/ResourceLinks'
       description: Connector contains connector data.
     ConnectorAuthorization:
       required:
@@ -1414,6 +1414,7 @@ components:
         cdrFAQ:
           type: string
           description: A link for Data Holder (where available) to a page explaining CDR data sharing process.
+          example: https://example.com/banking/help-support/open-banking.html
         logo:
           $ref: '#/components/schemas/InstitutionLogoResource'
         name:
@@ -1593,7 +1594,7 @@ components:
         method:
           type: string
           description: A string that uniquely identifies the user connections either it is web or openbanking
-          example: 'web'
+          example: 'open-banking'
         createdDate:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
