@@ -44,17 +44,16 @@ jobs:
           rdme: openapi ./identity.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.IDENTITY_API_DEFINITION_ID }}
 
       # Run GitHub Action to sync OpenAPI file at ./reports.yml
-      - name: Checking Reports
+      - name: Checking REPORTING (INSIGHTS)
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
           rdme: openapi ./reports.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.REPORTS_API_DEFINITION_ID }}
-
-      # Run GitHub Action to sync OpenAPI file at ./affordability.yml
-      - name: Checking Affordability
-        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+      
+      # Run GitHub Action to sync OpenAPI file at ./webhooks.yml
+      - name: Checking Webhooks
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
-          rdme: openapi ./affordability.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.AFFORDABILITY_API_DEFINITION_ID }}
+          rdme: openapi ./webhooks.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.WEBHOOKS_API_DEFINITION_ID }}
 
       # Run GitHub Action to sync OpenAPI file at ./enrich.yml
       - name: Checking Enrich
@@ -62,19 +61,20 @@ jobs:
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
           rdme: openapi ./enrich.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ENRICH_API_DEFINITION_ID }}
-
-      # Run GitHub Action to sync OpenAPI file at ./payments.yml
-      # - name: Checking Payments
-      #   uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
-      #   with:
-      #     rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
-
-      # Run GitHub Action to sync OpenAPI file at ./webhooks.yml
-      - name: Checking Webhooks
+      
+      # Run GitHub Action to sync OpenAPI file at ./affordability.yml
+      - name: Checking Affordability
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
-          rdme: openapi ./webhooks.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.WEBHOOKS_API_DEFINITION_ID }}
+          rdme: openapi ./affordability.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.AFFORDABILITY_API_DEFINITION_ID }} 
 
+      # Run GitHub Action to sync OpenAPI file at ./payments.yml
+      - name: Checking Payments
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
+        with:
+          rdme: openapi ./payments.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.PAYMENTS_API_DEFINITION_ID }}
+      
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@70cd7be8e40a46e8b0eced40b0de447bdb42f68e # v1.26.0

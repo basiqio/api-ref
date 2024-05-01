@@ -4,7 +4,7 @@
 </p>
 
 
-[![Deploy Dev](https://github.com/basiqio/api-ref/actions/workflows/syncdev.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/syncdev.yml) [![Deploy Prod](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml)
+[![Deploy Dev](https://github.com/basiqio/api-ref/actions/workflows/CI-dev-pipeline.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/CI-dev-pipeline.yml) [![Deploy Prod](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml)
 
 # Features
 
