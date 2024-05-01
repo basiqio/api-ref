@@ -1,21 +1,23 @@
 openapi: 3.0.1
 info:
   description: Webhooks
-  version: "2.4.0"
+  version: "2.4.1"
   title: Webhooks
+  termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
+  license:
+    name: Commercial
+    url: https://basiq.io
 servers:
   - description: Basiq Webhooks
-    url: 'https://au-api.basiq.io/'
+    url: https://au-api.basiq.io
 tags:
   - name: Webhooks
-    description: Application (Core) APIs - The partners applications call these
+    description: Basiq Webhooks
 paths:
-  '/notifications/webhooks':
+  /notifications/webhooks:
     post:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Create a webhook
       operationId: addWebhook
       requestBody:
@@ -38,8 +40,8 @@ paths:
                     status: active
                     secret: rfiuheo43934
                     subscribedEvents:
-                      - payrequest.completed
-                      - user.created
+                       - payrequest.successful
+                       - user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
         '400':
@@ -67,6 +69,16 @@ paths:
                       code: 'invalid-content'
                       title: 'Invalid request content'
                       detail: 'Posted subscribedEvents contains unsupported event types.'
+                Event already subscribed to:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'event-already-subscribed'
+                      title: 'Event already subscribed'
+                      detail: 'Posted subscribedEvents contains events that are already subscribed to for this application.'
+
         '401':
           description: 'Unauthorized'
           content:
@@ -152,8 +164,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: List all webhooks
       operationId: listAppWebhooks
       responses:
@@ -170,19 +180,18 @@ paths:
                     size: 1
                     count: 1
                     data:
-                    - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       name: 'My General Webhook'
                       description: 'Webhook that catches all my events'
                       url: https://piper.com/basiq-messages/
                       status: active
                       subscribedEvents:
-                        - payrequest.completed
+                        - payrequest.successful
                         - user.created
                       links:
                         self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks'
-                      next:
         '401':
           description: 'Unauthorized'
           content:
@@ -249,12 +258,10 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/webhooks/{webhookId}':
+  /notifications/webhooks/{webhookId}:
     post:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Update a webhook
       operationId: updateWebhook
       parameters:
@@ -276,7 +283,7 @@ paths:
               examples:
                 Success:
                   value:
-                    type: 'webhook'
+                    type: Webhook
                     id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                     name: 'My General Webhook'
                     description: 'Webhook that catches all my events'
@@ -284,7 +291,7 @@ paths:
                     status: active
                     secret: rfiuheo43934
                     subscribedEvents:
-                      - payrequest.completed
+                      - payrequest.successful
                       - user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
@@ -324,6 +331,15 @@ paths:
                       code: 'invalid-content'
                       title: 'Invalid request content'
                       detail: 'Posted subscribedEvents contains unsupported event types.'
+                Event already subscribed to:
+                  value:
+                    type: 'list'
+                    correlationId: '9b27dbd7-d397-428a-9eff-5048d2bed5eb'
+                    data:
+                    - type: 'error'
+                      code: 'event-already-subscribed'
+                      title: 'Event already subscribed'
+                      detail: 'Posted subscribedEvents contains events that are already subscribed to for this application.'
         '401':
           description: 'Unauthorized'
           content:
@@ -425,8 +441,6 @@ paths:
     delete:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Delete a webhook
       operationId: deleteWebhook
       parameters:
@@ -540,8 +554,6 @@ paths:
     get:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Retrieve a webhook
       operationId: getWebhook
       parameters:
@@ -568,7 +580,7 @@ paths:
                     url: https://piper.com/basiq-messages/
                     status: active
                     subscribedEvents:
-                      - payrequest.completed
+                      - payrequest.successful
                       - user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
@@ -672,12 +684,10 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/webhooks/{webhookId}/messages':
+  /notifications/webhooks/{webhookId}/messages:
     get:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: List all messages
       operationId: listMessages
       parameters:
@@ -720,7 +730,7 @@ paths:
                     data:
                     - id: 11a85f64-5717-4562-b3fc-2c963f66af11
                       payload:
-                       eventTypeId: payrequest.completed
+                       eventTypeId: payrequest.successful
                        eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
                        links:
                         event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
@@ -735,15 +745,11 @@ paths:
                         links:
                          event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
                          eventEntity: https://au-api.basiq.io/users/12a85f64-5717-4562-b3fc-2c963f66af12
-#                      attempts:
-#                        - timestamp: '2019-08-24T14:15:22Z'
-#                          status: 'Success'
                       links:
                         self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
                         webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
                     links:
                       self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/
-                      next:
         '400':
           description: 'Bad Request'
           content:
@@ -844,12 +850,10 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/webhooks/{webhookId}/messages/{messageId}':
+  /notifications/webhooks/{webhookId}/messages/{messageId}:
     get:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Retrieve a message
       operationId: getWebhookMessage
       parameters:
@@ -878,7 +882,7 @@ paths:
                   value:
                     id: 11a85f64-5717-4562-b3fc-2c963f66af11
                     payload:
-                     eventTypeId: payrequest.completed
+                     eventTypeId: payrequest.successful
                      eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
                      links:
                       event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
@@ -999,12 +1003,10 @@ paths:
                       code: 'service-unavailable'
                       title: 'Service Unavailable'
                       detail: 'Service Unavailable. Try again later.'
-  '/notifications/messages/test':
+  /notifications/messages/test:
     post:
       tags:
         - Webhooks
-      description: >
-        ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
       summary: Post a test message
       operationId: testMessage
       requestBody:
@@ -1118,62 +1120,35 @@ components:
       properties:
         type:
           type: string
+          description: Always "list".
         correlationId:
           type: string
+          description: Unique identifier for this particular occurrence of the problem.
         data:
           type: array
+          description: Error data.
           items:
             type: object
             properties:
               type:
                 type: string
+                description: Type of the response, always "error".
               code:
                 type: string
+                description: Application-specific error code, expressed as a string value.
               title:
                 type: string
+                description: Title of the error.
               detail:
                 type: string
+                description: Human-readable explanation specific to this occurrence of the problem.
               source:
                 type: object
+                description: An object containing references to the source of the error.
                 properties:
                   parameter:
                     type: string
-    EventTypes:
-      properties:
-        type:
-          type: string
-        count:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          description: one or more events that the webhook would send messages for.
-          allOf:
-          - $ref: '#/components/schemas/EventType'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-            next:
-              type: string
-    EventType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Identifer of the event type
-          example: user.created
-        description:
-          type: string
-          description: a brief description of the event type
-          example: when a user is created
-        links:
-          type: object
-          properties:
-            self:
-              type: string
+                    description: String indicating which URI query parameter caused the error.
     Webhooks:
       properties:
         type:
@@ -1183,8 +1158,8 @@ components:
         size:
           type: integer
         data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
+          items: 
+            $ref: '#/components/schemas/Webhook'
         links:
           type: object
           properties:
@@ -1202,41 +1177,44 @@ components:
         id:
           type: string
           format: uuid
-          description: unique identifer in the form of uuid for the webhook
+          description: unique identifer in the form of uuid for the webhook.
+        type:
+          type: string
+          example: Webhook
         name:
           type: string
-          description: name to describe the webhook
+          description: name to describe the webhook.
         description:
           type: string
-          description: detailed description of the webhook
+          description: detailed description of the webhook.
         url:
           type: string
-          description: url to send webhooks to
+          description: url to send webhooks to.
         status:
           type: string
-          description: status of the webhook
+          description: status of the webhook.
           enum:
             - active
             - pending-approval
         secret:
           type: string
-          description: secret for signing the messages
+          description: secret for signing the messages.
         subscribedEvents:
-          type: object
+          type: array
           description: one or more events that the webhook would send messages for.
-          required:
-           - values
           properties:
-            values:
+            subscribedEvents:
               type: array
-              description: name of the event to monitor in the form of `noun.verb`
+              description: name of the event to monitor in the form of `noun.verb`.
               items:
                 type: string
-                example: 'payrequest.completed'
+                example: 'payrequest.successful'
         links:
           type: object
           properties:
             self:
+              type: string
+            next: 
               type: string
     Messages:
       properties:
@@ -1247,8 +1225,9 @@ components:
         size:
           type: integer
         data:
-          allOf:
-          - $ref: '#/components/schemas/Message'
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
         links:
           type: object
           properties:
@@ -1262,23 +1241,49 @@ components:
         id:
           type: string
           format: uuid
-          description: unique identifer in the form of uuid for the webhook message
+          description: unique identifer in the form of uuid for the webhook message.
         webhookId:
           type: string
           format: uuid
-          description: unique identifer in the form of uuid for the webhook
+          description: unique identifer in the form of uuid for the webhook.
         event:
           type: string
-        eventType:
+        eventTypeId:
           type: string
         eventId:
           type: string
+        payload:
+          type: object
+          properties: 
+            eventTypeId: 
+              type: string
+            eventId:
+              type: string
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                eventEntity:
+                  type: string
+                event:
+                  type: string
+                webhook:
+                  type: string
+                next: 
+                  type: string
+        attempts: 
+          type: array
         links:
           type: object
           properties:
             self:
               type: string
             event:
+              type: string
+            webhook:
+              type: string
+            next: 
               type: string
   requestBodies:
     Webhook:
@@ -1288,38 +1293,30 @@ components:
             type: object
             required:
               - url
-              - subscribedEvents
             properties:
               name:
                 type: string
-                description: name to describe the webhook
+                description: name to describe the webhook.
               description:
                 type: string
-                description: detailed description of the webhook
+                description: detailed description of the webhook.
               url:
                 type: string
-                description: url to send webhooks to
+                description: url to send webhooks to.
               subscribedEvents:
-                type: object
+                type: array
                 description: one or more events that the webhook would send messages for.
-                required:
-                 - values
-                properties:
-                  values:
-                    type: array
-                    description: name of the event to monitor in the form of `noun.verb`
-                    items:
-                      type: string
-                      example: 'payrequest.completed'
+                items:
+                  type: string
+                  example: 'payrequest.successful'
           example:
             name: 'My General Webhook'
             description: 'Webhook to catch all events'
             url: https://piper.com/basiq-messages/
             subscribedEvents:
-            - payrequest.completed
+            - payrequest.successful
             - user.created
-      description: Webhook request object
-      required: true
+      description: Webhook request object.
     TestMessage:
       content:
         application/json:
@@ -1327,15 +1324,14 @@ components:
             type: object
             required:
               - eventTypeId
-              - subscribedEvents
             properties:
               eventTypeId:
                 type: string
-                description: The event type Id to be triggered. refer to /events/types/ for full list
+                description: The event type Id to be triggered. refer to /events/types/ for full list.
                 example: 'user.created'
               Text:
                 type: string
-                description: Text field to be supplied and replayed back
+                description: Text field to be supplied and replayed back.
           example:
             eventTypeId: 'user.created'
             Text: 'My test message'

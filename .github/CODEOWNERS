@@ -1,1 +1,4 @@
-@adam-atawneh @kambasiq @basiq-brad
+# This is a CODEOWNERS file
+# It defines individuals or teams that are responsible for code in this repository.
+
+*       @adam-atawneh @kambasiq @basiq-brad
