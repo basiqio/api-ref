@@ -4,18 +4,18 @@
 </p>
 
 
-[![Deploy Dev](https://github.com/basiqio/api-ref/actions/workflows/syncdev.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/syncdev.yml) [![Deploy Prod](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml)
+[![Deploy Dev](https://github.com/basiqio/api-ref/actions/workflows/CI-dev-pipeline.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/CI-dev-pipeline.yml) [![Deploy Prod](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml/badge.svg)](https://github.com/basiqio/api-ref/actions/workflows/CI-pipeline.yml)
 
 # Features
 
 -   Core
 -   Data
--   Webhooks
--   Payments
--   Reporting
--   Affordability
--   Enrich
 -   Identity
+-   Reporting(Insights)
+-   Webhooks
+-   Enrich
+-   Affordability
+-   Payments
 
 ### Changelog
 Please check the [changelog](https://api.basiq.io/changelog) for more details on API changes.
