@@ -5,6 +5,13 @@ on:
   push:
     branches:
       - DX-dev
+ 
+  workflow_dispatch:
+    inputs:
+      deploy_tag:
+        description: "Input tag version to deploy"
+        required: true
+        default: ""
 
 jobs:
   DeployDev:
