@@ -218,7 +218,7 @@ paths:
           required: true
           description: The ID of the generated report
       responses:
-        '200':
+        200:
           description: Success
           content:
             application/pdf:
@@ -6790,12 +6790,19 @@ components:
                 example: fromDate
               value:
                 oneOf:
-                - type: string
-                - type: array
-                  items:
-                    type: string
+                  - type: string  # Single date
+                    title: Object
                     format: date
-                    example: '2021-12-01'
+                    example: '2022-01-01'
+                    description: A single string in YYYY-MM-DD format, used when 'name' is 'fromDate' or 'toDate', 'accounts', or 'users'.
+                  - type: array   # Array of dates
+                    title: Array
+                    items:
+                      type: string
+                      format: date
+                    example: ['2021-12-01', '2022-01-01']
+                    description: The name of the filter, which determines the type of values expected. Can be 'fromDate', 'toDate', 'accounts', or 'users'.
+
     job:
       properties:
         type:
