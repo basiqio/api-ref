@@ -6573,14 +6573,24 @@ components:
               title:
                 type: string
                 description: Title of the error
-                example: Connection source not supported.
+                enum: 
+                  - |
+                    Connection source not supported.
+                  - |
+                    Invalid users filter. Maximum 5 users allowed.
+                  - |
+                    The following accounts are duplicated: 
+                    ['121', '332'], ['232', '949', '433'].
+                  - |
+                    Following user ID(s)/account ID(s) have been entered more than once: 
+                    ["123", "123"].
               type:
                 type: string
                 description: Type of the response, always "error"
                 example: error
               detail:
                 type: string
-                example: Connection source has to be web or open banking.
+                description: Connection source has to be web or open banking.
     collection:
       properties:
         type:
