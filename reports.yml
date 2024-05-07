@@ -218,7 +218,7 @@ paths:
           required: true
           description: The ID of the generated report
       responses:
-        '200':
+        200:
           description: Success
           content:
             application/pdf:
@@ -6573,14 +6573,24 @@ components:
               title:
                 type: string
                 description: Title of the error
-                example: Connection source not supported.
+                enum: 
+                  - |
+                    Connection source not supported.
+                  - |
+                    Invalid users filter. Maximum 5 users allowed.
+                  - |
+                    The following accounts are duplicated: 
+                    ['121', '332'], ['232', '949', '433'].
+                  - |
+                    Following user ID(s)/account ID(s) have been entered more than once: 
+                    ["123", "123"].
               type:
                 type: string
                 description: Type of the response, always "error"
                 example: error
               detail:
                 type: string
-                example: Connection source has to be web or open banking.
+                description: Connection source has to be web or open banking.
     collection:
       properties:
         type:
@@ -6790,12 +6800,19 @@ components:
                 example: fromDate
               value:
                 oneOf:
-                - type: string
-                - type: array
-                  items:
-                    type: string
+                  - type: string  # Single date
+                    title: Object
                     format: date
-                    example: '2021-12-01'
+                    example: '2022-01-01'
+                    description: A single string in YYYY-MM-DD format, used when 'name' is 'fromDate' or 'toDate', 'accounts', or 'users'.
+                  - type: array   # Array of dates
+                    title: Array
+                    items:
+                      type: string
+                      format: date
+                    example: ['2021-12-01', '2022-01-01']
+                    description: The name of the filter, which determines the type of values expected. Can be 'fromDate', 'toDate', 'accounts', or 'users'.
+
     job:
       properties:
         type:
