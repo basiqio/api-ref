@@ -2217,9 +2217,8 @@ components:
             - OWNER_OCCUPIED
           example: INVESTMENT
         tiers:
-          type: object
-          $ref: "#/components/schemas/feesAccountMetadepositratestiers"
-          description: Rate tiers applicable for this rate.
+          items:
+            $ref: "#/components/schemas/feesAccountMetadepositratestiers"
         additionalValue:
           type: string
           description: Generic field containing additional information relevant to the depositRateType specified. Whether mandatory or not is dependent on the value of depositRateType.
@@ -2261,9 +2260,8 @@ components:
             The period after which the calculated amount(s) are 'applied' (i.e. debited or credited) to the account.
           example: "P1M"
         tiers:
-          type: object
-          $ref: "#/components/schemas/feesAccountMetadepositratestiers"
-          description: Rate tiers applicable for this rate. 
+          items:
+            $ref: "#/components/schemas/feesAccountMetadepositratestiers"
         additionalValue:
           type: string 
           description: Generic field containing additional information relevant to the lendingRateType specified. Whether mandatory or not is dependent on the value of lendingRateType. 
@@ -2305,7 +2303,6 @@ components:
             - WHOLE_BALANCE
         applicabilityConditions: 
           $ref: "#/components/schemas/feesAccountMetadepositratestiersRateCondition"
-          description: Defines a condition for the applicability of a tiered rate. 
         additionalInfo:
           type: string
           description: Display text providing more information on the rate tier.
