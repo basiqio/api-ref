@@ -2374,8 +2374,8 @@ components:
           type: string
           description: Link to a web page with more information on this fee.
         discounts:
-          $ref: "#/components/schemas/feesdiscountMetadata"
-          description: An optional list of discounts to this fee that may be available.
+          items:
+            $ref: "#/components/schemas/feesdiscountMetadata"
     feesdiscountMetadata:
       required: 
         - discountType
