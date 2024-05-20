@@ -2847,6 +2847,25 @@ components:
             the institution. Note that not all transactions provide this value (varies
             by institution) e.g. "2017-11-10T00:00:00Z"
           example: null
+        paymentDetails:
+          type: object
+          properties:
+            bpay:
+              type: object
+              properties:
+                billerCode:
+                  type: string
+                  description: BPAY Biller Code for the transaction.
+                billerName:
+                  type: string
+                  description: Name of the BPAY biller for the transaction.
+                crn:
+                  type: string
+                  description: CRN for the transaction.
+            apcaNumber:
+              type: string
+              description: >
+                6 Digit APCA number for the initiating institution. The field is fixed-width and padded with leading zeros if applicable.
         postDate:
           type: string
           description: Date the transaction was posted as provided by the institution
