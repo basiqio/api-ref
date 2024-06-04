@@ -883,11 +883,15 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            userId for the specific user you wish to retrieve events for. e.g
-            user.id.eq(userId)
-            Entity can be filtered with type for events for. e.g
-            event.entity.eq(entity), event.type.eq(type)
+          description: |
+            Retrieves the details of all events associated with a user.
+    
+            **Note:** This endpoint only returns events that happened in the last 7 days.
+            
+            **Filtering Options:**
+            - `userId`: User ID for the specific user you wish to retrieve events for. e.g., `user.id.eq(userId)`
+            - `entity`: Filter events by entity type. e.g., `event.entity.eq(entity)`
+            - `type`: Filter events by event type. e.g., `event.type.eq(type)`
           schema:
             type: string
             example: user.id.eq(userId) OR event.entity.eq(entity), event.type.eq(type)
@@ -1465,9 +1469,10 @@ paths:
       tags:
         - Jobs
       summary: Get user jobs
-      description: >-
-        Retrieves the details of all existing and previous jobs associated with
-        a user.
+      description: |
+        Retrieves the details of all existing and previous jobs associated with a user.
+        
+        **Note:** This endpoint only returns jobs that are less than 7 days old.
       operationId: getUserJobs
       parameters:
         - name: userId
