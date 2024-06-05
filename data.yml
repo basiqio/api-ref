@@ -1623,6 +1623,7 @@ components:
             - active
             - pending
             - invalid
+            - pre-init
         links:
           $ref: '#/components/schemas/GetConnectionLinks'
       description: Object containing details for connection post.
@@ -1748,6 +1749,7 @@ components:
             - active
             - pending
             - invalid
+            - pre-init
         createdDate:
           type: string
           description: Created date of the connection, available only for SERVER_SCOPE.
