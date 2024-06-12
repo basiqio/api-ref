@@ -1490,11 +1490,11 @@ components:
           example: https://example.com/banking/help-support/open-banking.html
         abn:
           type: string
-          description: ABN for the connector ( only available in openbanking ).
+          description: ABN for the Data Holder ( only available in openbanking ).
           example: "87087651509"
         acn:
           type: string
-          description: ACN for the connector ( only available in openbanking ).
+          description: ACN for the Data Holder ( only available in openbanking ).
           example: "087651509"
         logo:
           $ref: '#/components/schemas/InstitutionLogoResource'
