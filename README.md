@@ -15,7 +15,6 @@
 -   Webhooks
 -   Enrich
 -   Affordability
--   Payments
 
 ### Changelog
 Please check the [changelog](https://api.basiq.io/changelog) for more details on API changes.
