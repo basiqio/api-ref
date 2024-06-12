@@ -1105,7 +1105,8 @@ components:
           $ref: '#/components/schemas/ConnectionAccountLinks'
     ResponseFormat:
       type: string
-      description: ResponseFormat identifies response data format
+      description: Type identifies response data format
+      example: list
     Colors:
       type: object
       properties:
@@ -1212,12 +1213,19 @@ components:
       description: User physical addresses holding the connection.
     ConnectorsList:
       required:
+        - type
+        - totalCount
         - data
         - links
-        - totalCount
-        - type
       type: object
       properties:
+        type:
+          $ref: '#/components/schemas/ResponseFormat'
+        totalCount:
+          type: integer
+          description: TotalCount contains total count of connectors
+          format: int64
+          example: 328
         data:
           type: array
           description: Data contains list of connectors
@@ -1225,13 +1233,8 @@ components:
             $ref: '#/components/schemas/Connector'
         links:
           $ref: '#/components/schemas/ResourceLinks'
-        totalCount:
-          type: integer
-          description: TotalCount contains total count of connectors
-          format: int64
-          example: 1
-        type:
-          $ref: '#/components/schemas/ResponseFormat'
+        
+        
       description: ConnectorsList contains list of connectors data.
     ResourceLinks:
       required:
@@ -1244,15 +1247,15 @@ components:
       description: ResourceLinks contains resource links
     Connector:
       required:
-        - authorization
+        - type
         - id
         - institution
         - method
-        - scopes
         - stage
         - stats
         - status
-        - type
+        - scopes
+        - authorization
       type: object
       properties:
         type:
@@ -1274,6 +1277,11 @@ components:
           type: string
           description: Current Connector method
           example: web
+          enum:
+          - web
+          - openbanking
+          - csv
+          - pdf
         stage:
           type: string
           description: Current Connector stage
@@ -1287,6 +1295,7 @@ components:
           description: Connector scopes array
           items:
             type: string
+            example: customer.person.basic
         authorization:
           $ref: '#/components/schemas/ConnectorAuthorization'
         stats:
@@ -1299,8 +1308,6 @@ components:
         - type
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/ConnectorAuthorizationMeta'
         type:
           type: string
           description: >-
@@ -1328,6 +1335,8 @@ components:
             - other
             - user-mfa
             - user-mfa-intermittent
+        meta:
+          $ref: '#/components/schemas/ConnectorAuthorizationMeta'
     FeatureCondition:
       type: string
       description: FeatureCondition type that describes an feature status for institution
@@ -1399,46 +1408,14 @@ components:
           example: Security code
     ConnectorInstitutionResource:
       required:
-        - country
-        - logo
+        - type
         - name
         - shortName
         - tier
-        - type
+        - country
+        - logo
       type: object
       properties:
-        country:
-          type: string
-          description: Institution country name
-          example: Australia
-        cdrFAQ:
-          type: string
-          description: A link for Data Holder (where available) to a page explaining CDR data sharing process.
-          example: https://example.com/banking/help-support/open-banking.html
-        logo:
-          $ref: '#/components/schemas/InstitutionLogoResource'
-        name:
-          type: string
-          description: Institution name
-          example: Hooli Bank
-        shortName:
-          type: string
-          description: Institution short name
-          example: Hooli
-        tier:
-          type: string
-          description: |-
-            Institution tier identifier
-            1 TierOne  TierOne tier identifier for tier1 institution
-            2 TierTwo  TierTwo tier identifier for tier2 institution
-            3 TierThree  TierThree tier identifier for tier3 institution
-            4 TierFour  TierFour tier identifier for tier4 institution
-          example: '1'
-          enum:
-            - '1'
-            - '2'
-            - '3'
-            - '4'
         type:
           type: string
           description: >-
@@ -1480,6 +1457,48 @@ components:
             - Superannuation
             - Building Society
             - Government
+        name:
+          type: string
+          description: Institution name
+          example: Hooli Bank
+        shortName:
+          type: string
+          description: Institution short name
+          example: Hooli
+        tier:
+          type: string
+          description: |-
+            Institution tier identifier
+            1 TierOne  TierOne tier identifier for tier1 institution
+            2 TierTwo  TierTwo tier identifier for tier2 institution
+            3 TierThree  TierThree tier identifier for tier3 institution
+            4 TierFour  TierFour tier identifier for tier4 institution
+          example: '1'
+          enum:
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+        country:
+          type: string
+          description: Institution country name
+          example: Australia
+        cdrFAQ:
+          type: string
+          description: |
+            A link for Data Holder (where available) to a page explaining CDR data sharing process.
+          example: https://example.com/banking/help-support/open-banking.html
+        abn:
+          type: string
+          description: ABN for the connector ( only available in openbanking ).
+          example: "87087651509"
+        acn:
+          type: string
+          description: ACN for the connector ( only available in openbanking ).
+          example: "087651509"
+        logo:
+          $ref: '#/components/schemas/InstitutionLogoResource'
+        
       description: ConnectorInstitutionResource connector Institution  resource type
     UnauthorizedError:
       required:
