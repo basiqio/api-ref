@@ -30,6 +30,33 @@ paths:
         All created reports, will store a copy of the data as a snapshot - this
         ensures that you have access to the raw data that was used to create the
         report.
+
+        This API allows generating reports with various filters. The `filters` field in the report request enables you to specify parameters for customizing the report content.
+    
+        ### Filters 
+        
+        Filters are used to narrow down the data included in the report. The available filters are:
+    
+        - `fromDate`: Specifies the start date for the report data (format: YYYY-MM-DD).
+        
+        - `toDate`: Specifies the end date for the report data (format: YYYY-MM-DD).
+        
+        - `accounts`: List of account IDs to include in the report.
+        
+        - `users`: List of user IDs to include in the report.
+        
+        - `includeMetrics`: List of metric codes to include in the report. Supported values are specific to the report type. Rules for `includeMetrics`:
+          - If the array is empty (`"value": []`), all metrics will be shown.
+          - If no filter is provided, all metrics will be shown.
+          - If an array of codes is provided, only these specific metrics will be shown.
+          - If the value is `null`, no metrics will be shown.
+        
+        - `includeGroups`: List of group codes to include in the report. Supported values are specific to the report type. Rules for `includeGroups`:
+          - If the array is empty (`"value": []`), all groups will be shown.
+          - If no filter is provided, all groups will be shown.
+          - If an array of codes is provided, only these specific groups will be shown.
+          - If the value is `null`, no groups will be shown.
+      
       requestBody:
         description: >-
           Include the details of the report you would like to create along with
@@ -57,6 +84,16 @@ paths:
                     - name: users
                       value:
                         - '272af9fa-0f4a-44dc-bf88-a63bec2d0662'
+                    - name: includeMetrics
+                      value: 
+                        - 'ME002'
+                        - 'ME003'
+                        - 'ME004'
+                    - name: includeGroups
+                      value: 
+                        - 'INC-001'
+                        - 'INC-002'
+                        - 'EXP-001'   
               STATEMENT:
                 summary: For Statement type
                 value:
@@ -6749,18 +6786,29 @@ components:
                 example: fromDate
               value:
                 oneOf:
-                  - type: string  # Single date
+                  - type: string  # Single date or single value
                     title: Object
                     format: date
                     example: '2022-01-01'
                     description: A single string in YYYY-MM-DD format, used when 'name' is 'fromDate' or 'toDate', 'accounts', or 'users'.
-                  - type: array   # Array of dates
+                  - type: array   # Array of dates or values
                     title: Array
                     items:
                       type: string
                       format: date
                     example: ['2021-12-01', '2022-01-01']
-                    description: The name of the filter, which determines the type of values expected. Can be 'fromDate', 'toDate', 'accounts', or 'users'.
+                    description: The name of the filter, which determines the type of values expected. Can be 'fromDate', 'toDate', 'accounts', 'users', 'includeMetrics', or 'includeGroups'.
+                  - type: array
+                    title: Array
+                    items:
+                      type: string
+                    example: ['ME002', 'ME003', 'ME004']
+                    description: Array of metrics or groups to be included in the report. Can be 'includeMetrics' or 'includeGroups'.
+                  - type: string
+                    title: Object
+                    example: null
+                    description: Use 'null' to indicate no metrics/groups should be shown.
+
 
     job:
       properties:
