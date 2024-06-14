@@ -1498,7 +1498,7 @@ components:
           example: https://www.example.com.au/CDRpolicy
         cdrProviderNumber:
           type: string
-          description: A unique identifier assigned to the CDR institution.
+          description: A unique identifier assigned to the CDR institution by the CDR program.
           example: DHBNK000111
         abn:
           type: string
