@@ -1488,14 +1488,26 @@ components:
           description: |
             A link for Data Holder (where available) to a page explaining CDR data sharing process.
           example: https://example.com/banking/help-support/open-banking.html
+        cdrEmail:
+          type: string
+          description: The email address for CDR-related inquiries.
+          example: openbanking.dataholdersupport@example.com.au 
+        cdrPolicy:
+          type: string
+          description: The URL to the CDR policy document detailing the institution's data practices and consumer rights.
+          example: https://www.example.com.au/CDRpolicy
+        cdrProviderNumber:
+          type: string
+          description: A unique identifier assigned to the CDR institution by the CDR program.
+          example: DHBNK000111
         abn:
           type: string
           description: ABN for the Data Holder ( only available in openbanking ).
-          example: "87087651509"
+          example: "87087651111"
         acn:
           type: string
           description: ACN for the Data Holder ( only available in openbanking ).
-          example: "087651509"
+          example: "087651111"
         logo:
           $ref: '#/components/schemas/InstitutionLogoResource'
         
