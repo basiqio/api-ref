@@ -33,6 +33,101 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentitiesGetResponseResource'
+              examples:
+                person:
+                  summary: Person Identity Response
+                  value:
+                    type: "list"
+                    count: 1
+                    data:
+                      - type: "identity"
+                        id: "q5c62a43-9725-4w4e-bdte-99571aa8c5cb"
+                        created: "2024-06-19T10:38:31.152930692Z"
+                        updated: "2024-06-19T10:38:31.152930692Z"
+                        source: "openbanking"
+                        connectionID: "f8c13t7a-ta01-7ec5-b89b-7b96a0ac8305"
+                        institutionID: "AU00401"
+                        fullName: "John Doe"
+                        firstName: "John"
+                        lastName: "Doe"
+                        middleName: "James"
+                        title: "Mr."
+                        DOB: "1985-05-25"
+                        occupationCode: "12345"
+                        occupationCodeVersion: "V1.2"
+                        phoneNumbers:
+                          - "+6411222333"
+                        emailAddresses:
+                          - "john.doe@example.com"
+                        physicalAddresses:
+                          - type: "home"
+                            addressLine1: "OAK STREET NSW 2099"
+                            postcode: "2099"
+                            city: "Northern Beaches Council"
+                            state: "New South Wales"
+                            country: "Australia"
+                            countryCode: "AU"
+                            formattedAddress: "OAK STREET NSW 2099, NSW 2099, Australia"
+                        organisation:
+                          agentFirstName: ""
+                          agentLastName: ""
+                          agentRole: ""
+                          businessName: ""
+                          legalName: ""
+                          shortName: ""
+                          abn: ""
+                          acn: ""
+                          isACNCRegistered: false
+                          industryCode: ""
+                          industryCodeVersion: ""
+                          organisationType: ""
+                          registeredCountry: ""
+                        links:
+                          self: "https://au-api.basiq.io/users/ea0acf2b-b816-4255-9c9c-72207a0bf836/identities/q5c62a43-9725-4w4e-bdte-99571aa8c5cb"
+                          job: "https://au-api.basiq.io/users/ea0acf2b-b816-4255-9c9c-72207a0bf836/connection/f8c13t7a-ta01-7ec5-b89b-7b96a0ac8305"
+                organisation:
+                  summary: Organisation Identity Response
+                  value:
+                    type: "list"
+                    count: 1
+                    data:
+                      - type: "identity"
+                        id: "1de2bc64-a067-4r34-9he4-14986693fc03"
+                        created: "2024-06-19T10:38:31.152930692Z"
+                        updated: "2024-06-19T10:38:31.152930692Z"
+                        source: "openbanking"
+                        connectionID: "8d02bc04-a067-4d34-9fe4-14926683fa03"
+                        institutionID: "AU00401"
+                        fullName: ""
+                        firstName: ""
+                        lastName: ""
+                        middleName: ""
+                        title: ""
+                        DOB: ""
+                        occupationCode: ""
+                        occupationCodeVersion: ""
+                        phoneNumbers: []
+                        emailAddresses: []
+                        physicalAddresses: []
+                        organisation:
+                          agentFirstName: "Jane"
+                          agentLastName: "Smith"
+                          agentRole: "Nominated Representative"
+                          businessName: "ABC Pty Ltd"
+                          legalName: "ABC Pty Limited"
+                          shortName: "ABC"
+                          abn: "123456789"
+                          acn: "987654321"
+                          isACNCRegistered: true
+                          industryCode: "67890"
+                          industryCodeVersion: "V2.0"
+                          organisationType: "COMPANY"
+                          registeredCountry: "AUS"
+                        links:
+                          self: "https://au-api.basiq.io/users/ta0ycf2u-b516-4235-9f9c-71207a0vf836/identities/1de2bc64-a067-4r34-9he4-14986693fc03"
+                          job: "https://au-api.basiq.io/users/ta0ycf2u-b516-4235-9f9c-71207a0vf836/connection/8d02bc04-a067-4d34-9fe4-14926683fa03"
+
+                
         400:
           description: Returns error that server cannot or will not process the request
             due to something that is perceived to be a client error.
@@ -285,7 +380,7 @@ components:
           items:
             type: string
             example: "+6411222333"
-        emails:
+        emailAddresses:
           type: array
           description: List of email addresses of the identity owner.
           items:
