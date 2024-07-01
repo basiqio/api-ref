@@ -1149,8 +1149,8 @@ paths:
                 Success:
                   value:
                     type: list
-                    size: 24
-                    count: 24
+                    size: 11
+                    count: 11
                     data: 
                       - type: eventType
                         id: connection.created
@@ -1192,71 +1192,6 @@ paths:
                         description: when a consent is about to expire
                         links:
                           self: https://au-api.basiq.io/events/types/consent.warning
-                      - type: eventType
-                        id: payment-agreement-instruction.failed
-                        description: when an agreement instruction is failed
-                        links:
-                          self: https://au-api.basiq.io/events/types/payment-agreement-instruction.failed
-                      - type: eventType
-                        id: payment-agreement-instruction.successful
-                        description: when an agreement instruction is successful
-                        links:
-                          self: https://au-api.basiq.io/events/types/payment-agreement-instruction.successful
-                      - type: eventType
-                        id: payment-agreement.active
-                        description: when an agreement is active
-                        links:
-                          self: https://au-api.basiq.io/events/types/payment-agreement.active
-                      - type: eventType
-                        id: payment-agreement.cancelled
-                        description: when an agreement is cancelled
-                        links:
-                          self: https://au-api.basiq.io/events/types/payment-agreement.cancelled
-                      - type: eventType
-                        id: payment-agreement.suspended
-                        description: when an agreement is suspended
-                        links:
-                          self: https://au-api.basiq.io/events/types/payment-agreement.suspended
-                      - type: eventType
-                        id: payout.created
-                        description: when a payout is created
-                        links:
-                          self: https://au-api.basiq.io/events/types/payout.created
-                      - type: eventType
-                        id: payout.failed
-                        description: when a payout is failed
-                        links:
-                          self: https://au-api.basiq.io/events/types/payout.failed
-                      - type: eventType
-                        id: payout.in-progress
-                        description: when a payout is in-progress
-                        links:
-                          self: https://au-api.basiq.io/events/types/payout.in-progress
-                      - type: eventType
-                        id: payout.successful
-                        description: when a payout is successful
-                        links:
-                          self: https://au-api.basiq.io/events/types/payout.successful
-                      - type: eventType
-                        id: payrequest.created
-                        description: when a payrequest is created
-                        links:
-                          self: https://au-api.basiq.io/events/types/payrequest.created
-                      - type: eventType
-                        id: payrequest.failed
-                        description: when a payrequest is failed
-                        links:
-                          self: https://au-api.basiq.io/events/types/payrequest.failed
-                      - type: eventType
-                        id: payrequest.in-progress
-                        description: when a payrequest is in-progress
-                        links:
-                          self: https://au-api.basiq.io/events/types/payrequest.in-progress
-                      - type: eventType
-                        id: payrequest.successful
-                        description: when a payrequest is successful
-                        links:
-                          self: https://au-api.basiq.io/events/types/payrequest.successful
                       - type: eventType
                         id: user.created
                         description: when an user is created
