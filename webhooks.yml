@@ -39,9 +39,7 @@ paths:
                     url: https://piper.com/basiq-messages/
                     status: active
                     secret: rfiuheo43934
-                    subscribedEvents:
-                       - payrequest.successful
-                       - user.created
+                    subscribedEvents: user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
         '400':
@@ -185,9 +183,7 @@ paths:
                       description: 'Webhook that catches all my events'
                       url: https://piper.com/basiq-messages/
                       status: active
-                      subscribedEvents:
-                        - payrequest.successful
-                        - user.created
+                      subscribedEvents: user.created
                       links:
                         self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
                     links:
@@ -290,9 +286,7 @@ paths:
                     url: https://piper.com/basiq-messages/
                     status: active
                     secret: rfiuheo43934
-                    subscribedEvents:
-                      - payrequest.successful
-                      - user.created
+                    subscribedEvents: user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
         '400':
@@ -579,9 +573,7 @@ paths:
                     description: 'Webhook that catches all my events'
                     url: https://piper.com/basiq-messages/
                     status: active
-                    subscribedEvents:
-                      - payrequest.successful
-                      - user.created
+                    subscribedEvents: user.created
                     links:
                       self: 'https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6'
         '400':
@@ -728,16 +720,6 @@ paths:
                     size: 2
                     count: 2
                     data:
-                    - id: 11a85f64-5717-4562-b3fc-2c963f66af11
-                      payload:
-                       eventTypeId: payrequest.successful
-                       eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
-                       links:
-                        event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
-                        eventEntity: https://au-api.basiq.io/payrequest/88a85f64-5717-4562-b3fc-2c963f66af88
-                      links:
-                        self: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6/messages/11a85f64-5717-4562-b3fc-2c963f66af11
-                        webhook: https://au-api.basiq.io/notifications/webhooks/3fa85f64-5717-4562-b3fc-2c963f66afa6
                     - id: 22a85f64-5717-4562-b3fc-2c963f66af22
                       payload:
                         eventTypeId: user.created
@@ -882,11 +864,11 @@ paths:
                   value:
                     id: 11a85f64-5717-4562-b3fc-2c963f66af11
                     payload:
-                     eventTypeId: payrequest.successful
+                     eventTypeId: user.created
                      eventId: '44a85f64-5717-4562-b3fc-2c963f66af44'
                      links:
                       event: https://au-api.basiq.io/events/44a85f64-5717-4562-b3fc-2c963f66af44
-                      eventEntity: https://au-api.basiq.io/payrequest/88a85f64-5717-4562-b3fc-2c963f66af88
+                      eventEntity: https://au-api.basiq.io/users/88a85f64-5717-4562-b3fc-2c963f66af88
                     attempts:
                       - id: e2du423ed
                         url: https://piper.com/basiq-messages/
@@ -1199,16 +1181,6 @@ components:
         secret:
           type: string
           description: secret for signing the messages.
-        subscribedEvents:
-          type: array
-          description: one or more events that the webhook would send messages for.
-          properties:
-            subscribedEvents:
-              type: array
-              description: name of the event to monitor in the form of `noun.verb`.
-              items:
-                type: string
-                example: 'payrequest.successful'
         links:
           type: object
           properties:
@@ -1274,6 +1246,8 @@ components:
                   type: string
         attempts: 
           type: array
+          items:
+            type: string
         links:
           type: object
           properties:
@@ -1308,14 +1282,12 @@ components:
                 description: one or more events that the webhook would send messages for.
                 items:
                   type: string
-                  example: 'payrequest.successful'
+                  example: 'user.created'
           example:
             name: 'My General Webhook'
             description: 'Webhook to catch all events'
             url: https://piper.com/basiq-messages/
-            subscribedEvents:
-            - payrequest.successful
-            - user.created
+            subscribedEvents: user.created
       description: Webhook request object.
     TestMessage:
       content:
