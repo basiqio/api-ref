@@ -98,6 +98,9 @@ paths:
                         geometry:
                           lat: '-33.79988520000001'
                           lng: '151.2858021'
+                      tags:
+                        - "conduct:dishonour"
+
                     links:
                       self: https://au-api.basiq.io/enrich?country=AU&institution=AU00000&q=WOOLWORTHS
                       logo-master: https://enrich-enrichmerchantslogobucket-6or17iuhdvs9.s3-ap-southeast-2.amazonaws.com/woolworths-master.svg
@@ -289,6 +292,10 @@ components:
                       type: string
                     lng:
                       type: string
+            tags:
+              type: array
+              items:
+               type: string
         links:
           type: object
           properties:
