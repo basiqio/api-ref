@@ -678,6 +678,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -709,6 +710,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -754,6 +756,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -785,6 +788,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -830,6 +834,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -906,6 +911,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -937,6 +943,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -982,6 +989,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1013,6 +1021,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1058,6 +1067,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1089,6 +1099,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1134,6 +1145,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1165,6 +1177,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1210,6 +1223,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1241,6 +1255,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1286,6 +1301,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1314,6 +1330,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1359,6 +1376,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1390,6 +1408,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1435,6 +1454,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1466,6 +1486,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1511,6 +1532,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1542,6 +1564,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1587,6 +1610,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1618,6 +1642,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1663,6 +1688,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1694,6 +1720,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1739,6 +1766,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1770,6 +1798,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1815,6 +1844,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1846,6 +1876,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1891,6 +1922,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1922,6 +1954,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -1967,6 +2000,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -1998,6 +2032,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -2043,6 +2078,7 @@ paths:
                           medianMonth: '20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: '100.00'
@@ -2074,6 +2110,7 @@ paths:
                             medianMonth: '20.00'
                             ongoingMonth: '0.00'
                           stableMonths: 1
+                          secureMonths: 0
                         frequency:
                           type: P1M
                           amount: '100.00'
@@ -5293,6 +5330,7 @@ paths:
                           medianMonth: '-20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: "-100.00"
@@ -5367,6 +5405,7 @@ paths:
                           medianMonth: '-20.00'
                           ongoingMonth: '0.00'
                         stableMonths: 1
+                        secureMonths: 0
                       frequency:
                         type: P1M
                         amount: "-100.00"
@@ -6973,6 +7012,9 @@ components:
                           stableMonths:
                             type: integer
                             description: Number of stable months
+                          secureMonths:
+                            type: integer
+                            description: Number of secure months
                       frequency:
                         type: object
                         properties:
@@ -7071,6 +7113,9 @@ components:
                                 stableMonths:
                                   type: integer
                                   description: Number of stable months
+                                secureMonths:
+                                  type: integer
+                                  description: Number of secure months
                             frequency:
                               type: object
                               properties:
