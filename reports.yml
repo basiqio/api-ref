@@ -32,7 +32,9 @@ paths:
         report.
 
         This API allows generating reports with various filters. The `filters` field in the report request enables you to specify parameters for customizing the report content.
-    
+
+        > 📘 Note: The report title cannot be longer than 50 characters.
+
         ### Filters 
         
         Filters are used to narrow down the data included in the report. The available filters are:
