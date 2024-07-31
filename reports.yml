@@ -5453,6 +5453,156 @@ paths:
                         date: '2022-02-01'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
+                  - id: EXP-061
+                    title: Credit Card Repayments
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                        overallPercentage:
+                            credit: 0
+                            debit: 0
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
+                        secureMonths: 0
+                      frequency:
+                        type: P1M
+                        amount: "-100.00"
+                        display: "Monthly"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                          overallPercentage:
+                            credit: 0
+                            debit: 0
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
+                        frequency:
+                          type: P1M
+                          amount: "-100.00"
+                          display: "Monthly"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                  - id: EXP-062
+                    title: Credit Card Transfers
+                    sections:
+                    - Liabilities
+                    analysis:
+                      summary:
+                        transactionCount: 3
+                        overallPercentage:
+                            credit: 0
+                            debit: 0
+                      range:
+                        startDate: '2022-01-01'
+                        endDate: '2022-03-01'
+                        duration: 59
+                      amount:
+                        total: "-300.00"
+                        min: "-100.00"
+                        max: "-100.00"
+                        average:
+                          transaction: "-100.00"
+                          month: "-100.00"
+                          medianTransaction: '-20.00'
+                          medianMonth: '-20.00'
+                          ongoingMonth: '0.00'
+                        stableMonths: 1
+                        secureMonths: 0
+                      frequency:
+                        type: P1M
+                        amount: "-100.00"
+                        display: "Monthly"
+                        next:
+                          date: '2022-04-01'
+                          amount: "-100.00"
+                    subgroup:
+                    - id: 6d97ec2e37e4d1d24a105bdaea33b427
+                      name: SAMPLE TRANSACTION
+                      analysis:
+                        summary:
+                          transactionCount: 3
+                          overallPercentage:
+                            credit: 0
+                            debit: 0
+                        range:
+                          startDate: '2022-01-01'
+                          endDate: '2022-03-01'
+                          duration: 59
+                        amount:
+                          total: "-300.00"
+                          min: "-100.00"
+                          max: "-100.00"
+                          average:
+                            transaction: "-100.00"
+                            month: "-100.00"
+                            medianTransaction: '-20.00'
+                            medianMonth: '-20.00'
+                        frequency:
+                          type: P1M
+                          amount: "-100.00"
+                          display: "Monthly"
+                          next:
+                            date: '2022-04-01'
+                            amount: "-100.00"
+                      transactions:
+                      - id: 59018149cab77cd2ab7df477f6760cc9
+                        date: '2022-01-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-02-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
+                      - id: ad775e551f8f66b8fe693071cd024cef
+                        date: '2022-03-01'
+                        description: SAMPLE TRANSACTION 0000023
+                        amount: "-100.00"
                   accounts:
                   - id: 271f2f4b-243e-4ebb-b598-639ff8fee4c8
                     accountNo: 600000-157441965
