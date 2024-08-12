@@ -131,7 +131,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
       security:
       - services_token: []
-      x-codegen-request-body-name: AffordabilityPostRequest
   /users/{userId}/affordability/{snapshotId}:
     get:
       tags:
