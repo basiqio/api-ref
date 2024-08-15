@@ -299,7 +299,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
       security:
         - services_token: []
-      x-codegen-request-body-name: user
     delete:
       tags:
         - Users
@@ -398,7 +397,7 @@ paths:
                     created: '2022-11-01T05:07:00Z'
                     updated: '2022-11-01T05:07:00Z'
                     expiryDate: '2023-11-01T05:07:00Z'
-                    status: active
+                    status: revoked
                     purpose:
                       primary:
                         title: >-
@@ -471,6 +470,7 @@ paths:
                             description: >-
                               This allows access to transaction data for your
                               accounts. It includes all account transaction data.
+                    revoked: "2024-08-15T00:29:15Z"
                     links:
                       self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
                 expired:
@@ -3171,6 +3171,9 @@ components:
           $ref: '#/components/schemas/Purpose'
         data:
           $ref: '#/components/schemas/Data'
+        revoked: 
+          type: string
+          description: To indicate when a user consent was revoked.
         links:
           properties: 
             self:
