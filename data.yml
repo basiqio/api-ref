@@ -3163,7 +3163,7 @@ components:
         ABN:
           type: string
           description: ABN
-          example: 90065628864
+          example: "90065628864"
         logoMaster:
           type: string
           description: full merchant logo
