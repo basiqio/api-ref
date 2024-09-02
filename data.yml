@@ -1632,7 +1632,10 @@ components:
           example: '2019-07-29T07:34:09Z'
         expiryDate:
           type: string
-          description: Expiry date of the connection.
+          description: |
+            Expiry date of the connection.This date is only set for open-banking connections. 
+            
+            For web connections, the expiry date field will be empty.
           example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
@@ -1787,7 +1790,10 @@ components:
           example: '2019-07-29T07:34:09Z'
         expiryDate:
           type: string
-          description: Expiry date of the connection.
+          description: |
+            Expiry date of the connection.This date is only set for open-banking connections. 
+            
+            For web connections, the expiry date field will be empty.
           example: '2020-07-29T07:34:09Z'
         lastUsed:
           type: string
