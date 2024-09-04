@@ -15,6 +15,7 @@ paths:
       summary: List affordability summaries
       description: Returns a list of affordability summaries that have been generated for a specific user.
       operationId: getAffordabilityList
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -58,6 +59,7 @@ paths:
       summary: Create an affordability summaries
       description: Create an affordability summaries for a user
       operationId: postAffordability
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -138,6 +140,7 @@ paths:
       summary: Retrieve an affordability summary
       description: Retrieves a specific, pre existing affordability summaries
       operationId: getAffordability
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -210,6 +213,7 @@ paths:
       summary: List affordability summary transactions
       description: Use this endpoint to retrieve a paginated list of transactions associated with an affordability summary.
       operationId: getAffordabilitySnapshotTransactions
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -289,6 +293,7 @@ paths:
       summary: Create an expense summary
       description: Create a new expense summary for a user
       operationId: postExpenses
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -349,6 +354,7 @@ paths:
       summary: Retrieve an expense summary
       description: Retrieve an existing expense summary for a specific user
       operationId: getExpenses
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -420,6 +426,7 @@ paths:
       summary: Create an income summary
       description: Create an income summary for a specific user
       operationId: postIncome
+      deprecated: true
       parameters:
       - name: userId
         in: path
@@ -480,6 +487,7 @@ paths:
       summary: Retrieve an income summary
       description: Retrieve an existing income summary for a specific user
       operationId: getIncome
+      deprecated: true
       parameters:
       - name: userId
         in: path
