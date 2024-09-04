@@ -1062,7 +1062,6 @@ paths:
         - Events
       summary: Retrieve an event
       description: >-
-          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
           Returns a single event type based on the parameter input.
       operationId: getTypeById
       parameters:
@@ -1217,7 +1216,6 @@ paths:
         - Events
       summary: List event types
       description: >-
-          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
           Returns a list of event types.
       operationId: listEventTypes
       responses:
@@ -1231,9 +1229,14 @@ paths:
                 Success:
                   value:
                     type: list
-                    size: 11
-                    count: 11
+                    size: 14
+                    count: 14
                     data: 
+                      - type: eventType
+                        id: account.updated
+                        description: when an account is updated
+                        links:
+                          self: https://au-api.basiq.io/events/types/account.updated
                       - type: eventType
                         id: connection.created
                         description: when a connection is created
@@ -1244,6 +1247,11 @@ paths:
                         description: when a connection is deleted
                         links:
                           self: https://au-api.basiq.io/events/types/connection.deleted
+                      - type: eventType
+                        id: connection.invalidated
+                        description: when a connection is invalidated
+                        links:
+                          self: https://au-api.basiq.io/events/types/connection.invalidated
                       - type: eventType
                         id: consent.created
                         description: when a consent is created
@@ -1274,6 +1282,11 @@ paths:
                         description: when a consent is about to expire
                         links:
                           self: https://au-api.basiq.io/events/types/consent.warning
+                      - type: eventType
+                        id: transactions.updated
+                        description: when transactions are updated
+                        links:
+                          self: https://au-api.basiq.io/events/types/transactions.updated
                       - type: eventType
                         id: user.created
                         description: when an user is created
@@ -1359,7 +1372,6 @@ paths:
         - Events
       summary: Retrieve an event type
       description: >-
-          ![Beta](https://img.shields.io/badge/Status-Beta-yellow)
           Returns a single event type based on the parameter input.
       operationId: getEventTypeById
       parameters:
