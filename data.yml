@@ -2797,6 +2797,7 @@ components:
       - reference
       - account
       - amount
+      - currency
       - class
       - subClass
       - connection
@@ -2841,6 +2842,13 @@ components:
           description: Transaction amount. Outgoing funds are expressed as negative
             values.
           example: "123.12"
+        currency:
+          type: string
+          description: Standard 3 character currency codes as per ISO-4217. 
+          enum:
+            - "AUD"
+            - "USD"
+            - "GBP"
         account:
           type: string
           description: The id of the account resource the transaction belongs to.
