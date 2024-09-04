@@ -1391,10 +1391,10 @@ paths:
               examples:
                 Success:
                   value:
-                    id: payrequest.successful
-                    description: when a payrequest is successful
+                    id: account.updated
+                    description: when an account is updated
                     links:
-                      self: 'https://au-api.basiq.io/events/types/user.created'
+                      self: 'https://au-api.basiq.io/events/types/account.updated'
         '400':
           description: >-
             Error status response code indicates that the request has not been
