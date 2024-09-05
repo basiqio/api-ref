@@ -3065,6 +3065,7 @@ components:
           - The `expense` tag_name is used with the value `rent` (e.g., "expense:rent").
           - The `loan` tag_name is used with the value `loan repayment` (e.g., "loan:loan repayment").
           - The `mortgage` tag_name could include values like `afg home loans`, `aims`, `amo group`, `athena`, `aussie`, `bluestone`, `clickloans`, `emoney`, `express reverse mortgage`, `firstmac`, `fox symes`, `freedom lend`, `freedom loans`, `funding`, `heartland reverse mortgages`, `homeloans`, `homestar`, `homestart`, `household capital`, `illawarra home loans`, `keystart`, `la trobe financial`, `liberty financial`, `loans`, `mortgage house`, `mortgage offset`, `mortgageport`, `mortgage repayment`, `onetwo`, `online home loans`, `pacific mortgage group`, `pepper money`, `qantas money`, `reduce home loans`, `resi`, `resimac`, `sucasa`, `switzer home loans`, `ticToc`, `unloan`, `vmg`, `well money` (e.g., "mortgage:afg home loans").
+        example: "conduct:dishonour"
       description: |
         This field contains an array of strings, each representing a specific tag for the transaction. The format of each string should be `tag_name:tag_value`, where `tag_name` defines the type of transaction (e.g., `card`, `income`, `mortgage`), and `tag_value` provides additional details (e.g., "card:4615"). The tags help classify and identify transactions based on various criteria.
     
