@@ -1229,14 +1229,19 @@ paths:
                 Success:
                   value:
                     type: list
-                    size: 14
-                    count: 14
+                    size: 15
+                    count: 15
                     data: 
                       - type: eventType
                         id: account.updated
                         description: when an account is updated
                         links:
                           self: https://au-api.basiq.io/events/types/account.updated
+                      - type: eventType
+                        id: connection.activated
+                        description: when a connection is activated
+                        links:
+                          self: https://au-api.basiq.io/events/types/connection.activated
                       - type: eventType
                         id: connection.created
                         description: when a connection is created
