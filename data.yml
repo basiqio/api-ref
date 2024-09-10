@@ -726,6 +726,93 @@ paths:
                 $ref: '#/components/schemas/StatusServiceUnavailableError'
       security:
         - services_token: []
+  /users/{userId}/statements:
+    post:
+      tags:
+        - Statements
+      summary: Create a statement
+      description: |-
+        Create a new statement by uploading an official PDF bank statement or CSV file. The server will create a job that processes the following steps:
+        1. **verify-credentials**: Verify the file, validate the layout, and attempt to parse the statement.
+        2. **retrieve-accounts**: Retrieve the list of accounts and their details (account number, name, balances).
+        3. **retrieve-transactions**: Fetch the transactions for each account.
+
+        The status of each step can be checked by querying the Retrieve a job. 
+        
+        > Note that this function is not supported in sandbox environments (AU00000).
+
+        For CSV file format specifications, please contact our support team.
+
+        > 🚧 
+        > 
+        > Note that the time it takes to complete the processes above will vary depending on the volume of data along with the complexity of the bank statement. As a rough guide this entire process could take anywhere between 10 - 30 secs. Upload multiple statements in parallel to provide the best user experience
+
+      operationId: createStatement
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - institutionId
+                - statement
+              properties:
+                institutionId:
+                  type: string
+                  description: >-
+                    The identifier of the institution to which the statement relates (e.g., "AU01001").
+                    **Note**: Sandbox institutions (AU00000) do not support file uploads.
+                statement:
+                  type: string
+                  format: binary
+                  description: >-
+                    The official PDF bank statement or CSV file to be uploaded.
+                    CSV files must conform to the file specification provided by Basiq.
+      responses:
+        '202':
+          description: Job resource created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementUploadResource'
+        '400':
+          description: Bad request due to missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden access due to insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenAccessError'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusServiceUnavailableError'
+              
   /connectors:
     get:
       tags:
@@ -2507,6 +2594,25 @@ components:
             $ref: '#/components/schemas/AccountResponseResource'
         links:
           $ref: '#/components/schemas/ResourceAccountLink'
+    StatementUploadResource:
+      type: object
+      required:
+        - type
+        - id
+        - links
+      properties:
+        type:
+          type: string
+          description: The type of resource, always "job".
+          example: job
+        id:
+          type: string
+          description: The unique identifier of the job.
+          example: "61723"
+        links:
+          $ref: '#/components/schemas/ResourceLink'        
+      description: Object containing details for the statement upload process
+      
     BadRequestError:
       required:
       - correlationId
