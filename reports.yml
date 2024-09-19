@@ -5799,7 +5799,7 @@ paths:
                       self: "/users/6a52015e/accounts/31eb30a0"
                       transactions: "/users/6a52015e/transactions?filter=account.id.eq('31eb30a0')"
                       institution: "/institutions/AU00000"
-                transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
+                  transactions: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8/transactions?next=2f889b75-8fee-490e-a075-65a6b9527784
                 links:
                   self: https://au-api.basiq.io/reports/51cef931-81f2-4639-af74-b0ced85083c8
         400:
@@ -6337,10 +6337,6 @@ components:
                 - institution
                 - meta
                 - links
-            openingBalance:
-              type: string
-            closingBalance:
-              type: string
             transactions:
               type: string
               format: uri
