@@ -722,15 +722,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-002
@@ -800,15 +800,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-003
@@ -877,15 +877,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-004
@@ -955,15 +955,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-005
@@ -1033,15 +1033,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-006
@@ -1111,15 +1111,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-007
@@ -1189,15 +1189,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-008
@@ -1267,15 +1267,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-009
@@ -1342,15 +1342,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-010
@@ -1420,15 +1420,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-012
@@ -1498,15 +1498,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-013
@@ -1576,15 +1576,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-014
@@ -1654,15 +1654,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-015
@@ -1732,15 +1732,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-016
@@ -1810,15 +1810,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-018
@@ -1888,15 +1888,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-019
@@ -1966,15 +1966,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-020
@@ -2044,15 +2044,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: INC-021
@@ -2122,15 +2122,15 @@ paths:
                             amount: '100.00'
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: '100.00'
                   - id: EXP-002
@@ -2194,15 +2194,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-004
@@ -2266,15 +2266,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-007
@@ -2338,15 +2338,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-008
@@ -2410,15 +2410,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-010
@@ -2482,15 +2482,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-012
@@ -2554,15 +2554,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-014
@@ -2627,15 +2627,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-015
@@ -2699,15 +2699,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-017
@@ -2771,15 +2771,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-018
@@ -2843,15 +2843,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-019
@@ -2915,15 +2915,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-024
@@ -2987,15 +2987,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-027
@@ -3059,15 +3059,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-028
@@ -3131,15 +3131,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-031
@@ -3203,15 +3203,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-034
@@ -3275,15 +3275,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-035
@@ -3347,15 +3347,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-038
@@ -3419,15 +3419,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-039
@@ -3491,15 +3491,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-041
@@ -3563,15 +3563,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-011
@@ -3635,15 +3635,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-016
@@ -3707,15 +3707,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-021
@@ -3779,15 +3779,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-030
@@ -3851,15 +3851,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-036
@@ -3923,15 +3923,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-040
@@ -3995,15 +3995,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-003
@@ -4068,15 +4068,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-009
@@ -4141,15 +4141,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-013
@@ -4213,15 +4213,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-032
@@ -4285,15 +4285,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-037
@@ -4357,15 +4357,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-001
@@ -4430,15 +4430,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-006
@@ -4503,15 +4503,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-029
@@ -4576,15 +4576,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-005
@@ -4648,15 +4648,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-020
@@ -4720,15 +4720,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-023
@@ -4792,15 +4792,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-025
@@ -4864,15 +4864,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-026
@@ -4936,15 +4936,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-033
@@ -5008,15 +5008,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-051
@@ -5080,15 +5080,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-052
@@ -5152,15 +5152,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-054
@@ -5224,15 +5224,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-055
@@ -5296,15 +5296,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-056
@@ -5371,15 +5371,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-057
@@ -5446,15 +5446,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-058
@@ -5521,11 +5521,11 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-061
@@ -5592,15 +5592,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-062
@@ -5667,15 +5667,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   - id: EXP-063
@@ -5742,15 +5742,15 @@ paths:
                             amount: "-100.00"
                       transactions:
                       - id: 59018149cab77cd2ab7df477f6760cc9
-                        date: '2022-01-01'
+                        date: '2022-01-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                       - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
-                        date: '2022-02-01'
+                        date: '2022-02-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
-                      - id: ad775e551f8f66b8fe693071cd024cef
-                        date: '2022-03-01'
+                      - id: 01aae7dd1e6ace6bb3d31bc4ada58bb5
+                        date: '2022-03-01T00:00:00Z'
                         description: SAMPLE TRANSACTION 0000023
                         amount: "-100.00"
                   accounts:
