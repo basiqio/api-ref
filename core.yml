@@ -1594,171 +1594,238 @@ paths:
                 - $ref: '#/components/schemas/job'
                 - $ref: "#/components/schemas/StatementJobs"
               examples:
-                Data - in progress:
+                data-in-progress:
                   value:
                     type: job
-                    id: 'e9132638'
-                    created: '2020-06-10T09:59:00Z'
-                    updated: '2020-06-10T09:59:00Z'
+                    id: "248b2883-2a6b-4e8a-9591-76565d23ba5a"
+                    created: "2024-09-25T04:15:59Z"
+                    updated: "2024-09-25T04:15:59Z"
+                    jobType: "connection"
                     steps:
-                    - title: verify-credentials
-                      status: success
-                      result:
-                        type: link
-                        url: "/users/ea3a81/connections/8fce3b"
-                    - title: retrieve-accounts
-                      status: in-progress
-                      result: null
-                    - title: retrieve-transactions
-                      status: pending
-                      result: null
+                      - title: "verify-credentials"
+                        status: "in-progress"
+                        result: null
+                      - title: "retrieve-accounts"
+                        status: "pending"
+                        result: null
+                      - title: "retrieve-transactions"
+                        status: "pending"
+                        result: null
                     links:
-                      self: https://au-api.basiq.io/jobs/61723
-                      source: https://au-api.basiq.io/users/ea3a81/connections/8fce3b
+                      self: "https://au-api.basiq.io/jobs/248b2883-2a6b-4e8a-9591-76565d23ba5a"
+                data-failed:
+                  value:
+                    type: "job"
+                    id: "5c50a2d1-561c-48c4-a186-b763bdf5502a"
+                    created: "2024-09-25T04:22:25Z"
+                    updated: "2024-09-25T04:22:38Z"
+                    jobType: "connection"
+                    steps:
+                      - title: "verify-credentials"
+                        status: "failed"
+                        result:
+                          code: "authorization-failed"
+                          title: "Authorization failed"
+                          detail: "access_denied"
+                      - title: "retrieve-accounts"
+                        status: "pending"
+                        result: null
+                      - title: "retrieve-transactions"
+                        status: "pending"
+                        result: null
+                    links:
+                      self: "https://au-api.basiq.io/jobs/5c50a2d1-561c-48c4-a186-b763bdf5502a"
+                      source: "https://au-api.basiq.io/users/b2afc9cd-0f3c-41f0-9e19-d18482abc9fc/connections/60612323-9c42-478a-8ff2-640445dbe64a"
+                data-success:
+                  value:
+                    type: job
+                    id: "a03e4df4-dc05-4cd3-9af0-0f28a13ea614"
+                    created: "2024-09-25T04:14:48Z"
+                    updated: "2024-09-25T04:14:50Z"
+                    jobType: "connection"
+                    steps:
+                      - title: "verify-credentials"
+                        status: "success"
+                        result:
+                          type: "link"
+                          url: "/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/connections/214974bb-56d6-466a-9034-ba0a6b810eed"
+                      - title: "retrieve-accounts"
+                        status: "success"
+                        result:
+                          type: "link"
+                          url: "/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/accounts?filter=institution.id.eq('AU00000')"
+                      - title: "retrieve-transactions"
+                        status: "success"
+                        result:
+                          type: "link"
+                          url: "/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/transactions?filter=institution.id.eq('AU00000')"
+                    links:
+                      self: "https://au-api.basiq.io/jobs/a03e4df4-dc05-4cd3-9af0-0f28a13ea614"
+                      source: "https://au-api.basiq.io/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/connections/214974bb-56d6-466a-9034-ba0a6b810eed"
+                statement-in-progress:
+                  value:
+                    type: job
+                    id: "248b2883-2a6b-4e8a-9591-76565d23ba5a"
+                    created: "2024-09-25T04:15:59Z"
+                    updated: "2024-09-25T04:15:59Z"
+                    jobType: "connection"
+                    steps:
+                      - title: "verify-credentials"
+                        status: "in-progress"
+                        result: null
+                      - title: "retrieve-accounts"
+                        status: "pending"
+                        result: null
+                      - title: "retrieve-transactions"
+                        status: "pending"
+                        result: null
+                    links:
+                      self: "https://au-api.basiq.io/jobs/248b2883-2a6b-4e8a-9591-76565d23ba5a"
+                statement-failed:
+                  value:
+                    type: job
+                    id: f14de1bb-ddbe-4c16-add0-efab65aab13d
+                    created: "2024-09-25T04:28:59Z"
+                    updated: "2024-09-25T04:29:09Z"
+                    jobType: connection
+                    steps:
+                      - title: verify-credentials
+                        status: failed
+                        result:
+                          code: bank-statement-not-supported
+                          title: Statement not supported.
+                          detail: Statement is not currently supported for this institution - check statement uploaded against correct bank.
+                      - title: retrieve-accounts
+                        status: pending
+                        result: null
+                      - title: retrieve-transactions
+                        status: pending
+                        result: null
+                    links:
+                      self: https://au-api.basiq.io/jobs/f14de1bb-ddbe-4c16-add0-efab65aab13d
                 statement-success:
                   value:
                     type: job
-                    id: a2a17e84-460c-43f4-9c94-1398a5b4c148
-                    createdDate: '2024-03-21T23:51:37Z'
-                    updatedDate: '2024-03-21T23:51:48Z'
-                    jobType: report
-                    sourceId: a2a17e84-460c-43f4-9c94-1398a5b4c148
+                    id: "248b2883-2a6b-4e8a-9591-76565d23ba5a"
+                    created: "2024-09-25T04:15:59Z"
+                    updated: "2024-09-25T04:16:29Z"
+                    jobType: "connection"
                     steps:
-                    - title: create-report
-                      status: success
-                      result:
-                        type: report
-                        url: "/reports/a2a17e84-460c-43f4-9c94-1398a5b4c148"
+                      - title: "verify-credentials"
+                        status: "success"
+                        result:
+                          type: "link"
+                          url: "/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/connections/30dfc31c-7107-40a4-bd94-237554726a4d"
+                      - title: "retrieve-accounts"
+                        status: "success"
+                        result:
+                          type: "link"
+                          url: "/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/accounts?filter=institution.id.eq('AU00601')"
+                      - title: "retrieve-transactions"
+                        status: "success"
+                        result:
+                          type: "link"
+                          url: "/users/b540e803-91dd-4ff9-a89e-ef8ecf65833d/transactions?filter=institution.id.eq('AU00601')"
                     links:
-                      self: https://au-api.basiq.io/jobs/a2a17e84-460c-43f4-9c94-1398a5b4c148
-                      source: https://au-api.basiq.io/reports/a2a17e84-460c-43f4-9c94-1398a5b4c148
-                Mygov - in progress:
+                      self: "https://au-api.basiq.io/jobs/248b2883-2a6b-4e8a-9591-76565d23ba5a"
+                Mygov-in-progress:
                   value:
                     type: job
-                    id: ff6fc9d4-13da-45e4-8c6b-acdeadc40a1c
-                    created: '2023-04-11T00:41:34Z'
-                    updated: '2023-04-11T00:41:37Z'
+                    id: b4b51f7c-e5f0-4767-bc6f-0025a66bd4f9
+                    created: "2024-09-25T04:34:59Z"
+                    updated: "2024-09-25T04:34:59Z"
                     jobType: connection
                     steps:
                       - title: verify-credentials
-                        status: success
-                        result:
-                          type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/connections/b525059f-51fd-434d-8ee5-77fb35837f65
-                      - title: retrieve-accounts
-                        status: success
-                        result:
-                          type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/accounts?filter=institution.id.eq('AU00004')
-                      - title: retrieve-transactions
-                        status: success
-                        result:
-                          type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/transactions?filter=institution.id.eq('AU00004')
-                      - title: retrieve-statements
                         status: in-progress
                         result: null
-                Mygov - Completed:
+                      - title: mfa-challenge
+                        status: pending
+                        result: null
+                      - title: retrieve-accounts
+                        status: pending
+                        result: null
+                      - title: retrieve-transactions
+                        status: pending
+                        result: null
+                      - title: retrieve-statements
+                        status: pending
+                        result: null
+                    links:
+                      self: https://au-api.basiq.io/jobs/b4b51f7c-e5f0-4767-bc6f-0025a66bd4f9
+                      source: https://au-api.basiq.io/users/bfa52043-e154-4adf-94d1-7f0544affc45/connections/05b14a4a-189a-412a-a8c3-88adf2fc47f4
+                Mygov-failed:
                   value:
                     type: job
-                    id: ff6fc9d4-13da-45e4-8c6b-acdeadc40a1c
-                    created: '2023-04-11T00:41:34Z'
-                    updated: '2023-04-11T00:41:37Z'
+                    id: 57d6ab28-1fd4-4851-b9d2-81ca2884de21
+                    created: "2024-09-25T04:40:41Z"
+                    updated: "2024-09-25T04:40:50Z"
+                    jobType: connection
+                    steps:
+                      - title: verify-credentials
+                        status: failed
+                        result:
+                          code: invalid-credentials
+                          title: Cannot login to target institution, check credentials.
+                          detail: Cannot login to target institution using supplied credentials. Please check credentials and try again.
+                      - title: mfa-challenge
+                        status: pending
+                        result: null
+                      - title: retrieve-accounts
+                        status: pending
+                        result: null
+                      - title: retrieve-transactions
+                        status: pending
+                        result: null
+                      - title: retrieve-statements
+                        status: pending
+                        result: null
+                    links:
+                      self: https://au-api.basiq.io/jobs/57d6ab28-1fd4-4851-b9d2-81ca2884de21
+                      source: https://au-api.basiq.io/users/bfa52043-e154-4adf-94d1-7f0544affc45/connections/326d43c0-b009-4dfc-a7d0-708e5160bde5
+                Mygov-success:
+                  value:
+                    type: job
+                    id: cd6b8aac-53b3-408d-806e-34b9ef59459e
+                    created: "2024-09-25T04:44:38Z"
+                    updated: "2024-09-25T04:46:00Z"
                     jobType: connection
                     steps:
                       - title: verify-credentials
                         status: success
                         result:
                           type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/connections/b525059f-51fd-434d-8ee5-77fb35837f65
+                          url: /users/bfa52043-e154-4adf-94d1-7f0544affc45/connections/67b38670-4aca-4e1d-a66e-3af4c56a35bc
+                      - title: mfa-challenge
+                        status: success
+                        result:
+                          type: mfa
+                          method: token
+                          description: A SMS code has been sent to your device, please enter valid number.
+                          input:
+                            - We sent a code by SMS to your mobile number XXXX XXX 178.
+                          expiryMs: 120000
+                          links:
+                            response: https://au-api.basiq.io/jobs/cd6b8aac-53b3-408d-806e-34b9ef59459e/mfa
                       - title: retrieve-accounts
                         status: success
                         result:
                           type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/accounts?filter=institution.id.eq('AU00004')
+                          url: /users/bfa52043-e154-4adf-94d1-7f0544affc45/accounts?filter=institution.id.eq('AU20700')
                       - title: retrieve-transactions
                         status: success
                         result:
                           type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/transactions?filter=institution.id.eq('AU00004')
+                          url: /users/bfa52043-e154-4adf-94d1-7f0544affc45/transactions?filter=institution.id.eq('AU20700')
                       - title: retrieve-statements
                         status: success
                         result:
                           type: link
-                          url: /users/ca23bab2-ef8e-44cc-bf75-4d6c9dbcbb87/statements
-                payrequest - in progress:
-                  value:
-                    type: job
-                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
-                    created: '2016-06-08T09:10:32.000Z'
-                    updated: '2016-06-08T09:14:28.000Z'
-                    status: in-progress
-                    jobType: payrequest
-                    steps:
-                    - title: validate-payment
-                      status: success
-                      result:
-                        type: link
-                        url: "/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                    - title: external-processing
-                      status: in-progress
-                      result: null
+                          url: /users/bfa52043-e154-4adf-94d1-7f0544affc45/statements
                     links:
-                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      source: "/payments/payrequests/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                payout - failed:
-                  value:
-                    type: job
-                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
-                    created: '2016-06-08T09:10:32.000Z'
-                    updated: '2016-06-08T09:14:28.000Z'
-                    status: failed
-                    jobType: payout
-                    steps:
-                    - title: validate-payment
-                      status: failed
-                      result:
-                        type: error
-                        code: 'missing-payee-account-details.'
-                        title: 'Missing Payee account details.'
-                        detail: 'Please specify payee account details.'
-                    links:
-                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                payout - completed:
-                  value:
-                    type: job
-                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
-                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
-                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
-                    created: '2016-06-08T09:10:32.000Z'
-                    updated: '2016-06-08T09:14:28.000Z'
-                    status: success
-                    jobType: payout
-                    steps:
-                    - title: validate-payment
-                      status: success
-                      result:
-                        type: link
-                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                    - title: external-processing
-                      status: success
-                      result:
-                        type: link
-                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                    - title: payment-completed
-                      status: success
-                      result:
-                        type: link
-                        url: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                    links:
-                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      source: "/payments/payouts/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                report - in progress:
+                      self: https://au-api.basiq.io/jobs/cd6b8aac-53b3-408d-806e-34b9ef59459e
+                      source: https://au-api.basiq.io/users/bfa52043-e154-4adf-94d1-7f0544affc45/connections/67b38670-4aca-4e1d-a66e-3af4c56a35bc
+                Report-in-progress:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -1773,9 +1840,22 @@ paths:
                       status: in-progress
                       result: null
                     links:
-                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      source: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                report - success:
+                      self: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      source: /reports/b1824ad0-73f1-0138-3700-0a58a9feac09
+                Report-failed:
+                  value:
+                    type: job
+                    id: 157bdde9-e20a-441d-b6c1-6c4ee2df0b2e
+                    createdDate: "2024-09-25T04:55:51Z"
+                    updatedDate: "2024-09-25T04:56:07Z"
+                    jobType: report
+                    sourceId: 157bdde9-e20a-441d-b6c1-6c4ee2df0b2e
+                    steps:
+                      - title: create-report
+                        status: failed
+                        result: null
+                    links: null
+                Report-success:
                   value:
                     type: job
                     id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
@@ -1792,8 +1872,8 @@ paths:
                         type: link
                         url: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
                     links:
-                      self: "/jobs/b1824ad0-73f1-0138-3700-0a58a9feac09"
-                      source: "/reports/b1824ad0-73f1-0138-3700-0a58a9feac09"
+                      self: /jobs/b1824ad0-73f1-0138-3700-0a58a9feac09
+                      source: /reports/b1824ad0-73f1-0138-3700-0a58a9feac09
         '400':
           description: >-
             Returns error that server cannot or will not process the request due
