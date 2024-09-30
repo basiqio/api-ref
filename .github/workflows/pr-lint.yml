@@ -19,7 +19,7 @@ jobs:
     name: Branch Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: deepakputhraya/action-branch-name@latest # Use the latest version
+      - uses: deepakputhraya/action-branch-name@master # Use the latest version
         with:
           regex: '^(DX|DSO|PAY|Bump).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
