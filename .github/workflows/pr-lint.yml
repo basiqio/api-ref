@@ -3,102 +3,113 @@ name: PR and Branch linting
 on:
   pull_request:
     types: ['opened', 'edited']
+  workflow_dispatch: # Allow manual triggering of the workflow
 
 jobs:
   pr-lint:
     name: PR Linting
     runs-on: ubuntu-latest
     steps:
-    - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
-      with:
-        title-regex: '^(DX|DSO|PAY|Bump).+' # Supports either DEVX prefixed PRs
-        title-regex-flags: 'g' # optional
-        error-message: 'Add Jira ID to your title in the correct format'
+      - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
+        with:
+          title-regex: '^(DX|DSO|PAY|Bump).+' # Supports either DEVX prefixed PRs
+          title-regex-flags: 'g' # optional
+          error-message: 'Add Jira ID to your title in the correct format'
+
   branch-naming-rules:
     name: Branch Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: deepakputhraya/action-branch-name@e0f8db53a8e289f1ae6f6c3e8dc70a3d366fd876 #v1.0.0
+      - uses: deepakputhraya/action-branch-name@master # Use the latest version
         with:
           regex: '^(DX|DSO|PAY|Bump).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
           max_length: 500 # Max length of the branch name
+
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18' # Use the Node.js version compatible with Redocly CLI
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use Node.js 20
 
-    - name: Install Redocly CLI
-      run: npm install -g @redocly/cli
+      - name: Install Redocly CLI
+        run: npm install -g @redocly/cli
 
-    - name: Verify Redocly CLI Installation
-      run: npx @redocly/cli --version
+      - name: Verify Redocly CLI Installation
+        run: npx @redocly/cli --version
 
-    - name: Lint Core
-      run: npx @redocly/cli lint core.yml
+      - name: Lint Core
+        id: lint-core
+        run: npx @redocly/cli lint core.yml
 
-    - name: Lint data
-      run: npx @redocly/cli lint data.yml
-    
-    - name: Lint Services 
-      run: npx @redocly/cli lint services.yml
+      - name: Lint data
+        id: lint-data
+        run: npx @redocly/cli lint data.yml
 
-    - name: Lint Reports 
-      run: npx @redocly/cli lint reports.yml
-    
-    - name: Lint affordability 
-      run: npx @redocly/cli lint affordability.yml
+      - name: Lint Services 
+        id: lint-services
+        run: npx @redocly/cli lint services.yml
 
-    - name: Lint Enrich
-      run: npx @redocly/cli lint enrich.yml
+      - name: Lint Reports 
+        id: lint-reports
+        run: npx @redocly/cli lint reports.yml
 
-    - name: Lint Identity 
-      run: npx @redocly/cli lint identity.yml
-    
-    - name: Lint Webhooks 
-      run: npx @redocly/cli lint webhooks.yml
-    
-    - name: Send custom JSON data to Slack workflow
-      if: failure() # This step will run only if the previous step fails
-      uses: slackapi/slack-github-action@37ebaef184d7626c5f204ab8d3baff4262dd30f0 # v1.27.0
-      with:
-        payload: |
-          {
-            "text": "Linting Failed in GitHub Actions",
-            "blocks": [
-              {
-                "type": "header",
-                "text": {
-                  "type": "plain_text",
-                  "text": "Linting Failure Notification",
-                  "emoji": true
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Linting Failed* in GitHub Actions :x:\n*Repository:* <${{ github.repository_url }}|${{ github.repository }}>\n*Actor:* ${{ github.actor }}\n*Pull Request:* <${{ github.event.pull_request.html_url }}|PR Link>"
-                }
-              },
-              {
-                "type": "context",
-                "elements": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "Please review the PR and make necessary changes."
+      - name: Lint affordability 
+        id: lint-affordability
+        run: npx @redocly/cli lint affordability.yml
+
+      - name: Lint Enrich
+        id: lint-enrich
+        run: npx @redocly/cli lint enrich.yml
+
+      - name: Lint Identity 
+        id: lint-identity
+        run: npx @redocly/cli lint identity.yml
+
+      - name: Lint Webhooks 
+        id: lint-webhooks
+        run: npx @redocly/cli lint webhooks.yml
+
+      - name: Send custom JSON data to Slack workflow
+        if: failure() || steps.lint-core.outputs.warnings != '' || steps.lint-data.outputs.warnings != '' || steps.lint-services.outputs.warnings != '' || steps.lint-reports.outputs.warnings != '' || steps.lint-affordability.outputs.warnings != '' || steps.lint-enrich.outputs.warnings != '' || steps.lint-identity.outputs.warnings != '' || steps.lint-webhooks.outputs.warnings != ''
+        uses: slackapi/slack-github-action@37ebaef184d7626c5f204ab8d3baff4262dd30f0 # v1.27.0
+        with:
+          payload: |
+            {
+              "text": "Linting Warning or Failure in GitHub Actions",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Linting Notification",
+                    "emoji": true
                   }
-                ]
-              }
-            ]
-          }
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
-        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Linting Issue Detected* in GitHub Actions :warning:\n*Repository:* <${{ github.repository_url }}|${{ github.repository }}>\n*Actor:* ${{ github.actor }}\n*Pull Request:* <${{ github.event.pull_request.html_url }}|PR Link>"
+                  }
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "Please review the PR and make necessary changes."
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
