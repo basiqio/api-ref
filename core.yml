@@ -388,255 +388,205 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserConsentGetResponses'
-              examples:
-                active:
-                  value:
-                    type: consent
-                    id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
-                    created: '2022-11-01T05:07:00Z'
-                    updated: '2022-11-01T05:07:00Z'
-                    expiryDate: '2023-11-01T05:07:00Z'
-                    status: active
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "list"
+                  size:
+                    type: integer
+                    example: 2
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserConsentGetResponses'
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://au-api.basiq.io/users/79ce620b-e7a6-4d49-8053-e5a0acfbbb77/consents"
+              example:
+                type: "list"
+                size: 2
+                data:
+                  - type: "consent"
+                    id: "69d00245-1048-471a-902b-6cdc5d3d07a7"
+                    created: "2024-09-26T12:12:01Z"
+                    updated: "2024-09-26T12:12:01Z"
+                    expiryDate: "2025-09-26T12:12:01Z"
+                    origin: "user"
+                    status: "active"
                     purpose:
                       primary:
-                        title: >-
-                          Services requiring full ongoing Personal, Account and
-                          Transaction details
-                        description: >-
-                          We need ongoing access to your Personal, Account and
-                          Transaction details in order to fully enable our services.
+                        title: "Share your financial data"
+                        description: "We need to connect to your bank to collect some information about your finances"
+                      other: null
                     data:
                       retainData: true
+                      initialRetrievalDays: 730
+                      organisation: null
                       permissions:
-                        - scope: customer.person.detail
+                        - scope: "account.basic"
                           required: true
-                          entity: connection
+                          consented: true
+                          entity: "account"
                           information:
-                            name: Name, occupation, contact details
-                            description: >-
-                              This allows access to personally identifiable
-                              information. Specifically your name, occupation,
-                              address(es) and contact details.
+                            name: "Account name, type and balance"
+                            description: "This allows access to a list of your accounts and their current balance."
                             attributeList:
-                              - Name
-                              - Occupation
-                              - Phone
-                              - Email address
-                              - Mail address
-                              - Residential address
+                              - "Name of account"
+                              - "Type of account"
+                              - "Account balance"
                           purpose:
-                            title: Your Details
-                            description: We need to confirm your identity.
-                        - scope: account.detail
+                            title: "Account name, type and balance"
+                            description: "We need to capture your list of accounts."
+                        - scope: "customer.person.detail"
                           required: true
-                          entity: account
+                          consented: true
+                          entity: "connection"
                           information:
-                            name: Account balance and details
-                            description: >-
-                              This allows access to detailed information of your
-                              accounts. It includes basic account information plus
-                              account identifiers and product information. It does not
-                              include transaction data.
+                            name: "Name, occupation, contact details"
+                            description: "This allows access to personally identifiable information. Specifically your name, occupation, address(es) and contact details."
                             attributeList:
-                              - Name of account
-                              - Type of account
-                              - Account balance
-                              - Account number
-                              - Interest rates
-                              - Fees
-                              - Discounts
-                              - Account terms
-                              - Account mail address
+                              - "Name"
+                              - "Occupation"
+                              - "Phone"
+                              - "Email address"
+                              - "Mail address"
+                              - "Residential address"
                           purpose:
-                            title: Account Details
-                            description: We need to capture your account details.
-                        - scope: transaction.detail
+                            title: "Name, occupation, contact details"
+                            description: "This allows access to personally identifiable information."
+                        - scope: "transaction.detail"
                           required: true
-                          entity: transaction
+                          consented: true
+                          entity: "transaction"
                           information:
-                            name: Transaction details
-                            description: >-
-                              This allows access to transaction data for your
-                              accounts. It includes all account transaction data.
+                            name: "Transaction details"
+                            description: "This allows access to transaction data for your accounts."
                             attributeList:
-                              - Incoming and outgoing transactions
-                              - Amounts
-                              - Dates
-                              - Descriptions of transactions
-                              - Who you have sent money to and received money from
+                              - "Incoming and outgoing transactions"
+                              - "Amounts"
+                              - "Dates"
+                              - "Descriptions of transactions"
+                              - "Who you have sent money to and received money from"
                           purpose:
-                            title: Transaction details
-                            description: >-
-                              This allows access to transaction data for your
-                              accounts. It includes all account transaction data.
+                            title: "Transaction details"
+                            description: "This allows access to transaction data for your accounts."
+                        - scope: "account.detail"
+                          required: true
+                          consented: true
+                          entity: "account"
+                          information:
+                            name: "Account balance and details"
+                            description: "This allows access to detailed information of your accounts."
+                            attributeList:
+                              - "Name of account"
+                              - "Type of account"
+                              - "Account balance"
+                              - "Account number"
+                              - "Interest rates"
+                              - "Fees"
+                              - "Discounts"
+                              - "Account terms"
+                              - "Account mail address"
+                          purpose:
+                            title: "Account balance and details"
+                            description: "We need to capture your account details."
                     links:
-                      self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
-                revoked:
-                  value:
-                    type: consent
-                    id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
-                    created: '2022-11-01T05:07:00Z'
-                    updated: '2022-11-01T05:07:00Z'
-                    expiryDate: '2023-11-01T05:07:00Z'
-                    status: revoked
+                      self: "https://au-api.basiq.io/users/79ce620b-e7a6-4d49-8053-e5a0acfbbb77/consents/69d00245-1048-471a-902b-6cdc5d3d07a7"
+                      consentPolicy: "https://au-api.basiq.io/policies/94c17e2f-c452-442d-b097-37064447fddd"
+                      latestConsentPolicy: "https://au-api.basiq.io/policies/94c17e2f-c452-442d-b097-37064447fddd"
+                  - type: "consent"
+                    id: "cd3a0120-e1d3-4646-ac49-70e4a2b13dfb"
+                    created: "2024-03-08T14:32:06Z"
+                    updated: "2024-09-24T12:19:35Z"
+                    expiryDate: "2025-03-08T14:32:06Z"
+                    origin: "user"
+                    status: "revoked"
                     purpose:
                       primary:
-                        title: >-
-                          Services requiring full ongoing Personal, Account and
-                          Transaction details
-                        description: >-
-                          We need ongoing access to your Personal, Account and
-                          Transaction details in order to fully enable our services.
+                        title: "Share your financial data"
+                        description: "We need to connect to your bank to collect some information about your finances"
+                      other: null
                     data:
                       retainData: true
+                      initialRetrievalDays: 730
+                      organisation: null
                       permissions:
-                        - scope: customer.person.detail
+                        - scope: "account.basic"
                           required: true
-                          entity: connection
+                          consented: true
+                          entity: "account"
                           information:
-                            name: Name, occupation, contact details
-                            description: >-
-                              This allows access to personally identifiable
-                              information. Specifically your name, occupation,
-                              address(es) and contact details.
+                            name: "Account name, type and balance"
+                            description: "This allows access to a list of your accounts and their current balance."
                             attributeList:
-                              - Name
-                              - Occupation
-                              - Phone
-                              - Email address
-                              - Mail address
-                              - Residential address
+                              - "Name of account"
+                              - "Type of account"
+                              - "Account balance"
                           purpose:
-                            title: Your Details
-                            description: We need to confirm your identity.
-                        - scope: account.detail
+                            title: "Account name, type and balance"
+                            description: "We need to capture your list of accounts."
+                        - scope: "customer.person.detail"
                           required: true
-                          entity: account
+                          consented: true
+                          entity: "connection"
                           information:
-                            name: Account balance and details
-                            description: >-
-                              This allows access to detailed information of your
-                              accounts. It includes basic account information plus
-                              account identifiers and product information. It does not
-                              include transaction data.
+                            name: "Name, occupation, contact details"
+                            description: "This allows access to personally identifiable information."
                             attributeList:
-                              - Name of account
-                              - Type of account
-                              - Account balance
-                              - Account number
-                              - Interest rates
-                              - Fees
-                              - Discounts
-                              - Account terms
-                              - Account mail address
+                              - "Name"
+                              - "Occupation"
+                              - "Phone"
+                              - "Email address"
+                              - "Mail address"
+                              - "Residential address"
                           purpose:
-                            title: Account Details
-                            description: We need to capture your account details.
-                        - scope: transaction.detail
+                            title: "Name, occupation, contact details"
+                            description: "This allows access to personally identifiable information."
+                        - scope: "transaction.detail"
                           required: true
-                          entity: transaction
+                          consented: true
+                          entity: "transaction"
                           information:
-                            name: Transaction details
-                            description: >-
-                              This allows access to transaction data for your
-                              accounts. It includes all account transaction data.
+                            name: "Transaction details"
+                            description: "This allows access to transaction data for your accounts."
                             attributeList:
-                              - Incoming and outgoing transactions
-                              - Amounts
-                              - Dates
-                              - Descriptions of transactions
-                              - Who you have sent money to and received money from
+                              - "Incoming and outgoing transactions"
+                              - "Amounts"
+                              - "Dates"
+                              - "Descriptions of transactions"
+                              - "Who you have sent money to and received money from"
                           purpose:
-                            title: Transaction details
-                            description: >-
-                              This allows access to transaction data for your
-                              accounts. It includes all account transaction data.
-                    revoked: "2024-08-15T00:29:15Z"
+                            title: "Transaction details"
+                            description: "This allows access to transaction data for your accounts."
+                        - scope: "account.detail"
+                          required: true
+                          consented: true
+                          entity: "account"
+                          information:
+                            name: "Account balance and details"
+                            description: "This allows access to detailed information of your accounts."
+                            attributeList:
+                              - "Name of account"
+                              - "Type of account"
+                              - "Account balance"
+                              - "Account number"
+                              - "Interest rates"
+                              - "Fees"
+                              - "Discounts"
+                              - "Account terms"
+                              - "Account mail address"
+                          purpose:
+                            title: "Account numbers and features"
+                            description: "We need to capture your account details."
+                    revoked: "2024-09-24T12:19:35Z"
                     links:
-                      self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
-                expired:
-                  value:
-                    type: consent
-                    id: '61acee1d-4508-4a96-ad48-42fa68e5bc19'
-                    created: '2022-11-01T05:07:00Z'
-                    updated: '2022-11-01T05:07:00Z'
-                    expiryDate: '2023-08-29T05:07:00Z'
-                    status: expired
-                    purpose:
-                      primary:
-                        title: >-
-                          Services requiring full ongoing Personal, Account and
-                          Transaction details
-                        description: >-
-                          We need ongoing access to your Personal, Account and
-                          Transaction details in order to fully enable our services.
-                    data:
-                      retainData: true
-                      permissions:
-                        - scope: customer.person.detail
-                          required: true
-                          entity: connection
-                          information:
-                            name: Name, occupation, contact details
-                            description: >-
-                              This allows access to personally identifiable
-                              information. Specifically your name, occupation,
-                              address(es) and contact details.
-                            attributeList:
-                              - Name
-                              - Occupation
-                              - Phone
-                              - Email address
-                              - Mail address
-                              - Residential address
-                          purpose:
-                            title: Your Details
-                            description: We need to confirm your identity.
-                        - scope: account.detail
-                          required: true
-                          entity: account
-                          information:
-                            name: Account balance and details
-                            description: >-
-                              This allows access to detailed information of your
-                              accounts. It includes basic account information plus
-                              account identifiers and product information. It does not
-                              include transaction data.
-                            attributeList:
-                              - Name of account
-                              - Type of account
-                              - Account balance
-                              - Account number
-                              - Interest rates
-                              - Fees
-                              - Discounts
-                              - Account terms
-                              - Account mail address
-                          purpose:
-                            title: Account Details
-                            description: We need to capture your account details.
-                        - scope: transaction.detail
-                          required: true
-                          entity: transaction
-                          information:
-                            name: Transaction details
-                            description: >-
-                              This allows access to transaction data for your
-                              accounts. It includes all account transaction data.
-                            attributeList:
-                              - Incoming and outgoing transactions
-                              - Amounts
-                              - Dates
-                              - Descriptions of transactions
-                              - Who you have sent money to and received money from
-                          purpose:
-                            title: Transaction details
-                            description: >-
-                              This allows access to transaction data for your
-                              accounts. It includes all account transaction data.
-                    links:
-                      self: https://au-api.basiq.io/events/61acee1d-4508-4a96-ad48-42fa68e5bc19
+                      self: "https://au-api.basiq.io/users/79ce620b-e7a6-4d49-8053-e5a0acfbbb77/consents/cd3a0120-e1d3-4646-ac49-70e4a2b13dfb"
+                      consentPolicy: "https://au-api.basiq.io/policies/0c89969d-48e9-4dae-9525-9613efb13338"
+                      latestConsentPolicy: "https://au-api.basiq.io/policies/94c17e2f-c452-442d-b097-37064447fddd"
         '400':
           description: >-
             Returns error that server cannot or will not process the request due
@@ -1825,6 +1775,7 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/cd6b8aac-53b3-408d-806e-34b9ef59459e
                       source: https://au-api.basiq.io/users/bfa52043-e154-4adf-94d1-7f0544affc45/connections/67b38670-4aca-4e1d-a66e-3af4c56a35bc
+                
                 Report-in-progress:
                   value:
                     type: job
@@ -2084,7 +2035,7 @@ components:
             self:
               type: string
             source: 
-              type: string    
+              type: string
     EventTypes:
       properties:
         type:
@@ -2209,23 +2160,17 @@ components:
       
     AuthLinksResponseResource:
       required:
-      - expiresAt
       - id
       - mobile
       - type
+      - expiresAt
       - userId
       type: object
       properties:
-        expiresAt:
-          type: string
-          description: The date time of auth link expiry.
-          example: 2019-11-21T04:08:50Z
         id:
           type: string
           description: Uniquely identifies the auth link.
           example: 63448be4
-        links:
-          $ref: '#/components/schemas/AuthLinkLinks'
         mobile:
           type: string
           description: A user's mobile phone, used as for authentication.
@@ -2238,6 +2183,12 @@ components:
           type: string
           description: A string that uniquely identifies the user.
           example: ec4ea48d
+        expiresAt:
+          type: string
+          description: The date time of auth link expiry.
+          example: 2019-11-21T04:08:50Z
+        links:
+          $ref: '#/components/schemas/AuthLinkLinks'
     GoneError:
       required:
       - correlationId
@@ -2347,18 +2298,12 @@ components:
           example: /users/ec4ea48d/auth_link
     AuthLinksPostResponseResource:
       required:
-      - expiresAt
       - mobile
       - type
       - userId
+      - expiresAt
       type: object
       properties:
-        expiresAt:
-          type: string
-          description: The date time of auth link expiry.
-          example: 2019-11-21T04:08:50Z
-        links:
-          $ref: '#/components/schemas/AuthLinkLinks'
         mobile:
           type: string
           description: A user's mobile phone, used as for authentication.
@@ -2371,6 +2316,12 @@ components:
           type: string
           description: A string that uniquely identifies the user.
           example: ec4ea48d
+        expiresAt:
+          type: string
+          description: The date time of auth link expiry.
+          example: 2019-11-21T04:08:50Z
+        links:
+          $ref: '#/components/schemas/AuthLinkLinks'
     ConnectionResponseResource:
       title: ConnectionResponseResource
       required:
@@ -3343,9 +3294,11 @@ components:
         expiryDate:
           type: string
           format: date-time
+        origin:
+          type: string
         status:
           type: string
-          description: active, revoked and expired
+          description: active, revoked, and expired
         purpose:
           $ref: '#/components/schemas/Purpose'
         data:
@@ -3354,8 +3307,13 @@ components:
           type: string
           description: To indicate when a user consent was revoked.
         links:
+          type: object
           properties: 
             self:
+              type: string
+            consentPolicy:
+              type: string
+            latestConsentPolicy:
               type: string
       required:
         - created
@@ -3373,6 +3331,11 @@ components:
       properties:
         retainData:
           type: boolean
+        initialRetrievalDays:
+          type: integer
+        organisation:
+          type: boolean
+          nullable: true 
         permissions:
           type: array
           items:
@@ -3388,6 +3351,8 @@ components:
         scope:
           type: string
         required:
+          type: boolean
+        consented:
           type: boolean
         entity:
           type: string
@@ -3437,6 +3402,9 @@ components:
       properties:
         primary:
           $ref: '#/components/schemas/Primary'
+        other:
+          type: boolean
+          nullable: true 
       required:
         - primary
       title: Purpose
