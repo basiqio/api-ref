@@ -3337,7 +3337,7 @@ components:
           example: https://au-api.basiq.io/users/ea3a81/transactions
         next:
           type: string
-          description: Url to next result.
+          description: URL to the next result page when there are more than 500 transactions.
           example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
     TransactionsGetResource:
       title: Transactions container object.
