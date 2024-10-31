@@ -44,7 +44,7 @@ jobs:
           rdme: openapi ./identity.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.IDENTITY_API_DEFINITION_ID }}
 
       # Run GitHub Action to sync OpenAPI file at ./reports.yml
-      - name: Checking REPORTING (INSIGHTS)
+      - name: Checking REPORTING
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
           rdme: openapi ./reports.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.REPORTS_API_DEFINITION_ID }}
