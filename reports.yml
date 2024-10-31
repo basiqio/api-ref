@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: REPORTING (INSIGHTS)
+  title: REPORTING
   version: 3.0.0
   termsOfService: 'https://docs.basiq.io/en/collections/440849-privacy-terms-and-common-questions'
   license:
