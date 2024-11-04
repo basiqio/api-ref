@@ -1542,7 +1542,8 @@ paths:
               schema:
                 oneOf:
                 - $ref: '#/components/schemas/job'
-                - $ref: "#/components/schemas/StatementJobs"
+                - $ref: '#/components/schemas/StatementJobs'
+                - $ref: '#/components/schemas/ReportsJob'
               examples:
                 data-in-progress:
                   value:
@@ -1775,7 +1776,7 @@ paths:
                     links:
                       self: https://au-api.basiq.io/jobs/cd6b8aac-53b3-408d-806e-34b9ef59459e
                       source: https://au-api.basiq.io/users/bfa52043-e154-4adf-94d1-7f0544affc45/connections/67b38670-4aca-4e1d-a66e-3af4c56a35bc
-                
+               
                 Report-in-progress:
                   value:
                     type: job
@@ -1796,11 +1797,13 @@ paths:
                 Report-failed:
                   value:
                     type: job
-                    id: 157bdde9-e20a-441d-b6c1-6c4ee2df0b2e
-                    createdDate: "2024-09-25T04:55:51Z"
-                    updatedDate: "2024-09-25T04:56:07Z"
+                    id: 'b1824ad0-73f1-0138-3700-0a58a9feac09'
+                    partnerId: e73ffa09-742f-4be3-9aae-0ad077f041a1
+                    applicationId: 3e2863df-43d1-405d-b104-701bcb34e184
+                    created: '2016-06-08T09:10:32.000Z'
+                    updated: '2016-06-08T09:14:28.000Z'
+                    status: failed
                     jobType: report
-                    sourceId: 157bdde9-e20a-441d-b6c1-6c4ee2df0b2e
                     steps:
                       - title: create-report
                         status: failed
@@ -2035,6 +2038,48 @@ components:
             self:
               type: string
             source: 
+              type: string
+    ReportsJob:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        partnerId:
+          type: string
+        applicationId:
+          type: string
+        created:
+          type: string
+        updated:
+          type: string
+        status:
+          type: string
+        jobType:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              status:
+                type: string
+              result:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  url:
+                    type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            source:
               type: string
     EventTypes:
       properties:
