@@ -34,6 +34,10 @@ paths:
         This API allows generating reports with various filters. The `filters` field in the report request enables you to specify parameters for customizing the report content.
 
         > 📘 Note: The report title cannot be longer than 50 characters.
+        
+        
+        > 📘 **Reminder:** When Enrich data is updated, the transactions' Enrich results won’t automatically reflect these updates. To ensure your report reflects the latest Enrich data, purge and refresh connections before generating a new report.
+
 
         ### Filters 
         
