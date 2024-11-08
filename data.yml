@@ -665,9 +665,12 @@ paths:
       tags:
         - Connections
       summary: Purge connection data
-      description: >-
-        Use this to remove all user data for a specific institution.
-        This endpoint should be used only for active user connections.
+      description: |-
+        Use this endpoint to remove all user data related to a specific institution. Purging is only applicable for active user connections.
+  
+        When Enrich data is updated, the Enrich results under transactions won’t automatically reflect these updates. To ensure the latest Enrich results are available, partners should first purge and then refresh connections. Without this step, any new insight reports generated will not include the latest enriched data.
+  
+        > 📘 **Note:** Remember to purge and refresh connections to keep Enrich insights current.
       operationId: purgeConnectionData
       parameters:
         - name: userId
