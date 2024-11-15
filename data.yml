@@ -2089,7 +2089,7 @@ components:
               enum:
               - INTEREST_ONLY
               - PRINCIPAL_AND_INTEREST
-            loanAmount:
+            originalLoanAmount:
               type: string
               description: Optional loan value. 
             loanCurrency:
