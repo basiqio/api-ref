@@ -40,6 +40,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d # v2.0.0
         with:
+          webhook-type: 'incoming-webhook' # Explicitly define the webhook type
           # For posting a rich message using Block Kit
           payload: |
             {
@@ -56,4 +57,3 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
