@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
         with:
-          title-regex: '^(DX|DSO|PAY|Bump).+' # Supports either DEVX prefixed PRs
+          title-regex: '^(DX|DSO|Bump).+' # Supports either DEVX prefixed PRs
           title-regex-flags: 'g' # optional
           error-message: 'Add Jira ID to your title in the correct format'
 
@@ -22,10 +22,10 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@master # Use the latest version
         with:
-          regex: '^(DX|DSO|PAY|Bump).+' # Supports either DEVX prefixed Branches
+          regex: '^(DX|DSO|Bump).+' # Supports either DEVX prefixed Branches
           ignore: master,main # Ignore exactly matching branch names from convention
           min_length: 2 # Min length of the branch name
-          max_length: 500 # Max length of the branch name
+          max_length: 100 # Max length of the branch name
 
   lint:
     runs-on: ubuntu-latest
@@ -80,6 +80,7 @@ jobs:
         if: failure() || steps.lint-core.outputs.warnings != '' || steps.lint-data.outputs.warnings != '' || steps.lint-services.outputs.warnings != '' || steps.lint-reports.outputs.warnings != '' || steps.lint-affordability.outputs.warnings != '' || steps.lint-enrich.outputs.warnings != '' || steps.lint-identity.outputs.warnings != '' || steps.lint-webhooks.outputs.warnings != ''
         uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d # v2.0.0
         with:
+          webhook-type: 'incoming-webhook' # Explicitly define the webhook type
           payload: |
             {
               "text": "Linting Warning or Failure in GitHub Actions",
@@ -112,4 +113,3 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
