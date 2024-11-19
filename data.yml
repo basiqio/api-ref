@@ -1074,6 +1074,13 @@ components:
         additionalInfoUri:
           type: string
           description: Link to a web page with more information on this feature.
+        isActivated:
+          type: boolean
+          description: >
+            true if the feature is already activated and false if the feature is available for activation. Defaults to true if absent.
+            
+            > Note: this is an additional field appended to the feature object defined in the Product Reference payload.
+          example: true
     pursesClass:
       required:
       - amount
