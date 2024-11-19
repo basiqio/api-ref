@@ -2158,11 +2158,13 @@ components:
         features:
           type: array
           description: Array of features available for the product.
+          nullable: true
           items: 
             $ref: '#/components/schemas/featureClass'
         addresses:
           type: array
           description: The addresses for the account to be used for correspondence.
+          nullable: true
           items: 
            type: object
            properties: 
@@ -2278,7 +2280,6 @@ components:
                     state: 
                       type: string
                       description: State in which the address belongs. Valid enumeration defined by Australia Post PAF code file State Type Abbreviation. NSW, QLD, VIC, NT, WA, SA, TAS, ACT, AAT. 
-            
     lendingRateAccountMetadata:
       required:
       - lendingRateType
