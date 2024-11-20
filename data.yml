@@ -1968,7 +1968,7 @@ components:
         isOwned:
           type: boolean
           description: Flag indicating that the customer associated with the authorisation is an owner of the account. Does not indicate sole ownership, however. If not present then 'true' is assumed.
-          example: 'true'
+          example: true
         amortisedLimit:
           type: string
           description: Object representing the available limit amortised according to payment schedule. Assumed to be zero if absent.
