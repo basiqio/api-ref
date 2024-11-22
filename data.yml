@@ -2061,14 +2061,17 @@ components:
       properties:
         fees:
           type: array
+          nullable: true
           items:
             $ref: "#/components/schemas/feesAccountMetadata"
         depositRates:
           type: array
+          nullable: true
           items:
             $ref: "#/components/schemas/depositRateAccountMetadata"
         lendingRates:
           type: array
+          nullable: true
           items:
             $ref: "#/components/schemas/lendingRateAccountMetadata"
         termDeposit:
@@ -2077,6 +2080,7 @@ components:
             $ref: "#/components/schemas/termDepositMetadata"
         loan:
           type: object
+          nullable: true
           properties:
             startDate:
               type: string
