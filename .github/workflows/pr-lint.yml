@@ -38,94 +38,41 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use Node.js 20
+          node-version: '20'
 
       - name: Install Redocly CLI
         run: npm install -g @redocly/cli
 
-      - name: Verify Redocly CLI Installation
-        run: npx @redocly/cli --version
-
-      - name: Lint Core
-        id: lint-core
-        run: npx @redocly/cli lint core.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint data
-        id: lint-data
-        run: npx @redocly/cli lint data.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint Services 
-        id: lint-services
-        run: npx @redocly/cli lint services.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint Reports 
-        id: lint-reports
-        run: npx @redocly/cli lint reports.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint affordability 
-        id: lint-affordability
-        run: npx @redocly/cli lint affordability.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint Enrich
-        id: lint-enrich
-        run: npx @redocly/cli lint enrich.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint Identity 
-        id: lint-identity
-        run: npx @redocly/cli lint identity.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Lint Webhooks 
-        id: lint-webhooks
-        run: npx @redocly/cli lint webhooks.yml
-        continue-on-error: true # Allow the workflow to continue even if this step fails
-
-      - name: Check for Linting Warnings
-        id: check-lint-warnings
+      - name: Lint Files
         run: |
-          warnings=0
-          if [[ "${{ steps.lint-core.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-data.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-services.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-reports.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-affordability.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-enrich.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-identity.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          if [[ "${{ steps.lint-webhooks.outputs.warnings }}" != "" ]]; then
-            warnings=1
-          fi
-          echo "warnings=$warnings" >> $GITHUB_ENV
-        continue-on-error: true
-      
+          lint_files=("core.yml" "data.yml" "services.yml" "reports.yml" "affordability.yml" "enrich.yml" "identity.yml" "webhooks.yml")
+          for file in "${lint_files[@]}"; do
+            result=$(npx @redocly/cli lint "$file" --format=json | jq '.warnings | length')
+            echo "::set-output name=${file}-warnings::$result"
+          done
+
+      - name: Aggregate Warning Counts
+        id: aggregate-warnings
+        run: |
+          lint_files=("core.yml" "data.yml" "services.yml" "reports.yml" "affordability.yml" "enrich.yml" "identity.yml" "webhooks.yml")
+          total_warnings=0
+          summary="Linting Warnings Summary:\n"
+          for file in "${lint_files[@]}"; do
+            count=$(jq -r ".${file}-warnings" <<< "${{ steps.lint.outputs }}")
+            total_warnings=$((total_warnings + count))
+            summary+="$file: $count warnings\n"
+          done
+          echo "TOTAL_WARNINGS=$total_warnings" >> $GITHUB_ENV
+          echo "SUMMARY=$summary" >> $GITHUB_ENV
 
       - name: Send Slack Notification if Warnings Exist
-        if: ${{ steps.check-lint-warnings.outputs.warnings == '1' }}
-        uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d # v2.0.0
+        if: env.TOTAL_WARNINGS > 0
+        uses: slackapi/slack-github-action@v2
         with:
-          webhook-type: 'incoming-webhook' # Explicitly define the webhook type
+          webhook-type: 'incoming-webhook'
           payload: |
             {
-              "text": "Linting Warnings or Errors in GitHub Actions",
+              "text": "Linting Warnings Detected",
               "blocks": [
                 {
                   "type": "header",
@@ -139,7 +86,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Linting Warnings Detected* in GitHub Actions :warning:\n*Repository:* ${{ github.repository }}\n*Actor:* ${{ github.actor }}\n*Pull Request:* <${{ github.event.pull_request.html_url }}|PR Link>"
+                    "text": "*Linting Warnings Detected* in GitHub Actions :warning:\n*Total Warnings:* ${{ env.TOTAL_WARNINGS }}\n\n*Details:*\n${{ env.SUMMARY }}"
                   }
                 },
                 {
@@ -147,11 +94,11 @@ jobs:
                   "elements": [
                     {
                       "type": "mrkdwn",
-                      "text": "Please review the PR and make necessary changes."
+                      "text": "Please review the warnings and take appropriate actions."
                     }
                   ]
                 }
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
