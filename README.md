@@ -11,7 +11,7 @@
 -   Core
 -   Data
 -   Identity
--   Reporting(Insights)
+-   Reporting
 -   Webhooks
 -   Enrich
 -   Affordability
