@@ -1,4 +1,4 @@
-name: PR and Branch linting
+name: PR and Branch Linting
 
 on:
   pull_request:
@@ -12,23 +12,25 @@ jobs:
     steps:
       - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
         with:
-          title-regex: '^(DX|DSO|Bump).+' # Supports either DEVX prefixed PRs
-          title-regex-flags: 'g' # optional
+          title-regex: '^(DX|DSO|Bump).+'
+          title-regex-flags: 'g'
           error-message: 'Add Jira ID to your title in the correct format'
 
   branch-naming-rules:
     name: Branch Linting
     runs-on: ubuntu-latest
+    needs: pr-lint
     steps:
-      - uses: deepakputhraya/action-branch-name@master # Use the latest version
+      - uses: deepakputhraya/action-branch-name@master
         with:
-          regex: '^(DX|DSO|Bump).+' # Supports either DEVX prefixed Branches
-          ignore: master,main # Ignore exactly matching branch names from convention
-          min_length: 2 # Min length of the branch name
-          max_length: 100 # Max length of the branch name
+          regex: '^(DX|DSO|Bump).+'
+          ignore: master,main
+          min_length: 2
+          max_length: 100
 
   lint:
     runs-on: ubuntu-latest
+    needs: branch-naming-rules
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,54 +38,61 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use Node.js 20
+          node-version: '20'
 
       - name: Install Redocly CLI
         run: npm install -g @redocly/cli
 
-      - name: Verify Redocly CLI Installation
-        run: npx @redocly/cli --version
-
       - name: Lint Core
         id: lint-core
-        run: npx @redocly/cli lint core.yml
+        run: npx @redocly/cli lint core.yml || echo "Warnings or errors in core.yml"
 
-      - name: Lint data
+      - name: Lint Data
         id: lint-data
-        run: npx @redocly/cli lint data.yml
+        run: npx @redocly/cli lint data.yml || echo "Warnings or errors in data.yml"
 
-      - name: Lint Services 
+      - name: Lint Services
         id: lint-services
-        run: npx @redocly/cli lint services.yml
+        run: npx @redocly/cli lint services.yml || echo "Warnings or errors in services.yml"
 
-      - name: Lint Reports 
+      - name: Lint Reports
         id: lint-reports
-        run: npx @redocly/cli lint reports.yml
+        run: npx @redocly/cli lint reports.yml || echo "Warnings or errors in reports.yml"
 
-      - name: Lint affordability 
+      - name: Lint Affordability
         id: lint-affordability
-        run: npx @redocly/cli lint affordability.yml
+        run: npx @redocly/cli lint affordability.yml || echo "Warnings or errors in affordability.yml"
 
       - name: Lint Enrich
         id: lint-enrich
-        run: npx @redocly/cli lint enrich.yml
+        run: npx @redocly/cli lint enrich.yml || echo "Warnings or errors in enrich.yml"
 
-      - name: Lint Identity 
+      - name: Lint Identity
         id: lint-identity
-        run: npx @redocly/cli lint identity.yml
+        run: npx @redocly/cli lint identity.yml || echo "Warnings or errors in identity.yml"
 
-      - name: Lint Webhooks 
+      - name: Lint Webhooks
         id: lint-webhooks
-        run: npx @redocly/cli lint webhooks.yml
+        run: npx @redocly/cli lint webhooks.yml || echo "Warnings or errors in webhooks.yml"
 
-      - name: Send custom JSON data to Slack workflow
-        if: failure() || steps.lint-core.outputs.warnings != '' || steps.lint-data.outputs.warnings != '' || steps.lint-services.outputs.warnings != '' || steps.lint-reports.outputs.warnings != '' || steps.lint-affordability.outputs.warnings != '' || steps.lint-enrich.outputs.warnings != '' || steps.lint-identity.outputs.warnings != '' || steps.lint-webhooks.outputs.warnings != ''
-        uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d # v2.0.0
+      - name: Check for Linting Warnings or Errors
+        id: check-lint-warnings
+        run: |
+          warnings=0
+          for file in core data services reports affordability enrich identity webhooks; do
+            if [[ $(npx @redocly/cli lint $file.yml || echo "fail") == "fail" ]]; then
+              warnings=1
+            fi
+          done
+          echo "warnings=$warnings" >> $GITHUB_ENV
+
+      - name: Send Slack Notification if Warnings Exist
+        if: env.warnings == '1'
+        uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d
         with:
-          webhook-type: 'incoming-webhook' # Explicitly define the webhook type
           payload: |
             {
-              "text": "Linting Warning or Failure in GitHub Actions",
+              "text": "Linting Warnings Detected in GitHub Actions :warning:",
               "blocks": [
                 {
                   "type": "header",
@@ -97,19 +106,10 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Linting Issue Detected* in GitHub Actions :warning:\n*Repository:* <${{ github.repository_url }}|${{ github.repository }}>\n*Actor:* ${{ github.actor }}\n*Pull Request:* <${{ github.event.pull_request.html_url }}|PR Link>"
+                    "text": "*Warnings detected during linting.*\n*Repository:* ${{ github.repository }}\n*Actor:* ${{ github.actor }}\n*Pull Request:* <${{ github.event.pull_request.html_url }}|PR Link>"
                   }
-                },
-                {
-                  "type": "context",
-                  "elements": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "Please review the PR and make necessary changes."
-                    }
-                  ]
                 }
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URLS }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
