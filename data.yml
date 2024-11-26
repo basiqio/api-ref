@@ -2106,6 +2106,9 @@ components:
             originalLoanCurrency:
               type: string
               description: If absent assumes AUD. 
+            minInstalmentAmount:
+              type: string
+              description: Minimum amount of next instalment. 
             nextInstalmentDate: 
               type: string
               description: Next date that an instalment is required. 
