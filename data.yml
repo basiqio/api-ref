@@ -2103,15 +2103,12 @@ components:
             originalLoanAmount:
               type: string
               description: Optional loan value. 
-            loanCurrency:
+            originalLoanCurrency:
               type: string
               description: If absent assumes AUD. 
             nextInstalmentDate: 
               type: string
               description: Next date that an instalment is required. 
-            minInstalmentAmount:
-              type: string
-              description: Minimum amount of next instalment. 
             minInstalmentCurrency:
               type: string
               description: If absent assumes AUD. 
@@ -2127,18 +2124,19 @@ components:
             minRedrawCurrency:
               type: string
               description: If absent assumes AUD. 
-            offsetAccountEnabled: 
-              type: boolean
-              description: Set to true if one or more offset accounts are configured for this loan account. 
-              example: true
+            repaymentFrequency:
+              type: string
+              description: The expected or required repayment frequency. Formatted according to ISO 8601 Durations (excludes recurrence syntax).
             offsetAccountIds:
               type: array
               description: The accountIDs of the configured offset accounts attached to this loan. Only offset accounts that can be accessed under the current authorisation should be included. It is expected behaviour that offsetAccountEnabled is set to true but the offsetAccountIds field is absent or empty. This represents a situation where an offset account exists but details can not be accessed under the current authorisation.
               items:
                type: string
-            repaymentFrequency:
-              type: string
-              description: The expected or required repayment frequency. Formatted according to ISO 8601 Durations (excludes recurrence syntax).
+            offsetAccountEnabled: 
+              type: boolean
+              description: Set to true if one or more offset accounts are configured for this loan account. 
+              example: true
+            
         creditCard:
           required:
           - minPaymentAmount
