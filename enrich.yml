@@ -47,6 +47,39 @@ paths:
         schema:
           type: string
         required: true
+      - name: mcc
+        in: query
+        description: >-
+          Merchant classification code as defined by Visa and Mastercard
+          
+          ```q=garfish%20MANLY%20NS&country=AU&institution=AU06703&**mcc=3299**```
+        schema:
+          type: string
+      - name: accountType
+        in: query
+        description: >- 
+          The Account type from which the transaction was derived.
+          
+          ```METRO%20PETROLEUM%20FR%20FORE&country=AU&accountType=transaction&institution=AU04301```
+          
+          **Valid values:**
+          
+          - `transaction`
+          - `credit-card`
+          - `savings`
+          - `mortgage`
+          - `loan`
+          - `foreign`
+        schema: 
+          type: string
+      - name: amount
+        in: query
+        description: >- 
+          The dollar/cent amount relevant to the transaction.
+          
+          ```q=garfish%20MANLY%20NS&country=AU&institution=AU06703&**amount=-12.95**```
+        schema: 
+          type: string
       responses:
         200:
           description: >-
