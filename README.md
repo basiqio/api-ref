@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img width="100px" src="https://github.com/basiqio/api-ref/assets/102712545/4fae7b18-07c3-406e-aa6c-16cd569e36b8" alt="API Docs" />
 </p>
 
