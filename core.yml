@@ -17,7 +17,7 @@ paths:
       summary: Generate an auth token
       description: >-
         Use this endpoint to retrieve a token that will be passed as
-        authorization header for Basiq API
+        authorization header for Basiq API.
       operationId: postToken
       parameters:
         - name: basiq-version
