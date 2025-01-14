@@ -66,3 +66,13 @@ jobs:
         uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
         with:
           rdme: openapi ./draft-release/webhooks.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
+
+      - name: Validating Enrich
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
+        with:
+          rdme: openapi ./draft-release/enrich.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
+
+      - name: Validating Identity
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
+        with:
+          rdme: openapi ./draft-release/identity.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
