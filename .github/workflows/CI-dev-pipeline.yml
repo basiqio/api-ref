@@ -13,34 +13,9 @@ on:
         default: ""
 
 jobs:
-  pr-lint:
-    name: PR Linting
-    runs-on: ubuntu-latest
-    steps:
-      - name: PR Title Lint
-        uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6
-        with:
-          title-regex: '^(DX|DSO|Bump).+'
-          title-regex-flags: 'g'
-          error-message: 'Add Jira ID to your title in the correct format'
-
-  branch-naming-rules:
-    name: Branch Naming Rules
-    runs-on: ubuntu-latest
-    needs: pr-lint
-    steps:
-      - name: Branch Name Lint
-        uses: deepakputhraya/action-branch-name@master
-        with:
-          regex: '^(DX|DSO|Bump).+'
-          ignore: master,main
-          min_length: 2
-          max_length: 100
-
   lint-webhooks:
     name: Lint Webhooks File
     runs-on: ubuntu-latest
-    needs: branch-naming-rules
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
