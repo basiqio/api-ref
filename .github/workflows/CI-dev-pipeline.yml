@@ -17,25 +17,27 @@ jobs:
     name: PR Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6 # v1.2.0
+      - name: PR Title Lint
+        uses: seferov/pr-lint-action@2f6ccc0e32d53505ab87d1340a8b5c42cb874bd6
         with:
           title-regex: '^(DX|DSO|Bump).+'
           title-regex-flags: 'g'
           error-message: 'Add Jira ID to your title in the correct format'
 
   branch-naming-rules:
-    name: Branch Linting
+    name: Branch Naming Rules
     runs-on: ubuntu-latest
     needs: pr-lint
     steps:
-      - uses: deepakputhraya/action-branch-name@master
+      - name: Branch Name Lint
+        uses: deepakputhraya/action-branch-name@master
         with:
           regex: '^(DX|DSO|Bump).+'
           ignore: master,main
           min_length: 2
           max_length: 100
 
-  lint:
+  lint-webhooks:
     name: Lint Webhooks File
     runs-on: ubuntu-latest
     needs: branch-naming-rules
@@ -54,25 +56,25 @@ jobs:
       - name: Lint Webhooks File
         run: npx @redocly/cli lint ./draft-release/webhooks.yml
 
-  DeployDev:
-    name: Deploy Dev
+  deploy-dev:
+    name: Deploy to Dev
     runs-on: ubuntu-latest
-    needs: [lint]
+    needs: lint-webhooks
     steps:
-      - name: Checkout this repo
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v3.5
+      - name: Checkout Repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
       - name: Validating Webhooks
-        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804
         with:
           rdme: openapi ./draft-release/webhooks.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
 
       - name: Validating Enrich
-        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804
         with:
           rdme: openapi ./draft-release/enrich.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
 
       - name: Validating Identity
-        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804 # v8
+        uses: readmeio/rdme@51a80867c45de15e2b41af0c4bd5bbc61b932804
         with:
           rdme: openapi ./draft-release/identity.yml --key=${{ secrets.README_API_KEY_DEV }} --id=${{ secrets.WEBHOOK_API_DEFINITION_ID }}
